@@ -49,8 +49,9 @@
 
 .postcontent ol li,
 .postcontent ul li {
-    margin-left: 30px;
+    margin-left: 30px!important;
 }
+
 /* ------- post settings ends -------- */
 
 /* ------- site logo begins -------- */
