@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{site.url}}/css/main.css">
+    <meta name="description" content="{% if page.description %}{{ page.description | strip_html | strip_newlines | truncate: 170 }}{% else %}{{page.content | strip | strip_html | truncate: 170}}{% endif %}">
+    <meta name="keywords" content="{{page.tags}}{% if page.tags %}, {% endif %} {{page.keywords}}">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/31fd33d141.js" crossorigin="anonymous"></script>
+
+    <!-- Latest compiled and minified Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>{% if page.typeg == "homepage" %}{{ site.title }} | {{site.description}} {% else %} {{ page.title }} {% if page.subtitle %}{{ page.subtitle | before: "|" }}{% endif %} | {{ site.title }} {% endif %}</title>
+    {% seo %}
+  </head>
+  <body>
+        
+    
+    <div class="masterheader">
+      <!-- Websites Logo Begins -->
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="navbar-brand"><a href="{{ "/" | prepend: site.baseurl }}"><img src="https://beingtechnicalwriter.s3.ap-south-1.amazonaws.com/logo/btwlogo.png" alt="Home" /></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Websites Logo Ends -->
+
+      <!-- Websites Navbar Begins -->
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+          {% include topnavigation.html %}
+          </div>
+        </div>
+      </div>
+      <!-- Websites Navbar Ends -->
+    </div>
+    
+    <!-- Main Content begins -->
+    <div class="container">
+    
+
+      <!-- Page Heading/Breadcrumbs -->
+      <h2 class="mt-4 mb-3">{{page.title}}</h2>
+
+
+      <div class="row">
+
+        <!-- Blog Entries Column -->
+        
+        <div class="col-md-8">
+          {% include algolia.html %}
+          <script src="/js/toc.js" | prepend:site.baseurl }}></script>
+          {{content}}
+          
+        </div>
+       
+
+        
+       
+        <!-- Sidebar Widgets Column -->
+        <div class="col-md-4">
+        
+          <!-- Search Widget -->
+          <div id="search-searchbar"></div>       
+          
+          
+          <!-- Categories Widget -->
+          {% include categorieswidget.html %}
+
+          <!-- Side Widget -->
+          
+
+        
+      </div> 
+
+      </div>
+    <!-- Main Content ends -->
+
+    <!-- Footer Begins -->
+    <div class="footer">
+    <footer class="py-auto">
+      <div class="container">
+        {% include footer.html %}
+      </div>
+      <!-- /.container -->
+    </footer>
+    </div>
+    <!-- Footer ends -->
+    
+    <!-- Copyright begins -->
+    <div>
+      <div class="copyright">Copyright &copy; 2020 being technical writer. All rights reserved. <a target="_blank" href="{{site.url}}/privacy.html"> Privacy policy</a>
+      </div>
+    </div>
+    <!-- Copyright ends -->
+
+    <!-- Popper.js, then Bootstrap JS -->    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch-theme-algolia.min.css">
+    
+  
+  </body>
+</html>

@@ -1,0 +1,21 @@
+---
+layout: default
+
+---
+
+
+{% if page.subtitle %}<div class="subheading">{{page.subtitle}}</div>{% endif %}
+<p class="page-meta">
+  {% unless page.byline == false %}
+<i> by {{page.author}} on {{ page.date | date: "%b %-d, %Y" }}</i><br/>
+  {% endunless %}
+
+{% if page.description %}<div class="summary">{{page.description}}</div> {% endif %}
+
+<div id="toc"></div>
+
+{{ content }}
+
+{% include toc.html %}
+{% include share_bar.html %}
+{% include disqus.html %}

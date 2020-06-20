@@ -1,0 +1,35 @@
+<footer>
+    <div class="row">
+        <!-- form-group begins -->
+        <div class="col-md-3">
+            {% include tinyletter.html %}
+        </div> 
+        <!-- form-group ends -->
+        
+        <div class="col-md-2">
+            <div class="footerlinks mr-auto">
+                {% for item in site.data.footer.footercolumnone %}
+                    <a class="nav-link" href="{{item.url | prepend: site.url}}">{{item.title}}</a>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <div class="footerlinks mr-auto">
+                {% for item in site.data.footer.footercolumntwo %}
+                    <a class="nav-link" href="{{item.url | prepend: site.url}}">{{item.title}}</a>
+                {% endfor %}
+            </div>
+        </div>
+        
+        
+        <div class="col-md-2">
+            <div class="donate">
+                {% for item in site.data.footer.footercolumnthree %}
+                <a href="{{item.url | prepend: site.url}}" class="btn btn-info" role="button">{{item.title}}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+        
+</footer>

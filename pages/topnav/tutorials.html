@@ -1,0 +1,21 @@
+---
+layout: default
+title: Tutorials
+permalink: /tutorials/
+
+---
+
+<div class="row">
+    {% for item in site.data.tutorialnavigation.tutorialnavigation %}
+    <div class="col-md-5">
+      <div class="card">
+        <img class="card-img-top" src="{{item.image}}">
+        <div class="card-body">
+          <p class="card-text">{{item.text}}</p>
+          <a href="{{item.url | prepend: site.url}}" class="btn btn-primary">Start Learning...</a>
+        </div>   
+      </div>    
+    </div> 
+    {% endfor %}   
+</div>
+  
