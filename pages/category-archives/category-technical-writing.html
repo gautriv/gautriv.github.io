@@ -7,10 +7,10 @@ categoryName: technical writing
 
 <p>The following content is in the <b>{{page.categoryName}}</b> category:
 
-{% for being in site.categories.technical-writing %}
+{% for b in site.categories.technical-writing %}
 <div class="card mb-4">            
     <div class="card-body">
-      <h4 class="card-title"><a href="{{site.url}}{{being.url}}">{{being.title}}</a><span class="postDate"> | {{ being.date | date: "%b %-d, %Y" }}</span></h4>
+      <h4 class="card-title"><a href="{{site.url}}{{b.url}}">{{b.title}}</a><span class="postDate"> | {{ b.date | date: "%b %-d, %Y" }}</span></h4>
     </div>
 </div>
 
