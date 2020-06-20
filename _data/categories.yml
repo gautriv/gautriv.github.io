@@ -2,10 +2,7 @@ categoriescolumnone:
 
     - title: Jekyll
       url: /category-jekyll/
-      
-    - title: Madcap Flare
-      url: /category-madcap/
 
     - title: Technical Writing
-      url: /technicalwriting/
+      url: /category-technicalwriting/
       

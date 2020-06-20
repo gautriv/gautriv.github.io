@@ -10,7 +10,7 @@ categoryName: jekyll
 {% for b in site.categories.jekyll %}
 <div class="card mb-4">            
     <div class="card-body">
-      <h4 class="card-title"><a href="{{site.baseurl}}{{b.url}}">{{b.title}}</a><span class="postDate"> | {{ b.date | date: "%b %-d, %Y" }}</span></h4>
+      <h4 class="card-title"><a href="{{site.url}}{{b.url}}">{{b.title}}</a><span class="postDate"> | {{ b.date | date: "%b %-d, %Y" }}</span></h4>
     </div>
 </div>
 
