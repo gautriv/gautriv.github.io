@@ -47,6 +47,10 @@
     font-weight: 700
 }
 
+.postcontent ol li,
+.postcontent ul li {
+    margin: 10px 0
+}
 /* ------- post settings ends -------- */
 
 /* ------- site logo begins -------- */

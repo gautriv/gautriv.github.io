@@ -1,11 +1,18 @@
 ---
 layout: default
 ---
+<div class="posthead">
 
    {% if page.description %}<div class="summary">{{page.description}}</div> {% endif %}
 
    {% include toc.html %}
 
+   <div class="postcontent">
+
         {{content}}
+   
+   </div>
+
+</div>
 
 
