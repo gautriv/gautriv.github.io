@@ -44,12 +44,12 @@
 
 .summary::before {
     content: "Summary: ";
-    font-weight: 700
+    font-weight: 700;
 }
 
 .postcontent ol li,
 .postcontent ul li {
-    margin: 10px 0
+    margin-left: 30px;
 }
 /* ------- post settings ends -------- */
 

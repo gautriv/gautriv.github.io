@@ -14,8 +14,11 @@ layout: default
 
 <div id="toc"></div>
 
-{{ content }}
+    <div class="postcontent">
+          {{ content }}
 
-{% include toc.html %}
+          {% include toc.html %}
+
+    </div>
 {% include share_bar.html %}
 {% include disqus.html %}
