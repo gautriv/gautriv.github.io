@@ -1,0 +1,17 @@
+---
+
+title: "Technical Writing"
+permalink: /technicalwriting/
+categoryName: Technical Writing
+---
+
+<p>The following content is in the <b>{{page.categoryName}}</b> category:
+
+{% for b in site.categories.technicalwriting %}
+<div class="card mb-4">            
+    <div class="card-body">
+      <h4 class="card-title"><a href="{{site.baseurl}}{{b.url}}">{{b.title}}</a><span class="postDate"> | {{ b.date | date: "%b %-d, %Y" }}</span></h4>
+    </div>
+</div>
+
+    {% endfor %}
