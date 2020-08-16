@@ -7,7 +7,7 @@ description: Content strategists often present content strategy as a medicine fo
 
 **Content is like a movie. It should display emotion, action, friendship, love, and above all, it should have a story, albeit an interesting one.**
 
-Off late, I'm hearing a lot about the content strategy and its effectiveness in dealing with many content problems (for example, content accuracy, reuse, visualization, or minimalism). Content strategists often present content strategy as a medicine for all the content related problems. But, does a content strategy, howsoever effective, is "the remedy" to all ills ailing the content industry?
+Of late, I'm hearing a lot about the content strategy and its effectiveness in dealing with many content problems (for example, content accuracy, reuse, visualization, or minimalism). Content strategists often present content strategy as a medicine for all the content related problems. But, does a content strategy, howsoever effective, is "the remedy" to all ills ailing the content industry?
 
 Before I talk about my problems with the content strategy and its outcome, let's first understand what content strategy is.  
 
