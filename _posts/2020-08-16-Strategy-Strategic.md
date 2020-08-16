@@ -37,7 +37,7 @@ Deep down, I always think, where they are getting the data to back their claims.
 
 ### Not The End
 
-I thought this must be it. But slowly I realized, that content strategists are not only building castles in the air, but they are also offering strategy offered by other top-line companies as their own.
+I thought this must be it. But slowly I realized that content strategists are not only building castles in the air, but they are also offering strategies offered by other top-line companies as their own.
 
 **They call it innovation when, in reality, it's renovation.**
 
@@ -47,7 +47,7 @@ The problem with this kind of approach is that you can never be sure that the th
 
 Understand it this way, if you are thirsty, would you want water or food? More importantly, how do you know that you are thirsty?
 
-There's only one answer to all the above questions - you need to talk to your clients and prepare a common ground. You've to understand what their real requirements are. What all enhancements they want in your content. Only then you can develop a strategy that is your own, based on your own work domain.
+There's only one answer to all the above questions - you need to talk to your clients and prepare a common ground. You've to understand what their real requirements are. What all enhancements they want in your content. Only then you can develop a strategy that is your own, based on your work domain.
 
 **Innovation without understanding the real requirement is like watering a plant that you somehow planted on a hilltop.**
 
