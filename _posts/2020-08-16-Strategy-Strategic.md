@@ -6,7 +6,6 @@ description: Content strategists present content strategy as a medicine for all 
 ---
 
 > Content is like a movie. It should display emotion, action, friendship, love, and above all, it should have a story, albeit an interesting one.
-> -- Gaurav
 
 Off late, I'm hearing a lot about the content strategy and its effectiveness in dealing with many content problems (for example, content accuracy, reuse, visualization, or minimalism).
 
