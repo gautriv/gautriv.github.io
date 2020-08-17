@@ -31,13 +31,13 @@ And here lies the problem!
 
 All the content strategists base their webinars, meetings, and articles on the assumption that whatever they are offering is correct, and it's precisely what the client wants. The confidence with which they talk about content strategy makes me nervous.
 
-**Strategy without data analysis is like butter chicken without chicken.**
-
 Deep down, I always think, where they are getting the data to back their claims. Did they talk to their clients individually, in a town hall, or clients tell them about their needs? What is the source?
+
+**Strategy without data analysis is like butter chicken without chicken.**
 
 ### Not The End
 
-I thought this must be it. But slowly I realized that content strategists are not only building castles in the air, but they are also offering strategies offered by other top-line companies as their own.
+I thought this must be it. But slowly I realized that content strategists are not only building castles in the air, but they are also reusing the strategies offered by other top-line companies as their own.
 
 **They call it innovation when, in reality, it's renovation.**
 
@@ -45,10 +45,12 @@ The problem with this kind of approach is that you can never be sure that the th
 
 ### What is strategic content?
 
-Understand it this way, if you are thirsty, would you want water or food? More importantly, how do you know that you are thirsty?
+Understand it this way, if you are thirsty, would you like to have water or food? More importantly, how do you know that you are thirsty?
 
-There's only one answer to all the above questions - you need to talk to your clients and prepare a common ground. You've to understand what their real requirements are. What all enhancements they want in your content. Only then you can develop a strategy that is your own, based on your work domain.
+You know you are thirsty because your senses talk. Based on the feedback your brain receives, it formulates a strategy to fulfill the need of the body. It's on this strategy you act.
+
+Similarly, you need to talk to your clients and prepare a common ground. You've to understand what their real requirements are. What all enhancements they want in your content. Only then you can develop a strategy that is your own, based on your work domain.
 
 **Innovation without understanding the real requirement is like watering a plant that you somehow planted on a hilltop.**
 
-After all, the tie-beam should be clients, not some content management system, which is a separate ball game together.
+After all, the tie-beam should be clients, not some content management system, which is a separate ball game alltogether.
