@@ -24,14 +24,12 @@ There are many pillars on which content strategy stands, out of that main pillar
  - Micro-content (same as micro-APIs)
  - Content Marketing and lead generation
 
-Content strategists connect these pillars with a tie-beam, that is, a Content management system.
+Content strategists connect these pillars with a tie-beam, that is, some kind of systems.
 And here lies the problem!
 
 ### The Problem
 
-All the content strategists base their webinars and articles on the assumption that whatever they are offering is correct, and it's precisely what the client wants. The confidence with which they talk about content strategy makes me nervous.
-
-Deep down, I always think, where they are getting the data to back their claims. Did they talk to their clients individually, in a town hall, or clients tell them about their needs? What is the source?
+All the content strategists base their webinars and articles on the assumption that whatever they are offering is correct, and it's precisely what the client wants. Deep down, I always think, where they are getting the data to back their claims. Did they talk to their clients individually, in a town hall, or clients tell them about their needs? What is the source?
 
 **Strategy without data analysis is like butter chicken without chicken.**
 
@@ -45,4 +43,4 @@ Similarly, you need to talk to your clients and prepare a common ground. You've 
 
 **Innovation without understanding the real requirement is like watering a plant that you somehow planted on a hilltop.**
 
-After all, the tie-beam should be clients, not some content management system, which is a separate ball game alltogether.
+After all, the tie-beam should be clients, not some kind of systems, which is a separate ball game alltogether.
