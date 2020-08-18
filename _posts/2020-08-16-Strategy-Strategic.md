@@ -7,7 +7,7 @@ description: Content strategists often present content strategy as a medicine fo
 
 **Content is like a movie. It should display emotion, action, friendship, love, and above all, it should have a story, albeit an interesting one.**
 
-Of late, I'm hearing a lot about the content strategy and its effectiveness in dealing with many content problems (for example, content accuracy, reuse, visualization, or minimalism). Content strategists often present content strategy as a medicine for all the content related problems. But, does a content strategy, howsoever effective, is "the remedy" to all the ills ailing the content industry?
+Of late, I'm hearing a lot about the content strategy and its effectiveness in dealing with many content problems (for example, content accuracy, reuse, or visualization). Content strategists often present content strategy as a medicine for all the content related problems. But, does a content strategy, howsoever effective, is "the remedy" to all the ills ailing the content industry?
 
 Before I talk about my problems with the content strategy and its outcome, let's first understand what content strategy is.  
 
@@ -29,19 +29,11 @@ And here lies the problem!
 
 ### The Problem
 
-All the content strategists base their webinars, meetings, and articles on the assumption that whatever they are offering is correct, and it's precisely what the client wants. The confidence with which they talk about content strategy makes me nervous.
+All the content strategists base their webinars and articles on the assumption that whatever they are offering is correct, and it's precisely what the client wants. The confidence with which they talk about content strategy makes me nervous.
 
 Deep down, I always think, where they are getting the data to back their claims. Did they talk to their clients individually, in a town hall, or clients tell them about their needs? What is the source?
 
 **Strategy without data analysis is like butter chicken without chicken.**
-
-### Not The End
-
-I thought this must be it. But slowly I realized that content strategists are not only building castles in the air, but they are also reusing the strategies offered by other top-line companies as their own.
-
-**They call it innovation when, in reality, it's renovation.**
-
-The problem with this kind of approach is that you can never be sure that the things which are working for others will work for you as well (due to differences in the work domain). That's why I'm an advocate of strategic content.
 
 ### What is strategic content?
 
