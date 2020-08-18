@@ -31,8 +31,6 @@ And here lies the problem!
 
 All the content strategists base their webinars and articles on the assumption that whatever they are offering is correct, and it's precisely what the client wants. Deep down, I always think, where they are getting the data to back their claims. Did they talk to their clients individually, in a town hall, or clients tell them about their needs? What is the source?
 
-**Strategy without data analysis is like butter chicken without chicken.**
-
 ### What is strategic content?
 
 Understand it this way, if you are thirsty, would you like to have water or food? More importantly, how do you know that you are thirsty?
