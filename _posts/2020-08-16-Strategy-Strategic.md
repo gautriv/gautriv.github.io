@@ -12,9 +12,9 @@ Of late, I'm hearing a lot about the content strategy and its effectiveness in d
 Before I talk about my problems with the content strategy and its outcome, let's first understand what content strategy is.  
 
 ### What is content strategy?
+Content strategy is bascially the management of any type of content (technical or non-technical). It stands on following pillars:
 
-There are many pillars on which content strategy stands, out of that main pillars are:
-
+ - Terget audience
  - Content placement
  - Content reuse
  - Content delivery
@@ -23,9 +23,6 @@ There are many pillars on which content strategy stands, out of that main pillar
  - Ease of search
  - Micro-content (same as micro-APIs)
  - Content Marketing and lead generation
-
-Content strategists connect these pillars with a tie-beam, that is, some kind of systems.
-And here lies the problem!
 
 ### The Problem
 
@@ -40,5 +37,3 @@ You know you are thirsty because your senses talk. Based on the feedback your br
 Similarly, you need to talk to your clients and prepare a common ground. You've to understand what their real requirements are. What all enhancements they want in your content. Only then you can develop a strategy that is your own, based on your work domain.
 
 **Innovation without understanding the real requirement is like watering a plant that you somehow planted on a hilltop.**
-
-After all, the tie-beam should be clients, not some kind of systems, which is a separate ball game alltogether.
