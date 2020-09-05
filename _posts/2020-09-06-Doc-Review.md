@@ -82,4 +82,4 @@ Prepare a technical review template (decision log) in the tabular format. This d
 
 If you are using Confluence or Jira, you can easily prepare a decision log. In my forthcoming blogs, I’ll cover this (Decision Log) and many other topics.
 
-What do you think about documentation review processes? Did you find the article useful? Please comment and let me know your thoughts.
+What do you think about documentation review processes? Did you find this article useful? Please comment and let me know your thoughts.
