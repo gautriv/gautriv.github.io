@@ -12,7 +12,7 @@ Of late, I’ve been trying a new process for my documents review. There was a t
 
 How wrong I was, sigh!
 
-## The purpose of the documentation review
+### The purpose of the documentation review
 
 The documents you prepare may be perfect in your eyes, but there is always room for improvement. You need someone to evaluate your documents for technical and grammatical accuracy or content structure. Depending on how you want your documents assessed, you may need to involve Subject Matter Experts (SMEs), Editors, or Peers.
 
@@ -70,7 +70,7 @@ For this type of document review, you need to send emails to Product Managers, P
 
   
 
-#### Pro tip
+### Pro tip
 
 Prepare a technical review template (decision log) in the tabular format. This decision log includes details like:
 
