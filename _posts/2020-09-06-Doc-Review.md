@@ -48,7 +48,7 @@ I’ve prepared a self-review checklist for you. This checklist covers almost ev
  9. If you have instructions, ensure that you follow them in real-time to check their authenticity.  
  10. Check for page break and ensure that all the instructions and tables are on a single page.
 
-**While following this checklist, it is mandatory to take a five-minute break after every step. This five-minute break will increase your concentration and will ultimately increase your efficiency.**
+**While following this checklist, it's mandatory to take a five-minute break after each step. This five-minute break will increase your concentration and will ultimately increase your efficiency.**
 
 ### SME Review
 
