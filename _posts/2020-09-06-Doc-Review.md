@@ -1,5 +1,5 @@
 ---
-title: Top 5 recommended document review guidelines and protocol
+title: Top 5 recommended document review guidelines and protocols
 category: technical-writing
 permalink: /documentreviewguidelinesandprotocol/
 description: The documents you prepare may be perfect in your eyes, but there is always room for improvement. You need someone to evaluate your documents for technical and grammatical accuracy or content structure. Depending on how you want your documents assessed, you may need to involve Subject Matter Experts (SMEs), Editors, or Peers. Always remember, the quality of the document reflects the quality of the product.
