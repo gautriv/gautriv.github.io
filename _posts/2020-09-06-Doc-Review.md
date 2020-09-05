@@ -18,7 +18,7 @@ The documents you prepare may be perfect in your eyes, but there is always room 
 
 **Always remember, the quality of the document reflects the quality of the product.**
 
-To make the process easy for you, I’ve laid down five simple steps that define the review process in technical writing.
+To make the process easy for you, I’ve laid down five simple steps that define the document review process in technical writing.
 
  1. Self-Review 
  2. SME review (includes Developers, Testers, Product Champion, and Business Analysts) 
