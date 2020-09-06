@@ -40,18 +40,23 @@ I’ve prepared a self-review checklist for you. This checklist covers almost ev
 
 **Self-Review checklist:**
 
- 1. Run spell checker (MS Word spelling and grammar checker functionality is best in class) and check for punctuation
- 2. Ensure all images have a caption
- 3. Ensure all field names, option names, and the texts you want a user to type and are bold 
- 4. Check all your titles or headings are in title case 
- 5. Check for sentence casing (As far as you can use sentence case, for example, instead of I Can Help you, use I can help you)
- 6. Ensure all your sentences are no more than 8 to 10 words
- 7. Check for passive voice (you must author your document in active voice) 
- 8. Check for intricate text (a complex sentence or paragraph structure) 
- 9. If you have instructions, ensure that you follow them in real-time to check their authenticity.  
- 10. Check for page break and ensure that all the instructions and tables are on a single page.
+ 1. Run spell checker (MS Word spelling checker functionality is best in class)
+ 2. Check for punctuation
+ 3. Check for grammar
+ 4. Ensure all images have a caption
+ 5. Ensure all field names, option names, and the texts you want a user to type are bold 
+ 6. Check all your titles or headings are in title case 
+ 7. Check for sentence casing (As far as you can use sentence case, for example, instead of I Can Help you, use I can help you)
+ 8. Ensure all your sentences are no more than 8 to 10 words
+ 9. Check for minimalism (review your content and see if you can shorten its length)
+ 10. Check for passive voice (you must author your document in active voice) 
+ 11. Check for intricate text (a complex sentence or paragraph structure) 
+ 12. If you have instructions, ensure that you follow them in real-time to check their authenticity.  
+ 13. Check for page break and ensure that all the instructions and tables are on a single page.
+ 14. Check for missing hyperlinks and bookmarks
+ 15. Check for proper use of articles 
 
-**While following this checklist, it's mandatory to take a five-minute break after each step. This five-minute break will increase your concentration and will ultimately increase your efficiency.**
+**While following this checklist, it's mandatory to take a couple of minutes break after each step. This break will increase your concentration and ultimately helps you in reviewing your document correctly.**
 
 ### SME Review
 
