@@ -7,17 +7,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{site.url}}/css/main.css">
+    <meta name="description" content="{% if page.description %}{{ page.description | strip_html | strip_newlines | truncate: 170 }}{% else %}{{page.content | strip | strip_html | truncate: 170}}{% endif %}">
     <meta name="keywords" content="{{page.tags}}{% if page.tags %}, {% endif %} {{page.keywords}}">
     <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+
     <meta property="og:site_name" content="{{ site.title }}">
     {% if page.title %}
     <meta property="og:title" content="{{ page.title }}">
     <meta property="og:type" content="article">
-    <meta property="og:description" content="{{ page.excerpt | strip_html }}"/>
     {% else %}
     <meta property="og:title" content="{{ site.title }}">
     <meta property="og:type" content="website">
-    <meta property="og:description" content="{{ site.description }}">
     {% endif %}
     {% if page.header-img %}
     <meta property="og:image" content="{{ site.url }}/{{ page.header-img }}" />
