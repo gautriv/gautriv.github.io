@@ -5,6 +5,7 @@
 .navbar {
   background-color: #300389;
   border-radius: 4px;
+  font-family: Merriweather, Helvetica
 }
 
 .nav-item a {
@@ -418,3 +419,39 @@ div#toc ul::before {
 }
 
 /* ------- blog end area ends -------- */
+
+@media print {
+  div#masterheader,
+  .col-md-3,
+  .navbar.navbar-expand-lg,
+  .share_bar,
+  .form-group.btw {
+      display: none;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: Montserrat, "Helvetica Neue", Arial, sans-serif;
+    font-weight: 700;
+    line-height: 1.25em
+}
+
+body {
+  font-family: Merriweather, "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  padding-top: 25px
+}
+
+blockquote {
+  background-color: #eef7fa;
+  font-family: arial;
+  font-size: 95%;
+  margin: 0;
+  padding: 20px;
+  border-left: 0
+}
