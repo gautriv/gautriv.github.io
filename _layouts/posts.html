@@ -55,6 +55,7 @@ layout: default
 <div id="toc"></div>
 
 <div class="postcontent">
+<img src="{{ page.image | prepend: site.baseurl }}" alt="{{ page.title }}" title="{{ page.title }}">
   {{ content }}
   
   {% include toc.html %}

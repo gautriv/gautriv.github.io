@@ -1,12 +1,13 @@
 ---
 title: Top 5 recommended document review guidelines and protocols
 category: technical-writing
+image: "/assets/Top-5-recommended-document-review-guidelines-and-protocols.png"
+header-img: "/assets/Top-5-recommended-document-review-guidelines-and-protocols.png"
 keywords: [document review guidelines, document review protocol, purpose of the documentation review, document review process, documentation review, document review schedule, peer review]
 tags: [document review guidelines, document review protocol, purpose of the documentation review, document review process, documentation review, document review schedule, peer review]
 permalink: /documentreviewguidelinesandprotocol/
 description: The documents you prepare may be perfect in your eyes, but there is always room for improvement. You need someone to evaluate your documents for technical and grammatical accuracy or content structure. Always remember, the quality of the document reflects the quality of the product.
 ---
-<figure><img src="/assets/Top-5-recommended-document-review-guidelines-and-protocols.png" alt="Top 5 recommended document review guidelines and protocols" /></figure>
 
 “I think it’s very important to have a feedback loop, where you’re constantly thinking about what you’ve done and how you could be doing it better.”
 **– Elon Musk**
