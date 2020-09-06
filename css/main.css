@@ -59,6 +59,7 @@
 
 .navbar-brand img {
     max-width: 70%;
+    height: auto;
     flex: none;
     margin-top: 20px;
     margin-bottom: 20px;
@@ -270,6 +271,7 @@ div#toc ul::before {
 
 .search-header-logo img {
   width: 150px;
+  height: auto;
   flex: none;
   opacity: .7;
   max-width: 100%
