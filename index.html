@@ -1,79 +1,101 @@
 ---
-title: being technical writer
 layout: page
-typeg: homepage
-
+hometype: homepage
 ---
 
-      
-
-{% for post in site.posts %}
-        <div class="card mb-4">            
-            <div class="card-body">
-              <h4 class="card-title"><a href="{{site.baseurl}}{{post.url}}">{{post.title}}</a></h4>
-              <p>
-                {{ post.date | date: "%b %-d, %Y" }} &#8226;
-                {% include readtime.html content=post.content %} &#8226;
-                {% for cat in post.categories %}
-                <a href="{{ "/category-" | prepend: site.baseurl | append: cat}}">{{cat}}</a>{% unless forloop.last %}, {% endunless%}
-                {% endfor %}
-              </p>
-              <p class="card-text">{{ post.description }}</p>
-              <a href="{{site.baseurl}}{{post.url}}" class="btn btn-primary">Read More &rarr;</a>
+{% for post in paginator.posts %}
+<div class="row d-flex align-items-stretch">
+    <div class="text col-lg-7">
+        <div class="text-inner d-flex align-items-center">
+            <div class="content">
+                <header class="post-header">
+                    <a href="{{post.url}}">
+                        <h2 class="h4">{{post.title}}</h2>
+                    </a>
+                </header>
+                <footer class="post-footer d-flex align-items-center">
+                    <div class="date"><i class="fas fa-calendar-alt"></i> {{ post.date | date: "%b %-d, %Y" }}</div>
+                    <div class="date"><i class="icon-clock"></i> {% include readtime.html content=post.content %}</div>
+                    {% for cat in post.categories %}
+                    <div class="category tags"><i class="fas fa-tags"></i><a href="{{ " /category-" | prepend: site.baseurl | append:
+                            cat}}">{{cat}}</a>{% unless forloop.last
+                        %}, {% endunless%}
+                        {% endfor %}
+                    </div>
+                </footer>
+                <div class="summary">{{post.description}}</div>
             </div>
         </div>
-        
-            {% endfor %}
-          
-   
-          
+    </div>
+    <div class="image col-lg-5"><img src="{{- post.image | relative_url -}}" alt="..."></div>
+</div>
+{% endfor %}
 <!-- Pagination links -->
 
 <div class="pagination">
     <ul>
-      {% if paginator.previous_page %}
+        {% if paginator.previous_page %}
         {% if paginator.previous_page == 1 %}
-          <li>
+        <li>
             <a href="/">&laquo;</a>
-          </li>
+        </li>
         {% else %}
-          <li>
+        <li>
             <a href="/page{{paginator.previous_page}}">&laquo;</a>
-          </li>
+        </li>
         {% endif %}
-      {% else %}
-        <li class="disabled">
-          <a href="#">&laquo;</a>
-        </li>
-      {% endif %}
-      {% if paginator.page == 1 %}
-        <li class="active">
-          <a href="#">1</a>
-        </li>
-      {% else %}
-        <li>
-          <a href="/">1</a>
-        </li>
-      {% endif %}
-      {% for count in (2..paginator.total_pages) %}
-        {% if count == paginator.page %}
-          <li class="active">
-            <a href="#">{{count}}</a>
-          </li>
         {% else %}
-          <li>
-            <a href="/page{{count}}">{{count}}</a>
-          </li>
-        {% endif %}
-      {% endfor %}
-      {% if paginator.next_page %}
-        <li>
-          <a href="/page{{paginator.next_page}}">&raquo;</a>
-        </li>
-      {% else %}
         <li class="disabled">
-          <a href="#">&raquo;</a>
+            <a href="#">&laquo;</a>
         </li>
-      {% endif %}
+        {% endif %}
+        {% if paginator.page == 1 %}
+        <li class="active">
+            <a href="#">1</a>
+        </li>
+        {% else %}
+        <li>
+            <a href="/">1</a>
+        </li>
+        {% endif %}
+        {% for count in (2..paginator.total_pages) %}
+        {% if count == paginator.page %}
+        <li class="active">
+            <a href="#">{{count}}</a>
+        </li>
+        {% else %}
+        <li>
+            <a href="/page{{count}}">{{count}}</a>
+        </li>
+        {% endif %}
+        {% endfor %}
+        {% if paginator.next_page %}
+        <li>
+            <a href="/page{{paginator.next_page}}">&raquo;</a>
+        </li>
+        {% else %}
+        <li class="disabled">
+            <a href="#">&raquo;</a>
+        </li>
+        {% endif %}
     </ul>
-  </div>
+</div>
+</section>
+<!-- Divider Section-->
+{% if page.hometype == "homepage" %}
+<section style="background: url(img/divider-bg.jpg); background-size: cover; background-position: center bottom"
+    class="divider">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                    labore et dolore magna aliqua</h2><a href="#" class="hero-link">View More</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Newsletter Section-->
+<section class="newsletter">
+    {% include newsletter.html %}
+</section>
+{% endif %}

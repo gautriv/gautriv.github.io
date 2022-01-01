@@ -11,23 +11,6 @@ topnavigation:
 
     - title: Events
       url: /events/
- 
-    - title: Editorial
-      url: /editorial/
 
     - title: Opportunities
       url: /opportunities/
-
-socialmedia:
-
-    - url: https://twitter.com/TGaurav88
-      image: fab fa-twitter
-
-    - url: #
-      image: fab fa-youtube
-
-    - url: #
-      image: fab fa-github
-
-    - url: https://www.linkedin.com/in/gauravtrivedi1988/
-      image: fab fa-linkedin

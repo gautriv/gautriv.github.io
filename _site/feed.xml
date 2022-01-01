@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>being technical writer</title>
+    <description>This blog covers popular topics in technical writing.</description>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sun, 02 Jan 2022 01:37:38 +0530</pubDate>
+    <lastBuildDate>Sun, 02 Jan 2022 01:37:38 +0530</lastBuildDate>
+    <generator>Jekyll v4.2.1</generator>
+    
+      <item>
+        <title>Top 5 recommended document review guidelines and protocols</title>
+        <description>The documents you prepare may be perfect in your eyes, but there is always room for improvement. You need someone to evaluate your documents for technical and grammatical accuracy or content structure. Always remember, the quality of the document reflects the quality of the product. </description>
+        <pubDate>Sun, 06 Sep 2020 00:00:00 +0530</pubDate>
+        <link>http://localhost:4000/documentreviewguidelinesandprotocol/</link>
+        <guid isPermaLink="true">http://localhost:4000/documentreviewguidelinesandprotocol/</guid>
+        
+        <category>document review guidelines</category>
+        
+        <category>document review protocol</category>
+        
+        <category>purpose of the documentation review</category>
+        
+        <category>document review process</category>
+        
+        <category>documentation review</category>
+        
+        <category>document review schedule</category>
+        
+        <category>peer review</category>
+        
+        
+        <category>technical-writing</category>
+        
+      </item>
+    
+      <item>
+        <title>Content Strategy or Strategic Content</title>
+        <description>Content strategists often present content strategy as a medicine for all the content related problems. But, does a content strategy, howsoever effective, is &quot;the remedy&quot; to all the ills ailing the content industry? </description>
+        <pubDate>Sun, 16 Aug 2020 00:00:00 +0530</pubDate>
+        <link>http://localhost:4000/ContentStrategyVsStrategicContent/</link>
+        <guid isPermaLink="true">http://localhost:4000/ContentStrategyVsStrategicContent/</guid>
+        
+        
+        <category>technical-writing</category>
+        
+      </item>
+    
+      <item>
+        <title>COVID-19 and Technical Writing</title>
+        <description>In this blog post, I&apos;ve explained my learning strategy. I&apos;ve been following this strategy for quite some time now, and the results are just amazing. I like to call it &quot;Learning in an agile environment.&quot; I&apos;m sure it will help you in learning something useful in these trying times. </description>
+        <pubDate>Thu, 13 Aug 2020 00:00:00 +0530</pubDate>
+        <link>http://localhost:4000/Covid19andTechnicalWriting/</link>
+        <guid isPermaLink="true">http://localhost:4000/Covid19andTechnicalWriting/</guid>
+        
+        
+        <category>gitlab</category>
+        
+      </item>
+    
+  </channel>
+</rss>

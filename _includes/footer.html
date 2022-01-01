@@ -1,15 +1,24 @@
-<footer>
+<div class="container">
     <div class="row">
-        <!-- form-group begins -->
-        <div class="col-md-3">
-            {% include tinyletter.html %}
-        </div> 
-        <!-- form-group ends -->
-        
+        <div class="col-md-4">
+            <div class="logo">
+                <h6 class="text-white"><i class="fa fa-keyboard-o"></i> Being Technical Writer</a>
+            </div>
+            <div class="contact-details">
+                <p>Email: <a href="mailto:trivedi.gaurav30@gmail.com">trivedi.gaurav30@gmail.com</a></p>
+                <ul class="social-menu">
+                    <li class="list-inline-item"><a href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li class="list-inline-item"><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li class="list-inline-item"><a href="#"><i class="fa fa-instagram"></i></a></li>
+                    <li class="list-inline-item"><a href="#"><i class="fa fa-behance"></i></a></li>
+                    <li class="list-inline-item"><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                </ul>
+            </div>
+        </div>
         <div class="col-md-2">
             <div class="footerlinks mr-auto">
                 {% for item in site.data.footer.footercolumnone %}
-                    <a class="nav-link" href="{{item.url | prepend: site.url}}">{{item.title}}</a>
+                <a class="nav-link" href="{{item.url | prepend: site.url}}">{{item.title}}</a>
                 {% endfor %}
             </div>
         </div>
@@ -17,19 +26,27 @@
         <div class="col-md-2">
             <div class="footerlinks mr-auto">
                 {% for item in site.data.footer.footercolumntwo %}
-                    <a class="nav-link" href="{{item.url | prepend: site.url}}">{{item.title}}</a>
+                <a class="nav-link" href="{{item.url | prepend: site.url}}">{{item.title}}</a>
                 {% endfor %}
             </div>
         </div>
-        
-        
+
+
         <div class="col-md-2">
-            <div class="donate">
+            <div class="button">
                 {% for item in site.data.footer.footercolumnthree %}
                 <a href="{{item.url | prepend: site.url}}" class="btn btn-info" role="button">{{item.title}}</a>
                 {% endfor %}
             </div>
         </div>
     </div>
-        
-</footer>
+</div>
+<div class="copyrights">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <p>&copy; 2021 Being Technical Writer. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+</div>

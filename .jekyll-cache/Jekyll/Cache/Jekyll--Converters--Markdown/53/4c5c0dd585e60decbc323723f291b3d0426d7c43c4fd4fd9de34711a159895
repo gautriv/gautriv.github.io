@@ -1,0 +1,88 @@
+I"�<p>“I think it’s very important to have a feedback loop, where you’re constantly thinking about what you’ve done and how you could be doing it better.”
+<strong>– Elon Musk</strong></p>
+
+<p>Of late, I’ve been trying a new process for my documents review. There was a time when, for review, I use to send the documents through email or upload them at a central location and then wait for someone to review them.</p>
+
+<p>How wrong I was, sigh!</p>
+
+<h3 id="the-purpose-of-the-documentation-review">The purpose of the documentation review</h3>
+
+<p>The documents you prepare may be perfect in your eyes, but there is always room for improvement. You need someone to evaluate your documents for technical and grammatical accuracy or content structure. Depending on how you want your documents assessed, you may need to involve Subject Matter Experts (SMEs), Editors, or Peers.</p>
+
+<p><strong>Always remember, the quality of the document reflects the quality of the product.</strong></p>
+
+<p>To make the process easy for you, I’ve laid down five simple steps that define the document review process in technical writing.</p>
+
+<ol>
+  <li>Self-Review</li>
+  <li>SME review (includes Developers, Testers, Product Champion, and Business Analysts)</li>
+  <li>Peer Review (your doc team members)</li>
+  <li>Editorial Review</li>
+  <li>Stakeholders Review (includes Product Managers,
+Product Champion, Business Analysts, Marketing Team, Deployment
+Team, Higher Management, Support Teams, and Beta Clients)</li>
+</ol>
+
+<p>Let’s discuss all these five steps in detail.</p>
+<h3 id="self-review">Self-Review</h3>
+
+<p>Self-Review is one of the most critical steps in the document review process. The more attention you pay in this step, the better your document will read.</p>
+
+<p>I’ve prepared a self-review checklist for you. This checklist covers almost everything for which you should review your document. However, you can prepare your document checklist.</p>
+
+<p><strong>Self-Review checklist:</strong></p>
+
+<ol>
+  <li>Run spell checker (MS Word spelling checker functionality is best in class)</li>
+  <li>Check for punctuation</li>
+  <li>Check for grammar</li>
+  <li>Ensure all images have a caption</li>
+  <li>Ensure all field names, option names, and the texts you want a user to type are bold</li>
+  <li>Check all your titles or headings are in title case</li>
+  <li>Check for sentence casing (As far as you can use sentence case, for example, instead of I Can Help you, use I can help you)</li>
+  <li>Ensure all your sentences are no more than 8 to 10 words</li>
+  <li>Check for minimalism (review your content and see if you can shorten its length)</li>
+  <li>Check for passive voice (you must author your document in active voice)</li>
+  <li>Check for intricate text (a complex sentence or paragraph structure)</li>
+  <li>If you have instructions, ensure that you follow them in real-time to check their authenticity.</li>
+  <li>Check for page break and ensure that all the instructions and tables are on a single page.</li>
+  <li>Check for missing hyperlinks and bookmarks</li>
+  <li>Check for proper use of articles</li>
+</ol>
+
+<p><strong>While following this checklist, it’s mandatory to take a couple of minutes break after each step. This break will increase your concentration and ultimately helps you in reviewing your document correctly.</strong></p>
+
+<h3 id="sme-review">SME Review</h3>
+
+<p>SME Review is the next important step in the document review process. Nowadays, many organizations are following a lean team structure. Sometimes, this makes things difficult for technical writers, since it becomes very tough to get hold of SMEs for documentation review. Therefore, it is necessary to work on a documentation review schedule.</p>
+
+<p>You must prepare a document review schedule and share it beforehand with your SMEs. It does not matter if you work in an agile or waterfall environment. It’s a good practice to work on a documentation review schedule. This approach not only enhances your credibility among your peers but saves their time.</p>
+
+<p>Next, ensure that you opt for a live documentation review. By live documentation review, I mean that you must schedule a meeting (Teams, Zoom, or Skype) and invite developers, testers, product champion, and business analysts. The best part of the live documentation review is that you get real-time feedback. Based on what you have documented, developers and testers debate many things together. Sometimes, this debate leads to the enhancement of functionality or process, and sometimes you get to know what all you missed, including in your document.</p>
+
+<h3 id="peer-review">Peer Review</h3>
+
+<p>Peer Review is the step from which grammar and technical writing standards that your organization follows come into the picture. You must send your documents for peer review, preferably to an experienced technical writer in your organization. As mentioned earlier, you can prepare a document review schedule and share it beforehand with your peer reviewer. Request your peer reviewer to review your document for grammar, punctuation, and your organization’s technical writing standards.</p>
+
+<h3 id="editorial-review">Editorial Review</h3>
+
+<p>It is a privilege to have an editorial team. If your organization has an editorial team, send your documents for editorial review. The editorial team reviews your documents for grammar, sentence structure, and your organization’s technical writing standards. However, if your organization does not have an editorial team, you must follow the peer review process rigorously. Maybe you can send you a document to multiple peer reviewers, or you can schedule a meeting (Teams, Zoom, or Skype) and invite multiple peer reviewers. This rigorous review ensures higher editorial standards of your document.</p>
+
+<p>For this type of document review, you need to send emails to Product Managers, Product Champion, Business Analysts, Marketing Team, Deployment Team, Higher Management, Support Teams, and Beta clients. They may or may not review (except for Beta clients) your documents, but it’s a good practice to seek their approval on the documents you prepared.</p>
+
+<h3 id="pro-tip">Pro tip</h3>
+
+<p>Prepare a technical review template (decision log) in the tabular format. This decision log includes details like:</p>
+
+<ul>
+  <li>The date on which you conducted the document review (or emailed)</li>
+  <li>The members who took part in the document review</li>
+  <li>Total number of feedback you received</li>
+  <li>Total number of review cycles after which you received the approval on your documents from SMEs, peer reviewers, and stakeholders</li>
+  <li>Name of the people who approved your document</li>
+</ul>
+
+<p>If you are using Confluence or Jira, you can easily prepare a decision log. In my forthcoming blogs, I’ll cover this (Decision Log) and many other topics.</p>
+
+<p>What do you think about documentation review processes? Did you find this article useful? Please comment and let me know your thoughts.</p>
+:ET
