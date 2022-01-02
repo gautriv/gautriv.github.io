@@ -29,11 +29,11 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Being technical writer" />
 <script type="application/ld+json">
-{"headline":"Being technical writer","sameAs":["https://www.linkedin.com/in/gauravtrivedi1988/","https://github.com/Trivedi-Gaurav"],"@type":"WebSite","description":"Making writing easy","url":"http://localhost:4000/","name":"Gaurav Trivedi","@context":"https://schema.org"}</script>
+{"name":"Gaurav Trivedi","@type":"WebSite","description":"Making writing easy","url":"http://localhost:4000/","headline":"Being technical writer","sameAs":["https://www.linkedin.com/in/gauravtrivedi1988/","https://github.com/Trivedi-Gaurav"],"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
-    <meta name="description" content="{% for post in site.posts %}
-
+    <meta name="description" content="
+    {% for post in site.posts %}
     
         
             
@@ -41,7 +41,7 @@
                     
                         {{post.title}}
                     
-            ...">
+        ...">
     <meta name="keywords" content=" ">
     <meta name="description" content="Making writing easy">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -89,7 +89,7 @@
   <div class="container">
       <!-- Navbar Brand -->
       <div class="navbar-header d-flex align-items-center justify-content-between">
-          <!-- Navbar Brand --><a class="navbar-brand" href="#"><i class="fa fa-keyboard-o"></i>
+          <!-- Navbar Brand --><a class="navbar-brand" href="/"><i class="fa fa-keyboard-o"></i>
               Being
               Technical Writer</a>
           <!-- Toggle Button-->
@@ -161,9 +161,10 @@
         </div>
     </section>
     
+    
     <section class="featured-posts no-padding-top">
         <div class="container">
-            <!-- Post-->
+            <script src="/js/toc.js"></script>
             <div class="post-header">
    <h1 class="post-title-main"></h1>
 
@@ -189,8 +190,8 @@
 
     <div class="post-content">
 
-        
-<div class="row d-flex align-items-stretch">
+        <div class="row d-flex align-items-stretch">
+    
     <div class="text col-lg-7">
         <div class="text-inner d-flex align-items-center">
             <div class="content">
@@ -217,9 +218,7 @@
         </div>
     </div>
     <div class="image col-lg-5"><img src="/assets/Top-5-recommended-document-review-guidelines-and-protocols.png" alt="..."></div>
-</div>
-
-<div class="row d-flex align-items-stretch">
+    
     <div class="text col-lg-7">
         <div class="text-inner d-flex align-items-center">
             <div class="content">
@@ -246,9 +245,7 @@
         </div>
     </div>
     <div class="image col-lg-5"><img src="" alt="..."></div>
-</div>
-
-<div class="row d-flex align-items-stretch">
+    
     <div class="text col-lg-7">
         <div class="text-inner d-flex align-items-center">
             <div class="content">
@@ -275,8 +272,8 @@
         </div>
     </div>
     <div class="image col-lg-5"><img src="" alt="..."></div>
+    
 </div>
-
 <!-- Pagination links -->
 
 <div class="pagination">
@@ -341,6 +338,7 @@
 
         </div>
     </section>
+    
     <!-- Page Footer-->
     <footer class="main-footer">
         <div class="container">
@@ -414,14 +412,7 @@
         crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0"></script>
-    <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
-    <link rel="stylesheet" type="text/css"
-        href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.css">
-    <link rel="stylesheet" type="text/css"
-        href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch-theme-algolia.min.css">
+        crossorigin="anonymous"></script> 
 </body>
 
 </html>

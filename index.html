@@ -4,9 +4,8 @@ focus: homepage
 hometype: homepage
 focus: noform
 ---
-
-{% for post in site.posts %}
 <div class="row d-flex align-items-stretch">
+    {% for post in site.posts %}
     <div class="text col-lg-7">
         <div class="text-inner d-flex align-items-center">
             <div class="content">
@@ -30,8 +29,8 @@ focus: noform
         </div>
     </div>
     <div class="image col-lg-5"><img src="{{- post.image | relative_url -}}" alt="..."></div>
+    {% endfor %}
 </div>
-{% endfor %}
 <!-- Pagination links -->
 
 <div class="pagination">

@@ -64,12 +64,14 @@
         </div>
     </section>
     {% endif %}
+    
     <section class="featured-posts no-padding-top">
         <div class="container">
-            <!-- Post-->
+            <script src="{{ "/js/toc.js" | prepend:site.baseurl }}"></script>
             {{ content }}
         </div>
     </section>
+    
     <!-- Page Footer-->
     <footer class="main-footer">
         {% include footer.html %}
@@ -86,14 +88,7 @@
         crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0"></script>
-    <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
-    <link rel="stylesheet" type="text/css"
-        href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.css">
-    <link rel="stylesheet" type="text/css"
-        href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch-theme-algolia.min.css">
+        crossorigin="anonymous"></script> 
 </body>
 
 </html>
