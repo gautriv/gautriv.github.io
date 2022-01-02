@@ -1,19 +1,8 @@
-<div class="categories">
-
-<div class="card my-4">
-    <h5 class="card-header">Categories</h5>
-    <div class="card-body">
-      {% for item in site.data.categories.categories %}
-      <div class="row">
-        <div class="col-lg-6">
-          <ul class="list-unstyled mb-0">
-            <li>
-              <a href="{{item.url | prepend: site.url}}">{{item.title}}</a>
-            </li> 
-          </ul>
-        </div>
-      </div>
-      {% endfor %}
-    </div>
-  </div>
+<div class="widget categories">
+  <header>
+      <h3 class="h6">Categories</h3>
+  </header>
+  {% for item in site.data.categories.categories %}
+  <div class="item d-flex justify-content-between"><a href="{{item.url | prepend: site.url}}">{{item.title}}</a></div>
+  {% endfor %}
 </div>

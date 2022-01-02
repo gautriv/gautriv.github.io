@@ -737,7 +737,7 @@ section.featured-posts .title::after,
 section.featured-posts .date::after,
 section.featured-posts .tags::after,
 section.featured-posts .comments::after {
-  content: '|';
+  content: '';
   display: inline-block;
   margin: 0 7px;
   font-size: 0.9em;
@@ -1296,7 +1296,7 @@ main.posts-listing .post-footer {
   background: #fafafa;
   padding: 10px;
   color: #777;
-  font-weight: 700;
+  font-weight: 100;
 }
 
 .widget.categories .item:nth-of-type(2n+2) {
