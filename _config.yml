@@ -1,5 +1,5 @@
 media: https://beingtechnicalwriter.s3.ap-south-1.amazonaws.com/
-paginate: 10
+pagniagte: 10
 output: web
 timezone: Asia/Kolkata
 highlighter: rouge
@@ -9,31 +9,41 @@ kramdown:
   auto_ids: true
   syntax_highlighter: rouge
 
+algolia:
+  application_id: "HSC1VAQ0SE"
+  index_name: "BTW"
+  search_only_api_key: "a2f6988f40ebadf013f3e4a75caf3fe3"
+  nodes_to_index: 'p,.summary'
 
 format: web
 
+# Build settings
+
 plugins:
+  - jekyll-feed
   - jekyll-paginate
+  - jekyll-seo-tag
+  - jemoji
 
-
+permalink: /:year/:month/:day/:title/
 defaults:
-  -
-    scope:
-      path: ""
-      type: "posts"
-    values:
-      layout: "posts"
-      comments: true
-      search: true
-      author: <a href='/aboutme/'>Gaurav Trivedi</a>
   -
     scope:
       path: ""
       type: "pages"
     values:
-      layout: "default"
+      layout: "page"
       comments: true
       search: true
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      comments: true
+      search: true
+      author: <a href='/aboutme/'>Gaurav Trivedi</a>
 
 exclude:
   - _drafts
@@ -43,21 +53,12 @@ target: web
 
 ####### jekyll seo tag configuration #######
 title: being technical writer
-tagline: A technical writing blog that offers tutorials, events, podcasts, latest trends, and other topics in the field of technical writing.
+tagline: Only place where you learn about all the <strong>innovations</strong>, <strong>standards</strong>, and <strong>trends</strong> in technical writing.
 description: This blog covers popular topics in technical writing.
 url: "https://beingtechnicalwriter.com"
-author:
-  twitter: TGaurav88
-twitter:
-  username: TGaurav88
-  card: summary
-
-logo: https://beingtechnicalwriter.s3.ap-south-1.amazonaws.com/logo/btwlogo.png
-
 social:
   name: Gaurav Trivedi
   links:
-    - https://twitter.com/TGaurav88
     - https://www.linkedin.com/in/gauravtrivedi1988/
     - https://github.com/Trivedi-Gaurav
 

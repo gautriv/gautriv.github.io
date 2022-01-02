@@ -2,18 +2,27 @@
 <html>
 
 <head>
+    {% include google_analytics.html %}
+    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Being Technical Writer - B4 Template by Bootstrap Temple</title>
-    <meta name="description" content="">
+    <title>{% if page.hometype == "homepage" %}{{ site.name }} | {{site.description}} {% else %} {{page.title}} {% if page.series %}{{ page.series | before: "|" }}{% endif %} | {{ site.name }} {% endif %}</title>
+    {% seo %}
+    <meta name="description" content="{% if page.description %}{{ page.description | strip_html | strip_newlines | truncate: 170 }}{% else %}{{page.content | strip | strip_html | truncate: 170}}{% endif %}">
+    <meta name="keywords" content="{{page.tags}}{% if page.tags %}, {% endif %} {{page.keywords}}">
+    <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
+    {% if page.author %}
+    {% assign author = site.data.authors[page.author] %}
+    <meta property="article:author" content="{{ author.name }}"/>
+    {% endif %}
     <!-- Custom icon font-->
-    <link rel="stylesheet" href="/css/fontastic.css">
+    <link rel="stylesheet" href="{{site.url}}/css/fontastic.css">
     <!-- theme stylesheet-->
-    <link rel="stylesheet" href="/css/style.default.css" id="theme-stylesheet">
+    <link rel="stylesheet" href="{{site.url}}/css/style.default.css" id="theme-stylesheet">
     <!-- Custom stylesheet - for your changes-->
-    <link rel="stylesheet" href="/css/custom.css">
+    <link rel="stylesheet" href="{{site.url}}/css/custom.css">
     <!-- Favicon-->
     <link rel="shortcut icon" href="favicon.ico">
     <!-- jQuery library -->
@@ -46,7 +55,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h2 class="h3">Being Technical Writer Blog</h2>
+                    <h2 class="h3">Being technical writer blog</h2>
                     <p class="text-big">Only place where you learn about all the <strong>innovations</strong> ,
                         <strong>standards</strong>, and <strong>trends</strong> in technical writing.
                     </p>
@@ -67,10 +76,10 @@
     </footer>
 
     <!-- JavaScript files-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/jquery.cookie/jquery.cookie.js"> </script>
-    <script src="vendor/@fancyapps/fancybox/jquery.fancybox.min.js"></script>
-    <script src="js/front.js"></script>
+    <script src="{{site.url}}/vendor/jquery/jquery.min.js"></script>
+    <script src="{{site.url}}/vendor/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="{{site.url}}/vendor/@fancyapps/fancybox/jquery.fancybox.min.js"></script>
+    <script src="{{site.url}}/js/front.js"></script>
     <!-- Popper.js, then Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
