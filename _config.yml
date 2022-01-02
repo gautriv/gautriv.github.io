@@ -40,7 +40,7 @@ defaults:
       path: ""
       type: "posts"
     values:
-      layout: "post"
+      layout: "posts"
       comments: true
       search: true
       author: <a href='/aboutme/'>Gaurav Trivedi</a>
@@ -52,9 +52,9 @@ exclude:
 target: web
 
 ####### jekyll seo tag configuration #######
-title: being technical writer
+title: Being technical writer
 tagline: Only place where you learn about all the <strong>innovations</strong>, <strong>standards</strong>, and <strong>trends</strong> in technical writing.
-description: This blog covers popular topics in technical writing.
+description: Making writing easy
 url: "https://beingtechnicalwriter.com"
 social:
   name: Gaurav Trivedi
