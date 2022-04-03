@@ -2667,3 +2667,22 @@ a.text-dark:focus,
 a.text-dark:hover {
   color: #1d2124 !important;
 }
+
+.donate {
+  margin-top: 17px;
+  text-align: center !important;
+}
+div.polaroid {
+  width: 35%;
+  background-color: rgb(18, 7, 71);
+  margin-top: 25px;
+  margin-bottom: 25px;
+  margin-left: 350px;
+  border: 3px solid rgb(12, 12, 12);
+  border-radius: 8px;
+}
+
+div.code {
+  text-align: center;
+  padding: 10px 20px;
+}

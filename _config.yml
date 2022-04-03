@@ -48,7 +48,7 @@ target: web
 ####### jekyll seo tag configuration #######
 title: Being technical writer
 tagline: Only place where you learn about all the <strong>innovations</strong>, <strong>standards</strong>, and <strong>trends</strong> in technical writing.
-description: Making writing easy
+description: Making tecnical writing easy
 url: "https://beingtechnicalwriter.com"
 social:
   name: Gaurav Trivedi
