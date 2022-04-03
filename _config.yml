@@ -9,12 +9,6 @@ kramdown:
   auto_ids: true
   syntax_highlighter: rouge
 
-algolia:
-  application_id: "HSC1VAQ0SE"
-  index_name: "BTW"
-  search_only_api_key: "a2f6988f40ebadf013f3e4a75caf3fe3"
-  nodes_to_index: 'p,.summary'
-
 format: web
 
 # Build settings
