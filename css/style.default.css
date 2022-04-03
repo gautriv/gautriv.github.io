@@ -2686,3 +2686,13 @@ div.code {
   text-align: center;
   padding: 10px 20px;
 }
+
+div.contact {
+  margin-top: 17px;
+  text-align: left !important;
+}
+
+div.contact-details {
+  margin-top: 20px;
+}
+
