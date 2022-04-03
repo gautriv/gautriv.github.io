@@ -6,6 +6,8 @@ gem "kramdown-parser-gfm"
 
 group :jekyll_plugins do
   gem "jekyll-feed"
+  gem "jekyll-include-cache"
+  gem "liquid-c"
   gem "jekyll-paginate"
   gem 'jemoji'
   gem 'jekyll-seo-tag'
