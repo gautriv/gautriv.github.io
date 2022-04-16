@@ -1,6 +1,6 @@
 ---
 title: What is Git and why technical writers should learn it
-category: technical-writing, git
+category: [technical-writing, git]
 image: "/assets/git-technical-writers.png"
 header-img: "/assets/git-technical-writers.png"
 keywords: [Git, Git for technical writers, docs as code, docs-as-code]
