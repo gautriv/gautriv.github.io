@@ -5,7 +5,7 @@ image: "/assets/git-technical-writers.png"
 header-img: "/assets/git-technical-writers.png"
 keywords: [Git, Git for technical writers, docs as code, docs-as-code]
 permalink: /gitfortechnicalwriters/
-description: Organizations now expect technical writers to develop or update their documents using Git and a text editor. All this is part of the "Docs Like Coding" paradigm, in which you document using the same tools and methods as code.
+description: Organizations now expect technical writers to develop or update their documents using Git and a text editor. All this is part of the "Docs Like Code" paradigm, in which you document using the same tools and methods as code.
 ---
 
 ## What is Git?
