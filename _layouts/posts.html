@@ -26,7 +26,7 @@ layout: default
 
                                 <div class="title"><span>{{page.author}}</span></div>
                             </a>
-                            <div class="d-flex align-items-center flex-wrap">
+                            <footer class="post-footer d-flex align-items-center">
                                 <div class="date"><i class="fas fa-calendar-alt"></i> {{ post.date | date: "%b %-d, %Y" }}</div>
                                 <div class="date"><i class="icon-clock"></i> {% include readtime.html content=post.content %}</div>
                                 {% for cat in post.categories %}
@@ -35,7 +35,7 @@ layout: default
                                     %}, {% endunless%}
                                     {% endfor %}
                                 </div>
-                            </div>
+                            </footer>
                         </div>
                         <div class="post-body">
                             <p class="lead">
