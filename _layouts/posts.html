@@ -21,22 +21,9 @@ layout: default
                         </div>
                         <h1>{{ page.title }}<a href="#"><i class="fa fa-bookmark-o"></i></a></h1>
                         {% if page.description %}<div class="summary">{{page.description}}</div> {% endif %}
-                        <div class="post-footer d-flex align-items-center flex-column flex-sm-row"><a href="#"
-                                class="author d-flex align-items-center flex-wrap">
-
-                                <div class="title"><span>{{page.author}}</span></div>
-                            </a>
-                            <footer class="post-footer d-flex align-items-center">
-                                <div class="date"><i class="fas fa-calendar-alt"></i> {{ post.date | date: "%b %-d, %Y" }}</div>
-                                <div class="date"><i class="icon-clock"></i> {% include readtime.html content=post.content %}</div>
-                                {% for cat in post.categories %}
-                                <div class="category tags"><i class="fas fa-tags"></i><a href="{{ " /category-" | prepend: site.baseurl | append:
-                                        cat}}">{{cat}}</a>{% unless forloop.last
-                                    %}, {% endunless%}
-                                    {% endfor %}
-                                </div>
-                            </footer>
-                        </div>
+                        <p class="post-meta">
+                            <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">by {{page.author}} on {{ page.date | date: "%b %-d, %Y" }}</time>
+                            <meta content="{{ modified | date_to_xmlschema }}" itemprop="dateModified" />
                         <div class="post-body">
                             <p class="lead">
                                 {{content}}
