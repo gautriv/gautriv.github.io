@@ -1,10 +1,10 @@
 ---
-title: What is Git and why technical writers should learn it
+title: What is Git and should technical writers learn it?
 category: Git
 image: "/assets/git-technical-writers.png"
 header-img: "/assets/git-technical-writers.png"
 keywords: [Git, Git for technical writers, docs as code, docs-as-code]
-permalink: /gitfortechnicalwriters/
+permalink: /gittechnicalwriters/
 description: Organizations now expect technical writers to develop or update their documents using Git and a text editor. All this is part of the "Docs Like Code" paradigm, in which you document using the same tools and methods as code.
 ---
 
