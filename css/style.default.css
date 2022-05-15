@@ -2696,3 +2696,7 @@ div.contact-details {
   margin-top: 20px;
 }
 
+.card-img-top {
+  width: 348px;
+  height: 219px;
+}

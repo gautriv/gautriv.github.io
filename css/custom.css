@@ -180,3 +180,9 @@ button.btn {
   content: "Summary: ";
   font-weight: 700;
 }
+
+.tutorial.row.card {
+  padding-top: 50px !important;
+  padding-bottom: 50px !important;
+  padding-left: 50px !important;
+}
