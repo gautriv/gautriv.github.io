@@ -18,4 +18,4 @@ Organizations now expect technical writers to develop or update their documents 
 
 Git is very easy to learn, and you can master it in no time. Watch this space as I'm going to bring a free Git tutorial. I've developed this tutorial keeping the interests of technical writers in mind.
 
-Thank you so much for reading. See you in the tutorial.
+Thank you so much for reading. See you in the [tutorial](https://gitfortechnicalwriters.beingtechnicalwriter.com).
