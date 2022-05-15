@@ -23,6 +23,7 @@ layout: default
                             <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">by {{page.author}} on {{ page.date | date: "%b %-d, %Y" }}</time>
                             <meta content="{{ modified | date_to_xmlschema }}" itemprop="dateModified" />
                             {% if page.description %}<div class="summary">{{page.description}}</div> {% endif %}
+                            <div id="toc"></div>
                         <p class="post-meta">
                         <div class="post-body">
                             <p class="lead">

@@ -167,3 +167,16 @@ button.btn {
 .blone {
   padding-left: 35px;
 }
+
+.summary {
+  padding-left: 10px;
+  font-size: 100%;
+  color: rgb(28, 11, 184);
+  border-left: 3px solid #dedede;
+  margin: 20px 0;
+}
+
+.summary::before {
+  content: "Summary: ";
+  font-weight: 700;
+}
