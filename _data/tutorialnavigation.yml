@@ -1,5 +1,10 @@
 tutorialnavigation:
 
+    - title: Git, GitLab, and GitHub
+      image: https://beingtechnicalwriter.s3.ap-south-1.amazonaws.com/images/MADCAP.png"
+      url: https://beingtechnicalwriter.s3.ap-south-1.amazonaws.com/images/git.png
+      text: Learn everything about Git, GitLab, and GitHub from scratch.
+
     - title: MadCap Flare
       image: https://beingtechnicalwriter.s3.ap-south-1.amazonaws.com/images/MADCAP.png"
       url: /madcapflare/
