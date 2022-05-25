@@ -1,8 +1,6 @@
 ---
 title: How to implement Simple Jekyll Search on your Jekyll blog?
-category: 
-- Jekyll
-- My blog
+category: Jekyll
 image: "/assets/jekyll-search.png"
 header-img: "/assets/jekyll-search.png"
 keywords: [jekyll search plugin, simple jekyll search, jekyll search options, jekyll search, implement jekyll search]
