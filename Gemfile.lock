@@ -101,7 +101,7 @@ DEPENDENCIES
   jemoji
   kramdown-parser-gfm
   liquid-c
-  nokogiri (>= 1.13.4)
+  nokogiri (>= 1.13.6)
   tzinfo
   tzinfo-data
   wdm (~> 0.1.1)
