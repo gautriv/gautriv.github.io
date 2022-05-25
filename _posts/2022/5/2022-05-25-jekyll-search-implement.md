@@ -7,7 +7,7 @@ image: "/assets/jekyll-search.png"
 header-img: "/assets/jekyll-search.png"
 keywords: [jekyll search plugin, simple jekyll search, jekyll search options, jekyll search, implement jekyll search]
 permalink: /jekyllsearch/
-description: Simple Jekyll Search as the name suggests is very simple to incorporate into your Jekyll website. It is light weight, displays instant search results, and uses jekyll search plugin. Additionally, you can implement it in four easy steps.
+description: As the name implies, Simple Jekyll Search is very simple to integrate into your Jekyll website. It is lightweight, provides instant search results, and is simple to troubleshoot. Additionally, you can implement it in four easy steps.
 ---
 
 There are numerous methods for incorporating search into your Jekyll website. Some of them are difficult to implement, but others are simple. One such tool is Simple Jekyll Search. It is very simple to incorporate into your Jekyll website. If you want you can go for:
