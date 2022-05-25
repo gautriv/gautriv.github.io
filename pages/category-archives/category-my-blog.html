@@ -2,12 +2,12 @@
 
 title: "How I prepared my Jekyll blog"
 permalink: /category-my-blog/
-categoryName: My blog
+categoryName: my blog
 ---
 
 <p>The following content is in the <b>{{page.categoryName}}</b> category:
 
-{% for b in site.categories.Git %}
+{% for b in site.categories.my-blog %}
 <div class="card mb-4">            
     <div class="card-body">
       <h4 class="card-title"><a href="{{site.url}}{{b.url}}">{{b.title}}</a><span class="postDate"> &nbsp;| {{ b.date | date: "%b %-d, %Y" }}</span></h4>
