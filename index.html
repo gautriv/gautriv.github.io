@@ -14,16 +14,19 @@ focus: noform
                         <h2 class="h4">{{post.title}}</h2>
                     </a>
                 </header>
+                <span>
                 <footer class="post-footer d-flex align-items-center">
-                    <div class="date"><i class="fas fa-calendar-alt"></i> {{ post.date | date: "%b %-d, %Y" }}</div>
-                    <div class="date"><i class="icon-clock"></i> {% include readtime.html content=post.content %}</div>
+                    <div class="date"><i class="fas fa-calendar-alt"></i> {{ post.date | date: "%b %-d, %Y" }} &nbsp; &#8226; &nbsp;
+                    <i class="icon-clock"></i> {% include readtime.html content=post.content %} &nbsp; &#8226; &nbsp;
                     {% for cat in post.categories %}
-                    <div class="category tags"><i class="fas fa-tags"></i><a href="{{ " /category-" | prepend: site.baseurl | append:
-                            cat}}">{{cat}}</a>{% unless forloop.last
-                        %}, {% endunless%}
+                    <i class="fas fa-tags"></i><a href="{{ " /category-" | prepend: site.baseurl | append:
+                            cat}} ">{{cat}}</a>{% unless forloop.last
+                        %}, &nbsp; {% endunless%}
                         {% endfor %}
+                        
                     </div>
                 </footer>
+                </span>
                 <div class="summary">{{post.description}}</div>
                 <a href="{{site.baseurl}}{{post.url}}" class="btn btn-primary">Read More &rarr;</a>
             </div>

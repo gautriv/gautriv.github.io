@@ -40,6 +40,7 @@ a i {
 ul {
   margin: 0;
   padding: 0;
+  margin-left: 40px;
 }
 
 section {
@@ -679,7 +680,7 @@ section.featured-posts .text-inner {
 }
 
 section.featured-posts a {
-  color: inherit;
+  color: rgba(196, 37, 244, 0.9);
   text-decoration: none;
 }
 
@@ -1361,10 +1362,6 @@ main.posts-listing .post-footer {
   color: #333;
 }
 
-.blog-post .post-body p {
-  margin-bottom: 30px;
-}
-
 .blog-post .post-body p:not(.lead) {
   font-size: 1em;
 
@@ -1743,8 +1740,8 @@ STYLE SWITCHER FOR DEMO
 
 .btn-primary {
   color: #111;
-  background-color: #999;
-  border-color: #999;
+  background-color: #00ff18 !important;
+  border-color: #00ff18 !important;
 }
 
 .btn-primary:hover {
@@ -2319,17 +2316,17 @@ h6,
 
 h1,
 .h1 {
-  font-size: 2.5rem;
+  font-size: 1.7rem !important;
 }
 
 h2,
 .h2 {
-  font-size: 2rem;
+  font-size: 1.3rem !important;
 }
 
 h3,
 .h3 {
-  font-size: 1.75rem;
+  font-size: 1.1rem !important;
 }
 
 h4,
