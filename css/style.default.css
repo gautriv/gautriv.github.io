@@ -1615,7 +1615,7 @@ STYLE SWITCHER FOR DEMO
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   margin-right: 1rem;
-  font-size: 1.3rem;
+  font-size: 1.3rem !important;
   color: #333;
   font-weight: bold;
 }
