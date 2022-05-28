@@ -22,8 +22,8 @@ layout: default
                         <h1>{{ page.title }}<a href="#"><i class="fa fa-bookmark-o"></i></a></h1>
                             <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">by {{page.author}} on {{ page.date | date: "%b %-d, %Y" }}</time>
                             <meta content="{{ modified | date_to_xmlschema }}" itemprop="dateModified" />
-                            {% if page.description %}<div class="summary">{{page.description}}</div> {% endif %}
-                            <div id="toc"></div>
+                            {% if page.description %}<div class="abstract">{{page.description}}</div> {% endif %}
+                            {% include toc.html %}
                         <p class="post-meta">
                         <div class="post-body">
                             <p class="lead">

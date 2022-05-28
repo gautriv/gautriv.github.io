@@ -6,13 +6,7 @@ footercolumnone:
     - title: Contact
       url: /contact/
 
-    - title: Archives
-      url: /archives/
-
 footercolumntwo:
-
-    - title: Sponsor
-      url: /sponsor/
 
     - title: Site analytics
       url: /siteanalytics/

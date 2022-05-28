@@ -63,7 +63,7 @@ button.btn {
 
 /* ------- pagination ends -------- */
 
-.summary,
+.abstract,
 .info,
 .note {
   margin: 15px 0;
@@ -168,21 +168,15 @@ button.btn {
   padding-left: 35px;
 }
 
-.summary {
+.abstract {
   padding-left: 10px;
   font-size: 100%;
   color: rgb(28, 11, 184);
-  border-left: 3px solid #dedede;
+  border-left: 7px solid #3e32e7;
   margin: 20px 0;
 }
 
-.summary::before {
-  content: "Summary: ";
+.abstract::before {
+  content: "Abstract: ";
   font-weight: 700;
-}
-
-.tutorial.row.card {
-  padding-top: 50px !important;
-  padding-bottom: 50px !important;
-  padding-left: 50px !important;
 }
