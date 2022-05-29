@@ -13,7 +13,7 @@ description: On this page, we will learn about Google Analytics four (GA4), how 
 Do you use standard Google Universal Analytics (UA) on your Jekyll Blog? If yes, then the time is ripe for you to use GA4 instead of UA property.
 
 ## Why do you need to use the GA4 property?
-Google has stated that it would cease processing new data in standard properties on July 1, 2023. Yes, you have time, but don’t you want to compare Universal Analytics properties to GA4 properties? Don’t you want to import your existing data into the Google Analytics4 property?
+Google has stated that it would cease processing new data in standard properties starting July 1, 2023. Yes, you have time, but don’t you want to compare Universal Analytics properties to GA4 properties? Don’t you want to import your existing data into the Google Analytics4 property?
 
 ## How to set up Google Analytics4 properties?
 
@@ -37,7 +37,7 @@ Google has stated that it would cease processing new data in standard properties
    <br>* Establishes a connection between Standard Analytics and GA4 properties" %} 
 8. Copy and save your GA4 property name for future use.
 
-## What changes do you need in your Jekyll Blog?
+## What changes do you need in your Jekyll website?
 
 You now have a GA4 property name. Use it on your Jekyll website.
 
