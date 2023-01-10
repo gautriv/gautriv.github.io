@@ -25,6 +25,7 @@ Fear can drive us during these times, but it's important to remember that fear c
 But, the excitement and adrenaline rush of starting to learn something new can quickly fade when reality hits and we find it hard to maintain the intensity. Many of us have been through this situation and have left the new thing we decided to learn.
 
 **Have you ever thought, why?**
+
 It's because fear was driving us instead of a clear goal. Goals should be the driving force, not fear. Goals motivate us, leading to commitment, persistence and ultimately, success.
 
 **What to do?**
