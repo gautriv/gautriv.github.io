@@ -706,7 +706,7 @@ section.featured-posts .title,
 section.featured-posts .date,
 section.featured-posts .tags,
 section.featured-posts .comments {
-  font-size: 14px;
+  font-size: 0.8em;
   font-weight: 400;
   color: #999;
 }
@@ -745,7 +745,7 @@ section.featured-posts .image {
 }
 
 section.featured-posts .image img {
-  height: 40px;
+  height: 100%;
 }
 
 section.featured-posts .post-header {
@@ -1235,9 +1235,9 @@ main.posts-listing .post-footer {
 }
 
 .widget.latest-posts .image {
-  min-width: 40px;
-  max-width: 40px;
-  height: 30px;
+  min-width: 60px;
+  max-width: 60px;
+  height: 60px;
   overflow: hidden;
   margin-right: 20px;
 }
