@@ -12,7 +12,7 @@ Living in the time of COVID-19 can be compared to being on a rollercoaster ride,
 
 > Well, if there's one thing we've learned, it's that the best investments are made during a crisis. So, don't waste a single moment in deciding where you want to put your thoughts and efforts.
 
-**What a technical writer should do?**
+## What a technical writer should do?**
 
 As a technical writer, the time-tested mantra is to invest in yourself. You've probably heard it a million times before, but I'm here to remind you of it and prepare you for the journey.
 
@@ -40,7 +40,7 @@ When you have the answers to these questions, you're probably ready to take the 
 
 > For sure shot results, learn in an agile environment.
 
-## What is learning in an agile environment?
+**What is learning in an agile environment?**
 
 If I may speak in one sentence, it's like having smaller aims to achieve a bigger goal.
 
