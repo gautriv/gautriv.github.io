@@ -2720,7 +2720,17 @@ h4 code {
   padding-left: inherit !important;
 }
 
+.col-md-4 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .card-img {
-  max-width: 100%;
-  max-height: 200px;
+  border-radius: 50px;
+  object-fit: cover;
+  width: 100%;
+  height: auto;
+  padding: 10px;
+  box-shadow: 2px 2px 5px #ccc;
 }
