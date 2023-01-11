@@ -6,19 +6,16 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{% if page.hometype == "homepage" %}{{ site.title }} | {{site.description}} {% else %} {{page.title}} {% if
-        page.series %}{{ page.series | before: "|" }}{% endif %} | {{ site.title }} {% endif %}</title>
+    <title>{% if page.hometype == "homepage" %}{{ site.title }} | {{site.description}} {% else %} {{page.title}} {% if page.series %}{{ page.series | before: "|" }}{% endif %} | {{ site.title }} {% endif %}</title>
     {% seo %}
-    <meta name="description"
-        content="{% if page.description %}{{ page.description | strip_html | strip_newlines | truncate: 170 }}{% else %}{{page.content | strip | strip_html | truncate: 170}}{% endif %}">
+    <meta name="description" content="{% if page.description %}{{ page.description | strip_html | strip_newlines | truncate: 170 }}{% else %}{{page.content | strip | strip_html | truncate: 170}}{% endif %}">
     <meta name="keywords" content="{{page.tags}}{% if page.tags %}, {% endif %} {{page.keywords}}">
-    <meta name="description"
-        content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+    <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
     {% if page.author %}
     {% assign author = site.data.authors[page.author] %}
-    <meta property="article:author" content="{{ author.name }}" />
+    <meta property="article:author" content="{{ author.name }}"/>
     {% endif %}
     <!-- Custom icon font-->
     <link rel="stylesheet" href="{{site.url}}/css/fontastic.css">
@@ -58,8 +55,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h2 class="h2">Being technical writer blog</h2>
-                    <p class="text-big">A place where you learn about all the <strong>innovations</strong> ,
+                    <h2 class="h3">Being technical writer blog</h2>
+                    <p class="text-big">Only place where you learn about all the <strong>innovations</strong> ,
                         <strong>standards</strong>, and <strong>trends</strong> in technical writing.
                     </p>
                 </div>
@@ -67,13 +64,13 @@
         </div>
     </section>
     {% endif %}
-
+    
     <section class="featured-posts no-padding-top">
         <div class="container">
             {{ content }}
         </div>
     </section>
-
+    
     <!-- Page Footer-->
     <footer class="main-footer">
         {% include footer.html %}
@@ -91,7 +88,7 @@
         crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script> 
 </body>
 
 </html>
