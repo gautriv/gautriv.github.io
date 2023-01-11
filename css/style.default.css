@@ -745,7 +745,12 @@ section.featured-posts .image {
 }
 
 section.featured-posts .image img {
-  height: 100%;
+  border-radius: 2px;
+  object-fit: cover;
+  width: 100%;
+  height: auto;
+  padding-top: 20px;
+
 }
 
 section.featured-posts .post-header {
@@ -765,11 +770,6 @@ section.featured-posts .post-footer {
     order: 1;
     max-height: 300px;
     min-height: auto !important;
-  }
-
-  section.featured-posts .image img {
-    width: 100%;
-    height: auto !important;
   }
 
   section.featured-posts .text {
