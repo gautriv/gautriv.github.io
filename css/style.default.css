@@ -2734,3 +2734,7 @@ h4 code {
   padding: 10px;
   box-shadow: 2px 2px 5px #ccc;
 }
+
+.card-text {
+  padding-top: 10px;
+}
