@@ -2667,6 +2667,7 @@ div#toc ul li {
   font-size: 90%;
   list-style: square;
 }
+
 div#toc ul {
   background-color: rgb(241, 241, 241);
   padding: 5px;
@@ -2678,7 +2679,7 @@ div#toc ul {
 }
 
 div#toc ul li ul {
-  padding-left:8px;
+  padding-left: 8px;
 
 }
 
@@ -2686,17 +2687,17 @@ div#toc ul li ul li::before {
   content: "–  ";
 }
 
-div#toc >ul::before {
+div#toc>ul::before {
   content: "Table of Contents";
   font-weight: 500;
   color: #555;
-  text-align:center;
-  margin-left:auto;
-  margin-right:auto;
-  width:70px;
-  padding-top:20px;
-  padding-bottom:20px;
-  padding-left:10px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 10px;
 }
 
 div#toc ul li ul li {
@@ -2704,11 +2705,22 @@ div#toc ul li ul li {
   margin: 5px 0px 0px 0px;
 }
 
-.note code, .alert code, .warning code, div#toc code, h2 code, h3 code, h4 code {
+.note code,
+.alert code,
+.warning code,
+div#toc code,
+h2 code,
+h3 code,
+h4 code {
   color: inherit;
   padding: 0px;
 }
 
 .social-menu {
   padding-left: inherit !important;
+}
+
+.card-img {
+  max-width: 100%;
+  max-height: 200px;
 }
