@@ -18,7 +18,6 @@ button.btn {
   padding-top: 20px;
 }
 
-
 .pagination li {
   display: inline;
 }
@@ -57,10 +56,6 @@ button.btn {
   cursor: default;
 }
 
-.disabled a:hover {
-  background-color: transparent;
-}
-
 /* ------- pagination ends -------- */
 
 .abstract,
@@ -72,7 +67,6 @@ button.btn {
 
 /* ------- blog end area begins -------- */
 
-
 #share-bar {
   font-size: 20px;
   margin-left: 100px;
@@ -80,10 +74,8 @@ button.btn {
 
 /* Title */
 #share-bar h4 {
-
   font-weight: 500;
 }
-
 
 /* Each button */
 .share-button {
@@ -96,65 +88,63 @@ button.btn {
 
 .share-button:hover {
   opacity: 1;
-  color: #ffffff;
 }
 
-/* Facebook button */
+/* Social media buttons */
+
 .fa-facebook-official {
   color: #3b5998;
 }
 
 .fa-facebook-official:hover {
   background-color: #3b5998;
+  color: #fff;
 }
-
-/* Twitter button */
 
 .fa-twitter:hover {
   background-color: #55acee;
+  color: #fff;
 }
 
-
-/* Pinterest button */
 .fa-pinterest-p {
   color: #cb2027;
 }
 
 .fa-pinterest-p:hover {
   background-color: #cb2027;
+  color: #fff;
 }
 
-/* Tumblr button */
 .fa-tumblr {
   color: #32506d;
 }
 
 .fa-tumblr:hover {
   background-color: #32506d;
+  color: #fff;
 }
 
-/* Reddit button */
 .fa-reddit-alien {
   color: #ff4500;
 }
 
 .fa-reddit-alien:hover {
   background-color: #ff4500;
+  color: #fff;
 }
-
-/* LinkedIn button */
 
 .fa-linkedin:hover {
   background-color: #007bb5;
+  color: #fff;
 }
 
-/* Email button */
 .fa-envelope {
   color: #444444;
 }
 
 .fa-envelope:hover {
   background-color: #444444;
+  color: #fff;
 }
 
 #disqus_thread {
@@ -168,15 +158,20 @@ button.btn {
   padding-left: 35px;
 }
 
-.abstract {
-  padding-left: 10px;
-  font-size: 100%;
-  color: rgb(28, 11, 184);
-  border-left: 7px solid #3e32e7;
-  margin: 20px 0;
+.site-content>.sidebar .category-list {
+  font-family: var(--Livvic);
 }
 
-.abstract::before {
-  content: "Abstract: ";
-  font-weight: 700;
+.site-content>.sidebar .category-list .list-items {
+  background: var(--sky);
+  padding: .4rem 1rem;
+  margin: .8rem 0;
+  border-radius: 3rem;
+  width: 70%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.site-content>.sidebar .category-list .list-items a {
+  color: black;
 }
