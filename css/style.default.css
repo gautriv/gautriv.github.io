@@ -283,7 +283,7 @@ i[class*="icon-"] {
 }
 
 .btn {
-  border-radius: 0 !important;
+  border-radius: 24px !important;
 }
 
 .badge {
@@ -961,6 +961,7 @@ section.newsletter input {
   font-size: 1.1em;
   font-family: "Open Sans", sans-serif;
   font-weight: 300;
+  border-radius: 24px;
 }
 
 section.newsletter .submit {
@@ -974,6 +975,7 @@ section.newsletter .submit {
   top: 0;
   right: 0;
   font-family: "Open Sans", sans-serif;
+  border-radius: 24px;
 }
 
 /* Newsletter Section Media Query ------------------------------------- */
@@ -2737,4 +2739,23 @@ h4 code {
 
 .card-text {
   padding-top: 10px;
+}
+
+.footerone {
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer-left {
+  text-align: left;
+}
+
+.footer-right {
+  text-align: right;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease-in-out;
 }
