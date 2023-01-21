@@ -60,4 +60,4 @@ Another scenario, imagine you're a marketer who needs to track how many times a 
 
 URLs play an important role in API documentation by providing a clear and consistent way to access and specify resources. Understanding the basic structure and components of a URL, along with concepts such as path, endpoint, and resource can make it easier to understand and use APIs. Next time you're working with an API, take a closer look at the URL and see if you can identify the protocol, domain, path, and query parameters. And who knows, you may just stumble upon a new way to utilize the data and functionality provided by the API.
 
-Enjoyed reading? Let me know your thoughts in comments?
+Enjoyed reading? Let me know your thoughts in comments
