@@ -38,8 +38,3 @@ It's like a choose-youradventure book, but instead of a book, it's your product 
 ## The collaboration?
 
 Of course, these techniques are easier said than done. That's why it's important that you organize multiple workshops, ask different questions, and hear different point of views. This will give you the chance to develop quality information, practice these techniques in a guided setting.
-
-That's it!
-Wait don't go, it's time for a rhyme 🤔💥
-
-![Rhyme](/assets/rhyme.png "Rhyme")
