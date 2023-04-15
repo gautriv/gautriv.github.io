@@ -45,14 +45,21 @@ That's it!
 Wait don't go, it's time for a rhyme 🤔💥
 
 > Hey there, reader dear,
+
 > Don't fret, have no fear,
+
 > For making docs engaging
+
 > Empathy maps are worth engaging.
->
+
 > And let's not forget the user journey,
+
 > It guides your writing with a helping tourney.
+
 > With these tools in your kit,
-Your docs will truly be a hit!
->
+
+> Your docs will truly be a hit!
+
 > So don't forget to add that touch of love,
+
 > For writing docs that your users will speak highly of!
