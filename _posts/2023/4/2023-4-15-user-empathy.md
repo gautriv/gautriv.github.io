@@ -16,15 +16,13 @@ So, let's talk about empathy mapping. It's like a treasure map, but instead of t
 
 ### How to create an empathy map?
 
-<img src="/assets/empathy_map.png" alt= “EmpathyMap” width="50%" height="30%">
-
 * Start by creating a grid with four quadrants: Think, Feel, Say, and Do.
 * In the "Think" quadrant, you'll write down what your user is thinking about. It could be anything from "why is this so complicated?" to "this is amazing!"
 * In the "Feel" quadrant, you'll write down what emotions your user might be experiencing. Are they frustrated? Confused? Excited? Write it down!
 * In the "Say" quadrant, you'll write down what your user might be saying out loud. Maybe they're asking questions or giving feedback.
 * In the "Do" quadrant, you'll write down what actions your user is taking. Are they clicking buttons, searching for information, or throwing their computer out the window?
 
-
+![Empathy Mapping](/assets/empathy_map.png "Empathy map")
 
 ## What is user journey?
 It's like a choose-youradventure book, but instead of a book, it's your product or service. The user journey is a visualization of the path your users take as they interact with your product or service. It's important to understand all the touchpoints your users have with your product, from start to finish. This will help you identify any pain points or areas where your documentation could be more helpful.
@@ -35,7 +33,6 @@ It's like a choose-youradventure book, but instead of a book, it's your product 
 * Identify any pain points or areas where your documentation could be more helpful.
 * Determine what your user needs at each touchpoint and create documentation that addresses those needs proactively.
 * Consider the emotional journey your user might be going through and make sure your documentation is sensitive to their needs.
-  
 
 ## The collaboration?
 
@@ -45,21 +42,14 @@ That's it!
 Wait don't go, it's time for a rhyme 🤔💥
 
 > Hey there, reader dear,
-
 > Don't fret, have no fear,
-
 > For making docs engaging
-
 > Empathy maps are worth engaging.
-
+>
 > And let's not forget the user journey,
-
 > It guides your writing with a helping tourney.
-
 > With these tools in your kit,
-
 > Your docs will truly be a hit!
-
+>
 > So don't forget to add that touch of love,
-
 > For writing docs that your users will speak highly of!
