@@ -35,8 +35,9 @@ It's like a choose-youradventure book, but instead of a book, it's your product 
 * Identify any pain points or areas where your documentation could be more helpful.
 * Determine what your user needs at each touchpoint and create documentation that addresses those needs proactively.
 * Consider the emotional journey your user might be going through and make sure your documentation is sensitive to their needs.
+  
 
-The collaboration?
+## The collaboration?
 
 Of course, these techniques are easier said than done. That's why it's important that you organize multiple workshops, ask different questions, and hear different point of views. This will give you the chance to develop quality information, practice these techniques in a guided setting.
 
