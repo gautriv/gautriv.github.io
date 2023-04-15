@@ -16,7 +16,7 @@ So, let's talk about empathy mapping. It's like a treasure map, but instead of t
 
 ### How to create an empathy map?
 
-![Empathy Mapping](/assets/empathy_map.png "Empathy map")
+<img src="/assets/empathy_map.png" alt= “EmpathyMap” width="50%" height="30%">
 
 * Start by creating a grid with four quadrants: Think, Feel, Say, and Do.
 * In the "Think" quadrant, you'll write down what your user is thinking about. It could be anything from "why is this so complicated?" to "this is amazing!"
