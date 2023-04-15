@@ -22,6 +22,7 @@ So, let's talk about empathy mapping. It's like a treasure map, but instead of t
 * In the "Say" quadrant, you'll write down what your user might be saying out loud. Maybe they're asking questions or giving feedback.
 * In the "Do" quadrant, you'll write down what actions your user is taking. Are they clicking buttons, searching for information, or throwing their computer out the window?
 
+
 ![Empathy Mapping](/assets/empathy_map.png "Empathy map")
 
 ## What is user journey?
