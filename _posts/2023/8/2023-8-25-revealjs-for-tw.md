@@ -135,9 +135,9 @@ Project Root
 ## The Final Act - Showtime!
 And there it was, [my masterpiece](https://beingtechnicalwriter.com/api.languages.github.io/) - a captivating RevealJS presentation about API documentation languages. The effort was worth it when I saw the interactive slides, smoothly transitioning between sections, with diagrams beautifully embedded via Kroki.
 
-. To access the presentation, see [API DOCUMENTATION LANGUAGES A DEEP DIVE INTO JSON AND XML](https://beingtechnicalwriter.com/api.languages.github.io/)
+* To access the presentation, see [API DOCUMENTATION LANGUAGES A DEEP DIVE INTO JSON AND XML](https://beingtechnicalwriter.com/api.languages.github.io/)
 
-. To access the source repository, see [api.languages.github.io](https://github.com/gautriv/api.languages.github.io)
+* To access the source repository, see [api.languages.github.io](https://github.com/gautriv/api.languages.github.io)
 
 **Wrapping Up**
 My journey with RevealJS was a rollercoaster of excitement, learning, and creation. It's incredible how technology can transform ideas into interactive experiences. If you're eager to share your knowledge or captivate your audience, RevealJS is a fantastic tool to explore. So, grab your content, let your creativity flow, and let RevealJS weave its magic!
