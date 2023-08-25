@@ -25,21 +25,19 @@ After a long research, I stumbled upon RevealJS, a powerful framework that lets 
 ### Crafting the Presentation
 Here is my project structure:
 
-Project Root
-│
-├─ images
-│  ├─ image1
-│  └─ ...
-|
-├─ css
-│  ├─ main.css
-│  └─ ...
-|
-├─ index.adoc
-|
-├─ package.json
-│
-└─ README.md
+```mermaid
+graph TD
+  A[Project Root]
+  A --> B[images]
+  A --> C[css]
+  A --> D[index.adoc]
+  A --> E[package.json]
+  A --> F[README.md]
+  B --> B1[image1]
+  B --> B2[...]
+  C --> C1[main.css]
+  C --> C2[...]
+```
 
 **images**
 The [images](https://github.com/gautriv/api.languages.github.io/tree/main/images) directory is a treasure trove of visual delights. It's the go-to place where all the images used in our presentation find their cozy spot.
@@ -69,6 +67,7 @@ With your digital stage all set, it's time for the big reveal. Drumroll, please.
 
 With this your repository strcuture would look something like this:
 
+----
 Project Root
 │
 ├─ images
@@ -91,6 +90,7 @@ Project Root
 │
 └─ README.md
 
+----
 ## Publish to GitHub
 The journey didn't end with the presentation creation. I wanted to share my creation with the world. Thanks to the power of GitHub, I pushed all my content to a repository. To automate the publishing process, I turned to GitHub Actions.
 
@@ -98,6 +98,7 @@ I crafted a [`publish.yml`](https://github.com/gautriv/api.languages.github.io/b
 
 After this my repository strcuture looked something like this:
 
+---
 Project Root
 │─ .github
 │  ├─ workflows
@@ -124,6 +125,7 @@ Project Root
 ├─ package.json
 │
 └─ README.md
+---
 
 ## The Final Act - Showtime!
 And there it was, [my masterpiece](https://beingtechnicalwriter.com/api.languages.github.io/) - a captivating RevealJS presentation about API documentation languages. The effort was worth it when I saw the interactive slides, smoothly transitioning between sections, with diagrams beautifully embedded via Kroki.
