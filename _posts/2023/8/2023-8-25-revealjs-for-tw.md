@@ -25,19 +25,23 @@ After a long research, I stumbled upon RevealJS, a powerful framework that lets 
 ### Crafting the Presentation
 Here is my project structure:
 
-```mermaid
-graph TD
-  A[Project Root]
-  A --> B[images]
-  A --> C[css]
-  A --> D[index.adoc]
-  A --> E[package.json]
-  A --> F[README.md]
-  B --> B1[image1]
-  B --> B2[...]
-  C --> C1[main.css]
-  C --> C2[...]
-```
+<pre>
+Project Root
+│
+├─ images
+│   ├─ image1
+│   └─ ...
+│
+├─ css
+│   ├─ main.css
+│   └─ ...
+│
+├─ index.adoc
+│
+├─ package.json
+│
+└─ README.md
+</pre>
 
 **images**
 The [images](https://github.com/gautriv/api.languages.github.io/tree/main/images) directory is a treasure trove of visual delights. It's the go-to place where all the images used in our presentation find their cozy spot.
