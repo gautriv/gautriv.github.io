@@ -18,7 +18,7 @@ So, there I stood, teetering on the precipice of embracing the time-honored art 
 
 ## The Inspiration
 
-It all started with a spark of curiosity about API documentation languages like JSON and XML. These languages play a vital role in the tech landscape, connecting various applications and systems. I wanted to demystify these languages and share my insights with the community. That's when the idea of creating a presentation struck me.
+The journey began when I took part in an API documentation fair, and I was invited to deliver a presentation on [API documentation languages like JSON and XML](https://www.linkedin.com/posts/tech-writers-tribe_techwriterstribe-twtevent-twt2023-activity-7099623679856177154-v2qP?utm_source=share&utm_medium=member_desktop). The excitement surrounding this event inspired me to tackle my presentation preparation in an refreshingly unconventional way. Embracing my creative instincts, I ventured beyond the confines of tradition, eagerly aiming to present these intricate concepts in a manner that would truly captivate and profoundly resonate with the audience.
 
 ## Meet RevealJS - The Presentation Wizard
 
