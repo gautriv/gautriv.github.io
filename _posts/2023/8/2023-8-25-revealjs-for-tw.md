@@ -71,7 +71,7 @@ With your digital stage all set, it's time for the big reveal. Drumroll, please.
 
 With this your repository strcuture would look something like this:
 
-----
+<pre>
 Project Root
 │
 ├─ images
@@ -93,8 +93,8 @@ Project Root
 ├─ package.json
 │
 └─ README.md
+</pre>
 
-----
 ## Publish to GitHub
 The journey didn't end with the presentation creation. I wanted to share my creation with the world. Thanks to the power of GitHub, I pushed all my content to a repository. To automate the publishing process, I turned to GitHub Actions.
 
@@ -102,7 +102,7 @@ I crafted a [`publish.yml`](https://github.com/gautriv/api.languages.github.io/b
 
 After this my repository strcuture looked something like this:
 
----
+<pre>
 Project Root
 │─ .github
 │  ├─ workflows
@@ -130,6 +130,7 @@ Project Root
 │
 └─ README.md
 ---
+</pre>
 
 ## The Final Act - Showtime!
 And there it was, [my masterpiece](https://beingtechnicalwriter.com/api.languages.github.io/) - a captivating RevealJS presentation about API documentation languages. The effort was worth it when I saw the interactive slides, smoothly transitioning between sections, with diagrams beautifully embedded via Kroki.
