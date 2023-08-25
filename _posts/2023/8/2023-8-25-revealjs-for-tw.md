@@ -17,12 +17,15 @@ You might be pondering, "Hey, did you just not woo the AI gods enough?" Well, le
 So, there I stood, teetering on the precipice of embracing the time-honored art of creating presentations (yes, the software we all know). But then, a tech wizard leaned in and whispered about [RevealJS](https://revealjs.com/). It was like stumbling upon a treasure trove in my very own backyard. And believe me, the [results it churned out](https://beingtechnicalwriter.com/api.languages.github.io/) were nothing short of spectacular.
 
 ## The Inspiration
+
 It all started with a spark of curiosity about API documentation languages like JSON and XML. These languages play a vital role in the tech landscape, connecting various applications and systems. I wanted to demystify these languages and share my insights with the community. That's when the idea of creating a presentation struck me.
 
 ## Meet RevealJS - The Presentation Wizard
+
 After a long research, I stumbled upon RevealJS, a powerful framework that lets you create stunning presentations with HTML, CSS, and Markdown. What caught my attention was its ability to generate interactive and visually appealing slideshows. Plus, it supports Markdown - a language I'm familiar with. So, armed with the tools and enthusiasm, I dove into the creation process.
 
 ### Crafting the Presentation
+
 Here is my project structure:
 
 <pre>
@@ -44,12 +47,15 @@ Project Root
 </pre>
 
 **images**
+
 The [images](https://github.com/gautriv/api.languages.github.io/tree/main/images) directory is a treasure trove of visual delights. It's the go-to place where all the images used in our presentation find their cozy spot.
 
 **css**
+
 Ah, the [css](https://github.com/gautriv/api.languages.github.io/tree/main/css) directory – the fashionista of our presentation! Nestled within is a file that holds the power to transform the appearance of our RevealJS slides. Meet `main.css`, the sartorial genius that takes control of RevealJS styles and turns them into something uniquely ours.
 
 **index.adoc**
+
 I organized everything in an [`index.adoc`](https://github.com/gautriv/api.languages.github.io/blob/main/index.adoc) file, using Asciidoctor - a text processor that converts AsciiDoc files to various formats, including HTML. This content would serve as the foundation of my presentation. 
 
 Within this magical file, I set attributes like the author's name (:author: Gaurav Trivedi), chose the revealjs backend, and even summoned custom CSS (:customcss: main.css) to give my presentation a unique style. But that was just the tip of the iceberg.
