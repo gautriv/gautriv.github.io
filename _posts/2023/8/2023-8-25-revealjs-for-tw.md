@@ -73,7 +73,7 @@ Before we unleash your presentation masterpiece, you need to make sure you've go
 
 Alright, let's get down to business. First, navigate to your project directory in the command line. This is where the magic will happen. Once you're there, `run npm install`. You might be wondering why we're doing this. Well, since you've got a package.json file waving its digital wand around, running this command will create a `package-lock.json` file. It's like setting up the stage for your presentation's grand performance.
 
-With your digital stage all set, it's time for the big reveal. Drumroll, please. To see your presentation's local output in all its glory, `run npm run prepare`. This command will work its behind-the-scenes wizardry, transforming your AsciiDoc content, attributes, and animations into a stunning RevealJS presentation.
+With your digital stage all set, it's time for the big reveal. Drumroll, please. To see your presentation's local output in all its glory, `run npm run present`. This command will work its behind-the-scenes wizardry, transforming your AsciiDoc content, attributes, and animations into a stunning RevealJS presentation.
 
 With this your repository strcuture would look something like this:
 
@@ -146,6 +146,7 @@ And there it was, [my masterpiece](https://beingtechnicalwriter.com/api.language
 * To access the source repository, see [api.languages.github.io](https://github.com/gautriv/api.languages.github.io)
 
 **Wrapping Up**
+
 My journey with RevealJS was a rollercoaster of excitement, learning, and creation. It's incredible how technology can transform ideas into interactive experiences. If you're eager to share your knowledge or captivate your audience, RevealJS is a fantastic tool to explore. So, grab your content, let your creativity flow, and let RevealJS weave its magic!
 
 Stay curious, keep learning, and happy presenting!
