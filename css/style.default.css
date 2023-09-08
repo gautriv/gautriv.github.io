@@ -263,7 +263,7 @@ i[class*="icon-"] {
 }
 
 .no-padding-top {
-  padding-top: 0 !important;
+  padding-top: 15px !important;
 }
 
 .no-margin {
