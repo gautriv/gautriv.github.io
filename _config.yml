@@ -18,6 +18,7 @@ plugins:
   - jekyll-paginate
   - jekyll-seo-tag
   - jemoji
+  - jekyll-sitemap
 
 permalink: /:year/:month/:day/:title/
 defaults:
