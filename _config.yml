@@ -1,5 +1,5 @@
 media: https://beingtechnicalwriter.s3.ap-south-1.amazonaws.com/
-pagniagte: 10
+paginate: 10
 output: web
 timezone: Asia/Kolkata
 highlighter: rouge
@@ -10,6 +10,16 @@ kramdown:
   syntax_highlighter: rouge
 
 format: web
+
+# Collections
+collections:
+  docs:
+    output: true
+  slides:
+    output: true
+  smartphones: 
+    output: true
+
 
 # Build settings
 
