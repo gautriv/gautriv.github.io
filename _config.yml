@@ -28,6 +28,8 @@ plugins:
   - jekyll-paginate
   - jekyll-seo-tag
   - jemoji
+  - jekyll-redirect-from
+
 
 permalink: /:year/:month/:day/:title/
 defaults:

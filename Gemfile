@@ -12,6 +12,7 @@ group :jekyll_plugins do
   gem 'jemoji'
   gem 'jekyll-seo-tag'
   gem "nokogiri", ">= 1.13.6"
+  gem "jekyll-redirect-from"
 end
 
 # Windows and JRuby does not include zoneinfo files, so bundle the tzinfo-data gem
