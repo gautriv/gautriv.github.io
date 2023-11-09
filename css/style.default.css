@@ -1341,6 +1341,7 @@ main.posts-listing .post-footer {
 .blog-post .post-thumbnail img {
   width: 100%;
   margin-bottom: 10px;
+  border-radius: 15px
 }
 
 .blog-post h1 {
