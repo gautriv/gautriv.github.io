@@ -180,7 +180,7 @@ input[type="radio"][value="no"]:checked + label::before {
 
 ### Financial Satisfaction and Compensation
 
-In the world of technical writing, satisfaction goes hand in hand with fair compensation. Take a moment to ponder your financial landscape. If it's a sunny day, excellent! If not, consider initiating a chat with your manager or HR representative. You're worth it, and substantiate your concerns with the facts – industry reports, performance reviews, and your undeniable awesomeness.
+In the world of technical writing, satisfaction goes hand in hand with fair compensation. Take a moment to ponder your financial landscape.
 
 <style>
 table {
