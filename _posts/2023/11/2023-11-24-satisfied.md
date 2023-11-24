@@ -26,7 +26,7 @@ Before answering the questionnaire, please keep the following in mind:
 OK, so grab a cup of coffee, take a deep breath, and let's review the questionnaire.
 
 
-{% include note.html content="Place your mouse over the <b>Yes</b> or <b>No</b> box next to each question. Click on the <b>Yes</b> or <b>No</b> box to indicate your answer. Click on the <b>Submit answers</b> button at the bottom of the questionnaire. For optimal viewing, please use this questionnaire on a wider screen." %}
+{% include note.html content="Hover over the <b>Yes</b> or <b>No</b> box next to each question. Click on the <b>Yes</b> or <b>No</b> box to indicate your answer. Click <b>Submit answers</b> at the end of the questionnaire. For the best viewing experience, please use this questionnaire on a wider screen." %}
 
 <style>
 table {
