@@ -345,6 +345,7 @@ h5,
 h6 {
   margin-bottom: 4px;
   margin-top: 30px;
+  font-weight: bold;
 }
 
 .pagination-template li.page-item {
