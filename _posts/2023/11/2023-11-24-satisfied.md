@@ -1,5 +1,5 @@
 ---
-title: Are you satisfied with your technical writing career?
+title: Is your technical writing career on track?
 category: Technical Writing
 image: "/assets/career_technical_writing.jpg"
 header-img: "/assets/career_technical_writing.jpg"
@@ -12,7 +12,7 @@ In the dynamic world of technical writing, finding fulfillment and achieving you
 
 To embark on this journey of self-discovery and career alignment, let's explore the key milestones and professional development strategies that can help you chart your course towards a satisfying and rewarding technical writing career.
 
-But, before that, let's be honest to ourselves. I've prepared a questionnaire for you to find out how satisfied are your with your technical writing career. Answer the questions honestly :) 
+Before we proceed, let's be honest with ourselves. I've prepared a questionnaire to help you assess your current standing in your technical writing career.
 
 
 ### Questionnaire for Self-Assessment
@@ -164,7 +164,7 @@ input[type="radio"][value="no"]:checked + label::before {
     </tr>
     <tr id="q10">
     <td>Continuous Improvement</td>
-      <td> Are you passionate about technical writing? Have you dedicated yourself to continuous improvement and skill enhancement in the field of technical writing?</td>
+      <td>Have you committed yourself to ongoing professional development and skill enhancement in the field of technical writing?</td>
       <td><input type="radio" name="answer10" value="yes" id="yes10"> <label for="yes10"></label></td>
       <td><input type="radio" name="answer10" value="no" id="no10"> <label for="no10"></label></td>
     </tr>
