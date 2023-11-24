@@ -1368,6 +1368,7 @@ main.posts-listing .post-footer {
 .blog-post .post-body h5,
 .blog-post .post-body h6 {
   color: #333;
+  font-weight: bold;
 }
 
 .blog-post .post-body p:not(.lead) {
