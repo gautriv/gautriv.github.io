@@ -26,8 +26,9 @@ function assessCareer() {
     } else if (yesAnswers >= 4 && yesAnswers <= 6) {
         result = "Your career is somewhat on track.";
     } else {
-        result = "Your career is not on track.";
+        result = "Your career may need some redirection at the moment.";
     }
 
-    document.getElementById("assessmentResult").innerText = result;
+    // Use innerHTML to include HTML content with styling
+    document.getElementById("assessmentResult").innerHTML = "<div class='highlight'>" + result + "</div>";
 }

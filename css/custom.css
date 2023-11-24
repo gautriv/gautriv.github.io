@@ -185,3 +185,11 @@ emapthy {
   width: 50%;
   height: 30%;
 }
+
+
+.highlight {
+  background-color: #f0f8ff; /* Light blue background color */
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
