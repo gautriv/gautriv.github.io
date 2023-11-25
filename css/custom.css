@@ -193,3 +193,8 @@ emapthy {
   margin-bottom: 10px;
   border-radius: 5px;
 }
+
+.d-block {
+  max-height: 500px; /* Set the maximum height as needed */
+  width: auto; /* Maintain the aspect ratio */
+}
