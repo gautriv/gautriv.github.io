@@ -22,81 +22,95 @@ Before answering the questionnaire, please keep the following in mind:
 * Please approach this tool with a lighthearted attitude. Don't take it too seriously.
 * Your satisfaction is personal; this tool is just a guide. Approach it with a smile, and remember, you're in control of your career.
 
+<br>
 OK, so grab a cup of coffee, take a deep breath, and let's review the questionnaire.
 
 
 {% include note.html content="Hover over the <b>Yes</b> or <b>No</b> box next to each question. Click on the <b>Yes</b> or <b>No</b> box to indicate your answer. Click <b>Submit answers</b> at the end of the questionnaire. For the best viewing experience, please use this questionnaire on a wider screen." %}
 
 <style>
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 20px;
-}
-
-th, td {
-  border: 1px solid #ddd;
-  padding: 12px;
-  text-align: left;
-}
-
-th {
-  background-color: #f2f2f2;
-}
-
-input[type="radio"] {
-  display: none;
-}
-
-label {
-  cursor: pointer;
-  display: inline-block;
-  padding: 10px;
-  position: relative;
-  transition: background-color 0.3s;
-  border: 1px solid transparent;
-}
-
-label:hover {
-  background-color: #f9f9f9;
-  border: 1px solid #ccc;
-}
-
-input[type="radio"]:checked + label::before {
-  font-family: 'Font Awesome 5 Free';
-  font-weight: 900;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 24px;
-  transition: transform 0.3s ease-out;
-}
-
-@keyframes increaseDecrease {
-  0%, 100% {
-    transform: scale(1);
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
   }
-  50% {
-    transform: scale(1.2);
+
+  th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
   }
-}
 
-input[type="radio"][value="yes"]:checked + label::before {
-  content: '\f118'; /* Unicode character for the smiley icon */
-  color: #28a745; /* Green color for 'Yes' */
-  animation: increaseDecrease 2s ease-in-out infinite;
-  border: none; /* Remove the border for 'Yes' */
-}
+  th {
+    background-color: #f2f2f2;
+  }
 
-input[type="radio"][value="no"]:checked + label::before {
-  content: '\f119'; /* Unicode character for the sad face icon */
-  color: #dc3545; /* Red color for 'No' */
-  animation: increaseDecrease 2s ease-in-out infinite;
-  border: none; /* Remove the border for 'No' */
-}
+  input[type="radio"] {
+    display: none;
+  }
 
+  label {
+    cursor: pointer;
+    display: inline-block;
+    padding: 10px;
+    position: relative;
+    transition: background-color 0.3s;
+    border: 1px solid transparent;
+  }
+
+  label:hover {
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+  }
+
+  input[type="radio"]:checked + label::before {
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    transition: transform 0.3s ease-out;
+  }
+
+  @keyframes increaseDecrease {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+  }
+
+  input[type="radio"][value="yes"]:checked + label::before {
+    content: '\f118'; /* Unicode character for the smiley icon */
+    color: #28a745; /* Green color for 'Yes' */
+    animation: increaseDecrease 2s ease-in-out infinite;
+    border: none; /* Remove the border for 'Yes' */
+  }
+
+  input[type="radio"][value="no"]:checked + label::before {
+    content: '\f119'; /* Unicode character for the sad face icon */
+    color: #dc3545; /* Red color for 'No' */
+    animation: increaseDecrease 2s ease-in-out infinite;
+    border: none; /* Remove the border for 'No' */
+  }
+
+  /* Media query for smaller screens (adjust as needed) */
+  @media only screen and (max-width: 600px) {
+    th, td {
+      padding: 8px; /* Adjust padding for smaller screens */
+    }
+
+    input[type="radio"] + label::before {
+      font-size: 18px; /* Adjust font size for smaller screens */
+    }
+
+    /* Add any additional styling adjustments for smaller screens here */
+  }
 </style>
+
 <table>
   <thead>
     <tr>
@@ -182,80 +196,88 @@ input[type="radio"][value="no"]:checked + label::before {
 In the world of technical writing, satisfaction goes hand in hand with fair compensation. Take a moment to ponder your financial landscape.
 
 <style>
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 20px;
-}
-
-th, td {
-  border: 1px solid #ddd;
-  padding: 12px;
-  text-align: left;
-}
-
-th {
-  background-color: #f2f2f2;
-}
-
-input[type="radio"] {
-  display: none;
-}
-
-label {
-  cursor: pointer;
-  display: inline-block;
-  padding: 10px;
-  position: relative;
-  transition: background-color 0.3s;
-  border: 1px solid transparent;
-}
-
-label:hover {
-  background-color: #f9f9f9;
-  border: 1px solid #ccc;
-}
-
-input[type="radio"]:checked + label::before {
-  font-family: 'Font Awesome 5 Free';
-  font-weight: 900;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 24px;
-  transition: transform 0.3s ease-out;
-}
-
-@keyframes increaseDecrease {
-  0%, 100% {
-    transform: scale(1);
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
   }
-  50% {
-    transform: scale(1.2);
+
+  th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
   }
-}
 
-input[type="radio"][value="yes"]:checked + label::before {
-  content: '\f118'; /* Unicode character for the smiley icon */
-  color: #28a745; /* Green color for 'Yes' */
-  animation: increaseDecrease 2s ease-in-out infinite;
-  border: none; /* Remove the border for 'Yes' */
-}
+  th {
+    background-color: #f2f2f2;
+  }
 
-input[type="radio"][value="no"]:checked + label::before {
-  content: '\f119'; /* Unicode character for the sad face icon */
-  color: #dc3545; /* Red color for 'No' */
-  animation: increaseDecrease 2s ease-in-out infinite;
-  border: none; /* Remove the border for 'No' */
-}
+  input[type="radio"] {
+    display: none;
+  }
 
-/* Adjust the width of the 'Yes' and 'No' columns */
-td:nth-child(2),
-td:nth-child(3) {
-  width: 80px; /* Adjust the width as needed */
-}
+  label {
+    cursor: pointer;
+    display: inline-block;
+    padding: 10px;
+    position: relative;
+    transition: background-color 0.3s;
+    border: 1px solid transparent;
+  }
+
+  label:hover {
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+  }
+
+  input[type="radio"]:checked + label::before {
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    transition: transform 0.3s ease-out;
+  }
+
+  @keyframes increaseDecrease {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+  }
+
+  input[type="radio"][value="yes"]:checked + label::before {
+    content: '\f118'; /* Unicode character for the smiley icon */
+    color: #28a745; /* Green color for 'Yes' */
+    animation: increaseDecrease 2s ease-in-out infinite;
+    border: none; /* Remove the border for 'Yes' */
+  }
+
+  input[type="radio"][value="no"]:checked + label::before {
+    content: '\f119'; /* Unicode character for the sad face icon */
+    color: #dc3545; /* Red color for 'No' */
+    animation: increaseDecrease 2s ease-in-out infinite;
+    border: none; /* Remove the border for 'No' */
+  }
+
+  /* Media query for smaller screens (adjust as needed) */
+  @media only screen and (max-width: 600px) {
+    th, td {
+      padding: 8px; /* Adjust padding for smaller screens */
+    }
+
+    input[type="radio"] + label::before {
+      font-size: 18px; /* Adjust font size for smaller screens */
+    }
+
+    /* Add any additional styling adjustments for smaller screens here */
+  }
 </style>
+
 <table>
   <thead>
     <tr>

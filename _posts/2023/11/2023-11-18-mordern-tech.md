@@ -20,7 +20,7 @@ As we ride the tech tsunami, technical writing finds itself on a wild rollercoas
 
 ### Adapting and Thriving as a Technical Writer in the Modern Era
 
-<img src="/assets/future-proofing-career.png" alt="ChatGPT CheatSheet" height="1500">
+<img src="/assets/future-proofing-career.png" alt="ChatGPT CheatSheet" style="max-width: 100%;" height="auto">
 
 Despite these challenges and technological advancements, I firmly believe that technical writing is far from dead. In fact, it's more vital than ever in today's complex and ever-changing technological landscape. There are several things that technical writers can do to adapt and thrive in today's environment:
 
