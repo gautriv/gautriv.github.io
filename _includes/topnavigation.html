@@ -1,40 +1,49 @@
+<style>
+    .social-links {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .social-links a {
+        margin: 0 10px; /* Adjust the margin as needed */
+        font-size: 20px; /* Adjust the font size as needed */
+        color: #000; /* Adjust the color as needed */
+    }
+
+    /* Media query for smaller screens */
+    @media (max-width: 768px) {
+        .social-links {
+            flex-direction: row; /* Display icons in a row on smaller screens */
+            justify-content: space-around;
+        }
+
+        .social-links a {
+            margin: 0 5px; /* Adjust the margin for closer spacing */
+        }
+    }
+</style>
+
 <nav class="navbar navbar-expand-lg">
-  <div class="search-area">
-      <div class="search-area-inner d-flex align-items-center justify-content-center">
-          <div class="close-btn"><i class="icon-close"></i></div>
-          <div class="row d-flex justify-content-center">
-              <div class="col-md-8">
-                  <form action="#">
-                      <div class="form-group">
-                          {% include search.html %}
-                          <button type="submit" class="submit"><i class="icon-search-1"></i></button>
-                      </div>
-                  </form>
-              </div>
-          </div>
-      </div>
-  </div>
-  <div class="container">
-      <!-- Navbar Brand -->
-      <div class="navbar-header d-flex align-items-center justify-content-between">
-          <!-- Navbar Brand --><a class="navbar-brand" href="{{ "/" | prepend: site.baseurl }}"><i class="fa fa-keyboard-o"></i>
-              Being
-              Technical Writer</a>
-            
-        <!-- Social Media Links (Centered) -->
+    <!-- ... (your existing code) ... -->
+    <div class="container">
+        <div class="navbar-header d-flex align-items-center justify-content-between">
+            <a class="navbar-brand" href="{{ "/" | prepend: site.baseurl }}"><i class="fa fa-keyboard-o"></i> Being Technical Writer</a>
+
+            <!-- Social Media Links (Centered) -->
             <div class="social-links">
                 <a href="https://twitter.com/beingtechwriter" target="_blank" rel="noopener noreferrer"><i class="fa fa-twitter"></i></a>
                 <a href="https://www.linkedin.com/in/gauravtrivedi1988/" target="_blank" rel="noopener noreferrer"><i class="fa fa-linkedin"></i></a>
                 <a href="https://github.com/gautriv" target="_blank" rel="noopener noreferrer"><i class="fa fa-github"></i></a>
                 <a href="https://beingtechnicalwriter.quora.com" target="_blank" rel="noopener noreferrer"><i class="fa fa-quora"></i></a>
-        <!-- Add more social media links as needed -->
+                <a href="https://www.youtube.com/channel/UCBrWnqQ9J3ZG_XKq6Ts1-_w" target="_blank" rel="noopener noreferrer"><i class="fa fa-youtube"></i></a>
+                <!-- Add more social media links as needed -->
             </div>
-          <!-- Toggle Button-->
-          <button type="button" data-toggle="collapse" data-target="#navbarcollapse" aria-controls="navbarcollapse"
-              aria-expanded="false" aria-label="Toggle navigation"
-              class="navbar-toggler"><span></span><span></span><span></span></button>
-      </div>
-      <!-- Navbar Menu -->
-      {% include navbarmenu.html %}
-  </div>
+
+            <!-- Toggle Button-->
+            <button type="button" data-toggle="collapse" data-target="#navbarcollapse" aria-controls="navbarcollapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"><span></span><span></span><span></span></button>
+        </div>
+        <!-- Navbar Menu -->
+        {% include navbarmenu.html %}
+    </div>
 </nav>
