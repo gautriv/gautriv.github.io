@@ -114,10 +114,10 @@ OK, so grab a cup of coffee, take a deep breath, and let's review the questionna
 <table>
   <thead>
     <tr>
-    <th style="width: 150px;">Skills</th>
-    <th style="width: 600px;">Questions</th>
-    <th style="width: 60px;">Yes</th>
-    <th style="width: 60px;">No</th>
+    <th style="width: 120px;">Skills</th>
+    <th style="width: 650px;">Questions</th>
+    <th style="width: 80px;">Yes</th>
+    <th style="width: 80px;">No</th>
     </tr>
   </thead>
   <tbody>
@@ -281,9 +281,9 @@ In the world of technical writing, satisfaction goes hand in hand with fair comp
 <table>
   <thead>
     <tr>
-      <th>Question</th>
-      <th>Yes</th>
-      <th>No</th>
+    <th style="width: 850px;">Questions</th>
+    <th style="width: 80px;">Yes</th>
+    <th style="width: 80px;">No</th>
     </tr>
   </thead>
   <tbody>

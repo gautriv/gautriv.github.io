@@ -2,7 +2,7 @@
     <header>
         <h3 class="h6">Latest Posts</h3>
     </header>
-    {% for post in site.posts limit:3 %}
+    {% for post in site.posts limit:4 %}
     <div class="blog-posts"><a href="{{post.url}}">
             <div class="item d-flex align-items-center">
                 <div class="image"><img src="{{ post.image | prepend: site.baseurl }}"
