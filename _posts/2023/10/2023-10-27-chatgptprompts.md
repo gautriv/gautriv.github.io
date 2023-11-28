@@ -20,6 +20,19 @@ But ChatGPT isn't just a one-trick pony. It can don different hats and strike va
 
 For instance, if you're in the mood for a user manual, configure ChatGPT to take on the role of a technical expert. If you're aiming for a blog post, set the tone for a journalist or blogger.
 
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7149683584202371"
+     crossorigin="anonymous"></script>
+<!-- AddTitleOne -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7149683584202371"
+     data-ad-slot="7422872052"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 ## Formats
 
 ChatGPT, the shapeshifter of text, can weave diverse formats, from articles and essays to book outlines and social media posts. Simply specify the format you desire in your prompt.
@@ -105,6 +118,19 @@ Now, let's glimpse into the treasure trove of possibilities. Here are some examp
 * Fashion persuasive marketing copy for technical products and services.
 * Foster the development of training materials for your technical team.
 * Seamlessly translate
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7149683584202371"
+     crossorigin="anonymous"></script>
+<!-- AddTitleOne -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7149683584202371"
+     data-ad-slot="7422872052"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
 ## ChatGPT CheatSheet
 <img src="/assets/chatgpt_cheatsheet.png" alt="ChatGPT CheatSheet" width="650" height="900">

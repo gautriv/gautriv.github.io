@@ -18,9 +18,22 @@ As we ride the tech tsunami, technical writing finds itself on a wild rollercoas
 * **The Demand for Global Reach:** In today's interconnected world, companies need to communicate effectively with customers and partners across the globe. This poses a challenge for technical writers, who must adapt their writing to different languages and cultural contexts.
 * **The Rise of AI Automation:** The ability of AI to generate technical documentation has led some to question the need for human technical writers. While AI can automate certain tasks, it lacks the human touch and expertise required to produce truly comprehensive and engaging documentation.
 
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7149683584202371"
+     crossorigin="anonymous"></script>
+<!-- AddTitleOne -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7149683584202371"
+     data-ad-slot="7422872052"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 ### Adapting and Thriving as a Technical Writer in the Modern Era
 
-<img src="/assets/future-proofing-career.png" alt="ChatGPT CheatSheet" style="max-width: 100%;" height="auto">
+<img src="/assets/future-proofing-career.png" alt="Future proofing career" style="max-width: 100%;" height="auto">
 
 Despite these challenges and technological advancements, I firmly believe that technical writing is far from dead. In fact, it's more vital than ever in today's complex and ever-changing technological landscape. There are several things that technical writers can do to adapt and thrive in today's environment:
 
