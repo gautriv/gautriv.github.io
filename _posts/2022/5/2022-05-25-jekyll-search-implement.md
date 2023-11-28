@@ -24,6 +24,19 @@ In the subsequent articles, we'll go over how to use different search engines. I
 - Easy to implement
 - Easy debugging process
 
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7149683584202371"
+     crossorigin="anonymous"></script>
+<!-- AddTitleOne -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7149683584202371"
+     data-ad-slot="7422872052"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 ## Prerequisites
 - A json file, for example, [search.json](https://github.com/gautriv/gautriv.github.io/blob/main/search.json).
 - HTML elements for search bar, for example, [search.html](https://github.com/gautriv/gautriv.github.io/blob/main/_includes/search.html).
