@@ -22,8 +22,8 @@ So, let's talk about empathy mapping. It's like a treasure map, but instead of t
 * In the "Say" quadrant, you'll write down what your user might be saying out loud. Maybe they're asking questions or giving feedback.
 * In the "Do" quadrant, you'll write down what actions your user is taking. Are they clicking buttons, searching for information, or throwing their computer out the window?
 
-
-![Empathy Mapping](/assets/empathy_map.png "Empathy map")
+<br>
+<img src="/assets/empathy_map.png" alt="Empathy map" style="max-width: 100%;" height="auto">
 
 ## What is user journey?
 It's like a choose-youradventure book, but instead of a book, it's your product or service. The user journey is a visualization of the path your users take as they interact with your product or service. It's important to understand all the touchpoints your users have with your product, from start to finish. This will help you identify any pain points or areas where your documentation could be more helpful.
