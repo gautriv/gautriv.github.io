@@ -4,7 +4,7 @@ category: Technical Writing
 image: "/assets/unlock.png"
 header-img: "/assets/unlock.png"
 keywords: [technical writing, top 10 technical writing skills, what are top 10 technical writing skills, how to become a technical writer, documentation, anti-skills, humor, satire, writing tips, communication, clarity, sarcasm, jargon, procrastination, feedback, emojis, formatting, passive voice, inconsistency, hyperlinking, SEO, user-friendly, skills to avoid, acronyms, consistency, links]
-permalink: /10-skills-we-should-not-have/
+permalink: /10-technical-writing-skills-we-should-not-have/
 description: In the wild world of technical writing, where clarity and simplicity are usually the keys to success, join us on a tongue-in-cheek journey through the "Anti-Resume" – a satirical exploration of the top 10 skills a technical writer should never possess. Discover how to transform simple instructions into baffling riddles, drown your readers in a sea of technical jargon, and pepper your content with a smattering of obscure acronyms. Learn how to deflect feedback like a ninja, transform entire sentences into emojis, and create formatting chaos with inconsistent fonts and text colors. Finally, master the 'click and hope' strategy with links that lead nowhere or to the latest meme. Welcome to the dark side of documentation – where confusion reigns supreme and clarity is the stuff of myths.
 ---
 
