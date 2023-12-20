@@ -203,3 +203,10 @@ emapthy {
   margin-left: 100px;
   margin-right: 100px;
 }
+
+blockquote {
+  margin: 0 0 16px;
+  padding: 8px 16px;
+  border-left: 2px solid #333;
+  color: #666;
+}
