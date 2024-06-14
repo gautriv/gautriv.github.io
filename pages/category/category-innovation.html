@@ -1,0 +1,16 @@
+---
+title: "Innovation"
+permalink: /category-innovation/
+categoryName: Innovation
+---
+
+<p>The following content is in the <b>{{page.categoryName}}</b> category:
+
+{% for c in site.categories.Innovation %}
+<div class="card mb-4">            
+    <div class="card-body">
+      <h4 class="card-title"><a href="{{site.url}}{{c.url}}">{{c.title}}</a><span class="postDate"> &nbsp; {{ c.date | date: "%b %-d, %Y" }}</span></h4>
+    </div>
+</div>
+
+    {% endfor %}
