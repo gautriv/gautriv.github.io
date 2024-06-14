@@ -66,6 +66,7 @@ pip install -r requirements.txt
 python app.py
 ```
 
+
 Open your favourite web browser and navigate to http://127.0.0.1:5000/. 
 Voilà! The tool is ready to use.
 
@@ -81,24 +82,6 @@ Voilà! The tool is ready to use.
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
-
-### Step 6: Upload your PDF file
-
-    - Choose the PDF file you want to unlock.
-
-### Step 7: Specify the password characteristics
-
-    - **Number of characters in password**: Enter the maximum length of the password.
-    - **Type of characters in password**: Choose from Numbers, Alphabets, or Alphanumeric.
-
-### Step 8: Start the brute force process
-
-    - Click on the "Start Brute Force" button.
-    - The application will display a processing message and the estimated time to process the file.
-
-### Step 9: Download the unlocked PDF
-
-    - Once the password is found, the application will display the password and provide a download link for the unlocked PDF.
 
 ## Using the PDF Password Remover Tool
 
