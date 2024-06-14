@@ -58,7 +58,7 @@ python app.py
 ```
 
 
-Open your favourite web browser and navigate to http://127.0.0.1:5000/. 
+Open your favorite web browser and navigate to http://127.0.0.1:5000/. 
 Voilà! The tool is ready to use.
 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7149683584202371"
