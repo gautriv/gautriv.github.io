@@ -35,16 +35,7 @@ git clone https://github.com/gautriv/unlockpdf.git
 cd unlockpdf
 ```
 
-### Step 2: Clone the Repository
-
-Fire up your terminal (or command prompt) and run:
-
-```bash
-git clone https://github.com/gautriv/unlockpdf.git
-cd unlockpdf
-```
-
-### Step 3: Set up a virtual environment
+### Step 2: Set up a virtual environment
 
 Optional but highly recommended. This keeps your project dependencies neat and tidy.
 
@@ -53,14 +44,14 @@ python -m venv venv
 source venv/bin/activate  # On Windows use `venv\Scripts\activate`
 ```
 
-### Step 4: Install dependencies
+### Step 3: Install dependencies
 Now, let’s get those necessary packages:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### Step 5: Run the application
+### Step 4: Run the application
 
 ```bash
 python app.py
