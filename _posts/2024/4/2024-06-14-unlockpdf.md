@@ -33,7 +33,7 @@ Fire up your terminal (or command prompt) and run:
 ```bash
 git clone https://github.com/your-username/unlockpdf.git
 cd unlockpdf
-
+```
 
 ## How to Unlock Your PDF for Free?
 
@@ -72,6 +72,19 @@ python app.py
 
 Open your favourite web browser and navigate to http://127.0.0.1:5000/. 
 Voilà! The tool is ready to use.
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7149683584202371"
+     crossorigin="anonymous"></script>
+<!-- AddTitleOne -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7149683584202371"
+     data-ad-slot="7422872052"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
 3. **Upload your PDF file**:
 
