@@ -35,11 +35,7 @@ git clone https://github.com/your-username/unlockpdf.git
 cd unlockpdf
 ```
 
-## How to Unlock Your PDF for Free?
-
-First things first, you’ll need to download the repository from GitHub and set it up locally. Don’t worry, it’s easier than it sounds.
-
-### Step 1: Clone the Repository
+### Step 2: Clone the Repository
 
 Fire up your terminal (or command prompt) and run:
 
@@ -48,7 +44,7 @@ git clone https://github.com/gautriv/unlockpdf.git
 cd unlockpdf
 ```
 
-### Step 2: Set up a virtual environment
+### Step 3: Set up a virtual environment
 
 Optional but highly recommended. This keeps your project dependencies neat and tidy.
 
@@ -57,14 +53,14 @@ python -m venv venv
 source venv/bin/activate  # On Windows use `venv\Scripts\activate`
 ```
 
-### Step 3: Install dependencies
+### Step 4: Install dependencies
 Now, let’s get those necessary packages:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### Step 4: Run the application
+### Step 5: Run the application
 
 ```bash
 python app.py
@@ -86,21 +82,21 @@ Voilà! The tool is ready to use.
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 
-3. **Upload your PDF file**:
+### Step 6: Upload your PDF file
 
     - Choose the PDF file you want to unlock.
 
-4. **Specify the password characteristics**:
+### Step 7: Specify the password characteristics
 
     - **Number of characters in password**: Enter the maximum length of the password.
     - **Type of characters in password**: Choose from Numbers, Alphabets, or Alphanumeric.
 
-5. **Start the brute force process**:
+### Step 8: Start the brute force process
 
     - Click on the "Start Brute Force" button.
     - The application will display a processing message and the estimated time to process the file.
 
-6. **Download the unlocked PDF**:
+### Step 9: Download the unlocked PDF
 
     - Once the password is found, the application will display the password and provide a download link for the unlocked PDF.
 
