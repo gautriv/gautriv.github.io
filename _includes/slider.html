@@ -1,32 +1,144 @@
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
-      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-    </ol>
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img class="d-block w-100" src="/img/apicourse.png" alt="Third slide">
-            <div class="carousel-caption d-none d-md-block">
-              <h1>API Documentation: From Zero to Hero</h1>
-              <p>Crafted for beginners and aspiring technical writers who want to master the art of creating clear and user-friendly API documentation.</p>
-              <a href="https://beingtechnicalwriter.com/apidocumentation/" class="btn btn-primary">Take me to the API documentation course</a>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <img class="d-block w-100" src="/img/gitcourse.png" alt="Third slide">
-            <div class="carousel-caption d-none d-md-block">
-              <h1>Git Essentials for Technical Communicators: Streamlining Documentation Excellence</h1>
-              <p>Learn the ins and outs of version control, collaboration, and seamless documentation workflows.</p>
-              <a href="https://beingtechnicalwriter.com/gitfortechnicalwriters/" class="btn btn-primary">Take me to the Git for technical writers course</a>
-            </div>
-        </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Courses</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: #f8f9fa;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .clb {
+      color: black;
+    }
+
+    .tab-pane {
+      transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    }
+
+    .tab-pane.fade:not(.show) {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .nav-tabs {
+      border-bottom: 2px solid #dee2e6;
+      margin-bottom: 1rem;
+    }
+
+    .nav-tabs .nav-link {
+      font-weight: bold;
+      color: #495057;
+      border: none;
+      padding: 1rem 1.5rem;
+      text-align: left;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .nav-tabs .nav-link.active {
+      background: #007bff;
+      color: #fff;
+      border-radius: 5px;
+    }
+
+    .btn-primary {
+      background: #ff5722;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      font-weight: bold;
+      transition: background 0.3s, transform 0.3s;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-primary:hover {
+      background: #e64a19;
+      transform: scale(1.05);
+    }
+
+    .course-content {
+      margin-top: 1.5rem;
+      padding: 1.5rem;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .course-title {
+      font-size: 1.75rem;
+      color: #343a40;
+    }
+
+    .course-description {
+      font-size: 1.1rem;
+      color: #6c757d;
+      margin: 1rem 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container py-5">
+    <!-- Title -->
+    <h1 class="text-center mb-4 clb">Courses</h1>
+
+    <!-- Tabs -->
+    <ul class="nav nav-tabs" id="courseTabs" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="api-tab" data-toggle="tab" href="#api" role="tab" aria-controls="api" aria-selected="true">
+          API Documentation
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="git-tab" data-toggle="tab" href="#git" role="tab" aria-controls="git" aria-selected="false">
+          Git Essentials
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="ai-ml-tab" data-toggle="tab" href="#ai-ml" role="tab" aria-controls="ai-ml" aria-selected="false">
+          AI & ML Essentials
+        </a>
+      </li>
+    </ul>
+
+    <!-- Tab Content -->
+    <div class="tab-content" id="courseTabsContent">
+      <!-- API Documentation Tab -->
+      <div class="tab-pane fade show active course-content" id="api" role="tabpanel" aria-labelledby="api-tab">
+        <h2 class="course-title">API Documentation: From Zero to Hero</h2>
+        <p class="course-description">
+          Transform your technical writing skills and master the art of API documentation! This course is your complete guide to creating clear, concise, and developer-friendly documentation that stands out.
+          Learn industry-standard tools, best practices, and real-world techniques to simplify complex APIs and empower developers to succeed. Whether you’re starting your journey or looking to refine your expertise, this course will set you apart as a technical writer.
+        </p>
+        <a href="https://beingtechnicalwriter.com/apidocumentation/" class="btn btn-primary">Explore the Course</a>
+      </div>
+
+      <!-- Git Essentials Tab -->
+      <div class="tab-pane fade course-content" id="git" role="tabpanel" aria-labelledby="git-tab">
+        <h2 class="course-title">Git Essentials for Technical Communicators - Version Control Made Simple</h2>
+        <p class="course-description">
+          Take your technical writing career to the next level with a deep dive into Git! This course demystifies version control, equipping you with the skills to manage documentation like a pro.
+          Learn how to track changes, collaborate seamlessly with developers, and resolve conflicts with confidence. From beginner-friendly fundamentals to advanced workflows, this course is your ultimate guide to mastering Git for documentation excellence.
+        </p>
+        <a href="https://beingtechnicalwriter.com/gitfortechnicalwriters/" class="btn btn-primary">Explore the Course</a>
+      </div>
+
+      <!-- AI ML Essentials Tab -->
+      <div class="tab-pane fade course-content" id="ai-ml" role="tabpanel" aria-labelledby="ai-ml-tab">
+        <h2 class="course-title">AI & ML for Technical Writers - Mastering Content for Emerging Technologies</h2>
+        <p class="course-description">
+          Step into the future of technical communication with this one-of-a-kind course! Learn how to document complex AI & ML concepts with clarity, precision, and relevance.
+          Gain expertise in simplifying cutting-edge technologies for diverse audiences and discover best practices for crafting documentation for AI-driven APIs, machine learning frameworks, and data workflows.
+          Whether you’re a beginner or an experienced writer, this course equips you to excel in the era of emerging technologies.
+        </p>
+        <a href="https://beingtechnicalwriter.com/aimldocumentation/" class="btn btn-primary">Explore the Course</a>
+      </div>
     </div>
-    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
   </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

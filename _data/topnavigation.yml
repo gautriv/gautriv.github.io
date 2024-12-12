@@ -3,14 +3,8 @@ topnavigation:
     - title: Home
       url: 
 
-    - title: Courses
-      url: /courses/
+    - title: Categories
+      url: /categories/
 
-    - title: Podcasts
-      url: /podcasts/ 
-
-    - title: Events
-      url: /events/
-
-    - title: Opportunities
-      url: /opportunities/
+    - title: Videos
+      url: /videos/
