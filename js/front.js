@@ -102,4 +102,26 @@ $(document).ready(function () {
         $('.navbar-toggler').toggleClass('active');
     });
 
+
+    // Image Loading Animation
+    function handleImageLoad() {
+        $('.post-body img').each(function() {
+            if (this.complete) {
+                $(this).addClass('loaded');
+            } else {
+                $(this).on('load', function() {
+                    $(this).addClass('loaded');
+                });
+            }
+        });
+    }
+
+    // Initialize image loading animation
+    handleImageLoad();
+
+    // Re-initialize on dynamic content load
+    $(document).on('ajaxComplete', function() {
+        handleImageLoad();
+    });
+
 });

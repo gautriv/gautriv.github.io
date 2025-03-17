@@ -1,3 +1,52 @@
+/* Smooth Scroll Behavior */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Fade-in Animation for Blog Content */
+.post-content-wrapper {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Staggered Animation for Post Elements */
+.post-body > * {
+    opacity: 0;
+    transform: translateY(15px);
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+.post-body > *:nth-child(1) { animation-delay: 0.1s; }
+.post-body > *:nth-child(2) { animation-delay: 0.2s; }
+.post-body > *:nth-child(3) { animation-delay: 0.3s; }
+.post-body > *:nth-child(4) { animation-delay: 0.4s; }
+.post-body > *:nth-child(5) { animation-delay: 0.5s; }
+.post-body > *:nth-child(n+6) { animation-delay: 0.6s; }
+
+/* Smooth Image Loading Animation */
+.post-body img {
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.post-body img.loaded {
+    opacity: 1;
+    transform: scale(1);
+}
+
 button.btn {
   border: none;
   border-radius: 2rem !important;
@@ -561,6 +610,17 @@ blockquote {
 .btn-read-more i {
     margin-left: 5px;
     transition: transform 0.3s ease;
+}
+
+.btn-read-more:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    color: white;
+    text-decoration: none;
+}
+
+.btn-read-more:hover i {
+    transform: translateX(3px);
 }
 
 .btn-read-more:hover {
@@ -1468,4 +1528,104 @@ img {
         width: auto;
         text-align: left;
     }
+}
+
+/* Enhanced Interactive Elements */
+.nav-link {
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background: currentColor;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Smooth Tag Hover Effect */
+.tag {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.tag::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.tag:hover::before {
+    left: 100%;
+}
+
+/* Enhanced Blockquote Animation */
+blockquote {
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+blockquote:hover {
+    transform: translateX(5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Smooth Code Block Transitions */
+pre {
+    transition: all 0.3s ease;
+}
+
+pre:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Enhanced Table Row Hover */
+.post-body table tr {
+    transition: background-color 0.3s ease;
+}
+
+.post-body table tr:hover {
+    background-color: rgba(52, 152, 219, 0.05);
+}
+
+/* Smooth Link Transitions */
+.post-body a {
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.post-body a:hover {
+    color: #2980b9;
+    transform: translateY(-1px);
+}
+
+/* Enhanced List Item Transitions */
+.post-body ul li, 
+.post-body ol li {
+    transition: transform 0.3s ease;
+}
+
+.post-body ul li:hover, 
+.post-body ol li:hover {
+    transform: translateX(5px);
 }
