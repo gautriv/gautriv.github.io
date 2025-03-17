@@ -1,24 +1,314 @@
+<style>
+    /* Modern Footer Styling */
+    .main-footer {
+        background: linear-gradient(135deg, #2c3e50, #1a252f);
+        color: #fff;
+        padding: 60px 0 0;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Animated Wave Effect */
+    .footer-wave {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 10px;
+        background: linear-gradient(90deg, #3498db, #9b59b6, #2ecc71);
+        z-index: 1;
+    }
+    
+    /* Logo Styling */
+    .logo h6 {
+        font-size: 22px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        position: relative;
+        display: inline-block;
+    }
+    
+    .logo h6 i {
+        background: -webkit-linear-gradient(#3498db, #2ecc71);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-right: 8px;
+    }
+    
+    /* Footer Description */
+    .footer-description {
+        color: #bdc3c7;
+        margin-bottom: 25px;
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+    
+    /* Enhanced Social Menu */
+    .social-menu {
+        display: flex;
+        padding: 0;
+        margin: 0 0 30px;
+        list-style: none;
+    }
+    
+    .social-menu .list-inline-item {
+        margin-right: 15px;
+    }
+    
+    .social-menu .list-inline-item a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        font-size: 18px;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .social-menu .list-inline-item a:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.1);
+        transform: scale(0);
+        transition: transform 0.3s ease;
+        border-radius: 50%;
+    }
+    
+    .social-menu .list-inline-item a:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+    
+    .social-menu .list-inline-item a:hover:before {
+        transform: scale(1);
+    }
+    
+    /* Footer Links Styling */
+    .footer-heading {
+        color: #fff;
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 20px;
+        position: relative;
+        padding-bottom: 10px;
+    }
+    
+    .footer-heading:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 50px;
+        height: 2px;
+        background: linear-gradient(90deg, #3498db, #2ecc71);
+    }
+    
+    .footerlinks {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .footerlinks .nav-link {
+        color: #bdc3c7;
+        padding: 8px 0;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+        position: relative;
+        display: inline-block;
+        width: fit-content;
+    }
+    
+    .footerlinks .nav-link:before {
+        content: '';
+        position: absolute;
+        bottom: 5px;
+        left: 0;
+        width: 0;
+        height: 1px;
+        background: #3498db;
+        transition: width 0.3s ease;
+    }
+    
+    .footerlinks .nav-link:hover {
+        color: #fff;
+        transform: translateX(5px);
+    }
+    
+    .footerlinks .nav-link:hover:before {
+        width: 100%;
+    }
+    
+    /* Button Styling */
+    .button .btn {
+        background: linear-gradient(135deg, #3498db, #2ecc71);
+        border: none;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 30px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+    }
+    
+    .button .btn:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #2ecc71, #3498db);
+        z-index: -1;
+        transition: opacity 0.3s ease;
+        opacity: 0;
+    }
+    
+    .button .btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+    
+    .button .btn:hover:before {
+        opacity: 1;
+    }
+    
+    /* Copyright Section */
+    .copyrights {
+        background: rgba(0, 0, 0, 0.2);
+        padding: 20px 0;
+        margin-top: 40px;
+    }
+    
+    .footerone {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .copyright {
+        color: #bdc3c7;
+        margin: 0;
+        font-size: 0.9rem;
+    }
+    
+    .privacy-policy a {
+        color: #bdc3c7;
+        transition: color 0.3s ease;
+    }
+    
+    .privacy-policy a:hover {
+        color: #fff;
+        text-decoration: none;
+    }
+    
+    /* Newsletter Form */
+    .newsletter-form {
+        position: relative;
+        margin-top: 20px;
+    }
+    
+    .newsletter-form input {
+        width: 100%;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 30px;
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        font-size: 0.9rem;
+    }
+    
+    .newsletter-form input::placeholder {
+        color: #bdc3c7;
+    }
+    
+    .newsletter-form button {
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        background: linear-gradient(135deg, #3498db, #2ecc71);
+        border: none;
+        color: #fff;
+        padding: 7px 15px;
+        border-radius: 30px;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .newsletter-form button:hover {
+        background: linear-gradient(135deg, #2ecc71, #3498db);
+    }
+    
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+        .main-footer {
+            padding: 40px 0 0;
+        }
+        
+        .logo h6 {
+            font-size: 20px;
+        }
+        
+        .social-menu .list-inline-item a {
+            width: 36px;
+            height: 36px;
+            font-size: 16px;
+        }
+        
+        .footer-heading {
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+        
+        .footerlinks .nav-link {
+            padding: 6px 0;
+            font-size: 0.9rem;
+        }
+        
+        .button .btn {
+            padding: 8px 16px;
+            font-size: 0.9rem;
+        }
+    }
+</style>
+
+<div class="footer-wave"></div>
 <div class="container">
     <div class="row">
-        <div class="col-md-3 col-sm-6 mb-4">
+        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
             <div class="logo">
                 <h6 class="text-white"><i class="fa fa-keyboard-o"></i> Being Technical Writer</h6>
             </div>
+            <p class="footer-description">Empowering technical writers with insights, innovations, and industry best practices to excel in the ever-evolving world of technical communication.</p>
             <div class="contact-details">
                 <ul class="social-menu">
-                    <li class="list-inline-item"><a href="https://github.com/gautriv"><i class="fa fa-github"></i></a>
+                    <li class="list-inline-item"><a href="https://github.com/gautriv" aria-label="GitHub"><i class="fa fa-github"></i></a>
                     </li>
-                    <li class="list-inline-item"><a href="https://www.linkedin.com/in/gauravtrivedi1988/"><i class="fa fa-linkedin"></i></a></li>
-                    <li class="list-inline-item"><a href="https://twitter.com/beingtechwriter"><i class="fa fa-twitter"></i></a>
+                    <li class="list-inline-item"><a href="https://www.linkedin.com/in/gauravtrivedi1988/" aria-label="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
+                    <li class="list-inline-item"><a href="https://twitter.com/beingtechwriter" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
                                 </li>
-                    <li class="list-inline-item"><a href="https://beingtechnicalwriter.quora.com"><i class="fa fa-quora"></i></a>
+                    <li class="list-inline-item"><a href="https://beingtechnicalwriter.quora.com" aria-label="Quora"><i class="fa fa-quora"></i></a>
                                 </li>
-                    <li class="list-inline-item"><a href="https://www.youtube.com/channel/UCBrWnqQ9J3ZG_XKq6Ts1-_w"><i class="fa fa-youtube"></i></a>
+                    <li class="list-inline-item"><a href="https://www.youtube.com/channel/UCBrWnqQ9J3ZG_XKq6Ts1-_w" aria-label="YouTube"><i class="fa fa-youtube"></i></a>
                                 </li>
                 </ul>
             </div>
         </div>
-        <div class="col-md-3 col-sm-6 mb-4">
+        <div class="col-lg-2 col-md-6 col-sm-6 mb-4">
+            <h4 class="footer-heading">Quick Links</h4>
             <div class="footerlinks mr-auto">
                 {% for item in site.data.footer.footercolumnone %}
                 <a class="nav-link" href="{{item.url | prepend: site.url}}">{{item.title}}</a>
@@ -26,7 +316,8 @@
             </div>
         </div>
 
-        <div class="col-md-3 col-sm-6 mb-4">
+        <div class="col-lg-2 col-md-6 col-sm-6 mb-4">
+            <h4 class="footer-heading">Resources</h4>
             <div class="footerlinks mr-auto">
                 {% for item in site.data.footer.footercolumntwo %}
                 <a class="nav-link" href="{{item.url | prepend: site.url}}">{{item.title}}</a>
@@ -34,11 +325,12 @@
             </div>
         </div>
 
-
-        <div class="col-md-3 col-sm-6 mb-4">
+        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+            <h4 class="footer-heading">Premium Courses</h4>
+            <p class="footer-description">Elevate your technical writing skills with our specialized courses designed for modern documentation needs.</p>
             <div class="button">
                 {% for item in site.data.footer.footercolumnthree %}
-                <a href="{{item.url | prepend: site.url}}" class="btn btn-info mb-2 d-block d-sm-inline-block" role="button">{{item.title}}</a>
+                <a href="{{item.url | prepend: site.url}}" class="btn mb-3 d-block d-sm-inline-block mr-sm-2" role="button">{{item.title}}</a>
                 {% endfor %}
             </div>
         </div>
@@ -60,3 +352,17 @@
         </div>
     </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Animate the footer wave
+    const footerWave = document.querySelector('.footer-wave');
+    if (footerWave) {
+        let position = 0;
+        setInterval(() => {
+            position -= 1;
+            footerWave.style.backgroundPosition = `${position}px 0`;
+        }, 50);
+    }
+});
+</script>

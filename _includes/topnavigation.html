@@ -1,100 +1,243 @@
 <style>
-    /* Navbar Background with Optimized Gradient */
+    /* Modern Header with Enhanced Gradient */
     nav.navbar {
-        background: linear-gradient(90deg, rgb(52, 152, 219), rgb(241, 196, 15), rgb(46, 204, 113), rgb(231, 76, 60));
-        background-size: 400% 400%;
-        animation: gradientBG 10s ease infinite;
+        background: linear-gradient(135deg, #2c3e50, #3498db, #9b59b6, #2ecc71);
+        background-size: 300% 300%;
+        animation: gradientBG 15s ease infinite;
         padding: 15px;
-        border-radius: 8px;
+        border-radius: 0 0 15px 15px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        position: relative;
+        z-index: 1000;
     }
-
-    /* Gradient Animation */
+    
+    /* Enhanced Gradient Animation */
     @keyframes gradientBG {
         0% { background-position: 0% 50%; }
+        25% { background-position: 50% 25%; }
         50% { background-position: 100% 50%; }
+        75% { background-position: 50% 75%; }
         100% { background-position: 0% 50%; }
     }
-
-    /* Navbar Brand */
+    
+    /* Animated Particles Background */
+    .particles-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: -1;
+    }
+    
+    .particle {
+        position: absolute;
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        animation: float 8s infinite ease-in-out;
+    }
+    
+    @keyframes float {
+        0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+        25% { opacity: 0.5; }
+        50% { transform: translateY(-20px) translateX(15px); opacity: 0.8; }
+        75% { opacity: 0.5; }
+    }
+    
+    /* Modern Navbar Brand */
     .navbar-brand {
         color: rgb(255, 255, 255);
-        font-size: 24px;
-        font-weight: bold;
-        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        font-size: 26px;
+        font-weight: 700;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        position: relative;
+        padding-left: 15px;
+        transition: all 0.3s ease;
     }
-
+    
+    .navbar-brand:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 5px;
+        height: 70%;
+        background: #fff;
+        border-radius: 3px;
+    }
+    
     .navbar-brand:hover {
-        color: rgb(253, 253, 253);
+        color: rgb(255, 255, 255);
+        transform: translateY(-2px);
         text-decoration: none;
     }
-
-    /* Social Links Styling */
+    
+    .navbar-brand i {
+        background: -webkit-linear-gradient(#fff, #ddd);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-right: 5px;
+    }
+    
+    /* Enhanced Social Links */
     .social-links {
         display: flex;
         align-items: center;
         justify-content: center;
     }
-
+    
     .social-links a {
         margin: 0 10px;
         font-size: 20px;
         color: rgb(255, 255, 255);
-        transition: transform 0.3s ease, color 0.3s ease;
+        transition: all 0.3s ease;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        overflow: hidden;
     }
-
+    
+    .social-links a:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.2);
+        transform: scale(0);
+        transition: transform 0.3s ease;
+        border-radius: 50%;
+    }
+    
     .social-links a:hover {
-        color: rgb(255, 255, 0); /* Bright yellow hover effect */
-        transform: scale(1.2); /* Slight zoom effect */
+        color: rgb(255, 255, 255);
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     }
-
-    /* Toggle Button for Mobile */
+    
+    .social-links a:hover:before {
+        transform: scale(1);
+    }
+    
+    /* Modern Toggle Button */
+    .navbar-toggler {
+        border: none;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 10px;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+    }
+    
+    .navbar-toggler:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
+    
     .navbar-toggler span {
         display: block;
         background-color: rgb(255, 255, 255);
         height: 3px;
         width: 25px;
         margin: 5px auto;
+        border-radius: 3px;
+        transition: all 0.3s ease;
     }
-
-    /* Search Bar Styling */
+    
+    /* Enhanced Search Bar */
     .search-area-inner {
-        background: rgb(255, 255, 255);
-        border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
     }
-
+    
     .search-area-inner .form-group {
         display: flex;
         align-items: center;
     }
-
+    
     .search-area-inner .submit {
-        background: rgb(52, 152, 219);
+        background: linear-gradient(135deg, #3498db, #2c3e50);
         color: #fff;
         border: none;
-        padding: 10px;
-        border-radius: 5px;
-        transition: background 0.3s ease;
+        padding: 12px 15px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
-
+    
     .search-area-inner .submit:hover {
-        background: rgb(41, 128, 185);
+        background: linear-gradient(135deg, #2c3e50, #3498db);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
     }
-
+    
+    /* Nav Links Enhancement */
+    #navbarcollapse .nav-link {
+        color: white;
+        font-weight: 500;
+        padding: 10px 15px;
+        position: relative;
+        transition: all 0.3s ease;
+    }
+    
+    #navbarcollapse .nav-link:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background: white;
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
+    }
+    
+    #navbarcollapse .nav-link:hover {
+        color: white;
+        transform: translateY(-2px);
+    }
+    
+    #navbarcollapse .nav-link:hover:after {
+        width: 80%;
+    }
+    
     /* Media Query for Smaller Screens */
+    @media (max-width: 992px) {
+        #navbarcollapse {
+            background: rgba(44, 62, 80, 0.95);
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+    }
+    
     @media (max-width: 768px) {
         .social-links {
             flex-direction: row;
             justify-content: space-around;
         }
-
+        
         .social-links a {
             margin: 0 5px;
+            width: 32px;
+            height: 32px;
+            font-size: 16px;
         }
         
-        /* Improve mobile navigation */
         .navbar-brand {
-            font-size: 20px;
+            font-size: 22px;
         }
         
         .navbar-header {
@@ -102,23 +245,20 @@
             justify-content: space-between !important;
         }
         
-        /* Adjust spacing for mobile */
         nav.navbar {
             padding: 10px;
+            border-radius: 0 0 10px 10px;
         }
         
-        /* Make search more accessible on mobile */
         .search-area-inner .form-group {
             flex-direction: column;
         }
         
-        /* Improve toggle button visibility */
         .navbar-toggler {
             margin-left: 10px;
         }
     }
     
-    /* Extra small devices */
     @media (max-width: 576px) {
         .social-links {
             display: none;
@@ -128,7 +268,6 @@
             font-size: 18px;
         }
         
-        /* Add social links to mobile menu */
         .mobile-social-links {
             display: flex;
             justify-content: center;
@@ -138,14 +277,30 @@
         }
         
         .mobile-social-links a {
-            margin: 0 10px;
-            font-size: 20px;
+            margin: 0 8px;
+            font-size: 18px;
             color: rgb(255, 255, 255);
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-social-links a:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.2);
         }
     }
 </style>
 
 <nav class="navbar navbar-expand-lg">
+    <!-- Animated Particles Background -->
+    <div class="particles-container" id="particles-js"></div>
+    
     <div class="search-area">
         <div class="search-area-inner d-flex align-items-center justify-content-center">
             <div class="close-btn"><i class="icon-close"></i></div>
@@ -170,15 +325,15 @@
 
             <!-- Social Media Links -->
             <div class="social-links">
-                <a href="https://twitter.com/beingtechwriter" target="_blank" rel="noopener noreferrer"><i class="fa fa-twitter"></i></a>
-                <a href="https://www.linkedin.com/in/gauravtrivedi1988/" target="_blank" rel="noopener noreferrer"><i class="fa fa-linkedin"></i></a>
-                <a href="https://github.com/gautriv" target="_blank" rel="noopener noreferrer"><i class="fa fa-github"></i></a>
-                <a href="https://beingtechnicalwriter.quora.com" target="_blank" rel="noopener noreferrer"><i class="fa fa-quora"></i></a>
-                <a href="https://www.youtube.com/channel/UCBrWnqQ9J3ZG_XKq6Ts1-_w" target="_blank" rel="noopener noreferrer"><i class="fa fa-youtube"></i></a>
+                <a href="https://twitter.com/beingtechwriter" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
+                <a href="https://www.linkedin.com/in/gauravtrivedi1988/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa fa-linkedin"></i></a>
+                <a href="https://github.com/gautriv" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa fa-github"></i></a>
+                <a href="https://beingtechnicalwriter.quora.com" target="_blank" rel="noopener noreferrer" aria-label="Quora"><i class="fa fa-quora"></i></a>
+                <a href="https://www.youtube.com/channel/UCBrWnqQ9J3ZG_XKq6Ts1-_w" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fa fa-youtube"></i></a>
             </div>
 
             <!-- Toggle Button -->
-            <button type="button" data-toggle="collapse" data-target="#navbarcollapse" aria-controls="navbarcollapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler">
+            <button type="button" data-toggle="collapse" data-target="#navbarcollapse" aria-controls="navbarcollapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler collapsed">
                 <span></span><span></span><span></span>
             </button>
         </div>
@@ -188,11 +343,39 @@
         
         <!-- Mobile Social Links (visible only on small screens) -->
         <div class="mobile-social-links d-sm-none">
-            <a href="https://twitter.com/beingtechwriter" target="_blank" rel="noopener noreferrer"><i class="fa fa-twitter"></i></a>
-            <a href="https://www.linkedin.com/in/gauravtrivedi1988/" target="_blank" rel="noopener noreferrer"><i class="fa fa-linkedin"></i></a>
-            <a href="https://github.com/gautriv" target="_blank" rel="noopener noreferrer"><i class="fa fa-github"></i></a>
-            <a href="https://beingtechnicalwriter.quora.com" target="_blank" rel="noopener noreferrer"><i class="fa fa-quora"></i></a>
-            <a href="https://www.youtube.com/channel/UCBrWnqQ9J3ZG_XKq6Ts1-_w" target="_blank" rel="noopener noreferrer"><i class="fa fa-youtube"></i></a>
+            <a href="https://twitter.com/beingtechwriter" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
+            <a href="https://www.linkedin.com/in/gauravtrivedi1988/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa fa-linkedin"></i></a>
+            <a href="https://github.com/gautriv" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa fa-github"></i></a>
+            <a href="https://beingtechnicalwriter.quora.com" target="_blank" rel="noopener noreferrer" aria-label="Quora"><i class="fa fa-quora"></i></a>
+            <a href="https://www.youtube.com/channel/UCBrWnqQ9J3ZG_XKq6Ts1-_w" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fa fa-youtube"></i></a>
         </div>
     </div>
 </nav>
+
+<!-- Particles JS Script -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Create particles
+    const particlesContainer = document.getElementById('particles-js');
+    if (particlesContainer) {
+        for (let i = 0; i < 15; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            
+            // Random size between 5px and 15px
+            const size = Math.floor(Math.random() * 10) + 5;
+            particle.style.width = size + 'px';
+            particle.style.height = size + 'px';
+            
+            // Random position
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            
+            // Random animation delay
+            particle.style.animationDelay = (Math.random() * 8) + 's';
+            
+            particlesContainer.appendChild(particle);
+        }
+    }
+});
+</script>
