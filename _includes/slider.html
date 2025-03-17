@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Courses</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
   <style>
     body {
       background: #f8f9fa;
@@ -12,123 +13,235 @@
     }
 
     .clb {
-      color: black;
+      color: #2c3e50;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .clb::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #3498db, #2ecc71);
+      border-radius: 2px;
     }
 
     .tab-pane {
-      transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-    }
-
-    .tab-pane.fade:not(.show) {
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
       opacity: 0;
       transform: translateY(20px);
     }
 
+    .tab-pane.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     .nav-tabs {
-      border-bottom: 2px solid #dee2e6;
-      margin-bottom: 1rem;
+      border: none;
+      margin-bottom: 2rem;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
     }
 
     .nav-tabs .nav-link {
-      font-weight: bold;
-      color: #495057;
+      font-weight: 600;
+      color: #2c3e50;
       border: none;
-      padding: 1rem 1.5rem;
-      text-align: left;
-      transition: background 0.3s, color 0.3s;
+      padding: 1rem 2rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      border-radius: 50px;
+      background: white;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-tabs .nav-link::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: 0.5s;
+    }
+
+    .nav-tabs .nav-link:hover::before {
+      left: 100%;
     }
 
     .nav-tabs .nav-link.active {
-      background: #007bff;
-      color: #fff;
-      border-radius: 5px;
+      background: linear-gradient(135deg, #3498db, #2ecc71);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 15px rgba(52, 152, 219, 0.3);
     }
 
     .btn-primary {
-      background: #ff5722;
+      background: linear-gradient(135deg, #3498db, #2ecc71);
       border: none;
-      padding: 0.75rem 1.5rem;
-      font-size: 1rem;
-      font-weight: bold;
-      transition: background 0.3s, transform 0.3s;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(52, 152, 219, 0.2);
+      border-radius: 50px;
+      position: relative;
+      overflow: hidden;
+      color: white !important;
+      text-decoration: none;
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: 0.5s;
+    }
+
+    .btn-primary:hover::before {
+      left: 100%;
     }
 
     .btn-primary:hover {
-      background: #e64a19;
-      transform: scale(1.05);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(52, 152, 219, 0.3);
+      color: white;
+      text-decoration: none;
     }
 
     .course-content {
-      margin-top: 1.5rem;
-      padding: 1.5rem;
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      background: white;
+      border-radius: 20px;
+      padding: 2.5rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .course-content::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, #3498db, #2ecc71);
+    }
+
+    .course-content:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
     }
 
     .course-title {
-      font-size: 1.75rem;
-      color: #343a40;
+      font-size: 2rem;
+      color: #2c3e50;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      line-height: 1.3;
     }
 
     .course-description {
       font-size: 1.1rem;
-      color: #6c757d;
-      margin: 1rem 0;
+      color: #34495e;
+      line-height: 1.8;
+      margin-bottom: 2rem;
     }
 
-    /* Responsive styles for slider */
+    .course-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      padding: 1rem;
+      background: #f8f9fa;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .feature-item:hover {
+      background: #e9ecef;
+      transform: translateX(5px);
+    }
+
+    .feature-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #3498db, #2ecc71);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 1rem;
+      color: white;
+      font-size: 1.2rem;
+    }
+
+    .feature-text {
+      font-size: 1rem;
+      color: #2c3e50;
+      font-weight: 500;
+    }
+
+    /* Responsive styles */
     @media (max-width: 768px) {
+      .clb {
+        font-size: 2rem;
+      }
+
       .nav-tabs .nav-link {
-        padding: 0.75rem 1rem;
+        padding: 0.75rem 1.5rem;
         font-size: 0.9rem;
       }
-      
-      .card-title {
-        font-size: 1.25rem;
+
+      .course-content {
+        padding: 1.5rem;
       }
-      
-      .carousel-item img {
-        max-height: 300px;
-        object-fit: cover;
+
+      .course-title {
+        font-size: 1.5rem;
+      }
+
+      .course-description {
+        font-size: 1rem;
       }
     }
-    
+
     @media (max-width: 576px) {
       .nav-tabs {
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        white-space: nowrap;
-        -webkit-overflow-scrolling: touch;
+        flex-direction: column;
+        gap: 0.5rem;
       }
-      
+
       .nav-tabs .nav-link {
-        padding: 0.5rem 0.75rem;
-        font-size: 0.85rem;
+        width: 100%;
+        text-align: center;
       }
-      
-      .carousel-item img {
-        max-height: 200px;
-      }
-      
-      .carousel-caption {
-        padding: 10px;
-      }
-      
-      .carousel-caption h5 {
-        font-size: 1rem;
-        margin-bottom: 5px;
-      }
-      
-      .carousel-caption p {
-        font-size: 0.8rem;
-        margin-bottom: 5px;
-      }
-      
-      .carousel-caption .btn {
-        padding: 0.25rem 0.5rem;
-        font-size: 0.8rem;
+
+      .course-features {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -136,23 +249,23 @@
 <body>
   <div class="container py-5">
     <!-- Title -->
-    <h1 class="text-center mb-4 clb">Courses</h1>
+    <h1 class="text-center clb">Free courses</h1>
 
     <!-- Tabs -->
     <ul class="nav nav-tabs" id="courseTabs" role="tablist">
       <li class="nav-item">
         <a class="nav-link active" id="api-tab" data-toggle="tab" href="#api" role="tab" aria-controls="api" aria-selected="true">
-          API Documentation
+          <i class="fas fa-code mr-2"></i>API Documentation
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" id="git-tab" data-toggle="tab" href="#git" role="tab" aria-controls="git" aria-selected="false">
-          Git Essentials
+          <i class="fas fa-code-branch mr-2"></i>Git Essentials
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" id="ai-ml-tab" data-toggle="tab" href="#ai-ml" role="tab" aria-controls="ai-ml" aria-selected="false">
-          AI & ML Essentials
+          <i class="fas fa-robot mr-2"></i>AI & ML Essentials
         </a>
       </li>
     </ul>
@@ -164,35 +277,132 @@
         <h2 class="course-title">API Documentation: From Zero to Hero</h2>
         <p class="course-description">
           Transform your technical writing skills and master the art of API documentation! This course is your complete guide to creating clear, concise, and developer-friendly documentation that stands out.
-          Learn industry-standard tools, best practices, and real-world techniques to simplify complex APIs and empower developers to succeed. Whether you're starting your journey or looking to refine your expertise, this course will set you apart as a technical writer.
+          Learn industry-standard tools, best practices, and real-world techniques to simplify complex APIs and empower developers to succeed.
         </p>
-        <a href="https://beingtechnicalwriter.com/apidocumentation/" class="btn btn-primary">Explore the Course</a>
+        <div class="course-features">
+          <div class="feature-item">
+            <div class="feature-icon">
+              <i class="fas fa-book"></i>
+            </div>
+            <div class="feature-text">Comprehensive learning path</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">
+              <i class="fas fa-tools"></i>
+            </div>
+            <div class="feature-text">Industry-standard tools</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">
+              <i class="fas fa-certificate"></i>
+            </div>
+            <div class="feature-text">Self paced</div>
+          </div>
+        </div>
+        <a href="https://beingtechnicalwriter.com/apidocumentation/" class="btn btn-primary">
+          <i class="fas fa-arrow-right mr-2"></i>Explore the course
+        </a>
       </div>
 
       <!-- Git Essentials Tab -->
       <div class="tab-pane fade course-content" id="git" role="tabpanel" aria-labelledby="git-tab">
-        <h2 class="course-title">Git Essentials for Technical Communicators - Version Control Made Simple</h2>
+        <h2 class="course-title">Git Essentials for Technical Communicators</h2>
         <p class="course-description">
           Take your technical writing career to the next level with a deep dive into Git! This course demystifies version control, equipping you with the skills to manage documentation like a pro.
-          Learn how to track changes, collaborate seamlessly with developers, and resolve conflicts with confidence. From beginner-friendly fundamentals to advanced workflows, this course is your ultimate guide to mastering Git for documentation excellence.
+          Learn how to track changes, collaborate seamlessly with developers, and resolve conflicts with confidence.
         </p>
-        <a href="https://beingtechnicalwriter.com/gitfortechnicalwriters/" class="btn btn-primary">Explore the Course</a>
+        <div class="course-features">
+          <div class="feature-item">
+            <div class="feature-icon">
+              <i class="fas fa-code-branch"></i>
+            </div>
+            <div class="feature-text">Version control</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <div class="feature-text">Team collaboration</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">
+              <i class="fas fa-certificate"></i>
+            </div>
+            <div class="feature-text">Self paced</div>
+          </div>
+        </div>
+        <a href="https://beingtechnicalwriter.com/gitfortechnicalwriters/" class="btn btn-primary">
+          <i class="fas fa-arrow-right mr-2"></i>Explore the course
+        </a>
       </div>
 
       <!-- AI ML Essentials Tab -->
       <div class="tab-pane fade course-content" id="ai-ml" role="tabpanel" aria-labelledby="ai-ml-tab">
-        <h2 class="course-title">AI & ML for Technical Writers - Mastering Content for Emerging Technologies</h2>
+        <h2 class="course-title">AI & ML for Technical Writers</h2>
         <p class="course-description">
           Step into the future of technical communication with this one-of-a-kind course! Learn how to document complex AI & ML concepts with clarity, precision, and relevance.
-          Gain expertise in simplifying cutting-edge technologies for diverse audiences and discover best practices for crafting documentation for AI-driven APIs, machine learning frameworks, and data workflows.
-          Whether you're a beginner or an experienced writer, this course equips you to excel in the era of emerging technologies.
+          Gain expertise in simplifying cutting-edge technologies for diverse audiences.
         </p>
-        <a href="https://beingtechnicalwriter.com/aimldocumentation/" class="btn btn-primary">Explore the Course</a>
+        <div class="course-features">
+          <div class="feature-item">
+            <div class="feature-icon">
+              <i class="fas fa-robot"></i>
+            </div>
+            <div class="feature-text">AI & ML fundamentals</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">
+              <i class="fas fa-brain"></i>
+            </div>
+            <div class="feature-text">AI & ML documentation</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">
+              <i class="fas fa-certificate"></i>
+            </div>
+            <div class="feature-text">Self paced</div>
+          </div>
+        </div>
+        <a href="https://beingtechnicalwriter.com/aimldocumentation/" class="btn btn-primary">
+          <i class="fas fa-arrow-right mr-2"></i>Explore the course
+        </a>
       </div>
     </div>
   </div>
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Add smooth scrolling to all links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // Add animation to feature items on scroll
+    const observerOptions = {
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateX(0)';
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.feature-item').forEach(item => {
+      item.style.opacity = '0';
+      item.style.transform = 'translateX(-20px)';
+      item.style.transition = 'all 0.5s ease';
+      observer.observe(item);
+    });
+  </script>
 </body>
 </html>
