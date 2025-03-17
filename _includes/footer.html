@@ -1,8 +1,8 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-3 col-sm-6 mb-4">
             <div class="logo">
-                <h6 class="text-white"><i class="fa fa-keyboard-o"></i> Being Technical Writer</a>
+                <h6 class="text-white"><i class="fa fa-keyboard-o"></i> Being Technical Writer</h6>
             </div>
             <div class="contact-details">
                 <ul class="social-menu">
@@ -18,7 +18,7 @@
                 </ul>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 col-sm-6 mb-4">
             <div class="footerlinks mr-auto">
                 {% for item in site.data.footer.footercolumnone %}
                 <a class="nav-link" href="{{item.url | prepend: site.url}}">{{item.title}}</a>
@@ -26,7 +26,7 @@
             </div>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-3 col-sm-6 mb-4">
             <div class="footerlinks mr-auto">
                 {% for item in site.data.footer.footercolumntwo %}
                 <a class="nav-link" href="{{item.url | prepend: site.url}}">{{item.title}}</a>
@@ -35,10 +35,10 @@
         </div>
 
 
-        <div class="col-md-3">
+        <div class="col-md-3 col-sm-6 mb-4">
             <div class="button">
                 {% for item in site.data.footer.footercolumnthree %}
-                <a href="{{item.url | prepend: site.url}}" class="btn btn-info" role="button">{{item.title}}</a>
+                <a href="{{item.url | prepend: site.url}}" class="btn btn-info mb-2 d-block d-sm-inline-block" role="button">{{item.title}}</a>
                 {% endfor %}
             </div>
         </div>
@@ -48,16 +48,14 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="footerone">
-                    <div class="footer-left">
+                <div class="footerone flex-column flex-md-row">
+                    <div class="footer-left mb-3 mb-md-0">
                         <p class="copyright">&copy; 2025 Being Technical Writer. The opinions expressed in this blog are my own, and not those of my employer.</p>
                     </div>
                     <div class="footer-right">
                         <p class="privacy-policy"><a href="./privacy.html">Privacy policy</a></p>
                     </div>
                 </div>
-
-
             </div>
         </div>
     </div>

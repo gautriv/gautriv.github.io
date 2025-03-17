@@ -6,11 +6,11 @@ layout: default
 <div class="container">
     <div class="row">
         <!-- Latest Posts -->
-        <main class="post blog-post col-lg-8">
+        <main class="post blog-post col-lg-8 col-md-12">
             <div class="container">
                 <div class="post-single">
                     <div class="post-thumbnail"><img src="{{ page.image | prepend: site.baseurl }}"
-                            alt="{{ page.title }}" title="{{ page.title }}"></div>
+                            alt="{{ page.title }}" title="{{ page.title }}" class="img-fluid"></div>
                     <div class="post-details">
                         <div class="post-meta d-flex justify-content-between">
                             {% for cat in post.categories %}
@@ -21,10 +21,9 @@ layout: default
                             </div>
                         </div>
                         <h1>{{ page.title }}<a href="#"><i class="fa fa-bookmark-o"></i></a></h1>
-                        <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">by {{page.author}}
+                        <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished" class="d-block mb-3">by {{page.author}}
                             on {{ page.date | date: "%b %-d, %Y" }}</time>
                         <meta content="{{ modified | date_to_xmlschema }}" itemprop="dateModified" />
-                        <p class="post-meta">
                         <div class="post-body">
                             <p class="lead">
                                 {{content}}
@@ -32,16 +31,15 @@ layout: default
                         </div>
                     </div>
                 </div>
+            </div>
         </main>
-        <aside class="col-lg-4">
+        <aside class="col-lg-4 col-md-12 mt-4 mt-lg-0">
             <!-- Widget [Categories Widget]-->
             {% include categorieswidget.html %}
             <!-- Widget [Latest Posts Widget]  -->
             {% include latestpost.html %}
         </aside>
     </div>
-</div>
-</div>
 </div>
 {% include share_bar.html %}
 {% include multiplex.html %}

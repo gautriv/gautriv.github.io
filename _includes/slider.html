@@ -77,6 +77,60 @@
       color: #6c757d;
       margin: 1rem 0;
     }
+
+    /* Responsive styles for slider */
+    @media (max-width: 768px) {
+      .nav-tabs .nav-link {
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+      }
+      
+      .card-title {
+        font-size: 1.25rem;
+      }
+      
+      .carousel-item img {
+        max-height: 300px;
+        object-fit: cover;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .nav-tabs {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+      
+      .nav-tabs .nav-link {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.85rem;
+      }
+      
+      .carousel-item img {
+        max-height: 200px;
+      }
+      
+      .carousel-caption {
+        padding: 10px;
+      }
+      
+      .carousel-caption h5 {
+        font-size: 1rem;
+        margin-bottom: 5px;
+      }
+      
+      .carousel-caption p {
+        font-size: 0.8rem;
+        margin-bottom: 5px;
+      }
+      
+      .carousel-caption .btn {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.8rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -110,7 +164,7 @@
         <h2 class="course-title">API Documentation: From Zero to Hero</h2>
         <p class="course-description">
           Transform your technical writing skills and master the art of API documentation! This course is your complete guide to creating clear, concise, and developer-friendly documentation that stands out.
-          Learn industry-standard tools, best practices, and real-world techniques to simplify complex APIs and empower developers to succeed. Whether you’re starting your journey or looking to refine your expertise, this course will set you apart as a technical writer.
+          Learn industry-standard tools, best practices, and real-world techniques to simplify complex APIs and empower developers to succeed. Whether you're starting your journey or looking to refine your expertise, this course will set you apart as a technical writer.
         </p>
         <a href="https://beingtechnicalwriter.com/apidocumentation/" class="btn btn-primary">Explore the Course</a>
       </div>
@@ -131,7 +185,7 @@
         <p class="course-description">
           Step into the future of technical communication with this one-of-a-kind course! Learn how to document complex AI & ML concepts with clarity, precision, and relevance.
           Gain expertise in simplifying cutting-edge technologies for diverse audiences and discover best practices for crafting documentation for AI-driven APIs, machine learning frameworks, and data workflows.
-          Whether you’re a beginner or an experienced writer, this course equips you to excel in the era of emerging technologies.
+          Whether you're a beginner or an experienced writer, this course equips you to excel in the era of emerging technologies.
         </p>
         <a href="https://beingtechnicalwriter.com/aimldocumentation/" class="btn btn-primary">Explore the Course</a>
       </div>

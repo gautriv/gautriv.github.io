@@ -210,3 +210,181 @@ blockquote {
   border-left: 2px solid #333;
   color: #666;
 }
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  /* Improve card layout on mobile */
+  .card {
+    margin-bottom: 1.5rem;
+  }
+  
+  .card-img {
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  /* Fix share bar on mobile */
+  #share-bar {
+    margin-left: 0;
+    text-align: center;
+  }
+  
+  /* Adjust comment section on mobile */
+  #disqus_thread {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+  
+  /* Fix multiplex margins */
+  .multiplex {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+  
+  /* Improve abstract display */
+  .abstract {
+    padding-left: 10px;
+    margin: 15px 0;
+  }
+}
+
+@media (max-width: 576px) {
+  /* Further adjustments for smaller screens */
+  .card-img {
+    height: 180px;
+  }
+  
+  /* Improve button display */
+  button.btn {
+    padding: 0.75rem 2rem;
+    font-size: 0.9rem;
+  }
+  
+  /* Fix pagination on small screens */
+  .pagination a {
+    padding: 0 10px;
+    line-height: 30px;
+  }
+}
+
+/* Fix image responsiveness globally */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Improve table responsiveness */
+table {
+  width: 100%;
+  overflow-x: auto;
+  display: block;
+}
+
+/* Make embedded content responsive */
+.embed-responsive {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+}
+
+.embed-responsive::before {
+  display: block;
+  content: "";
+}
+
+.embed-responsive .embed-responsive-item,
+.embed-responsive iframe,
+.embed-responsive embed,
+.embed-responsive object,
+.embed-responsive video {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.embed-responsive-21by9::before {
+  padding-top: 42.857143%;
+}
+
+.embed-responsive-16by9::before {
+  padding-top: 56.25%;
+}
+
+.embed-responsive-4by3::before {
+  padding-top: 75%;
+}
+
+.embed-responsive-1by1::before {
+  padding-top: 100%;
+}
+
+/* Footer responsive styles */
+.footerone {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .footerone {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .footer-left, .footer-right {
+    width: 100%;
+  }
+  
+  .social-menu {
+    justify-content: center;
+    margin-bottom: 15px;
+  }
+  
+  .footerlinks .nav-link {
+    padding: 0.5rem 0;
+  }
+}
+
+/* Make sure all images in posts are responsive */
+.post-body img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Improve code blocks on mobile */
+pre, code {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-x: auto;
+}
+
+/* Improve tables on mobile */
+.post-body table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Improve blockquotes on mobile */
+blockquote {
+  padding: 10px;
+  margin: 0 0 15px;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 576px) {
+  blockquote {
+    padding: 5px 10px;
+    margin: 0 0 10px;
+    font-size: 0.9rem;
+  }
+}

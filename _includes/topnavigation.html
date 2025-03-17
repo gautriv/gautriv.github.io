@@ -91,6 +91,57 @@
         .social-links a {
             margin: 0 5px;
         }
+        
+        /* Improve mobile navigation */
+        .navbar-brand {
+            font-size: 20px;
+        }
+        
+        .navbar-header {
+            width: 100%;
+            justify-content: space-between !important;
+        }
+        
+        /* Adjust spacing for mobile */
+        nav.navbar {
+            padding: 10px;
+        }
+        
+        /* Make search more accessible on mobile */
+        .search-area-inner .form-group {
+            flex-direction: column;
+        }
+        
+        /* Improve toggle button visibility */
+        .navbar-toggler {
+            margin-left: 10px;
+        }
+    }
+    
+    /* Extra small devices */
+    @media (max-width: 576px) {
+        .social-links {
+            display: none;
+        }
+        
+        .navbar-brand {
+            font-size: 18px;
+        }
+        
+        /* Add social links to mobile menu */
+        .mobile-social-links {
+            display: flex;
+            justify-content: center;
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .mobile-social-links a {
+            margin: 0 10px;
+            font-size: 20px;
+            color: rgb(255, 255, 255);
+        }
     }
 </style>
 
@@ -134,5 +185,14 @@
 
         <!-- Navbar Menu -->
         {% include navbarmenu.html %}
+        
+        <!-- Mobile Social Links (visible only on small screens) -->
+        <div class="mobile-social-links d-sm-none">
+            <a href="https://twitter.com/beingtechwriter" target="_blank" rel="noopener noreferrer"><i class="fa fa-twitter"></i></a>
+            <a href="https://www.linkedin.com/in/gauravtrivedi1988/" target="_blank" rel="noopener noreferrer"><i class="fa fa-linkedin"></i></a>
+            <a href="https://github.com/gautriv" target="_blank" rel="noopener noreferrer"><i class="fa fa-github"></i></a>
+            <a href="https://beingtechnicalwriter.quora.com" target="_blank" rel="noopener noreferrer"><i class="fa fa-quora"></i></a>
+            <a href="https://www.youtube.com/channel/UCBrWnqQ9J3ZG_XKq6Ts1-_w" target="_blank" rel="noopener noreferrer"><i class="fa fa-youtube"></i></a>
+        </div>
     </div>
 </nav>
