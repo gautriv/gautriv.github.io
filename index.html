@@ -4,91 +4,114 @@ focus: homepage
 hometype: homepage
 focus: noform
 ---
-{% for post in paginator.posts %}
-
-<div class="card mb-4">
-    <div class="row no-gutters">
-        <div class="col-md-4">
-            <img src="{{ post.image }}" class="card-img" alt="{{ post.title }}">
-        </div>
-        <div class="col-md-8">
-            <div class="card-body">
-                <h4 class="card-title"><a href="{{site.baseurl}}{{post.url}}">{{post.title}}</a></h4>
-                <span>
+<div class="featured-posts-section">
+    <div class="section-heading">
+        <h2>Latest Articles</h2>
+        <div class="heading-line"></div>
+    </div>
+    
+    {% for post in paginator.posts %}
+    <div class="card post-card mb-4">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img src="{{ post.image }}" class="card-img" alt="{{ post.title }}">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
+                    </h4>
                     <footer class="post-footer d-flex align-items-center">
-                        <div class="date"><i class="fas fa-calendar-alt"></i> {{ post.date | date: "%b %-d, %Y" }}
-                            &nbsp; &#8226;
-                            &nbsp;
-                            <i class="icon-clock"></i> {% include readtime.html content=post.content %} &nbsp; &#8226;
-                            &nbsp;
+                        <div class="date">
+                            <i class="fas fa-calendar-alt"></i> {{ post.date | date: "%b %-d, %Y" }}
+                            &nbsp; &#8226; &nbsp;
+                            <i class="icon-clock"></i> {% include readtime.html content=post.content %}
+                            &nbsp; &#8226; &nbsp;
                             {% for cat in post.categories %}
-                            <i class="fas fa-tags"></i><a href="{{ " /category-" | prepend: site.baseurl | append: cat}} ">{{cat}}</a>{% unless forloop.last
-                  %}, &nbsp; {% endunless%}
-                  {% endfor %}
-                  
-              </div>
-          </footer>
-          </span>
-        <p class=" card-text">{{ post.description }}</p>
-                                <a href="{{site.baseurl}}{{post.url}}" class="btn btn-primary">Read More &rarr;</a>
-                        </div>
+                                <i class="fas fa-tags"></i>
+                                <a href="{{ site.baseurl }}/category-{{ cat }}">{{ cat }}</a>
+                                {% unless forloop.last %}, &nbsp;{% endunless %}
+                            {% endfor %}
+                        </div>     
+                    </footer>
+                    <p class="card-text">{{ post.description }}</p>
+                    <a href="{{ site.baseurl }}{{ post.url }}" class="btn btn-read-more">
+                        Read Article <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
             </div>
         </div>
-</div>
+    </div>
 {% endfor %}
 
-<!-- Pagination links -->
 
-    <div class="pagination">
-        <ul>
-            {% if paginator.previous_page %}
-            {% if paginator.previous_page == 1 %}
-            <li>
-                <a href="/">&laquo;</a>
-            </li>
-            {% else %}
-            <li>
-                <a href="/page{{paginator.previous_page}}">&laquo;</a>
-            </li>
-            {% endif %}
-            {% else %}
-            <li class="disabled">
-                <a href="#">&laquo;</a>
-            </li>
-            {% endif %}
-            {% if paginator.page == 1 %}
-            <li class="active">
-                <a href="#">1</a>
-            </li>
-            {% else %}
-            <li>
-                <a href="/">1</a>
-            </li>
-            {% endif %}
-            {% for count in (2..paginator.total_pages) %}
-            {% if count == paginator.page %}
-            <li class="active">
-                <a href="#">{{count}}</a>
-            </li>
-            {% else %}
-            <li>
-                <a href="/page{{count}}">{{count}}</a>
-            </li>
-            {% endif %}
-            {% endfor %}
-            {% if paginator.next_page %}
-            <li>
-                <a href="/page{{paginator.next_page}}">&raquo;</a>
-            </li>
-            {% else %}
-            <li class="disabled">
-                <a href="#">&raquo;</a>
-            </li>
-            {% endif %}
-        </ul>
+    <!-- Pagination links -->
+    <div class="pagination-container">
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                {% if paginator.previous_page %}
+                {% if paginator.previous_page == 1 %}
+                <li class="page-item">
+                    <a class="page-link" href="/" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                {% else %}
+                <li class="page-item">
+                    <a class="page-link" href="/page{{paginator.previous_page}}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                {% endif %}
+                {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                {% endif %}
+                
+                {% if paginator.page == 1 %}
+                <li class="page-item active">
+                    <a class="page-link" href="#">1</a>
+                </li>
+                {% else %}
+                <li class="page-item">
+                    <a class="page-link" href="/">1</a>
+                </li>
+                {% endif %}
+                
+                {% for count in (2..paginator.total_pages) %}
+                {% if count == paginator.page %}
+                <li class="page-item active">
+                    <a class="page-link" href="#">{{count}}</a>
+                </li>
+                {% else %}
+                <li class="page-item">
+                    <a class="page-link" href="/page{{count}}">{{count}}</a>
+                </li>
+                {% endif %}
+                {% endfor %}
+                
+                {% if paginator.next_page %}
+                <li class="page-item">
+                    <a class="page-link" href="/page{{paginator.next_page}}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
     </div>
-</section>
+</div>
+
 <!-- Newsletter Section-->
-    <section class="newsletter" style="background-image: url('/img/divider-bg.jpg'); background-repeat: repeat-x;">
-        {% include newsletter.html %}
-    </section>
+<section class="newsletter-section">
+    {% include newsletter.html %}
+</section>

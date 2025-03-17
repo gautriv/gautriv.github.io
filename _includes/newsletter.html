@@ -1,21 +1,44 @@
 <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <h2>Subscribe to my Newsletter</h2>
-            <p>Stay updated With latest courses, trends, and technologies in technical communication.
-            </p>
+    <div class="row align-items-center">
+        <div class="col-lg-6 col-md-12 newsletter-content">
+            <div class="newsletter-icon">
+                <i class="fa fa-paper-plane"></i>
+            </div>
+            <h2>Join Our Newsletter</h2>
+            <p>Get the latest insights, tips, and trends in technical writing delivered directly to your inbox. Stay ahead with exclusive content and updates.</p>
+            <ul class="newsletter-benefits">
+                <li><i class="fa fa-check-circle"></i> Weekly curated articles</li>
+                <li><i class="fa fa-check-circle"></i> Industry best practices</li>
+                <li><i class="fa fa-check-circle"></i> Early access to courses</li>
+            </ul>
         </div>
-        <div class="col-md-8">
-            <div class="form-holder">
+        <div class="col-lg-6 col-md-12">
+            <div class="newsletter-form-container">
                 <form action="https://tinyletter.com/beingtechnicalwriter" method="post" target="popupwindow"
                     onsubmit="window.open('https://tinyletter.com/beingtechnicalwriter', 'popupwindow', 'scrollbars=yes,width=800,height=600');return true">
-                    {% comment %}<i class="fa fa-envelope-o fa-2x" aria-hidden="true" style="float:left;"></i>{%
-                    endcomment %}
-                    <div class=" form-group">
-                        <input type="email" name="email" id="email" placeholder="Type your email address">
-                        <button type="submit" class="submit">Subscribe</button>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="email" name="email" id="email" class="form-control" placeholder="Your email address" required>
+                            <div class="input-group-append">
+                                <button type="submit" class="newsletter-submit">Subscribe <i class="fa fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="newsletter-privacy">
+                        <small><i class="fa fa-lock"></i> Your information is secure. We never share your email.</small>
                     </div>
                 </form>
+                <div class="newsletter-subscribers">
+                    <div class="subscriber-avatars">
+                        <span class="subscriber-avatar"></span>
+                        <span class="subscriber-avatar"></span>
+                        <span class="subscriber-avatar"></span>
+                        <span class="subscriber-avatar"></span>
+                    </div>
+                    <div class="subscriber-text">
+                        Join over 2,000 technical writers who trust our content
+                    </div>
+                </div>
             </div>
         </div>
     </div>

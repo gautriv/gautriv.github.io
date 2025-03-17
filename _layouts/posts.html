@@ -3,44 +3,156 @@ layout: default
 
 ---
 {% include adsense.html %}
-<div class="container">
-    <div class="row">
-        <!-- Latest Posts -->
-        <main class="post blog-post col-lg-8 col-md-12">
-            <div class="container">
-                <div class="post-single">
-                    <div class="post-thumbnail"><img src="{{ page.image | prepend: site.baseurl }}"
-                            alt="{{ page.title }}" title="{{ page.title }}" class="img-fluid"></div>
-                    <div class="post-details">
-                        <div class="post-meta d-flex justify-content-between">
-                            {% for cat in post.categories %}
-                            <div class="category"><a href="{{ " /category-" | prepend: site.baseurl | append:
-                                    cat}}">{{cat}}</a>{% unless forloop.last
-                                %}, {% endunless%}
-                                {% endfor %}
-                            </div>
+
+<div class="post-header-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-md-12 mx-auto">
+                <div class="post-header">
+                    <div class="post-categories">
+                        {% for cat in page.categories %}
+                        <a href="{{ "/category-" | prepend: site.baseurl | append: cat}}" class="post-category">{{cat}}</a>
+                        {% endfor %}
+                    </div>
+                    <h1 class="post-title">{{ page.title }}</h1>
+                    <div class="post-meta">
+                        <div class="post-author">
+                            <img src="/img/authors/{{ page.author | slugify }}.jpg" alt="{{ page.author }}" class="author-img" onerror="this.src='/img/authors/default.jpg'">
+                            <span>{{ page.author }}</span>
                         </div>
-                        <h1>{{ page.title }}<a href="#"><i class="fa fa-bookmark-o"></i></a></h1>
-                        <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished" class="d-block mb-3">by {{page.author}}
-                            on {{ page.date | date: "%b %-d, %Y" }}</time>
-                        <meta content="{{ modified | date_to_xmlschema }}" itemprop="dateModified" />
-                        <div class="post-body">
-                            <p class="lead">
-                                {{content}}
-                                {% include previousnext.html %}
+                        <div class="post-date">
+                            <i class="fas fa-calendar-alt"></i>
+                            <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+                                {{ page.date | date: "%b %-d, %Y" }}
+                            </time>
+                        </div>
+                        <div class="post-readtime">
+                            <i class="fas fa-clock"></i>
+                            {% include readtime.html content=page.content %}
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="featured-image-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-md-12 mx-auto">
+                <div class="featured-image">
+                    <img src="{{ page.image | prepend: site.baseurl }}" alt="{{ page.title }}" title="{{ page.title }}" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <!-- Main Content -->
+        <main class="post blog-post col-lg-8 col-md-12 mx-auto">
+            <div class="post-content-wrapper">
+                <div class="post-content">
+                    <div class="post-body">
+                        {{content}}
+                    </div>
+                    
+                    <div class="post-tags">
+                        {% if page.tags %}
+                        <div class="tags-heading">Tagged with:</div>
+                        <div class="tags-list">
+                            {% for tag in page.tags %}
+                            <a href="{{ "/tag-" | prepend: site.baseurl | append: tag | slugify }}" class="tag">{{ tag }}</a>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="post-navigation">
+                        {% include previousnext.html %}
+                    </div>
+                </div>
+            </div>
         </main>
-        <aside class="col-lg-4 col-md-12 mt-4 mt-lg-0">
-            <!-- Widget [Categories Widget]-->
-            {% include categorieswidget.html %}
-            <!-- Widget [Latest Posts Widget]  -->
-            {% include latestpost.html %}
+    </div>
+    
+    <div class="row">
+        <div class="col-lg-8 col-md-12 mx-auto">
+            <!-- Author Bio -->
+            <div class="author-bio">
+                <div class="author-image">
+                    <img src="/img/authors/{{ page.author | slugify }}.jpg" alt="{{ page.author }}" onerror="this.src='/img/authors/default.jpg'">
+                </div>
+                <div class="author-info">
+                    <h4>About {{ page.author }}</h4>
+                    <p>{% if site.data.authors[page.author].bio %}{{ site.data.authors[page.author].bio }}{% else %}Technical writer and content creator passionate about making complex topics accessible.{% endif %}</p>
+                    <div class="author-social">
+                        {% if site.data.authors[page.author].twitter %}
+                        <a href="{{ site.data.authors[page.author].twitter }}" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
+                        {% endif %}
+                        {% if site.data.authors[page.author].linkedin %}
+                        <a href="{{ site.data.authors[page.author].linkedin }}" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+                        {% endif %}
+                        {% if site.data.authors[page.author].github %}
+                        <a href="{{ site.data.authors[page.author].github }}" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Related Posts -->
+            <div class="related-posts">
+                <h3>You might also like</h3>
+                <div class="row">
+                    {% for post in site.related_posts limit:3 %}
+                    <div class="col-md-4">
+                        <div class="related-post-card">
+                            <a href="{{ post.url | prepend: site.baseurl }}" class="related-post-img">
+                                <img src="{{ post.image }}" alt="{{ post.title }}">
+                            </a>
+                            <div class="related-post-content">
+                                <h4><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h4>
+                                <div class="related-post-date">
+                                    <i class="fas fa-calendar-alt"></i> {{ post.date | date: "%b %-d, %Y" }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <!-- Share Bar -->
+            {% include share_bar.html %}
+            
+            <!-- Comments -->
+            {% include disqus.html %}
+        </div>
+        
+        <!-- Sidebar -->
+        <aside class="col-lg-4 col-md-12 mt-4 mt-lg-0 d-none d-lg-block">
+            <div class="sidebar-sticky">
+                <!-- Widget [Categories Widget]-->
+                {% include categorieswidget.html %}
+                <!-- Widget [Latest Posts Widget]  -->
+                {% include latestpost.html %}
+                <!-- Widget [Tags Cloud]-->
+                <div class="widget tags">
+                    <header>
+                        <h3 class="h6">Tags</h3>
+                    </header>
+                    <div class="tags-cloud">
+                        {% assign tags = site.tags | sort %}
+                        {% for tag in tags %}
+                        <a href="{{ '/tag-' | prepend: site.baseurl | append: tag[0] | slugify }}">{{ tag[0] }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
         </aside>
     </div>
 </div>
-{% include share_bar.html %}
+
 {% include multiplex.html %}
-{% include disqus.html %}
