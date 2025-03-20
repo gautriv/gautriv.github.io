@@ -59,17 +59,6 @@ layout: default
                         {{content}}
                     </div>
                     
-                    <div class="post-tags">
-                        {% if page.tags %}
-                        <div class="tags-heading">Tagged with:</div>
-                        <div class="tags-list">
-                            {% for tag in page.tags %}
-                            <a href="{{ "/tag-" | prepend: site.baseurl | append: tag | slugify }}" class="tag">{{ tag }}</a>
-                            {% endfor %}
-                        </div>
-                        {% endif %}
-                    </div>
-                    
                     <div class="post-navigation">
                         {% include previousnext.html %}
                     </div>
@@ -86,8 +75,8 @@ layout: default
                     <img src="/img/authors/{{ page.author | slugify }}.jpg" alt="{{ page.author }}" onerror="this.src='/img/authors/default.jpg'">
                 </div>
                 <div class="author-info">
-                    <h4>About {{ page.author }}</h4>
-                    <p>{% if site.data.authors[page.author].bio %}{{ site.data.authors[page.author].bio }}{% else %}Technical writer and content creator passionate about making complex topics accessible.{% endif %}</p>
+                    <h4>About <a href="http://beingtechnicalwriter.com/gaurav.trivedi.io/">Gaurav Trivedi</a></h4>
+                    <p>Technical writer and content creator passionate about making complex topics accessible.</p>
                     <div class="author-social">
                         {% if site.data.authors[page.author].twitter %}
                         <a href="{{ site.data.authors[page.author].twitter }}" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
