@@ -564,7 +564,7 @@ Ever wish you had an extra pair of eyes (that never get tired) to review your te
   <p><em>AI writing assistant catching common documentation issues while you focus on explaining complex concepts</em></p>
 </div>
 
-I embarked on a mission to train an AI for technical writing – essentially, a writing assistant who catches mistakes and enforces style guidelines without needing a caffeine fix every 2 hours. In this module, I'll share how I'm building this AI sidekick to fix the top 20 writing mistakes we tech writers make when documenting AI/ML systems, following industry style guides like the Microsoft Style Guide (MSTP) and Google's Developer Documentation Style Guide.
+I embarked on a mission to train an AI for technical writing – essentially, a writing assistant who catches mistakes and enforces style guidelines. In this blog, I'll share how I'm building this AI sidekick to fix the top 20 writing mistakes we tech writers make when documenting AI/ML systems, following industry style guides like the IBM, Microsoft (MSTP) and Google's Developer Documentation Style Guide.
 
 <div class="humor-box">
   <p>Plot twist: I'm teaching AI to edit documentation about AI. If this causes a documentation singularity and your manuals become sentient, I apologize in advance. But hey, at least they'll have perfect grammar.</p>
