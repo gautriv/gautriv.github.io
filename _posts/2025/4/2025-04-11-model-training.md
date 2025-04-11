@@ -572,6 +572,19 @@ I embarked on a mission to train an AI for technical writing – essentially, a 
 
 So grab a cup of coffee and let's dive into the fascinating intersection of AI technology and technical writing!
 
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7149683584202371"
+     crossorigin="anonymous"></script>
+<!-- AddTitleOne -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7149683584202371"
+     data-ad-slot="7422872052"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 ## Common writing mistakes in AI/ML documentation
 
 Every technical writer has a few gremlins in their documentation. Here are some common writing mistakes that persist in AI/ML documentation, even when we know better:
@@ -653,6 +666,19 @@ These are just a few of the frequent offenders. In fact, there are about 20 comm
 
 But let's face it: when you're deep in documenting a new neural architecture or a complex ML workflow, it's easy to become blind to your own mistakes. I can't count how many times I've reviewed my draft for the fifth time and still missed a glaring mistake sentence about gradient descent—which itself is ironically similar to how neural networks learn from their own mistakes.
 
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7149683584202371"
+     crossorigin="anonymous"></script>
+<!-- AddTitleOne -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7149683584202371"
+     data-ad-slot="7422872052"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 ## Why we need an AI assistant for technical writing
 
 The idea of using AI for technical writing might sound meta (AI documenting AI?), but it boils down to a simple goal: help writers create better documentation for AI systems. After identifying these common pitfalls, the next logical step was clear—what if we could train an AI to catch these issues automatically? Here's why an AI writing assistant is the perfect sidekick for technical writers in the AI/ML space:
@@ -716,6 +742,19 @@ Now, you might ask: don't tools like Grammarly or MS Word's editor already do so
 Google's Developer Style Guide might say "Don't use future tense for describing machine learning behavior", or MSTP might have a rule about not saying "please" before every instruction. General tools might not catch those nuances.
 
 I want an AI that's custom-trained on tech writing style guides specific to AI/ML documentation. Plus, let's admit it: there's a cool factor in having an AI sidekick helping you document other AI systems. It's like having a specialized assistant for technical writers, pointing out our documentation flaws without the awkward human interactions that come with peer reviews.
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7149683584202371"
+     crossorigin="anonymous"></script>
+<!-- AddTitleOne -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7149683584202371"
+     data-ad-slot="7422872052"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
 ## Training the AI to enforce style guides: My approach
 
@@ -1083,6 +1122,19 @@ Oh, and did I mention I'm doing this entire project solo? It's a labor of love, 
 
 The plan is to make this project completely open source once it's polished. I strongly believe that the technical writing community documenting AI/ML could benefit from it, and also contribute to it. Imagine a collaborative AI editor that gets better as writers around the world feed it more examples of do's and don'ts for AI documentation! It would be like a global hive mind of documentation expertise, but without the awkward team meetings.
 
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7149683584202371"
+     crossorigin="anonymous"></script>
+<!-- AddTitleOne -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7149683584202371"
+     data-ad-slot="7422872052"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 ## Results so far and what's next
 
 As of now, the AI writing assistant I'm training is showing promising results in a controlled environment (i.e., my laptop). It reliably fixes many of the classic issues in sample sentences from AI/ML documentation.
@@ -1161,6 +1213,19 @@ I mentioned this will be open source. I'm prepping the code, documentation (oh y
 My hope is that other technical writers and developers working on AI/ML will try it out, give feedback, and even contribute improvements. Maybe it could evolve into a community-driven tool, with writers contributing new examples of mistakes as they encounter them in AI documentation.
 
 Through this project, I've gained a deeper appreciation that writing about AI is both an art and a science. The art is in communicating complex technical ideas, and the science (or rather, the craft) is in polishing the language. An AI might never replace the artistic side (and I wouldn't want it to), but it can certainly master the craft side with enough training.
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7149683584202371"
+     crossorigin="anonymous"></script>
+<!-- AddTitleOne -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7149683584202371"
+     data-ad-slot="7422872052"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
 ## A caffeine-free writing sidekick for AI documentation
 
