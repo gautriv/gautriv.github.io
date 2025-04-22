@@ -6,6 +6,11 @@ image: "/assets/training-model.png"
 header-img: "/assets/training-model.png"   
 seo_keywords: "AI writing assistant, technical documentation AI, ML documentation tools, passive voice detector, style guide automation, fine-tuning language models, documentation quality improvement, AI for technical writers, FLAN-T5 fine-tuning, Google Colab ML training, AI documentation best practices, technical writing automation, documentation style enforcement"
 permalink: /model-training/  
+og_title: "Build Your Own AI Writing Assistant for Technical Documentation"
+og_description: "Learn how I trained an AI to enforce style guides and improve documentation quality with step-by-step Python code and practical examples."
+og_image: "/assets/training-model.png"
+twitter_card: "summary_large_image"
+alt_text: "AI model training diagram showing how machine learning improves technical documentation"
 faqs:
   - question: "How much coding experience do I need to train an AI writing assistant?"
     answer: "You'll need basic Python knowledge and familiarity with machine learning concepts. However, the step-by-step Google Colab approach described in this article makes the process accessible even for technical writers without extensive programming experience. The most important requirement is understanding your documentation requirements and having quality training data."
