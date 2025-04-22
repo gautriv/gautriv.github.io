@@ -25,6 +25,27 @@
     {% assign author = site.data.authors[page.author] %}
     <meta property="article:author" content="{{ author.name }}" />
     {% endif %}
+    
+    <!-- Open Graph meta tags for better social sharing -->
+    <meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
+    <meta property="og:description" content="{% if page.description %}{{ page.description | strip_html | strip_newlines | truncate: 170 }}{% else %}{{ page.content | strip_html | truncate: 170 }}{% endif %}">
+    <meta property="og:image" content="{% if page.image %}{{ page.image | prepend: site.url }}{% else %}{{ site.url }}/img/logo.png{% endif %}">
+    <meta property="og:url" content="{{ page.url | replace:'index.html','' | prepend: site.url }}">
+    <meta property="og:type" content="{% if page.layout == 'posts' %}article{% else %}website{% endif %}">
+    
+    <!-- Twitter Card meta tags for Twitter sharing -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
+    <meta name="twitter:description" content="{% if page.description %}{{ page.description | strip_html | strip_newlines | truncate: 170 }}{% else %}{{ page.content | strip_html | truncate: 170 }}{% endif %}">
+    <meta name="twitter:image" content="{% if page.image %}{{ page.image | prepend: site.url }}{% else %}{{ site.url }}/img/logo.png{% endif %}">
+    
+    <!-- Structured Data for Rich Snippets -->
+    {% if page.layout == 'posts' %}
+      {% include structured-data-article.html %}
+      {% include structured-data-howto.html %}
+      {% include structured-data-faq.html %}
+    {% endif %}
+    
     <!-- Custom icon font-->
     <link rel="stylesheet" href="{{site.url}}/css/fontastic.css">
     <!-- Favicon-->

@@ -6,6 +6,17 @@ image: "/assets/training-model.png"
 header-img: "/assets/training-model.png"   
 seo_keywords: "AI writing assistant, technical documentation AI, ML documentation tools, passive voice detector, style guide automation, fine-tuning language models, documentation quality improvement, AI for technical writers, FLAN-T5 fine-tuning, Google Colab ML training, AI documentation best practices, technical writing automation, documentation style enforcement"
 permalink: /model-training/  
+faqs:
+  - question: "How much coding experience do I need to train an AI writing assistant?"
+    answer: "You'll need basic Python knowledge and familiarity with machine learning concepts. However, the step-by-step Google Colab approach described in this article makes the process accessible even for technical writers without extensive programming experience. The most important requirement is understanding your documentation requirements and having quality training data."
+  - question: "What kind of hardware is required to train a documentation AI model?"
+    answer: "You don't need specialized hardware since the training can be done using Google Colab's free GPU resources. This cloud-based approach eliminates the need for expensive local GPUs. For more complex models or larger datasets, you might consider Colab Pro or other cloud computing options with more powerful GPUs."
+  - question: "How long does it take to train an AI model for technical documentation?"
+    answer: "Training time varies based on dataset size and model complexity. Fine-tuning a pre-trained model like FLAN-T5 with a few thousand documentation examples typically takes 2-5 hours on Google Colab's free tier. The initial dataset preparation and cleaning is often more time-consuming than the actual model training."
+  - question: "Can an AI writing assistant completely replace human technical writers?"
+    answer: "No. AI writing assistants are powerful tools for improving consistency, catching common issues, and enforcing style guides, but they lack the contextual understanding, domain expertise, and creative problem-solving abilities of human technical writers. These AI tools work best as collaborative assistants that help writers produce better documentation faster, not as replacements."
+  - question: "How do I ensure my AI writing assistant doesn't introduce errors into documentation?"
+    answer: "Implement a human-in-the-loop approach where the AI makes suggestions but humans review them before implementation. Thoroughly test the model with diverse documentation samples before deployment, maintain a comprehensive evaluation dataset, and continuously retrain the model with examples of both correct and incorrect outputs to improve accuracy over time."
 description: Learn how to create an AI writing assistant that catches passive voice, eliminates jargon, and enforces style guides in AI/ML documentation, complete with step-by-step training instructions in Google Colab.
 ---
 
@@ -564,7 +575,7 @@ Ever wish you had an extra pair of eyes (that never get tired) to review your te
   <p><em>AI writing assistant catching common documentation issues while you focus on explaining complex concepts</em></p>
 </div>
 
-I embarked on a mission to train an AI for technical writing – essentially, a writing assistant who catches mistakes and enforces style guidelines. In this blog, I'll share how I'm building this AI sidekick to fix the top 20 writing mistakes we, as technical writers, make when documenting AI/ML systems—even while following industry style guides like IBM’s, Microsoft’s MSTP, and Google’s Developer Documentation Style Guide.
+I embarked on a mission to train an AI for technical writing – essentially, a writing assistant who catches mistakes and enforces style guidelines. In this blog, I'll share how I'm building this AI sidekick to fix the top 20 writing mistakes we, as technical writers, make when documenting AI/ML systems—even while following industry style guides like IBM's, Microsoft's MSTP, and Google's Developer Documentation Style Guide.
 
 <div class="humor-box">
   <p>Plot twist: I'm teaching AI to edit documentation about AI. If this causes a documentation singularity and your manuals become sentient, I apologize in advance. But hey, at least they'll have perfect grammar.</p>

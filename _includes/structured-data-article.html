@@ -1,0 +1,27 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ site.url }}{{ page.url }}"
+  },
+  "headline": "{{ page.title | escape }}",
+  "description": "{{ page.description | strip_html | strip_newlines | truncate: 160 }}",
+  "image": "{{ site.url }}{{ page.image }}",
+  "author": {
+    "@type": "Person",
+    "name": "Gaurav Trivedi"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ site.title }}",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ site.url }}/img/logo.png"
+    }
+  },
+  "datePublished": "{{ page.date | date_to_xmlschema }}",
+  "dateModified": "{{ page.date | date_to_xmlschema }}"
+}
+</script> 

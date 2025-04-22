@@ -1,11 +1,22 @@
 ---
-title: Top 10 Skills a Technical Writer Should Definitely NOT Have
+title: 10 Deadly Technical Writing Mistakes That Kill Your Career (And How to Avoid Them)
 category: Technical Writing
 image: "/assets/unlock.png"
 header-img: "/assets/unlock.png"
 keywords: [technical writing, top 10 technical writing skills, what are top 10 technical writing skills, how to become a technical writer, documentation, anti-skills, humor, satire, writing tips, communication, clarity, sarcasm, jargon, procrastination, feedback, emojis, formatting, passive voice, inconsistency, hyperlinking, SEO, user-friendly, skills to avoid, acronyms, consistency, links]
+faqs:
+  - question: "What are the most common mistakes technical writers make?"
+    answer: "The most common technical writing mistakes include overcomplicating simple instructions, using excessive jargon, relying too heavily on acronyms without explanation, inconsistent formatting, overuse of passive voice, poor hyperlinking practices, and avoiding feedback on documentation."
+  - question: "How can I improve my technical writing skills?"
+    answer: "To improve your technical writing, focus on clarity and simplicity, use active voice, maintain consistent formatting, define terms and acronyms, seek and implement feedback, use hyperlinks effectively, and allow time for multiple revisions before deadlines."
+  - question: "Is humor appropriate in technical documentation?"
+    answer: "While this article uses humor to illustrate poor practices, actual technical documentation should generally avoid excessive humor or emojis as they can detract from clarity and may not translate well across different cultures. Clear, straightforward language works best for most technical documentation."
+  - question: "How important is consistency in technical writing?"
+    answer: "Consistency is crucial in technical writing. Using consistent terminology, formatting, and structure helps readers navigate your documentation efficiently, reduces confusion, and builds trust with your audience. Inconsistency, as satirized in this article, creates frustration and can lead readers to abandon your documentation."
+  - question: "What should I do about technical jargon in my documentation?"
+    answer: "When handling technical jargon, first consider your audience's expertise level. For specialized audiences, using industry-standard terminology is appropriate, but always define terms on first use. For broader audiences, replace jargon with plain language when possible, or provide clear definitions and a glossary for necessary technical terms."
 permalink: /10-technical-writing-skills-we-should-not-have/
-description: In the wild world of technical writing, where clarity and simplicity are usually the keys to success, join us on a tongue-in-cheek journey through the "Anti-Resume" – a satirical exploration of the top 10 skills a technical writer should never possess. Discover how to transform simple instructions into baffling riddles, drown your readers in a sea of technical jargon, and pepper your content with a smattering of obscure acronyms. Learn how to deflect feedback like a ninja, transform entire sentences into emojis, and create formatting chaos with inconsistent fonts and text colors. Finally, master the 'click and hope' strategy with links that lead nowhere or to the latest meme. Welcome to the dark side of documentation – where confusion reigns supreme and clarity is the stuff of myths.
+description: Want to stand out as a technical writer for all the right reasons? This entertaining guide reveals the 10 worst documentation habits that secretly sabotage your career and drive readers crazy. Learn exactly what NOT to do with jargon, formatting, feedback, and more - with practical examples showing the right approach instead. Read now to transform your documentation from confusing to crystal-clear and advance your technical writing career!
 ---
 
 *Welcome, dear readers, to a world where documentation is a complex maze, and clarity is the last thing on a writer's mind. Today, I'd like to take you on a journey through the top 10 skills that every technical writer should avoid like the plague. Forget about simplicity, coherence, and user-friendliness; let's dive headfirst into the abyss of baffling communication.*
