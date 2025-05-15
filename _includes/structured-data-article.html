@@ -6,8 +6,8 @@
     "@type": "WebPage",
     "@id": "{{ site.url }}{{ page.url }}"
   },
-  "headline": "{{ page.title | escape }}",
-  "description": "{{ page.description | strip_html | strip_newlines | truncate: 160 }}",
+  "headline": {{ page.title | jsonify }},
+  "description": {{ page.description | strip_html | strip_newlines | truncate: 160 | jsonify }},
   "image": "{{ site.url }}{{ page.image }}",
   "author": {
     "@type": "Person",
@@ -15,7 +15,7 @@
   },
   "publisher": {
     "@type": "Organization",
-    "name": "{{ site.title }}",
+    "name": {{ site.title | jsonify }},
     "logo": {
       "@type": "ImageObject",
       "url": "{{ site.url }}/img/logo.png"
