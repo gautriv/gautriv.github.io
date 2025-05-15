@@ -1,5 +1,5 @@
 ---
-title: From Prototype to Pilot - Launching the mini AI writing assistant for technical style enforcement
+title: From prototype to co-pilot - Launching the mini AI writing assistant for technical style enforcement
 subtitle: "A fine-tuned model trained on thousands of real documentation edits—rewriting with near-human precision"
 category: AI  
 image: "/assets/style-assistant-launch.png"  
