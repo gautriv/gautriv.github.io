@@ -31,6 +31,19 @@ Now, it's so much more.
 
 > **From detecting a single issue to handling five critical style rules.**
 
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7149683584202371"
+     crossorigin="anonymous"></script>
+<!-- AddTitleOne -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7149683584202371"
+     data-ad-slot="7422872052"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 ## The Vision: An AI That Understands Documentation Style
 
 General grammar checkers aren't built for technical content. This AI assistant is.
@@ -44,6 +57,19 @@ It's trained on **thousands of real documentation corrections** made by writers,
 - Ambiguity elimination  
 
 > "The goal isn't to replace reviewers—it's to handle the repetitive, rule-based corrections automatically, so humans can focus on what matters."
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7149683584202371"
+     crossorigin="anonymous"></script>
+<!-- AddTitleOne -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7149683584202371"
+     data-ad-slot="7422872052"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
 ## What's Inside?
 
@@ -221,7 +247,18 @@ Here's a snapshot of how far this has come:
 }
 </style>
 
----
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7149683584202371"
+     crossorigin="anonymous"></script>
+<!-- AddTitleOne -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7149683584202371"
+     data-ad-slot="7422872052"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
 ## Try It Yourself
 
@@ -232,6 +269,19 @@ You can test the assistant in your own workflow with:
 - **Training Notebook**: [Colab Notebook](https://github.com/gtrivedi88/style-guide-base/blob/master/resources/style_guide_base.ipynb)  
 - **Gradio-based UI**: `app.py` in the repo  
 
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7149683584202371"
+     crossorigin="anonymous"></script>
+<!-- AddTitleOne -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7149683584202371"
+     data-ad-slot="7422872052"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 
 ## Future Development Roadmap
 
