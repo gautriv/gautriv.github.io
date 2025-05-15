@@ -49,68 +49,107 @@ layout: default
     </div>
 </div>
 
-<div class="container">
+<!-- Main content with side rail ads -->
+<div class="container-fluid">
     <div class="row">
-        <!-- Main Content -->
-        <main class="post blog-post col-lg-8 col-md-12 mx-auto">
-            <div class="post-content-wrapper">
-                <div class="post-content">
-                    <div class="post-body">
-                        {{content}}
-                    </div>
-                    
-                    {% include previousnext.html %}
-                </div>
+        <!-- Left Side Rail Ad -->
+        <div class="col-lg-2 d-none d-lg-block">
+            <div class="side-rail-ad left-rail" style="position: sticky; top: 20px;">
+                <!-- Google AdSense Left Side Rail -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-7149683584202371"
+                     data-ad-slot="5231074513"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             </div>
-        </main>
-    </div>
-    
-    <!-- Redesigned section starts here -->
-    <div class="container post-footer-container mt-5">
-        <div class="row">
-            <div class="col-lg-8 col-md-12 mx-auto">
-                <!-- Share Bar -->
-                <div class="post-share-section mb-5">
-                    <h4 class="section-title"><span>Share This Post</span></h4>
-                    <div class="share-buttons">
-                        {% include share_bar.html %}
-                    </div>
-                </div>
-                
-                <!-- Related Posts -->
-                <div class="related-posts-section mb-5">
-                    <h4 class="section-title"><span>You Might Also Like</span></h4>
-                    <div class="row">
-                        {% for post in site.related_posts limit:3 %}
-                        <div class="col-md-4 mb-4">
-                            <div class="related-post-card shadow-sm">
-                                <a href="{{ post.url | prepend: site.baseurl }}" class="related-post-img">
-                                    <img src="{{ post.image }}" alt="{{ post.title }}" class="img-fluid">
-                                </a>
-                                <div class="related-post-content p-3">
-                                    <h5><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h5>
-                                    <div class="related-post-meta">
-                                        <i class="fas fa-calendar-alt"></i> {{ post.date | date: "%b %-d, %Y" }}
-                                    </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="col-lg-8">
+            <div class="container">
+                <div class="row">
+                    <main class="post blog-post col-lg-12">
+                        <div class="post-content-wrapper">
+                            <div class="post-content">
+                                <div class="post-body">
+                                    {{content}}
                                 </div>
+                                
+                                {% include previousnext.html %}
                             </div>
                         </div>
-                        {% endfor %}
-                        <div class="view-all-posts">
-                            <a href="/index.html" class="view-all-link">
-                                View All Posts <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
+                    </main>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Right Side Rail Ad -->
+        <div class="col-lg-2 d-none d-lg-block">
+            <div class="side-rail-ad right-rail" style="position: sticky; top: 20px;">
+                <!-- Google AdSense Right Side Rail -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-7149683584202371"
+                     data-ad-slot="2604911171"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Redesigned section starts here -->
+<div class="container post-footer-container mt-5">
+    <div class="row">
+        <div class="col-lg-8 col-md-12 mx-auto">
+            <!-- Share Bar -->
+            <div class="post-share-section mb-5">
+                <h4 class="section-title"><span>Share This Post</span></h4>
+                <div class="share-buttons">
+                    {% include share_bar.html %}
                 </div>
             </div>
             
-            <!-- Sidebar -->
-            <div class="col-lg-4 col-md-12 mt-4 mt-lg-0">
-                <div class="sidebar-sticky">
-                    <!-- Widget [Categories Widget]-->
-                    {% include categorieswidget.html %}
+            <!-- Related Posts -->
+            <div class="related-posts-section mb-5">
+                <h4 class="section-title"><span>You Might Also Like</span></h4>
+                <div class="row">
+                    {% for post in site.related_posts limit:3 %}
+                    <div class="col-md-4 mb-4">
+                        <div class="related-post-card shadow-sm">
+                            <a href="{{ post.url | prepend: site.baseurl }}" class="related-post-img">
+                                <img src="{{ post.image }}" alt="{{ post.title }}" class="img-fluid">
+                            </a>
+                            <div class="related-post-content p-3">
+                                <h5><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h5>
+                                <div class="related-post-meta">
+                                    <i class="fas fa-calendar-alt"></i> {{ post.date | date: "%b %-d, %Y" }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <div class="view-all-posts">
+                        <a href="/index.html" class="view-all-link">
+                            View All Posts <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
                 </div>
+            </div>
+        </div>
+        
+        <!-- Sidebar -->
+        <div class="col-lg-4 col-md-12 mt-4 mt-lg-0">
+            <div class="sidebar-sticky">
+                <!-- Widget [Categories Widget]-->
+                {% include categorieswidget.html %}
             </div>
         </div>
     </div>
@@ -124,3 +163,17 @@ layout: default
 </div>
 
 {% include multiplex.html %}
+
+<!-- Add custom CSS for side rail ads -->
+<style>
+    .side-rail-ad {
+        min-height: 600px;
+        margin-bottom: 20px;
+    }
+    
+    @media (max-width: 991px) {
+        .side-rail-ad {
+            display: none;
+        }
+    }
+</style>
