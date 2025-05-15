@@ -67,80 +67,61 @@ layout: default
         </main>
     </div>
     
-    <div class="row">
-        <div class="col-lg-8 col-md-12 mx-auto">
-            <!-- Author Bio -->
-            <div class="author-bio">
-                <div class="author-image">
-                    <img src="/img/authors/{{ page.author | slugify }}.jpg" alt="{{ page.author }}" onerror="this.src='/img/authors/default.jpg'">
-                </div>
-                <div class="author-info">
-                    <h4>About <a href="http://beingtechnicalwriter.com/gaurav.trivedi.io/">Gaurav Trivedi</a></h4>
-                    <p>Technical writer and content creator passionate about making complex topics accessible.</p>
-                    <div class="author-social">
-                        {% if site.data.authors[page.author].twitter %}
-                        <a href="{{ site.data.authors[page.author].twitter }}" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
-                        {% endif %}
-                        {% if site.data.authors[page.author].linkedin %}
-                        <a href="{{ site.data.authors[page.author].linkedin }}" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
-                        {% endif %}
-                        {% if site.data.authors[page.author].github %}
-                        <a href="{{ site.data.authors[page.author].github }}" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
-                        {% endif %}
+    <!-- Redesigned section starts here -->
+    <div class="container post-footer-container mt-5">
+        <div class="row">
+            <div class="col-lg-8 col-md-12 mx-auto">
+                <!-- Share Bar -->
+                <div class="post-share-section mb-5">
+                    <h4 class="section-title"><span>Share This Post</span></h4>
+                    <div class="share-buttons">
+                        {% include share_bar.html %}
                     </div>
                 </div>
-            </div>
-            
-            <!-- Related Posts -->
-            <div class="related-posts">
-                <h3>You might also like</h3>
-                <div class="row">
-                    {% for post in site.related_posts limit:3 %}
-                    <div class="col-md-4">
-                        <div class="related-post-card">
-                            <a href="{{ post.url | prepend: site.baseurl }}" class="related-post-img">
-                                <img src="{{ post.image }}" alt="{{ post.title }}">
-                            </a>
-                            <div class="related-post-content">
-                                <h4><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h4>
-                                <div class="related-post-date">
-                                    <i class="fas fa-calendar-alt"></i> {{ post.date | date: "%b %-d, %Y" }}
+                
+                <!-- Related Posts -->
+                <div class="related-posts-section mb-5">
+                    <h4 class="section-title"><span>You Might Also Like</span></h4>
+                    <div class="row">
+                        {% for post in site.related_posts limit:3 %}
+                        <div class="col-md-4 mb-4">
+                            <div class="related-post-card shadow-sm">
+                                <a href="{{ post.url | prepend: site.baseurl }}" class="related-post-img">
+                                    <img src="{{ post.image }}" alt="{{ post.title }}" class="img-fluid">
+                                </a>
+                                <div class="related-post-content p-3">
+                                    <h5><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h5>
+                                    <div class="related-post-meta">
+                                        <i class="fas fa-calendar-alt"></i> {{ post.date | date: "%b %-d, %Y" }}
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-            
-            <!-- Share Bar -->
-            {% include share_bar.html %}
-            
-            <!-- Comments -->
-            {% include disqus.html %}
-        </div>
-        
-        <!-- Sidebar -->
-        <aside class="col-lg-4 col-md-12 mt-4 mt-lg-0 d-none d-lg-block">
-            <div class="sidebar-sticky">
-                <!-- Widget [Categories Widget]-->
-                {% include categorieswidget.html %}
-                <!-- Widget [Latest Posts Widget]  -->
-                {% include latestpost.html %}
-                <!-- Widget [Tags Cloud]-->
-                <div class="widget tags">
-                    <header>
-                        <h3 class="h6">Tags</h3>
-                    </header>
-                    <div class="tags-cloud">
-                        {% assign tags = site.tags | sort %}
-                        {% for tag in tags %}
-                        <a href="{{ '/tag-' | prepend: site.baseurl | append: tag[0] | slugify }}">{{ tag[0] }}</a>
                         {% endfor %}
+                        <div class="view-all-posts">
+                            <a href="/blog" class="view-all-link">
+                                View All Posts <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </aside>
+            
+            <!-- Sidebar -->
+            <div class="col-lg-4 col-md-12 mt-4 mt-lg-0">
+                <div class="sidebar-sticky">
+                    <!-- Widget [Categories Widget]-->
+                    {% include categorieswidget.html %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Comments -->
+<div class="comments-section">
+    <h4 class="section-title"><span>Join the Discussion</span></h4>
+    <div class="comments-container mt-4">
+        {% include disqus.html %}
     </div>
 </div>
 

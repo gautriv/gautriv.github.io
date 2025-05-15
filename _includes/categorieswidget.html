@@ -1,8 +1,19 @@
 <div class="widget categories">
-  <header>
-      <h3 class="h6">Categories</h3>
-  </header>
-  {% for item in site.data.categories.categories %}
-  <div class="item d-flex justify-content-between"><a href="{{item.url | prepend: site.url}}">{{item.title}}</a></div>
-  {% endfor %}
+  <h4 class="section-title"><span>Categories</span></h4>
+  <div class="categories-list">
+    {% for item in site.data.categories.categories %}
+    <a href="{{item.url | prepend: site.url}}" class="category-item">
+      <div class="category-icon">
+        <i class="fas fa-folder"></i>
+      </div>
+      <div class="category-details">
+        <span class="category-name">{{item.title}}</span>
+        <span class="category-description">Explore articles</span>
+      </div>
+      <div class="category-arrow">
+        <i class="fas fa-chevron-right"></i>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
 </div>
