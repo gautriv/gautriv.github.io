@@ -25,7 +25,7 @@ faqs:
 description: A weekend hands-on test of Google I/O 2025 AI tools from a technical writer's perspective. Real usage insights on Gemini Search, Jules, Stitch, and how they may change documentation workflows.
 ---
 
-Last weekend, I was in my usual productivity theater—tea cooling on my desk, seventeen browser tabs open, and that familiar sensation of researching everything except what I actually needed to write about.
+This Friday evening, I was in my usual productivity theater—tea cooling on my desk, seventeen browser tabs open, and that familiar sensation of researching everything except what I actually needed to write about.
 
 That's when a YouTube thumbnail caught my eye: *"Google I/O 2025: Everything Changes for AI."*
 
