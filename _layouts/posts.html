@@ -166,13 +166,10 @@ layout: default
         transform: translateY(20px);
         animation: fadeInUp 0.6s ease forwards;
         top: 20px;
-        width: 100%;
-        max-width: 320px;
     }
     
     .side-rail-ad ins.adsbygoogle {
         display: block !important;
-        width: 100% !important;
     }
     
     .side-rail-ad.visible {
@@ -247,13 +244,11 @@ layout: default
         background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
         background-size: 200% 100%;
         animation: loading 1.5s infinite;
-        min-height: 100px;
     }
     
     .side-rail-ad.ad-failed {
         background: #ffe6e6;
         border-color: #ffcccc;
-        min-height: 100px;
     }
     
     .side-rail-ad.ad-failed::after {
@@ -440,8 +435,6 @@ class IntelligentSideRails {
                     try {
                         if (window.adsbygoogle && typeof window.adsbygoogle.push === 'function') {
                             window.adsbygoogle.push({});
-                        } else {
-                            console.error('AdSense still not ready after retry');
                         }
                     } catch (retryError) {
                         console.warn('AdSense retry failed:', retryError);
@@ -451,7 +444,6 @@ class IntelligentSideRails {
             
         } catch (e) {
             console.warn('AdSense initialization failed:', e);
-            // Mark element as failed for styling
             adElement.classList.add('ad-failed');
         }
     }
