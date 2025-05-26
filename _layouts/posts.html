@@ -181,7 +181,7 @@ layout: default
         transform: translateY(-2px);
     }
     
-    .side-rail-ad .ad-label {
+    .side-rail-ad {
         font-size: 10px;
         color: #6c757d;
         text-align: center;
@@ -364,10 +364,6 @@ class IntelligentSideRails {
         adWrapper.className = 'side-rail-ad loading';
         adWrapper.style.top = `${20 + (index * 60)}px`; // Better spacing calculation
         
-        const label = document.createElement('div');
-        label.className = 'ad-label';
-        label.textContent = '';
-        
         const adIns = document.createElement('ins');
         adIns.className = 'adsbygoogle';
         adIns.style.display = 'block';
@@ -376,7 +372,6 @@ class IntelligentSideRails {
         adIns.setAttribute('data-ad-format', 'auto');
         adIns.setAttribute('data-full-width-responsive', 'true');
         
-        adWrapper.appendChild(label);
         adWrapper.appendChild(adIns);
         
         return adWrapper;
