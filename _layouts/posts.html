@@ -49,15 +49,22 @@ layout: default
     </div>
 </div>
 
-<!-- Main content with dynamic rail ads -->
+<!-- Main content with side rail ads -->
 <div class="container-fluid">
     <div class="row">
-        <!-- Left Dynamic Rail -->
+        <!-- Left Side Rail Ad -->
         <div class="col-lg-2 d-none d-lg-block">
-            <div class="dynamic-rail-container left-rail" id="leftRail">
-                <div class="rail-sticky-wrapper">
-                    <!-- Ads will be dynamically inserted here -->
-                </div>
+            <div class="side-rail-ad left-rail" style="position: sticky; top: 20px;">
+                <!-- Google AdSense Left Side Rail -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-7149683584202371"
+                     data-ad-slot="5231074513"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             </div>
         </div>
         
@@ -67,7 +74,7 @@ layout: default
                 <div class="row">
                     <main class="post blog-post col-lg-12">
                         <div class="post-content-wrapper">
-                            <div class="post-content" id="mainContent">
+                            <div class="post-content">
                                 <div class="post-body">
                                     {{content}}
                                 </div>
@@ -80,12 +87,19 @@ layout: default
             </div>
         </div>
         
-        <!-- Right Dynamic Rail -->
+        <!-- Right Side Rail Ad -->
         <div class="col-lg-2 d-none d-lg-block">
-            <div class="dynamic-rail-container right-rail" id="rightRail">
-                <div class="rail-sticky-wrapper">
-                    <!-- Ads will be dynamically inserted here -->
-                </div>
+            <div class="side-rail-ad right-rail" style="position: sticky; top: 20px;">
+                <!-- Google AdSense Right Side Rail -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-7149683584202371"
+                     data-ad-slot="2604911171"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             </div>
         </div>
     </div>
@@ -150,388 +164,16 @@ layout: default
 
 {% include multiplex.html %}
 
-<!-- Dynamic Rail Ads System -->
+<!-- Add custom CSS for side rail ads -->
 <style>
-    .dynamic-rail-container {
-        position: relative;
-        padding: 20px 0;
-        height: 100%;
+    .side-rail-ad {
+        min-height: 600px;
+        margin-bottom: 20px;
     }
     
-    .rail-sticky-wrapper {
-        position: relative;
-        width: 100%;
-    }
-    
-    .dynamic-ad-unit {
-        margin-bottom: 40px;
-        min-height: 250px;
-        width: 100%;
-        max-width: 160px;
-        margin-left: auto;
-        margin-right: auto;
-        background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
-        border-radius: 12px;
-        padding: 12px;
-        border: 1px solid #e8e8e8;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        opacity: 0;
-        transform: translateY(20px);
-        box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-    }
-    
-    .dynamic-ad-unit.loaded {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    
-    .dynamic-ad-unit:hover {
-        box-shadow: 0 8px 25px rgba(0,0,0,0.12);
-        transform: translateY(-2px);
-        border-color: #d0d0d0;
-    }
-    
-    .dynamic-ad-unit.sticky {
-        position: sticky;
-        top: 120px;
-        z-index: 10;
-        box-shadow: 0 12px 40px rgba(0,0,0,0.15);
-        border-color: #c0c0c0;
-    }
-    
-    .left-rail .dynamic-ad-unit {
-        margin-left: 10px;
-        margin-right: auto;
-    }
-    
-    .right-rail .dynamic-ad-unit {
-        margin-left: auto;
-        margin-right: 10px;
-    }
-    
-    .dynamic-ad-unit::before {
-        content: "";
-        display: block;
-        font-size: 9px;
-        color: #aaa;
-        text-align: center;
-        margin-bottom: 8px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        font-weight: 500;
-    }
-    
-    .dynamic-ad-unit ins {
-        border-radius: 8px;
-        overflow: hidden;
-        width: 100%;
-        max-height: 600px;
-    }
-    
-    /* Intersection observer loading animation */
-    .dynamic-ad-unit.loading {
-        background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-        background-size: 200% 100%;
-        animation: shimmer 1.5s infinite;
-    }
-    
-    @keyframes shimmer {
-        0% { background-position: -200% 0; }
-        100% { background-position: 200% 0; }
-    }
-    
-    /* Responsive behavior */
     @media (max-width: 991px) {
-        .dynamic-rail-container {
-            display: none !important;
-        }
-    }
-    
-    /* Performance optimization for reduced motion */
-    @media (prefers-reduced-motion: reduce) {
-        .dynamic-ad-unit {
-            transition: none;
-            animation: none;
+        .side-rail-ad {
+            display: none;
         }
     }
 </style>
-
-<!-- World-Class Dynamic Rail System -->
-<script>
-class WorldClassRailSystem {
-    constructor() {
-        this.config = {
-            adSlots: {
-                left: '5231074513',
-                right: '2604911171'
-            },
-            adClient: 'ca-pub-7149683584202371',
-            minAdSpacing: 350, // Minimum pixels between ads
-            maxAdSpacing: 500, // Maximum pixels between ads
-            stickyAdInterval: 3, // Every 3rd ad becomes sticky
-            lazyLoadOffset: 200, // Load ads 200px before they enter viewport
-            minContentHeight: 800 // Minimum content height to show rail ads
-        };
-        
-        this.observers = {
-            intersection: null,
-            resize: null
-        };
-        
-        this.adCounter = {
-            left: 0,
-            right: 0
-        };
-        
-        this.contentElements = [];
-        this.railContainers = {
-            left: document.getElementById('leftRail'),
-            right: document.getElementById('rightRail')
-        };
-        
-        this.init();
-    }
-    
-    init() {
-        if (window.innerWidth < 992) return; // Only run on desktop
-        
-        // Wait for content to be fully loaded
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', () => this.setupRailSystem());
-        } else {
-            this.setupRailSystem();
-        }
-    }
-    
-    setupRailSystem() {
-        // Measure content and calculate optimal ad placement
-        setTimeout(() => {
-            this.analyzeContent();
-            this.calculateAdPlacements();
-            this.setupIntersectionObserver();
-            this.setupResizeObserver();
-        }, 500);
-    }
-    
-    analyzeContent() {
-        const mainContent = document.getElementById('mainContent');
-        if (!mainContent) return;
-        
-        this.contentHeight = mainContent.offsetHeight;
-        this.contentTop = mainContent.offsetTop;
-        
-        // Find natural break points in content (paragraphs, headers, etc.)
-        this.contentElements = Array.from(mainContent.querySelectorAll('p, h1, h2, h3, h4, h5, h6, blockquote, .highlight, img'))
-            .map(el => ({
-                element: el,
-                offsetTop: el.offsetTop,
-                height: el.offsetHeight
-            }))
-            .filter(item => item.height > 50); // Filter out very small elements
-    }
-    
-    calculateAdPlacements() {
-        if (this.contentHeight < this.config.minContentHeight) return;
-        
-        // Calculate how many ads we need
-        const availableHeight = this.contentHeight - 200; // Reserve space at top and bottom
-        const averageSpacing = (this.config.minAdSpacing + this.config.maxAdSpacing) / 2;
-        const maxAds = Math.floor(availableHeight / averageSpacing);
-        const optimalAdCount = Math.min(maxAds, 8); // Cap at 8 ads per rail
-        
-        // Generate smart placement positions
-        this.adPositions = this.generateSmartPlacements(optimalAdCount);
-        
-        // Create ad units for both rails
-        this.createAdUnits();
-    }
-    
-    generateSmartPlacements(adCount) {
-        const positions = [];
-        const contentStart = 100; // Start after header
-        const contentEnd = this.contentHeight - 200; // End before footer
-        const availableSpace = contentEnd - contentStart;
-        
-        // Distribute ads evenly with some randomization for natural feel
-        for (let i = 0; i < adCount; i++) {
-            const basePosition = contentStart + (availableSpace / (adCount + 1)) * (i + 1);
-            
-            // Find nearest natural break point
-            const nearestBreak = this.findNearestBreakPoint(basePosition);
-            const finalPosition = nearestBreak || basePosition;
-            
-            positions.push({
-                top: finalPosition,
-                sticky: (i + 1) % this.config.stickyAdInterval === 0
-            });
-        }
-        
-        return positions;
-    }
-    
-    findNearestBreakPoint(targetPosition) {
-        const threshold = 100; // Look within 100px
-        const candidates = this.contentElements.filter(item => 
-            Math.abs(item.offsetTop - targetPosition) <= threshold
-        );
-        
-        if (candidates.length === 0) return null;
-        
-        // Return the closest break point
-        return candidates.reduce((closest, current) => 
-            Math.abs(current.offsetTop - targetPosition) < Math.abs(closest.offsetTop - targetPosition) 
-                ? current : closest
-        ).offsetTop;
-    }
-    
-    createAdUnits() {
-        this.adPositions.forEach((position, index) => {
-            this.createAdUnit('left', position, index);
-            this.createAdUnit('right', position, index);
-        });
-    }
-    
-    createAdUnit(side, position, index) {
-        const container = this.railContainers[side]?.querySelector('.rail-sticky-wrapper');
-        if (!container) return;
-        
-        const adUnit = document.createElement('div');
-        adUnit.className = `dynamic-ad-unit ${position.sticky ? 'sticky' : ''}`;
-        adUnit.style.marginTop = index === 0 ? `${position.top}px` : '40px';
-        adUnit.setAttribute('data-side', side);
-        adUnit.setAttribute('data-index', index);
-        adUnit.setAttribute('data-lazy', 'true');
-        
-        // Create placeholder content
-        const placeholder = document.createElement('div');
-        placeholder.className = 'ad-placeholder loading';
-        placeholder.style.height = '250px';
-        placeholder.style.borderRadius = '8px';
-        
-        adUnit.appendChild(placeholder);
-        container.appendChild(adUnit);
-        
-        // Add animation delay
-        setTimeout(() => {
-            adUnit.classList.add('loaded');
-        }, index * 100);
-    }
-    
-    setupIntersectionObserver() {
-        this.observers.intersection = new IntersectionObserver(
-            (entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting && entry.target.hasAttribute('data-lazy')) {
-                        this.loadAdUnit(entry.target);
-                        entry.target.removeAttribute('data-lazy');
-                        this.observers.intersection.unobserve(entry.target);
-                    }
-                });
-            },
-            {
-                rootMargin: `${this.config.lazyLoadOffset}px`,
-                threshold: 0.1
-            }
-        );
-        
-        // Observe all ad units
-        document.querySelectorAll('.dynamic-ad-unit[data-lazy]').forEach(adUnit => {
-            this.observers.intersection.observe(adUnit);
-        });
-    }
-    
-    loadAdUnit(adUnit) {
-        const side = adUnit.getAttribute('data-side');
-        const adSlot = this.config.adSlots[side];
-        
-        // Remove placeholder
-        const placeholder = adUnit.querySelector('.ad-placeholder');
-        if (placeholder) placeholder.remove();
-        
-        // Create actual ad
-        const adsenseIns = document.createElement('ins');
-        adsenseIns.className = 'adsbygoogle';
-        adsenseIns.style.display = 'block';
-        adsenseIns.setAttribute('data-ad-client', this.config.adClient);
-        adsenseIns.setAttribute('data-ad-slot', adSlot);
-        adsenseIns.setAttribute('data-ad-format', 'auto');
-        adsenseIns.setAttribute('data-full-width-responsive', 'true');
-        
-        adUnit.appendChild(adsenseIns);
-        
-        // Initialize AdSense
-        try {
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        } catch (e) {
-            console.warn('AdSense initialization failed:', e);
-        }
-        
-        this.adCounter[side]++;
-    }
-    
-    setupResizeObserver() {
-        this.observers.resize = new ResizeObserver(
-            debounce(() => {
-                if (window.innerWidth < 992) {
-                    this.cleanup();
-                } else {
-                    this.refresh();
-                }
-            }, 300)
-        );
-        
-        this.observers.resize.observe(document.body);
-    }
-    
-    refresh() {
-        this.cleanup();
-        setTimeout(() => this.setupRailSystem(), 100);
-    }
-    
-    cleanup() {
-        // Clean up observers
-        if (this.observers.intersection) {
-            this.observers.intersection.disconnect();
-        }
-        
-        // Remove all dynamic ad units
-        document.querySelectorAll('.dynamic-ad-unit').forEach(unit => unit.remove());
-        
-        // Reset counters
-        this.adCounter = { left: 0, right: 0 };
-    }
-    
-    destroy() {
-        this.cleanup();
-        if (this.observers.resize) {
-            this.observers.resize.disconnect();
-        }
-    }
-}
-
-// Utility function for debouncing
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
-// Initialize the system
-let railSystem;
-document.addEventListener('DOMContentLoaded', function() {
-    railSystem = new WorldClassRailSystem();
-});
-
-// Cleanup on page unload
-window.addEventListener('beforeunload', function() {
-    if (railSystem) {
-        railSystem.destroy();
-    }
-});
-</script>
