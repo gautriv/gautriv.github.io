@@ -158,7 +158,6 @@ layout: default
         position: sticky;
         margin-bottom: 30px;
         border-radius: 8px;
-        overflow: hidden;
         background: #f8f9fa;
         border: 1px solid #e9ecef;
         transition: all 0.3s ease;
@@ -254,7 +253,6 @@ layout: default
     .side-rail-ad.ad-failed::after {
         content: "Ad failed to load";
         display: block;
-        padding: 20px;
         text-align: center;
         color: #666;
         font-size: 12px;
@@ -368,7 +366,7 @@ class IntelligentSideRails {
         
         const label = document.createElement('div');
         label.className = 'ad-label';
-        label.textContent = 'Advertisement';
+        label.textContent = '';
         
         const adIns = document.createElement('ins');
         adIns.className = 'adsbygoogle';
