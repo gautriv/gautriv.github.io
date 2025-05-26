@@ -166,14 +166,14 @@ layout: default
         transform: translateY(20px);
         animation: fadeInUp 0.6s ease forwards;
         top: 20px;
-        min-height: 250px;
+        min-height: 100px;
         width: 100%;
-        max-width: 300px;
+        max-width: 320px;
     }
     
     .side-rail-ad ins.adsbygoogle {
         display: block !important;
-        min-height: 200px;
+        min-height: 50px;
         width: 100% !important;
     }
     
@@ -326,8 +326,6 @@ class IntelligentSideRails {
         const contentHeight = this.postBody.offsetHeight;
         const minHeight = this.adConfig.minContentHeight;
         
-        console.log(`Setting up rails: Content height: ${contentHeight}px, Min height: ${minHeight}px`);
-        
         if (contentHeight < minHeight) {
             console.log('Content too short for side rail ads');
             return;
@@ -343,8 +341,6 @@ class IntelligentSideRails {
         
         // Setup sticky positioning
         this.setupStickyPositioning();
-        
-        console.log('Side rails setup completed successfully');
     }
     
     calculateAdCount(contentHeight) {
@@ -354,7 +350,6 @@ class IntelligentSideRails {
         const maxAds = Math.min(8, Math.max(1, Math.floor(contentHeight / 600))); // Dynamic max based on content, up to 8
         
         const totalAds = Math.min(baseAds + additionalAds, maxAds);
-        console.log(`Content height: ${contentHeight}px, Calculated ads: ${totalAds}`);
         return totalAds;
     }
     
@@ -369,8 +364,6 @@ class IntelligentSideRails {
             const adElement = this.createAdElement(slotId, i);
             container.appendChild(adElement);
         }
-        
-        console.log(`Created ${count} ${side} side ads`);
     }
     
     createAdElement(slotId, index) {
@@ -385,12 +378,10 @@ class IntelligentSideRails {
         const adIns = document.createElement('ins');
         adIns.className = 'adsbygoogle';
         adIns.style.display = 'block';
-        adIns.style.width = '300px';
-        adIns.style.height = '250px';
         adIns.setAttribute('data-ad-client', this.adConfig.client);
         adIns.setAttribute('data-ad-slot', slotId);
-        adIns.setAttribute('data-ad-format', 'rectangle');
-        adIns.setAttribute('data-full-width-responsive', 'false');
+        adIns.setAttribute('data-ad-format', 'auto');
+        adIns.setAttribute('data-full-width-responsive', 'true');
         
         adWrapper.appendChild(label);
         adWrapper.appendChild(adIns);
@@ -399,15 +390,33 @@ class IntelligentSideRails {
     }
     
     initLazyLoading() {
-        // Wait a bit for AdSense to fully load, then initialize all ads
-        setTimeout(() => {
-            const adElements = document.querySelectorAll('.side-rail-ad');
-            adElements.forEach((adElement, index) => {
+        // Wait for AdSense to be fully loaded
+        const waitForAdSense = () => {
+            if (typeof window.adsbygoogle !== 'undefined' && window.adsbygoogle.loaded) {
+                // AdSense is ready, load all ads
+                const adElements = document.querySelectorAll('.side-rail-ad');
+                adElements.forEach((adElement, index) => {
+                    setTimeout(() => {
+                        this.loadAd(adElement);
+                    }, index * 200); // Stagger more
+                });
+            } else if (typeof window.adsbygoogle !== 'undefined' && Array.isArray(window.adsbygoogle)) {
+                // AdSense array exists, try loading after a delay
                 setTimeout(() => {
-                    this.loadAd(adElement);
-                }, index * 100); // Stagger the loading slightly
-            });
-        }, 1000);
+                    const adElements = document.querySelectorAll('.side-rail-ad');
+                    adElements.forEach((adElement, index) => {
+                        setTimeout(() => {
+                            this.loadAd(adElement);
+                        }, index * 200);
+                    });
+                }, 2000);
+            } else {
+                // Wait longer for AdSense
+                setTimeout(waitForAdSense, 500);
+            }
+        };
+        
+        waitForAdSense();
     }
     
     loadAd(adElement) {
@@ -415,26 +424,32 @@ class IntelligentSideRails {
         adElement.classList.remove('loading');
         adElement.classList.add('visible');
         
+        console.log('Loading ad...', adElement);
+        
         // Initialize AdSense with better error handling
         try {
             // Ensure adsbygoogle array exists
             if (typeof window.adsbygoogle === 'undefined') {
                 window.adsbygoogle = [];
-                console.warn('AdSense not loaded yet, initializing array');
+                console.log('Created adsbygoogle array');
             }
             
             // Check if AdSense script is loaded
             if (typeof window.adsbygoogle.push === 'function') {
+                console.log('Pushing ad to AdSense...');
                 window.adsbygoogle.push({});
-                console.log('Ad initialized successfully');
+                console.log('Ad pushed successfully');
             } else {
-                console.warn('AdSense push function not available');
+                console.warn('AdSense push function not available, retrying...');
                 // Try again after a delay
                 setTimeout(() => {
                     try {
                         if (window.adsbygoogle && typeof window.adsbygoogle.push === 'function') {
+                            console.log('Retry: Pushing ad to AdSense...');
                             window.adsbygoogle.push({});
-                            console.log('Ad initialized successfully (retry)');
+                            console.log('Retry: Ad pushed successfully');
+                        } else {
+                            console.error('AdSense still not ready after retry');
                         }
                     } catch (retryError) {
                         console.warn('AdSense retry failed:', retryError);
