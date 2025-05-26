@@ -166,6 +166,15 @@ layout: default
         transform: translateY(20px);
         animation: fadeInUp 0.6s ease forwards;
         top: 20px;
+        min-height: 250px;
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .side-rail-ad ins.adsbygoogle {
+        display: block !important;
+        min-height: 200px;
+        width: 100% !important;
     }
     
     .side-rail-ad.visible {
@@ -242,6 +251,20 @@ layout: default
         animation: loading 1.5s infinite;
     }
     
+    .side-rail-ad.ad-failed {
+        background: #ffe6e6;
+        border-color: #ffcccc;
+    }
+    
+    .side-rail-ad.ad-failed::after {
+        content: "Ad failed to load";
+        display: block;
+        padding: 20px;
+        text-align: center;
+        color: #666;
+        font-size: 12px;
+    }
+    
     @keyframes loading {
         0% { background-position: 200% 0; }
         100% { background-position: -200% 0; }
@@ -269,6 +292,9 @@ class IntelligentSideRails {
     }
     
     init() {
+        // Ensure AdSense script is loaded
+        this.ensureAdSenseLoaded();
+        
         // Wait for content to load
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', () => this.setupRails());
@@ -283,9 +309,24 @@ class IntelligentSideRails {
         window.addEventListener('scroll', this.throttle(() => this.handleScroll(), 16));
     }
     
+    ensureAdSenseLoaded() {
+        // Initialize adsbygoogle array if it doesn't exist
+        if (typeof window.adsbygoogle === 'undefined') {
+            window.adsbygoogle = [];
+        }
+        
+        // Check if AdSense script is already loaded
+        const existingScript = document.querySelector('script[src*="adsbygoogle"]');
+        if (!existingScript) {
+            console.log('AdSense script not found, but will rely on existing page load');
+        }
+    }
+    
     setupRails() {
         const contentHeight = this.postBody.offsetHeight;
         const minHeight = this.adConfig.minContentHeight;
+        
+        console.log(`Setting up rails: Content height: ${contentHeight}px, Min height: ${minHeight}px`);
         
         if (contentHeight < minHeight) {
             console.log('Content too short for side rail ads');
@@ -302,6 +343,8 @@ class IntelligentSideRails {
         
         // Setup sticky positioning
         this.setupStickyPositioning();
+        
+        console.log('Side rails setup completed successfully');
     }
     
     calculateAdCount(contentHeight) {
@@ -342,10 +385,12 @@ class IntelligentSideRails {
         const adIns = document.createElement('ins');
         adIns.className = 'adsbygoogle';
         adIns.style.display = 'block';
+        adIns.style.width = '300px';
+        adIns.style.height = '250px';
         adIns.setAttribute('data-ad-client', this.adConfig.client);
         adIns.setAttribute('data-ad-slot', slotId);
-        adIns.setAttribute('data-ad-format', 'auto');
-        adIns.setAttribute('data-full-width-responsive', 'true');
+        adIns.setAttribute('data-ad-format', 'rectangle');
+        adIns.setAttribute('data-full-width-responsive', 'false');
         
         adWrapper.appendChild(label);
         adWrapper.appendChild(adIns);
@@ -354,21 +399,15 @@ class IntelligentSideRails {
     }
     
     initLazyLoading() {
-        const adElements = document.querySelectorAll('.side-rail-ad');
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && !entry.target.classList.contains('loaded')) {
-                    this.loadAd(entry.target);
-                    entry.target.classList.add('loaded');
-                }
+        // Wait a bit for AdSense to fully load, then initialize all ads
+        setTimeout(() => {
+            const adElements = document.querySelectorAll('.side-rail-ad');
+            adElements.forEach((adElement, index) => {
+                setTimeout(() => {
+                    this.loadAd(adElement);
+                }, index * 100); // Stagger the loading slightly
             });
-        }, {
-            rootMargin: '100px',
-            threshold: 0.1
-        });
-        
-        adElements.forEach(ad => observer.observe(ad));
+        }, 1000);
     }
     
     loadAd(adElement) {
@@ -376,11 +415,37 @@ class IntelligentSideRails {
         adElement.classList.remove('loading');
         adElement.classList.add('visible');
         
-        // Initialize AdSense
+        // Initialize AdSense with better error handling
         try {
-            (adsbygoogle = window.adsbygoogle || []).push({});
+            // Ensure adsbygoogle array exists
+            if (typeof window.adsbygoogle === 'undefined') {
+                window.adsbygoogle = [];
+                console.warn('AdSense not loaded yet, initializing array');
+            }
+            
+            // Check if AdSense script is loaded
+            if (typeof window.adsbygoogle.push === 'function') {
+                window.adsbygoogle.push({});
+                console.log('Ad initialized successfully');
+            } else {
+                console.warn('AdSense push function not available');
+                // Try again after a delay
+                setTimeout(() => {
+                    try {
+                        if (window.adsbygoogle && typeof window.adsbygoogle.push === 'function') {
+                            window.adsbygoogle.push({});
+                            console.log('Ad initialized successfully (retry)');
+                        }
+                    } catch (retryError) {
+                        console.warn('AdSense retry failed:', retryError);
+                    }
+                }, 2000);
+            }
+            
         } catch (e) {
-            console.log('AdSense not ready yet');
+            console.warn('AdSense initialization failed:', e);
+            // Mark element as failed for styling
+            adElement.classList.add('ad-failed');
         }
     }
     
