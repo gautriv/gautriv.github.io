@@ -49,33 +49,24 @@ layout: default
     </div>
 </div>
 
-<!-- Main content with side rail ads -->
-<div class="container-fluid">
+<!-- Enhanced Main content with intelligent side rail ads -->
+<div class="container-fluid post-content-wrapper" id="postContentWrapper">
     <div class="row">
-        <!-- Left Side Rail Ad -->
-        <div class="col-lg-2 d-none d-lg-block">
-            <div class="side-rail-ad left-rail" style="position: sticky; top: 20px;">
-                <!-- Google AdSense Left Side Rail -->
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-7149683584202371"
-                     data-ad-slot="5231074513"
-                     data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>
-                <script>
-                     (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
+        <!-- Intelligent Left Side Rail -->
+        <div class="col-xl-2 d-none d-xl-block">
+            <div class="side-rail-container left-rail" id="leftRail">
+                <!-- Dynamic ads will be inserted here -->
             </div>
         </div>
         
         <!-- Main Content -->
-        <div class="col-lg-8">
+        <div class="col-xl-8 col-lg-12">
             <div class="container">
                 <div class="row">
-                    <main class="post blog-post col-lg-12">
+                    <main class="post blog-post col-12" id="mainContent">
                         <div class="post-content-wrapper">
                             <div class="post-content">
-                                <div class="post-body">
+                                <div class="post-body" id="postBody">
                                     {{content}}
                                 </div>
                                 
@@ -87,19 +78,10 @@ layout: default
             </div>
         </div>
         
-        <!-- Right Side Rail Ad -->
-        <div class="col-lg-2 d-none d-lg-block">
-            <div class="side-rail-ad right-rail" style="position: sticky; top: 20px;">
-                <!-- Google AdSense Right Side Rail -->
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-7149683584202371"
-                     data-ad-slot="2604911171"
-                     data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>
-                <script>
-                     (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
+        <!-- Intelligent Right Side Rail -->
+        <div class="col-xl-2 d-none d-xl-block">
+            <div class="side-rail-container right-rail" id="rightRail">
+                <!-- Dynamic ads will be inserted here -->
             </div>
         </div>
     </div>
@@ -164,16 +146,300 @@ layout: default
 
 {% include multiplex.html %}
 
-<!-- Add custom CSS for side rail ads -->
+<!-- Enhanced CSS for intelligent side rail ads -->
 <style>
-    .side-rail-ad {
-        min-height: 600px;
-        margin-bottom: 20px;
+    .side-rail-container {
+        position: relative;
+        min-height: 100vh;
+        padding: 20px 10px;
     }
     
-    @media (max-width: 991px) {
-        .side-rail-ad {
-            display: none;
+    .side-rail-ad {
+        position: sticky;
+        margin-bottom: 30px;
+        border-radius: 8px;
+        overflow: hidden;
+        background: #f8f9fa;
+        border: 1px solid #e9ecef;
+        transition: all 0.3s ease;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeInUp 0.6s ease forwards;
+        top: 20px;
+    }
+    
+    .side-rail-ad.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    .side-rail-ad:hover {
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        transform: translateY(-2px);
+    }
+    
+    .side-rail-ad .ad-label {
+        font-size: 10px;
+        color: #6c757d;
+        text-align: center;
+        padding: 4px 8px;
+        background: #e9ecef;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-weight: 500;
+    }
+    
+    .left-rail .side-rail-ad {
+        animation-delay: 0.2s;
+    }
+    
+    .right-rail .side-rail-ad {
+        animation-delay: 0.4s;
+    }
+    
+    .side-rail-ad:nth-child(2) { animation-delay: 0.6s; }
+    .side-rail-ad:nth-child(3) { animation-delay: 0.8s; }
+    .side-rail-ad:nth-child(4) { animation-delay: 1.0s; }
+    
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
         }
     }
+    
+    /* Responsive design */
+    @media (max-width: 1199px) {
+        .side-rail-container {
+            display: none !important;
+        }
+    }
+    
+    @media (min-width: 1400px) {
+        .side-rail-container {
+            padding: 20px 15px;
+        }
+    }
+    
+    /* Performance optimizations */
+    .side-rail-ad ins {
+        display: block !important;
+    }
+    
+    /* Smooth scrolling for ad positioning */
+    .post-content-wrapper {
+        scroll-behavior: smooth;
+    }
+    
+    /* Loading state */
+    .side-rail-ad.loading {
+        background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+        background-size: 200% 100%;
+        animation: loading 1.5s infinite;
+    }
+    
+    @keyframes loading {
+        0% { background-position: 200% 0; }
+        100% { background-position: -200% 0; }
+    }
 </style>
+
+<!-- Intelligent Side Rail Management Script -->
+<script>
+class IntelligentSideRails {
+    constructor() {
+        this.leftRail = document.getElementById('leftRail');
+        this.rightRail = document.getElementById('rightRail');
+        this.postBody = document.getElementById('postBody');
+        this.mainContent = document.getElementById('mainContent');
+        
+        this.adConfig = {
+            client: 'ca-pub-7149683584202371',
+            leftSlots: ['5231074513'], // Your existing left slot
+            rightSlots: ['2604911171'], // Your existing right slot
+            minContentHeight: 800, // Minimum content height to show ads
+            adSpacing: 400 // Reduced spacing between ads for longer content
+        };
+        
+        this.init();
+    }
+    
+    init() {
+        // Wait for content to load
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => this.setupRails());
+        } else {
+            this.setupRails();
+        }
+        
+        // Handle resize events
+        window.addEventListener('resize', this.debounce(() => this.handleResize(), 250));
+        
+        // Handle scroll for performance
+        window.addEventListener('scroll', this.throttle(() => this.handleScroll(), 16));
+    }
+    
+    setupRails() {
+        const contentHeight = this.postBody.offsetHeight;
+        const minHeight = this.adConfig.minContentHeight;
+        
+        if (contentHeight < minHeight) {
+            console.log('Content too short for side rail ads');
+            return;
+        }
+        
+        const adCount = this.calculateAdCount(contentHeight);
+        
+        this.createAds('left', adCount);
+        this.createAds('right', adCount);
+        
+        // Initialize intersection observer for lazy loading
+        this.initLazyLoading();
+        
+        // Setup sticky positioning
+        this.setupStickyPositioning();
+    }
+    
+    calculateAdCount(contentHeight) {
+        // Calculate how many ads can fit based on content height
+        const baseAds = 1;
+        const additionalAds = Math.floor((contentHeight - this.adConfig.minContentHeight) / this.adConfig.adSpacing);
+        const maxAds = Math.min(8, Math.max(1, Math.floor(contentHeight / 600))); // Dynamic max based on content, up to 8
+        
+        const totalAds = Math.min(baseAds + additionalAds, maxAds);
+        console.log(`Content height: ${contentHeight}px, Calculated ads: ${totalAds}`);
+        return totalAds;
+    }
+    
+    createAds(side, count) {
+        const container = side === 'left' ? this.leftRail : this.rightRail;
+        const slots = side === 'left' ? this.adConfig.leftSlots : this.adConfig.rightSlots;
+        
+        for (let i = 0; i < count; i++) {
+            // Rotate through available slots
+            const slotIndex = i % slots.length;
+            const slotId = slots[slotIndex];
+            const adElement = this.createAdElement(slotId, i);
+            container.appendChild(adElement);
+        }
+        
+        console.log(`Created ${count} ${side} side ads`);
+    }
+    
+    createAdElement(slotId, index) {
+        const adWrapper = document.createElement('div');
+        adWrapper.className = 'side-rail-ad loading';
+        adWrapper.style.top = `${20 + (index * 60)}px`; // Better spacing calculation
+        
+        const label = document.createElement('div');
+        label.className = 'ad-label';
+        label.textContent = 'Advertisement';
+        
+        const adIns = document.createElement('ins');
+        adIns.className = 'adsbygoogle';
+        adIns.style.display = 'block';
+        adIns.setAttribute('data-ad-client', this.adConfig.client);
+        adIns.setAttribute('data-ad-slot', slotId);
+        adIns.setAttribute('data-ad-format', 'auto');
+        adIns.setAttribute('data-full-width-responsive', 'true');
+        
+        adWrapper.appendChild(label);
+        adWrapper.appendChild(adIns);
+        
+        return adWrapper;
+    }
+    
+    initLazyLoading() {
+        const adElements = document.querySelectorAll('.side-rail-ad');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.classList.contains('loaded')) {
+                    this.loadAd(entry.target);
+                    entry.target.classList.add('loaded');
+                }
+            });
+        }, {
+            rootMargin: '100px',
+            threshold: 0.1
+        });
+        
+        adElements.forEach(ad => observer.observe(ad));
+    }
+    
+    loadAd(adElement) {
+        // Remove loading class and add visible class
+        adElement.classList.remove('loading');
+        adElement.classList.add('visible');
+        
+        // Initialize AdSense
+        try {
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        } catch (e) {
+            console.log('AdSense not ready yet');
+        }
+    }
+    
+    setupStickyPositioning() {
+        const rails = [this.leftRail, this.rightRail];
+        
+        rails.forEach(rail => {
+            if (rail) {
+                rail.style.position = 'sticky';
+                rail.style.top = '20px';
+                rail.style.height = 'fit-content';
+            }
+        });
+    }
+    
+    handleResize() {
+        // Recalculate ad positions on resize
+        this.clearRails();
+        this.setupRails();
+    }
+    
+    handleScroll() {
+        // Optional: Add any scroll-based behaviors here
+        // Currently keeping it minimal for performance
+    }
+    
+    clearRails() {
+        [this.leftRail, this.rightRail].forEach(rail => {
+            if (rail) rail.innerHTML = '';
+        });
+    }
+    
+    // Utility functions
+    debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+    
+    throttle(func, limit) {
+        let inThrottle;
+        return function() {
+            const args = arguments;
+            const context = this;
+            if (!inThrottle) {
+                func.apply(context, args);
+                inThrottle = true;
+                setTimeout(() => inThrottle = false, limit);
+            }
+        }
+    }
+}
+
+// Initialize the intelligent side rails
+new IntelligentSideRails();
+</script>
