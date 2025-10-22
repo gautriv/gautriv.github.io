@@ -325,6 +325,7 @@ class IntelligentSideRails {
         }
         
         const adCount = this.calculateAdCount(contentHeight);
+        console.log(`Setting up ${adCount} ad(s) per side rail (total ${adCount * 2} side rail ads)`);
         
         this.createAds('left', adCount);
         this.createAds('right', adCount);
@@ -338,11 +339,11 @@ class IntelligentSideRails {
     
     calculateAdCount(contentHeight) {
         // Calculate how many ads can fit based on content height
+
         const baseAds = 1;
-        const additionalAds = Math.floor((contentHeight - this.adConfig.minContentHeight) / this.adConfig.adSpacing);
-        const maxAds = Math.min(8, Math.max(1, Math.floor(contentHeight / 600))); // Dynamic max based on content, up to 8
+        const maxAds = 1; // Changed from 8 to 1 to avoid AdSense limit issues
         
-        const totalAds = Math.min(baseAds + additionalAds, maxAds);
+        const totalAds = Math.min(baseAds, maxAds);
         return totalAds;
     }
     
@@ -427,21 +428,39 @@ class IntelligentSideRails {
             // Check if AdSense script is loaded
             if (typeof window.adsbygoogle.push === 'function') {
                 window.adsbygoogle.push({});
+                console.log('AdSense ad pushed successfully');
+                
+                // Check if ad loaded after 3 seconds
+                setTimeout(() => {
+                    const insElement = adElement.querySelector('ins.adsbygoogle');
+                    if (insElement && insElement.getAttribute('data-ad-status') === 'unfilled') {
+                        console.warn('Ad unfilled - no inventory available');
+                        adElement.classList.add('ad-failed');
+                    } else if (!insElement || insElement.innerHTML === '') {
+                        console.warn('Ad failed to render');
+                        adElement.classList.add('ad-failed');
+                    }
+                }, 3000);
             } else {
+                console.warn('AdSense not ready, will retry');
                 // Try again after a delay
                 setTimeout(() => {
                     try {
                         if (window.adsbygoogle && typeof window.adsbygoogle.push === 'function') {
                             window.adsbygoogle.push({});
+                        } else {
+                            console.error('AdSense still not ready after retry');
+                            adElement.classList.add('ad-failed');
                         }
                     } catch (retryError) {
                         console.warn('AdSense retry failed:', retryError);
+                        adElement.classList.add('ad-failed');
                     }
                 }, 2000);
             }
             
         } catch (e) {
-            console.warn('AdSense initialization failed:', e);
+            console.error('AdSense initialization failed:', e);
             adElement.classList.add('ad-failed');
         }
     }

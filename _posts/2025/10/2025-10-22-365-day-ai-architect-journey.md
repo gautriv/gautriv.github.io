@@ -45,19 +45,6 @@ I built it because I was tired of waiting for permission to start.
 
 That was 49 days ago. And now I'm sharing this because maybe you're in the same place I was 7 weeks ago.
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7149683584202371"
-     crossorigin="anonymous"></script>
-<!-- AddTitleOne -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-7149683584202371"
-     data-ad-slot="7422872052"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
 ## The conversation that wouldn't leave my head
 
 Two weeks before I built this app, I had coffee with my former colleague—let's call him Raj. He's been in tech for 15 years. Solid engineer. Good problem solver.
@@ -137,19 +124,6 @@ So I built a learning path for myself. Then I turned it into an app. Because if 
 </div>
 
 The pattern here isn't revolutionary tech—it's behavioral design. Duolingo proved gamification works for language learning. GitHub proved streaks drive consistency. I'm applying the same psychology to becoming an AI Solutions Architect.
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7149683584202371"
-     crossorigin="anonymous"></script>
-<!-- AddTitleOne -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-7149683584202371"
-     data-ad-slot="7422872052"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
 
 ## How I built this in one evening (confession: I almost didn't)
 
@@ -316,19 +290,6 @@ Does it work? Embarrassingly well.
 
 The XP, badges, progress bars—they're not just decoration. They're making the invisible visible. You're not vaguely "learning AI." You're at 247 XP with a 14-day streak and "Level 2—Flow" badge. That's concrete. That's a different identity. That's proof.
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7149683584202371"
-     crossorigin="anonymous"></script>
-<!-- AddTitleOne -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-7149683584202371"
-     data-ad-slot="7422872052"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
 ## What a typical day actually looks like
 
 Let me show you what "2 hours of learning" actually means in practice. Here's Day 47 (middle of Season 2):
@@ -350,19 +311,6 @@ Notice what's *not* here:
 - No 6-hour rabbit hole—the task is scoped to what you can finish
 - No floating knowledge—it's building toward the CSA certification
 - No isolation—you're connecting it to what you already know (Make.com logic)
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7149683584202371"
-     crossorigin="anonymous"></script>
-<!-- AddTitleOne -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-7149683584202371"
-     data-ad-slot="7422872052"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
 
 ## What this won't do (the part most people skip)
 
@@ -793,19 +741,6 @@ And if I disappear after Day 100? Call me out. Seriously. Accountability works b
 
 I don't know if I'll make it to Day 365. But I know 49 days ago, I didn't think I'd make it to Day 50. And here I am.
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7149683584202371"
-     crossorigin="anonymous"></script>
-<!-- AddTitleOne -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-7149683584202371"
-     data-ad-slot="7422872052"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
 ## How to actually start (three paths, pick one)
 
 **Path 1: Run It on Your Machine (5 minutes)**
@@ -838,19 +773,6 @@ No Python. No cloud credentials. No imposter syndrome about "real developers."
 Just one small win. Then another. Then another.
 
 By Day 90, those small wins compound into something you can actually put on a resume.
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7149683584202371"
-     crossorigin="anonymous"></script>
-<!-- AddTitleOne -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-7149683584202371"
-     data-ad-slot="7422872052"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
 
 ## The question you're really asking (and the one you should be)
 
@@ -891,7 +813,7 @@ But I also know that on Day 365, I want to look back and see proof. Not perfect 
 - **Day 100** (51 days away): Detailed progress report—what's working, what's not
 - **Day 180** (131 days away): ServiceNow CSA certified (that's the goal)
 - **Day 270** (221 days away): Production LangChain app solving a real problem
-- **Day 365** (316 days away): Portfolio and confidence to interview for AI architect rolesß
+- **Day 365** (316 days away): Portfolio and confidence to interview for AI architect roles
 
 If you're reading this and feeling that mix of "I want this" and "but what if I fail?"—that's the right feeling.
 
