@@ -14,6 +14,37 @@ section.featured-posts {
     margin-top: 20px !important;
 }
 
+/* ========================================
+   BLOG POST WIDTH OPTIMIZATION
+   ======================================== */
+
+/* Remove Bootstrap's default column padding for full width */
+#postContentWrapper .row {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+#postContentWrapper .col-xl-10,
+#postContentWrapper .col-xl-1 {
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+}
+
+.blog-post {
+    max-width: 100% !important;
+    padding: 0 30px !important; /* Minimal padding for readability */
+}
+
+.post-body {
+    max-width: 100% !important;
+}
+
+/* Remove extra padding from container-fluid */
+.container-fluid.post-content-wrapper {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
 /* Smooth Scroll Behavior */
 html {
     scroll-behavior: smooth;

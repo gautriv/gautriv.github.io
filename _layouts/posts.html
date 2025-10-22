@@ -53,33 +53,25 @@ layout: default
 <div class="container-fluid post-content-wrapper" id="postContentWrapper">
     <div class="row">
         <!-- Intelligent Left Side Rail -->
-        <div class="col-xl-2 d-none d-xl-block">
+        <div class="col-xl-1 d-none d-xl-block">
             <div class="side-rail-container left-rail" id="leftRail">
                 <!-- Dynamic ads will be inserted here -->
             </div>
         </div>
         
         <!-- Main Content -->
-        <div class="col-xl-8 col-lg-12">
-            <div class="container">
-                <div class="row">
-                    <main class="post blog-post col-12" id="mainContent">
-                        <div class="post-content-wrapper">
-                            <div class="post-content">
-                                <div class="post-body" id="postBody">
-                                    {{content}}
-                                </div>
-                                
-                                {% include previousnext.html %}
-                            </div>
-                        </div>
-                    </main>
+        <div class="col-xl-10 col-lg-12">
+            <main class="post blog-post" id="mainContent">
+                <div class="post-body" id="postBody">
+                    {{content}}
                 </div>
-            </div>
+                
+                {% include previousnext.html %}
+            </main>
         </div>
         
         <!-- Intelligent Right Side Rail -->
-        <div class="col-xl-2 d-none d-xl-block">
+        <div class="col-xl-1 d-none d-xl-block">
             <div class="side-rail-container right-rail" id="rightRail">
                 <!-- Dynamic ads will be inserted here -->
             </div>
@@ -90,7 +82,7 @@ layout: default
 <!-- Redesigned section starts here -->
 <div class="container post-footer-container mt-5">
     <div class="row">
-        <div class="col-lg-8 col-md-12 mx-auto">
+        <div class="col-lg-10 col-md-12 mx-auto">
             <!-- Share Bar -->
             <div class="post-share-section mb-5">
                 <h4 class="section-title"><span>Share This Post</span></h4>
