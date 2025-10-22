@@ -320,7 +320,7 @@ I need to be honest about what you're signing up for.
 
 Let me tell you what happened on Day 47.
 
-I was supposed to build my first incident workflow in ServiceNow. But my daughter had a school project due. My manager scheduled an unexpected call. My wife asked if I could handle dinner because she had a deadline.
+I was supposed to build my first incident workflow in ServiceNow. But my son had a school project due. One of my colleagues scheduled an unexpected call. My wife asked if I could handle dinner because she had a deadline.
 
 By 9 PM, I was exhausted. The streak was at 47 days. All I had to do was skip one day. Start fresh tomorrow.
 
