@@ -1,3 +1,19 @@
+/* ========================================
+   HOMEPAGE SPACING FIX - Remove all excessive padding
+   ======================================== */
+
+section.hero,
+section.intro,
+section.featured-posts {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.featured-posts-section {
+    padding: 0 !important;
+    margin-top: 20px !important;
+}
+
 /* Smooth Scroll Behavior */
 html {
     scroll-behavior: smooth;

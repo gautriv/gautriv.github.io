@@ -1,22 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Courses</title>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-  <style>
-    body {
-      background: #f8f9fa;
-      font-family: 'Arial', sans-serif;
-    }
-
+<style>
     .clb {
       color: #2c3e50;
       font-size: 2.5rem;
       font-weight: 700;
-      margin-bottom: 2rem;
+      margin: 1rem 0 1.5rem 0;
       position: relative;
       display: inline-block;
     }
@@ -45,7 +32,7 @@
 
     .nav-tabs {
       border: none;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
@@ -128,7 +115,8 @@
     .course-content {
       background: white;
       border-radius: 20px;
-      padding: 2.5rem;
+      padding: 2rem;
+      margin-bottom: 1rem;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
       transition: all 0.3s ease;
       position: relative;
@@ -154,7 +142,7 @@
       font-size: 2rem;
       color: #2c3e50;
       font-weight: 700;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
       line-height: 1.3;
     }
 
@@ -162,14 +150,14 @@
       font-size: 1.1rem;
       color: #34495e;
       line-height: 1.8;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
     }
 
     .course-features {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 2rem;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
     }
 
     .feature-item {
@@ -218,10 +206,12 @@
 
       .course-content {
         padding: 1.5rem;
+        margin-bottom: 0.5rem;
       }
 
       .course-title {
         font-size: 1.5rem;
+        margin-bottom: 1rem;
       }
 
       .course-description {
@@ -245,9 +235,7 @@
       }
     }
   </style>
-</head>
-<body>
-  <div class="container py-5">
+  <div class="container">
     <!-- Title -->
     <h1 class="text-center clb">Free courses</h1>
 
@@ -333,8 +321,6 @@
     </div>
   </div>
 
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
   <script>
     // Add smooth scrolling to all links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -367,5 +353,3 @@
       observer.observe(item);
     });
   </script>
-</body>
-</html>
