@@ -337,13 +337,8 @@ class IntelligentSideRails {
     }
     
     calculateAdCount(contentHeight) {
-        // Calculate how many ads can fit based on content height
-        const baseAds = 1;
-        const additionalAds = Math.floor((contentHeight - this.adConfig.minContentHeight) / this.adConfig.adSpacing);
-        const maxAds = Math.min(8, Math.max(1, Math.floor(contentHeight / 600))); // Dynamic max based on content, up to 8
-        
-        const totalAds = Math.min(baseAds + additionalAds, maxAds);
-        return totalAds;
+        // Only 1 ad per side to avoid duplicate slot IDs
+        return 1;
     }
     
     createAds(side, count) {
