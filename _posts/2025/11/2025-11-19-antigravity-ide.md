@@ -2,13 +2,13 @@
 title: "Google Antigravity IDE just dropped. I tested it immediately and here's what you need to know"
 subtitle: "Google released Antigravity IDE this morning alongside Gemini 3. I spent my entire day testing it. The results surprised me."
 category: AI
-image: "/assets/antigravity-ide.png"
-header-img: "/assets/antigravity-ide.png"
+image: "/assets/antigravity.png"
+header-img: "/assets/antigravity.png"
 seo_keywords: "Google Antigravity IDE, Antigravity vs Cursor, best AI IDE 2025, Google Gemini 3 IDE, Gemini 3 Pro features, agentic development platform, AI code editor for technical writers, documentation automation IDE, Antigravity IDE review, Google IDE vs VS Code, AI-powered documentation tools, technical writing IDE 2025, Cursor alternative, GitHub Copilot vs Antigravity, documentation workflow automation, Gemini 3 benchmark scores, multi-agent AI coding"
 permalink: /google-antigravity-ide-technical-writers/
 og_title: "Google Antigravity IDE review: a technical writer's same-day testing"
 og_description: "Google released Antigravity IDE today. I dropped everything to test it. Here's what happened when I threw my broken documentation website at Google's new multi-agent AI platform."
-og_image: "/assets/antigravity-ide.png"
+og_image: "/assets/antigravity.png"
 twitter_card: "summary_large_image"
 alt_text: "Google Antigravity IDE interface showing AI-powered documentation workflow"
 faqs:
