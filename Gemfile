@@ -2,6 +2,7 @@ source "https://rubygems.org"
 
 gem "jekyll"
 gem "kramdown-parser-gfm"
+gem "addressable", ">= 2.8.7"
 
 
 group :jekyll_plugins do
@@ -25,4 +26,4 @@ end
 # Performance-booster for watching directories on Windows
 gem "wdm", "~> 0.1.1", :install_if => Gem.win_platform?
 
-gem "webrick", "~> 1.7.0"
+gem "webrick", "~> 1.9"

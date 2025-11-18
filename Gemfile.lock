@@ -130,7 +130,7 @@ GEM
     unicode-display_width (2.6.0)
     uri (1.1.1)
     wdm (0.1.1)
-    webrick (1.7.0)
+    webrick (1.9.1)
 
 PLATFORMS
   arm64-darwin-25
@@ -138,6 +138,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  addressable (>= 2.8.7)
   jekyll
   jekyll-feed
   jekyll-include-cache
@@ -151,7 +152,7 @@ DEPENDENCIES
   tzinfo
   tzinfo-data
   wdm (~> 0.1.1)
-  webrick (~> 1.7.0)
+  webrick (~> 1.9)
 
 BUNDLED WITH
    2.7.2
