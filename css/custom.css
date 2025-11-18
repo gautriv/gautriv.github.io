@@ -82,7 +82,8 @@ html {
 .post-body > *:nth-child(5) { animation-delay: 0.5s; }
 .post-body > *:nth-child(n+6) { animation-delay: 0.6s; }
 
-/* Smooth Image Loading Animation */
+/* Smooth Image Loading Animation - disabled, was hiding images without JS */
+/*
 .post-body img {
     opacity: 0;
     transform: scale(0.95);
@@ -93,6 +94,7 @@ html {
     opacity: 1;
     transform: scale(1);
 }
+*/
 
 button.btn {
   border: none;
