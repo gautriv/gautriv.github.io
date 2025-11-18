@@ -10,11 +10,10 @@ group :jekyll_plugins do
   gem "jekyll-include-cache"
   gem "liquid-c"
   gem "jekyll-paginate"
-  gem 'jemoji'
+  gem 'jemoji', '~> 0.13.0'
   gem 'jekyll-seo-tag'
   gem "nokogiri", ">= 1.18.0"
   gem "jekyll-redirect-from"
-  gem "html-pipeline", ">= 2.14.3"
 end
 
 # Windows and JRuby does not include zoneinfo files, so bundle the tzinfo-data gem
