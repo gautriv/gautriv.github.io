@@ -666,7 +666,7 @@ A new IDE dropped today. Gemini 3 has impressive benchmarks. You might be wonder
 
 I don't know.
 
-Nobody does. And I'm deeply skeptical of anyone who claims they do. The people shouting "AI will replace all writers" have the same credibility as the people shouting "AI is just hype." Both camps are guessing with confidence they haven't earned.
+Nobody does. And I'm deeply skeptical of anyone who claims they do. The people shouting "AI will replace all writers" have the same credibility as the people shouting "AI is just hype or You will be replaced by someone using AI" Both camps are guessing with confidence they haven't earned.
 
 <div class="realization-callout">
 <p>Here's what I actually know: disruption is happening. I can either enjoy figuring it out or spend my energy resisting something that's already here. I've chosen to enjoy it. Not because I'm certain it will work in my favor, but because anxiety about the unknown hasn't historically been a useful strategy for me.</p>
