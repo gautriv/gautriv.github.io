@@ -70,7 +70,9 @@ Google claims Gemini 3 Pro outperforms GPT-5.1 on reasoning benchmarks. I haven'
 
 Here's the official benchmark comparison from Google:
 
-<img src="/assets/geminicomparison.png" alt="Gemini 3 Pro benchmark comparison showing performance across multiple tests against Gemini 2.5 Pro, Claude Sonnet 4.5, and GPT-5.1" width="650" height="900">
+<img src="/assets/geminicomparison.png"
+     alt="Gemini 3 Pro benchmark comparison"
+     style="max-width: 100%; height: auto; border-radius: 8px;">
 
 The numbers speak for themselves. Gemini 3 Pro leads in most categories, though Claude Sonnet 4.5 holds its own in certain areas. What matters for us is how this translates to actual documentation work.
 
