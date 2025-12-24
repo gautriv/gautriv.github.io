@@ -46,13 +46,13 @@ Instead, it became the year I had to fundamentally reconsider what my job even *
 <p>It kicked the door open.</p>
 </div>
 
-One day, you were confident in your craft. The next day, your tool was talking back—suggesting, correcting, sometimes outperforming you.
+One day, you were confident in your craft. The next day, your tool was talking back; suggesting, correcting, sometimes outperforming you.
 
 If this year felt intense, confusing, exciting, and slightly exhausting...good.
 
 That means you were paying attention.
 
-For me, this year became a deep learning experience in the truest sense of the phrase. Not just machine learning—but *human* learning.
+For me, this year became a deep learning experience in the truest sense of the phrase. Not just machine learning, but *human* learning.
 
 It started with a bang. And somehow… it managed to end with one too.
 
@@ -102,7 +102,7 @@ Outside of regular work, this year was about experimentation. While taking one o
 What if I actually tried to apply this instead of just understanding it?
 </div>
 
-Learning without experimentation felt incomplete. So I decided to run an experiment—one that would force me to learn, unlearn, and occasionally feel uncomfortable.
+Learning without experimentation felt incomplete. So I decided to run an experiment; one that would force me to learn, unlearn, and occasionally feel uncomfortable.
 
 I went looking for a real problem. It didn't take long.
 
@@ -157,7 +157,7 @@ That shift mattered. Because tools that work in theory are easy to build. Tools 
 
 Presenting CEA at PyCon India and STC India surfaced something important.
 
-Conferences this year weren't about answers. They were about admitting uncertainty—*together*.
+Conferences this year weren't about answers. They were about admitting uncertainty, *together*.
 
 The most honest conversations didn't happen on stage. They happened in hallways, over coffee, and in slightly uncomfortable pauses where someone finally said:
 
@@ -198,7 +198,7 @@ STC India stood out. It was a full house and an eager audience. By the end, thre
 ## Learning at an uncomfortable speed
 
 Yes, there was work. Yes, multiple new things were happening at the office.
-But somewhere between deadlines and curiosity, I managed to complete a few AI courses—especially the ones by Andrew Ng on AI Agents, along with another that pushed my thinking even further.
+But somewhere between deadlines and curiosity, I managed to complete a few AI courses, especially the ones by Andrew Ng on AI Agents, along with another that pushed my thinking even further.
 
 <div class="courses-grid">
   <div class="course-card">
@@ -227,7 +227,7 @@ Once you understand agents, orchestration, and autonomy, you stop asking *if* AI
 
 You start asking *who adapts fast enough*. That question doesn't come with a syllabus.
 
-## Work didn't "adopt" AI — it absorbed it
+## Work didn't "adopt" AI, it absorbed it
 
 By mid-year, something subtle happened. AI stopped being a separate initiative. It leaked into everything.
 
