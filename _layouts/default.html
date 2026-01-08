@@ -116,6 +116,13 @@
         </div>
     </section>
 
+    <!-- Newsletter Section-->
+    {% if page.hometype == "homepage" %}
+    <section class="newsletter-section">
+        {% include newsletter.html %}
+    </section>
+    {% endif %}
+
     <!-- Page Footer-->
     <footer class="main-footer">
         {% include footer.html %}
