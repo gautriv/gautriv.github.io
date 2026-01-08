@@ -7,32 +7,876 @@ tags: []
 status: publish
 type: page
 published: true
-
 ---
-<div class="contact">
-<h5>Feel free to <a href="mailto:trivedi.gaurav30@gmail.com"><u> send an email</a></u> or use the form below.</h5>
-<div class="container">
-  <div class="row">
-      <div class="col-lg-6">
-          <div class="contact-details">
-          <form accept-charset="UTF-8" action="https://getform.io/f/189a66c3-7947-439a-b6cf-aa1e6196236b" method="POST" enctype="multipart/form-data" target="_blank">
-              <div class="form-group">
-                <label for="exampleInputEmail1" required="required">Email address</label>
-                <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Type your email address">
-              </div>
-              <div class="form-group">
-                <label for="exampleInputName">Name</label>
-                <input type="text" name="name" class="form-control" id="exampleInputName" placeholder="Type your name" required="required">
-              </div>
-              <div class="form-group">
-                <label for="exampleFormControlSelect1">Message</label>
-                <input type="text" class="form-control" id="exampleInputName" placeholder="Type your message" required="required">
-              </div>
-              <hr>
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-          </div>
-      </div>
-  </div>
+
+<style>
+/* Import Google Font for distinctive typography */
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap');
+
+/* World-Class Contact Page */
+.contact-container {
+    font-family: 'Sora', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.contact-hero {
+    background: linear-gradient(165deg, #0c0f1a 0%, #1a1f35 50%, #0f172a 100%);
+    padding: 100px 0 80px;
+    position: relative;
+    overflow: hidden;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+}
+
+.contact-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(ellipse 80% 50% at 20% 40%, rgba(124, 58, 237, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 80% 60%, rgba(6, 182, 212, 0.1) 0%, transparent 50%),
+        radial-gradient(ellipse 40% 30% at 50% 80%, rgba(236, 72, 153, 0.08) 0%, transparent 50%);
+    pointer-events: none;
+    animation: heroGlow 8s ease-in-out infinite alternate;
+}
+
+@keyframes heroGlow {
+    0% { opacity: 0.7; }
+    100% { opacity: 1; }
+}
+
+/* Animated grid background */
+.contact-hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+}
+
+.contact-hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.contact-hero h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 20px;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    text-shadow: 0 4px 30px rgba(0,0,0,0.3);
+}
+
+.contact-hero h1 span {
+    background: linear-gradient(135deg, #a78bfa 0%, #06b6d4 50%, #ec4899 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.contact-hero p {
+    font-size: 1.25rem;
+    color: #94a3b8;
+    line-height: 1.8;
+    font-weight: 400;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Stats Bar */
+.contact-stats {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    margin-top: 50px;
+    flex-wrap: wrap;
+}
+
+.contact-stat {
+    text-align: center;
+    position: relative;
+}
+
+.contact-stat::after {
+    content: '';
+    position: absolute;
+    right: -30px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.2), transparent);
+}
+
+.contact-stat:last-child::after {
+    display: none;
+}
+
+.contact-stat-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 16px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #ffffff;
+}
+
+.contact-stat-icon.email { background: linear-gradient(135deg, #6366f1, #8b5cf6); }
+.contact-stat-icon.location { background: linear-gradient(135deg, #10b981, #059669); }
+.contact-stat-icon.response { background: linear-gradient(135deg, #f59e0b, #d97706); }
+
+.contact-stat-label {
+    font-size: 0.85rem;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 500;
+}
+
+.contact-stat-value {
+    font-size: 1rem;
+    color: #ffffff;
+    font-weight: 600;
+    margin-top: 6px;
+}
+
+/* Contact Section */
+.contact-section {
+    padding: 80px 0 120px;
+    background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+    position: relative;
+}
+
+.contact-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    background: linear-gradient(to bottom, #0f172a, transparent);
+    pointer-events: none;
+}
+
+/* Section Header */
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+    position: relative;
+    z-index: 1;
+}
+
+.section-header h2 {
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #a78bfa;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.section-header p {
+    font-size: 1.1rem;
+    color: #64748b;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* Contact Wrapper */
+.contact-wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 40px;
+    padding: 0 20px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Contact Info Card */
+.contact-info-card {
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-info-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    border-radius: 0 4px 4px 0;
+}
+
+.contact-info-card h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 8px;
+}
+
+.contact-info-card .subtitle {
+    color: #64748b;
+    font-size: 0.95rem;
+    margin-bottom: 32px;
+    line-height: 1.6;
+}
+
+.contact-method {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px;
+    margin-bottom: 12px;
+    background: #f8fafc;
+    border-radius: 16px;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.contact-method:hover {
+    background: #ffffff;
+    border-color: #e2e8f0;
+    transform: translateX(8px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.contact-method-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.contact-method-icon.email { background: linear-gradient(135deg, #6366f1, #8b5cf6); }
+.contact-method-icon.location { background: linear-gradient(135deg, #10b981, #059669); }
+.contact-method-icon.time { background: linear-gradient(135deg, #f59e0b, #d97706); }
+
+.contact-method-content h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #0f172a;
+    margin: 0 0 4px;
+}
+
+.contact-method-content p {
+    color: #64748b;
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+.contact-method-content a {
+    color: #6366f1;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.25s ease;
+}
+
+.contact-method-content a:hover {
+    color: #4f46e5;
+}
+
+/* Social Links */
+.contact-social {
+    margin-top: 32px;
+    padding-top: 32px;
+    border-top: 1px solid #f1f5f9;
+}
+
+.contact-social h4 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #64748b;
+    margin-bottom: 20px;
+}
+
+.contact-social-links {
+    display: flex;
+    gap: 12px;
+}
+
+.contact-social-links a {
+    width: 48px;
+    height: 48px;
+    background: #f8fafc;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #475569;
+    font-size: 18px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid transparent;
+}
+
+.contact-social-links a:hover {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: #ffffff;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 25px -8px rgba(99, 102, 241, 0.5);
+    border-color: transparent;
+}
+
+/* Contact Form Card */
+.contact-form-card {
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.contact-form-card h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 8px;
+}
+
+.contact-form-card .subtitle {
+    color: #64748b;
+    font-size: 0.95rem;
+    margin-bottom: 32px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 10px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 16px 20px;
+    border: 2px solid #e2e8f0;
+    border-radius: 14px;
+    font-size: 1rem;
+    color: #0f172a;
+    background: #f8fafc;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: 'Sora', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #94a3b8;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #6366f1;
+    background: #ffffff;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 150px;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 18px 32px;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    box-shadow: 0 8px 25px -8px rgba(99, 102, 241, 0.5);
+    font-family: 'Sora', -apple-system, BlinkMacSystemFont, sans-serif;
+    position: relative;
+    overflow: hidden;
+}
+
+.submit-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.submit-btn:hover::before {
+    opacity: 1;
+}
+
+.submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 35px -10px rgba(99, 102, 241, 0.6);
+}
+
+.submit-btn i {
+    font-size: 0.9rem;
+    transition: transform 0.3s ease;
+}
+
+.submit-btn:hover i {
+    transform: translateX(6px);
+}
+
+/* FAQ Section */
+.faq-section {
+    max-width: 900px;
+    margin: 80px auto 0;
+    padding: 0 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.faq-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.faq-header h3 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 10px;
+}
+
+.faq-header p {
+    color: #64748b;
+    font-size: 1rem;
+}
+
+.faq-item {
+    background: #ffffff;
+    border-radius: 16px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+.faq-item.active {
+    box-shadow: 0 12px 40px rgba(99, 102, 241, 0.12);
+    border-color: rgba(99, 102, 241, 0.2);
+}
+
+.faq-question {
+    padding: 24px 28px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    transition: all 0.3s ease;
+}
+
+.faq-question h4 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #0f172a;
+    margin: 0;
+    transition: color 0.3s ease;
+}
+
+.faq-item.active .faq-question h4 {
+    color: #6366f1;
+}
+
+.faq-toggle {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: #f8fafc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #94a3b8;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.faq-item.active .faq-toggle {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: #ffffff;
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.faq-item.active .faq-answer {
+    max-height: 500px;
+}
+
+.faq-answer-content {
+    padding: 0 28px 24px;
+    color: #64748b;
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+/* Animations */
+.contact-info-card,
+.contact-form-card,
+.faq-item {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.contact-info-card { animation-delay: 0.1s; }
+.contact-form-card { animation-delay: 0.2s; }
+.faq-item:nth-child(1) { animation-delay: 0.3s; }
+.faq-item:nth-child(2) { animation-delay: 0.35s; }
+.faq-item:nth-child(3) { animation-delay: 0.4s; }
+.faq-item:nth-child(4) { animation-delay: 0.45s; }
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+    .contact-hero h1 {
+        font-size: 2.8rem;
+    }
+    
+    .contact-stats {
+        gap: 40px;
+    }
+    
+    .contact-stat::after {
+        right: -20px;
+    }
+    
+    .contact-wrapper {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}
+
+@media (max-width: 767px) {
+    .contact-hero {
+        padding: 70px 0 50px;
+    }
+    
+    .contact-hero h1 {
+        font-size: 2.2rem;
+    }
+    
+    .contact-hero p {
+        font-size: 1.1rem;
+    }
+    
+    .contact-stats {
+        gap: 30px;
+    }
+    
+    .contact-stat::after {
+        display: none;
+    }
+    
+    .contact-section {
+        padding: 60px 0 80px;
+    }
+    
+    .contact-info-card,
+    .contact-form-card {
+        padding: 28px;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-method {
+        padding: 16px;
+    }
+    
+    .contact-method:hover {
+        transform: translateX(0);
+    }
+    
+    .faq-question {
+        padding: 20px;
+    }
+    
+    .faq-answer-content {
+        padding: 0 20px 20px;
+    }
+}
+</style>
+
+<div class="contact-container">
+    <!-- Hero Section -->
+    <div class="contact-hero">
+        <div class="contact-hero-content">
+            <h1>Let's <span>Connect</span></h1>
+            <p>Have a question, want to collaborate, or just want to say hello? I'd love to hear from you.</p>
+            
+            <div class="contact-stats">
+                <div class="contact-stat">
+                    <div class="contact-stat-icon email">
+                        <i class="fa fa-envelope"></i>
+                    </div>
+                    <div class="contact-stat-label">Email</div>
+                    <div class="contact-stat-value">Always Open</div>
+                </div>
+                <div class="contact-stat">
+                    <div class="contact-stat-icon location">
+                        <i class="fa fa-map-marker"></i>
+                    </div>
+                    <div class="contact-stat-label">Location</div>
+                    <div class="contact-stat-value">India</div>
+                </div>
+                <div class="contact-stat">
+                    <div class="contact-stat-icon response">
+                        <i class="fa fa-clock-o"></i>
+                    </div>
+                    <div class="contact-stat-label">Response</div>
+                    <div class="contact-stat-value">24-48 Hours</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <div class="contact-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Get in Touch</h2>
+                <p>Choose your preferred way to reach out</p>
+            </div>
+            
+            <div class="contact-wrapper">
+                <!-- Contact Info -->
+                <div class="contact-info-card">
+                    <h2>Contact Information</h2>
+                    <p class="subtitle">I'm always open to discussing technical writing, AI in documentation, or potential collaborations.</p>
+                    
+                    <div class="contact-method">
+                        <div class="contact-method-icon email">
+                            <i class="fa fa-envelope"></i>
+                        </div>
+                        <div class="contact-method-content">
+                            <h3>Email</h3>
+                            <p><a href="mailto:trivedi.gaurav30@gmail.com">trivedi.gaurav30@gmail.com</a></p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <div class="contact-method-icon location">
+                            <i class="fa fa-map-marker"></i>
+                        </div>
+                        <div class="contact-method-content">
+                            <h3>Location</h3>
+                            <p>India</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <div class="contact-method-icon time">
+                            <i class="fa fa-clock-o"></i>
+                        </div>
+                        <div class="contact-method-content">
+                            <h3>Response Time</h3>
+                            <p>Usually within 24-48 hours</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-social">
+                        <h4>Connect on Social</h4>
+                        <div class="contact-social-links">
+                            <a href="https://www.linkedin.com/in/gauravtrivedi1988/" aria-label="LinkedIn"><i class="fa fa-linkedin"></i></a>
+                            <a href="https://twitter.com/beingtechwriter" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
+                            <a href="https://github.com/gautriv" aria-label="GitHub"><i class="fa fa-github"></i></a>
+                            <a href="https://www.youtube.com/channel/UCBrWnqQ9J3ZG_XKq6Ts1-_w" aria-label="YouTube"><i class="fa fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
+                <div class="contact-form-card">
+                    <h2>Send a Message</h2>
+                    <p class="subtitle">Fill out the form and I'll get back to you soon.</p>
+                    
+                    <form accept-charset="UTF-8" action="https://getform.io/f/189a66c3-7947-439a-b6cf-aa1e6196236b" method="POST" enctype="multipart/form-data" target="_blank">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" name="name" id="name" placeholder="Your name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" name="email" id="email" placeholder="your@email.com" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" name="subject" id="subject" placeholder="What's this about?">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea name="message" id="message" placeholder="Tell me what's on your mind..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">
+                            Send Message <i class="fa fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- FAQ Section -->
+            <div class="faq-section">
+                <div class="faq-header">
+                    <h3>Frequently Asked Questions</h3>
+                    <p>Quick answers to common questions</p>
+                </div>
+                
+                <div class="faq-item active" onclick="toggleFaq(this)">
+                    <div class="faq-question">
+                        <h4>What topics do you write about?</h4>
+                        <div class="faq-toggle">
+                            <i class="fa fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            I focus on technical writing, API documentation, AI tools for writers, documentation best practices, and career advice for technical communicators. My content blends practical tips with industry insights.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-question">
+                        <h4>Do you offer mentoring or consulting?</h4>
+                        <div class="faq-toggle">
+                            <i class="fa fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Yes! I offer mentoring for aspiring and experienced technical writers. Whether you need career guidance, portfolio reviews, or help transitioning into technical writing, feel free to reach out to discuss.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-question">
+                        <h4>Can I contribute a guest post?</h4>
+                        <div class="faq-toggle">
+                            <i class="fa fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            I occasionally accept guest posts that provide unique value to my readers. If you have an idea for technical writing, documentation tools, or AI in tech comm, send me your pitch via the contact form.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-question">
+                        <h4>How can I stay updated with your content?</h4>
+                        <div class="faq-toggle">
+                            <i class="fa fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Follow me on LinkedIn or Twitter for regular updates. You can also subscribe to my YouTube channel for video content on technical writing topics and tool tutorials.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-</div>
+
+<script>
+function toggleFaq(item) {
+    const allItems = document.querySelectorAll('.faq-item');
+    const isActive = item.classList.contains('active');
+    
+    // Close all items
+    allItems.forEach(faqItem => {
+        if (faqItem !== item) {
+            faqItem.classList.remove('active');
+        }
+    });
+    
+    // Toggle clicked item
+    if (!isActive) {
+        item.classList.add('active');
+    } else {
+        item.classList.remove('active');
+    }
+}
+</script>

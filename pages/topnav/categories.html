@@ -1,9 +1,846 @@
 ---
 layout: default
-title: Blog categories
+title: Blog Categories
 permalink: /categories/
-
 ---
 
-<h3>Coming soon...</h3>
-  
+<style>
+/* Import Google Font for distinctive typography */
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap');
+
+/* World-Class Categories Page - Accordion Style */
+.categories-container {
+    font-family: 'Sora', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.categories-hero {
+    background: linear-gradient(165deg, #0c0f1a 0%, #1a1f35 50%, #0f172a 100%);
+    padding: 100px 0 80px;
+    position: relative;
+    overflow: hidden;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+}
+
+.categories-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(ellipse 80% 50% at 20% 40%, rgba(124, 58, 237, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 80% 60%, rgba(6, 182, 212, 0.1) 0%, transparent 50%),
+        radial-gradient(ellipse 40% 30% at 50% 80%, rgba(236, 72, 153, 0.08) 0%, transparent 50%);
+    pointer-events: none;
+    animation: heroGlow 8s ease-in-out infinite alternate;
+}
+
+@keyframes heroGlow {
+    0% { opacity: 0.7; }
+    100% { opacity: 1; }
+}
+
+/* Animated grid background */
+.categories-hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+}
+
+.categories-hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.categories-hero h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 20px;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    text-shadow: 0 4px 30px rgba(0,0,0,0.3);
+}
+
+.categories-hero h1 span {
+    background: linear-gradient(135deg, #a78bfa 0%, #06b6d4 50%, #ec4899 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.categories-hero p {
+    font-size: 1.25rem;
+    color: #94a3b8;
+    line-height: 1.8;
+    font-weight: 400;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Stats Bar */
+.stats-bar {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    margin-top: 50px;
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    text-align: center;
+    position: relative;
+}
+
+.stat-item::after {
+    content: '';
+    position: absolute;
+    right: -30px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.2), transparent);
+}
+
+.stat-item:last-child::after {
+    display: none;
+}
+
+.stat-number {
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1;
+    background: linear-gradient(135deg, #ffffff 0%, #a78bfa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    color: #64748b;
+    margin-top: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 500;
+}
+
+/* Categories Section */
+.categories-section {
+    padding: 80px 0 120px;
+    background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+    position: relative;
+}
+
+.categories-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    background: linear-gradient(to bottom, #0f172a, transparent);
+    pointer-events: none;
+}
+
+/* Section Header */
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+    position: relative;
+    z-index: 1;
+}
+
+.section-header h2 {
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #a78bfa;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.section-header p {
+    font-size: 1.1rem;
+    color: #64748b;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* Accordion Container */
+.accordion-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Accordion Item */
+.accordion-item {
+    background: #ffffff;
+    border-radius: 24px;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.accordion-item:hover {
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.08);
+}
+
+.accordion-item.active {
+    box-shadow: 0 20px 60px rgba(99, 102, 241, 0.15);
+    border-color: rgba(99, 102, 241, 0.2);
+}
+
+/* Accordion Header */
+.accordion-header {
+    padding: 28px 32px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.accordion-header::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: transparent;
+    transition: all 0.3s ease;
+    border-radius: 0 4px 4px 0;
+}
+
+.accordion-item.active .accordion-header::before {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+}
+
+/* Category Icon */
+.cat-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.cat-icon::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
+    transition: opacity 0.3s ease;
+}
+
+.accordion-item.active .cat-icon::before {
+    opacity: 1;
+}
+
+.cat-icon.ai { background: linear-gradient(135deg, #6366f1, #8b5cf6); color: #fff; }
+.cat-icon.tw { background: linear-gradient(135deg, #10b981, #059669); color: #fff; }
+.cat-icon.trends { background: linear-gradient(135deg, #f59e0b, #d97706); color: #fff; }
+.cat-icon.jekyll { background: linear-gradient(135deg, #ef4444, #dc2626); color: #fff; }
+.cat-icon.api { background: linear-gradient(135deg, #3b82f6, #2563eb); color: #fff; }
+.cat-icon.git { background: linear-gradient(135deg, #f97316, #ea580c); color: #fff; }
+.cat-icon.innovation { background: linear-gradient(135deg, #14b8a6, #0d9488); color: #fff; }
+.cat-icon.satire { background: linear-gradient(135deg, #ec4899, #db2777); color: #fff; }
+
+.accordion-item.active .cat-icon {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Header Content */
+.header-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.header-content h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 6px;
+    transition: color 0.3s ease;
+}
+
+.accordion-item.active .header-content h3 {
+    color: #6366f1;
+}
+
+.header-content p {
+    color: #64748b;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Article Count Badge */
+.article-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #f1f5f9;
+    padding: 10px 18px;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #64748b;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.accordion-item.active .article-badge {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: #ffffff;
+}
+
+/* Toggle Icon */
+.toggle-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f8fafc;
+    color: #94a3b8;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    flex-shrink: 0;
+}
+
+.toggle-icon i {
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.accordion-item.active .toggle-icon {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: #ffffff;
+    transform: rotate(180deg);
+}
+
+.accordion-item.active .toggle-icon i {
+    transform: rotate(180deg);
+}
+
+/* Accordion Content */
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.accordion-item.active .accordion-content {
+    max-height: 2000px;
+}
+
+.accordion-inner {
+    padding: 0 32px 32px;
+    border-top: 1px solid #f1f5f9;
+    margin-top: 0;
+    padding-top: 24px;
+}
+
+/* Posts List */
+.posts-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.post-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 24px;
+    background: #f8fafc;
+    border-radius: 16px;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.post-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: transparent;
+    transition: all 0.3s ease;
+}
+
+.post-card:hover {
+    background: #ffffff;
+    border-color: #e2e8f0;
+    transform: translateX(8px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    text-decoration: none;
+}
+
+.post-card:hover::before {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+}
+
+.post-number {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #64748b;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+.post-card:hover .post-number {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: #ffffff;
+}
+
+.post-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.post-card h4 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #0f172a;
+    margin: 0 0 6px;
+    line-height: 1.4;
+    transition: color 0.3s ease;
+}
+
+.post-card:hover h4 {
+    color: #6366f1;
+}
+
+.post-card .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    color: #94a3b8;
+    font-size: 0.85rem;
+}
+
+.post-card .post-meta i {
+    margin-right: 5px;
+    font-size: 0.8rem;
+}
+
+.post-arrow {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    color: #cbd5e1;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.post-card:hover .post-arrow {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: #ffffff;
+    transform: translateX(4px);
+}
+
+/* View All Link */
+.view-all-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    padding: 14px 28px;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.view-all-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+    text-decoration: none;
+    color: #ffffff;
+}
+
+/* No posts message */
+.no-posts {
+    text-align: center;
+    padding: 40px;
+    color: #94a3b8;
+    font-size: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 991px) {
+    .categories-hero h1 {
+        font-size: 2.8rem;
+    }
+    
+    .stats-bar {
+        gap: 40px;
+    }
+    
+    .stat-number {
+        font-size: 2.5rem;
+    }
+    
+    .stat-item::after {
+        right: -20px;
+    }
+}
+
+@media (max-width: 767px) {
+    .categories-hero {
+        padding: 70px 0 50px;
+    }
+    
+    .categories-hero h1 {
+        font-size: 2.2rem;
+    }
+    
+    .categories-hero p {
+        font-size: 1.1rem;
+    }
+    
+    .stats-bar {
+        gap: 30px;
+    }
+    
+    .stat-number {
+        font-size: 2rem;
+    }
+    
+    .stat-item::after {
+        display: none;
+    }
+    
+    .categories-section {
+        padding: 60px 0 80px;
+    }
+    
+    .accordion-header {
+        padding: 20px 20px;
+        flex-wrap: wrap;
+    }
+    
+    .cat-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+    
+    .header-content h3 {
+        font-size: 1.2rem;
+    }
+    
+    .header-content p {
+        font-size: 0.85rem;
+        white-space: normal;
+    }
+    
+    .article-badge {
+        order: 4;
+        margin-left: 70px;
+        margin-top: -8px;
+        padding: 6px 14px;
+        font-size: 0.8rem;
+    }
+    
+    .toggle-icon {
+        width: 38px;
+        height: 38px;
+    }
+    
+    .accordion-inner {
+        padding: 0 20px 24px;
+    }
+    
+    .post-card {
+        padding: 16px 18px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+    
+    .post-card:hover {
+        transform: translateX(0);
+    }
+    
+    .post-number {
+        width: 32px;
+        height: 32px;
+        font-size: 0.8rem;
+    }
+    
+    .post-arrow {
+        display: none;
+    }
+    
+    .post-card .post-meta {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+}
+
+/* Animation for accordion items */
+.accordion-item {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+.accordion-item:nth-child(1) { animation-delay: 0.1s; }
+.accordion-item:nth-child(2) { animation-delay: 0.15s; }
+.accordion-item:nth-child(3) { animation-delay: 0.2s; }
+.accordion-item:nth-child(4) { animation-delay: 0.25s; }
+.accordion-item:nth-child(5) { animation-delay: 0.3s; }
+.accordion-item:nth-child(6) { animation-delay: 0.35s; }
+.accordion-item:nth-child(7) { animation-delay: 0.4s; }
+.accordion-item:nth-child(8) { animation-delay: 0.45s; }
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Ripple effect on click */
+.accordion-header {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(99, 102, 241, 0.15);
+    transform: scale(0);
+    animation: rippleEffect 0.6s ease-out;
+    pointer-events: none;
+}
+
+@keyframes rippleEffect {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+</style>
+
+<div class="categories-container">
+    <!-- Hero Section -->
+    <div class="categories-hero">
+        <div class="categories-hero-content">
+            <h1>Explore by <span>Category</span></h1>
+            <p>Curated collections of articles on AI, technical writing, industry trends, and everything in between.</p>
+            
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <div class="stat-number">{{ site.posts | size }}</div>
+                    <div class="stat-label">Articles</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">{{ site.categories | size }}</div>
+                    <div class="stat-label">Categories</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">{% assign total_words = 0 %}{% for post in site.posts %}{% assign words = post.content | number_of_words %}{% assign total_words = total_words | plus: words %}{% endfor %}{{ total_words | divided_by: 1000 }}k</div>
+                    <div class="stat-label">Words Written</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Categories Section -->
+    <div class="categories-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Browse Topics</h2>
+                <p>Click on a category to explore related articles</p>
+            </div>
+            
+            <div class="accordion-container">
+                {% assign categories_list = site.posts | map: 'category' | uniq %}
+                {% assign first_category = true %}
+                {% for cat in categories_list %}
+                {% assign cat_posts = site.posts | where: 'category', cat %}
+                <div class="accordion-item{% if first_category %} active{% endif %}" data-category="{{ cat | slugify }}">
+                    <div class="accordion-header" onclick="toggleAccordion(this, event)">
+                        <div class="cat-icon {% if cat == 'AI' %}ai{% elsif cat == 'Technical Writing' %}tw{% elsif cat == 'Trends' %}trends{% elsif cat == 'Jekyll' %}jekyll{% elsif cat == 'API documentation' %}api{% elsif cat == 'Git' %}git{% elsif cat == 'Innovation' %}innovation{% elsif cat == 'Satire' %}satire{% else %}ai{% endif %}">
+                            {% if cat == 'AI' %}<i class="fa fa-robot"></i>
+                            {% elsif cat == 'Technical Writing' %}<i class="fa fa-pencil"></i>
+                            {% elsif cat == 'Trends' %}<i class="fa fa-line-chart"></i>
+                            {% elsif cat == 'Jekyll' %}<i class="fa fa-code"></i>
+                            {% elsif cat == 'API documentation' %}<i class="fa fa-plug"></i>
+                            {% elsif cat == 'Git' %}<i class="fa fa-git"></i>
+                            {% elsif cat == 'Innovation' %}<i class="fa fa-lightbulb-o"></i>
+                            {% elsif cat == 'Satire' %}<i class="fa fa-smile-o"></i>
+                            {% else %}<i class="fa fa-folder"></i>{% endif %}
+                        </div>
+                        <div class="header-content">
+                            <h3>{{ cat }}</h3>
+                            <p>{% if cat == 'AI' %}Exploring artificial intelligence, machine learning, and their impact on technical writing.
+                            {% elsif cat == 'Technical Writing' %}Best practices, tips, and insights for creating exceptional documentation.
+                            {% elsif cat == 'Trends' %}Industry trends, predictions, and what's shaping the future of our field.
+                            {% elsif cat == 'Jekyll' %}Building and customizing static sites with Jekyll.
+                            {% elsif cat == 'API documentation' %}Everything about documenting APIs effectively.
+                            {% elsif cat == 'Git' %}Version control essentials for technical writers.
+                            {% elsif cat == 'Innovation' %}New tools, techniques, and innovative approaches.
+                            {% elsif cat == 'Satire' %}A lighter take on our industry with humor and wit.
+                            {% else %}Explore articles in this category.{% endif %}</p>
+                        </div>
+                        <div class="article-badge">
+                            <i class="fa fa-file-text-o"></i>
+                            {{ cat_posts | size }}
+                        </div>
+                        <div class="toggle-icon">
+                            <i class="fa fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-inner">
+                            <div class="posts-grid">
+                                {% assign post_index = 0 %}
+                                {% for post in cat_posts %}
+                                {% assign post_index = post_index | plus: 1 %}
+                                <a href="{{ post.url }}" class="post-card">
+                                    <div class="post-number">{{ post_index }}</div>
+                                    <div class="post-content">
+                                        <h4>{{ post.title }}</h4>
+                                        <div class="post-meta">
+                                            <span><i class="fa fa-calendar"></i>{{ post.date | date: "%b %d, %Y" }}</span>
+                                            {% if post.subtitle %}
+                                            <span><i class="fa fa-quote-left"></i>{{ post.subtitle | truncate: 50 }}</span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="post-arrow">
+                                        <i class="fa fa-arrow-right"></i>
+                                    </div>
+                                </a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% assign first_category = false %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function toggleAccordion(header, evt) {
+    evt = evt || window.event;
+    const item = header.parentElement;
+    const allItems = document.querySelectorAll('.accordion-item');
+    const isActive = item.classList.contains('active');
+    
+    // Create ripple effect
+    if (evt) {
+        const rect = header.getBoundingClientRect();
+        const ripple = document.createElement('span');
+        ripple.classList.add('ripple');
+        ripple.style.left = (evt.clientX - rect.left) + 'px';
+        ripple.style.top = (evt.clientY - rect.top) + 'px';
+        header.appendChild(ripple);
+        setTimeout(() => ripple.remove(), 600);
+    }
+    
+    // Close all items first
+    allItems.forEach(accordionItem => {
+        if (accordionItem !== item) {
+            accordionItem.classList.remove('active');
+        }
+    });
+    
+    // Toggle the clicked item
+    if (!isActive) {
+        item.classList.add('active');
+        
+        // Smooth scroll to the opened item
+        setTimeout(() => {
+            const headerOffset = 100;
+            const elementPosition = item.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+            
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
+        }, 100);
+    } else {
+        item.classList.remove('active');
+    }
+}
+
+// Handle URL hash for deep linking
+document.addEventListener('DOMContentLoaded', function() {
+    const hash = window.location.hash;
+    if (hash) {
+        const targetItem = document.querySelector(`.accordion-item[data-category="${hash.substring(1)}"]`);
+        if (targetItem) {
+            document.querySelectorAll('.accordion-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            targetItem.classList.add('active');
+            
+            setTimeout(() => {
+                targetItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 300);
+        }
+    }
+});
+</script>

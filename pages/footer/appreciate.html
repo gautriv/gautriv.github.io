@@ -2,33 +2,618 @@
 layout: default
 title: Like the content?
 permalink: /appreciate/
-
 ---
 
-<div class="appreciate">
-<h2>Thank you!!!</h2>
-Do you like the content and courses on this blog? Research, testing, and writing require a considerable amount of time. Do you want to appreciate and help me in maintaining this blog?
+<style>
+/* Import Google Font for distinctive typography */
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap');
+
+/* World-Class Appreciate Page */
+.appreciate-container {
+    font-family: 'Sora', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Hero Section */
+.appreciate-hero {
+    background: linear-gradient(165deg, #0c0f1a 0%, #1a1f35 50%, #0f172a 100%);
+    padding: 100px 0 80px;
+    position: relative;
+    overflow: hidden;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+}
+
+.appreciate-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(ellipse 80% 50% at 20% 40%, rgba(236, 72, 153, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 80% 60%, rgba(124, 58, 237, 0.1) 0%, transparent 50%),
+        radial-gradient(ellipse 40% 30% at 50% 80%, rgba(6, 182, 212, 0.08) 0%, transparent 50%);
+    pointer-events: none;
+    animation: heroGlow 8s ease-in-out infinite alternate;
+}
+
+@keyframes heroGlow {
+    0% { opacity: 0.7; }
+    100% { opacity: 1; }
+}
+
+/* Animated grid background */
+.appreciate-hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+}
+
+.appreciate-hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.appreciate-hero h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 20px;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    text-shadow: 0 4px 30px rgba(0,0,0,0.3);
+}
+
+.appreciate-hero h1 span {
+    background: linear-gradient(135deg, #ec4899 0%, #a78bfa 50%, #06b6d4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.appreciate-hero p {
+    font-size: 1.25rem;
+    color: #94a3b8;
+    line-height: 1.8;
+    font-weight: 400;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Heart Icon Animation */
+.heart-icon {
+    font-size: 4rem;
+    margin-bottom: 24px;
+    animation: heartbeat 1.5s ease-in-out infinite;
+    display: inline-block;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    25% { transform: scale(1.1); }
+    50% { transform: scale(1); }
+    75% { transform: scale(1.15); }
+}
+
+/* Main Content Section */
+.appreciate-section {
+    padding: 80px 0 120px;
+    background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+    position: relative;
+}
+
+.appreciate-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    background: linear-gradient(to bottom, #0f172a, transparent);
+    pointer-events: none;
+}
+
+/* Section Header */
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+    position: relative;
+    z-index: 1;
+}
+
+.section-header h2 {
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #ec4899;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.section-header p {
+    font-size: 1.1rem;
+    color: #64748b;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* Support Options Container */
+.support-options {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Support Card */
+.support-card {
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 40px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    position: relative;
+}
+
+.support-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: transparent;
+    transition: all 0.3s ease;
+    border-radius: 0 4px 4px 0;
+}
+
+.support-card:hover {
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+    transform: translateY(-4px);
+}
+
+.support-card:hover::before {
+    background: linear-gradient(135deg, #ec4899, #a78bfa);
+}
+
+.support-card-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 24px;
+}
+
+.support-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    flex-shrink: 0;
+    color: #fff;
+}
+
+.support-icon.upi {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+}
+
+.support-icon.coffee {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+.support-card-header h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 6px;
+}
+
+.support-card-header p {
+    color: #64748b;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Toggle Button */
+.support-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 32px;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: #ffffff;
+    border: none;
+    border-radius: 14px;
+    font-family: 'Sora', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+}
+
+.support-toggle:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+}
+
+.support-toggle:focus {
+    outline: none;
+}
+
+.support-toggle.coffee-btn {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+}
+
+.support-toggle.coffee-btn:hover {
+    box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
+}
+
+.support-toggle i {
+    font-size: 1.1rem;
+}
+
+/* Content Panel */
+.support-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-top: 0;
+}
+
+.support-content.active {
+    max-height: 600px;
+    margin-top: 30px;
+}
+
+.support-content-inner {
+    background: #f8fafc;
+    border-radius: 16px;
+    padding: 30px;
+    text-align: center;
+    border: 1px solid #e2e8f0;
+}
+
+.support-content-inner img {
+    max-width: 280px;
+    width: 100%;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+/* Coffee Button Styling */
+.coffee-button-container {
+    display: flex;
+    justify-content: center;
+}
+
+.coffee-button-container img {
+    max-width: 250px;
+    transition: transform 0.3s ease;
+    box-shadow: none;
+    margin: 0;
+}
+
+.coffee-button-container a:hover img {
+    transform: scale(1.05);
+}
+
+/* Why Support Section */
+.why-support {
+    margin-top: 60px;
+    text-align: center;
+}
+
+.why-support h3 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 40px;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.benefit-item {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 32px 24px;
+    text-align: center;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    transition: all 0.3s ease;
+}
+
+.benefit-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+}
+
+.benefit-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin: 0 auto 16px;
+    color: #fff;
+}
+
+.benefit-icon.research { background: linear-gradient(135deg, #6366f1, #8b5cf6); }
+.benefit-icon.courses { background: linear-gradient(135deg, #10b981, #059669); }
+.benefit-icon.community { background: linear-gradient(135deg, #ec4899, #db2777); }
+
+.benefit-item h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #0f172a;
+    margin: 0 0 8px;
+}
+
+.benefit-item p {
+    color: #64748b;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Thank You Note */
+.thank-you-note {
+    margin-top: 60px;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(236, 72, 153, 0.05));
+    border-radius: 24px;
+    padding: 40px;
+    text-align: center;
+    border: 1px solid rgba(99, 102, 241, 0.1);
+}
+
+.thank-you-note p {
+    font-size: 1.2rem;
+    color: #64748b;
+    line-height: 1.8;
+    margin: 0;
+    font-style: italic;
+}
+
+.thank-you-note .signature {
+    margin-top: 20px;
+    font-weight: 600;
+    color: #6366f1;
+    font-style: normal;
+}
+
+/* Responsive Design */
+@media (max-width: 991px) {
+    .appreciate-hero h1 {
+        font-size: 2.8rem;
+    }
+    
+    .benefits-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 767px) {
+    .appreciate-hero {
+        padding: 70px 0 50px;
+    }
+    
+    .appreciate-hero h1 {
+        font-size: 2.2rem;
+    }
+    
+    .appreciate-hero p {
+        font-size: 1.1rem;
+    }
+    
+    .appreciate-section {
+        padding: 60px 0 80px;
+    }
+    
+    .support-card {
+        padding: 28px 24px;
+    }
+    
+    .support-card-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .benefits-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .heart-icon {
+        font-size: 3rem;
+    }
+    
+    .support-toggle {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Animation for cards */
+.support-card {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+.support-card:nth-child(1) { animation-delay: 0.1s; }
+.support-card:nth-child(2) { animation-delay: 0.2s; }
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.benefit-item {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+.benefit-item:nth-child(1) { animation-delay: 0.3s; }
+.benefit-item:nth-child(2) { animation-delay: 0.4s; }
+.benefit-item:nth-child(3) { animation-delay: 0.5s; }
+</style>
+
+<div class="appreciate-container">
+    <!-- Hero Section -->
+    <div class="appreciate-hero">
+        <div class="appreciate-hero-content">
+            <div class="heart-icon">❤️</div>
+            <h1>Show Your <span>Appreciation</span></h1>
+            <p>Your support helps me create better content, develop free courses, and keep this blog running. Every contribution makes a difference!</p>
+        </div>
+    </div>
+
+    <!-- Support Options Section -->
+    <div class="appreciate-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Support Options</h2>
+                <p>Choose your preferred way to contribute</p>
+            </div>
+            
+            <div class="support-options">
+                <!-- UPI Card -->
+                <div class="support-card">
+                    <div class="support-card-header">
+                        <div class="support-icon upi">
+                            <i class="fa fa-mobile"></i>
+                        </div>
+                        <div>
+                            <h3>UPI Payment</h3>
+                            <p>Quick and easy payment for users in India via any UPI app</p>
+                        </div>
+                    </div>
+                    <button class="support-toggle" onclick="toggleSupport('upi')">
+                        <i class="fa fa-qrcode"></i>
+                        Show QR Code
+                    </button>
+                    <div class="support-content" id="upi-content">
+                        <div class="support-content-inner">
+                            <img src="https://beingtechnicalwriter.s3.ap-south-1.amazonaws.com/images/QRCode.jpeg" alt="UPI QR Code">
+                            <p style="color: #64748b; margin: 0;">Scan with any UPI app (Google Pay, PhonePe, Paytm, etc.)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Buy Me a Coffee Card -->
+                <div class="support-card">
+                    <div class="support-card-header">
+                        <div class="support-icon coffee">
+                            <i class="fa fa-coffee"></i>
+                        </div>
+                        <div>
+                            <h3>Buy Me a Coffee</h3>
+                            <p>Support via Buy Me a Coffee for international contributions</p>
+                        </div>
+                    </div>
+                    <button class="support-toggle coffee-btn" onclick="toggleSupport('coffee')">
+                        <i class="fa fa-heart"></i>
+                        Show Coffee Link
+                    </button>
+                    <div class="support-content" id="coffee-content">
+                        <div class="support-content-inner">
+                            <div class="coffee-button-container">
+                                <a href="https://www.buymeacoffee.com/beingtechwriter" target="_blank">
+                                    <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Why Support Section -->
+                <div class="why-support">
+                    <h3>Your Support Enables</h3>
+                    <div class="benefits-grid">
+                        <div class="benefit-item">
+                            <div class="benefit-icon research">
+                                <i class="fa fa-search"></i>
+                            </div>
+                            <h4>In-depth Research</h4>
+                            <p>Hours of research to bring you accurate, up-to-date content on technical writing</p>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon courses">
+                                <i class="fa fa-graduation-cap"></i>
+                            </div>
+                            <h4>Free Courses</h4>
+                            <p>Development of comprehensive courses that remain free for everyone</p>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon community">
+                                <i class="fa fa-users"></i>
+                            </div>
+                            <h4>Community Growth</h4>
+                            <p>Building a thriving community of technical writers worldwide</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Thank You Note -->
+                <div class="thank-you-note">
+                    <p>"Thank you for considering supporting my work. Whether you contribute financially or simply share the content with others, every bit of support motivates me to create more valuable resources for the technical writing community."</p>
+                    <p class="signature">— Gaurav Trivedi</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
-<div class="appreciate2">
-
-<p>
-    <button class="btn btn-primary" data-toggle="collapse" href="#TypeOne" role="button" aria-expanded="false" aria-controls="collapseExample">
-      UPI
-    </button>
-    <b>Or</b>
-    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#TypeTwo" aria-expanded="false" aria-controls="collapseExample">
-      Buy me a coffee!
-    </button>
-  </p>
-  <div class="collapse" id="TypeOne">
-    <div class="card card-body">
-      <img src="https://beingtechnicalwriter.s3.ap-south-1.amazonaws.com/images/QRCode.jpeg" alt="UPI" style="width: 400px">
-    </div>
-  </div>
-
-  <div class="collapse" id="TypeTwo">
-    <div class="card card-body">
-      {% include coffee.html %}
-    </div>
-  </div>
+<script>
+function toggleSupport(type) {
+    const content = document.getElementById(type + '-content');
+    const allContents = document.querySelectorAll('.support-content');
+    
+    // Close all other content panels
+    allContents.forEach(panel => {
+        if (panel.id !== type + '-content') {
+            panel.classList.remove('active');
+        }
+    });
+    
+    // Toggle the clicked panel
+    content.classList.toggle('active');
+    
+    // Scroll into view if opening
+    if (content.classList.contains('active')) {
+        setTimeout(() => {
+            content.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 100);
+    }
+}
+</script>

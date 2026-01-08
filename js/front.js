@@ -4,14 +4,15 @@ $(document).ready(function () {
     'use strict';
 
     // ------------------------------------------------------- //
-    // For demo purposes only
+    // For demo purposes only (theme switching - cookie optional)
     // ------------------------------------------------------ //
 
     var stylesheet = $('link#theme-stylesheet');
     $( "<link id='new-stylesheet' rel='stylesheet'>" ).insertAfter(stylesheet);
     var alternateColour = $('link#new-stylesheet');
 
-    if ($.cookie("theme_csspath")) {
+    // Check if $.cookie is available before using it
+    if (typeof $.cookie === 'function' && $.cookie("theme_csspath")) {
         alternateColour.attr("href", $.cookie("theme_csspath"));
     }
 
@@ -23,7 +24,10 @@ $(document).ready(function () {
 
             alternateColour.attr("href", theme_csspath);
 
-            $.cookie("theme_csspath", theme_csspath, { expires: 365, path: document.URL.substr(0, document.URL.lastIndexOf('/')) });
+            // Only use cookie if available
+            if (typeof $.cookie === 'function') {
+                $.cookie("theme_csspath", theme_csspath, { expires: 365, path: document.URL.substr(0, document.URL.lastIndexOf('/')) });
+            }
 
         }
 
@@ -58,9 +62,11 @@ $(document).ready(function () {
 
 
     // ---------------------------------------------- //
-    // FancyBox
+    // FancyBox (if available)
     // ---------------------------------------------- //
-    $("[data-fancybox]").fancybox();
+    if (typeof $.fn.fancybox === 'function') {
+        $("[data-fancybox]").fancybox();
+    }
 
 
     // ---------------------------------------------- //
