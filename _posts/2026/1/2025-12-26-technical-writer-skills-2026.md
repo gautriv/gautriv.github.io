@@ -23,7 +23,7 @@ faqs:
 description: "A practical guide for technical writers navigating the 2026 job market. From Azure and Docker to Python, LangChain, and RAG. Here's what to learn, why it matters, and what backup plans actually look like when AI keeps changing the rules."
 ---
 
-Let me be direct. If your 2026 career strategy is "keep doing what worked in 2020," you're not planning. You're hoping.
+Let me be direct. If your 2026 career strategy is "keep doing what worked in 2025," you're not planning. You're hoping.
 
 Hope is lovely. It's also not a skill.
 
