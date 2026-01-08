@@ -1,98 +1,663 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Being Technical Writer Privacy Policy</title>
-    <!-- theme stylesheet-->
-    <link rel="stylesheet" href="https://beingtechnicalwriter.com/css/style.default.css" id="theme-stylesheet">
-</head>
-<body>
+---
+layout: default
+title: Privacy Policy
+permalink: /privacy/
+---
 
-    <h2><b>Being Technical Writer Privacy Policy</b></h2>
+<style>
+/* Import Google Font for distinctive typography */
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap');
 
-    <p>This Privacy Policy was last updated on <b>November 24, 2023</b>.</p>
+/* World-Class Privacy Page */
+.privacy-container {
+    font-family: 'Sora', -apple-system, BlinkMacSystemFont, sans-serif;
+}
 
-    <h4><b>Introduction</b></h4>
+/* Hero Section */
+.privacy-hero {
+    background: linear-gradient(165deg, #0c0f1a 0%, #1a1f35 50%, #0f172a 100%);
+    padding: 100px 0 80px;
+    position: relative;
+    overflow: hidden;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+}
 
-    <p>This Privacy Policy outlines how I, Being Technical Writer, collect, use, and disclose your personal information. By accessing and using my website, you agree to the terms of this Privacy Policy.</p>
+.privacy-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(ellipse 80% 50% at 20% 40%, rgba(99, 102, 241, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 80% 60%, rgba(16, 185, 129, 0.1) 0%, transparent 50%),
+        radial-gradient(ellipse 40% 30% at 50% 80%, rgba(6, 182, 212, 0.08) 0%, transparent 50%);
+    pointer-events: none;
+    animation: heroGlow 8s ease-in-out infinite alternate;
+}
 
-    <h2><b>Information I Collect</b></h2>
+@keyframes heroGlow {
+    0% { opacity: 0.7; }
+    100% { opacity: 1; }
+}
 
-    <h4><b>Personal Information</b></h4>
-    <p>I do not collect any personal information from you directly. You may choose to provide me with personal information, such as your name and email address, when you contact me through my contact form or subscribe to my newsletter. I may also collect information from third-party sources, such as Google Analytics and Google Adsense. This information may include your IP address, browser type, device type, and referring website.</p>
+.privacy-hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+}
 
-    <h4><b>Non-Personal Information</b></h4>
-    <p>I may collect non-personal information such as:</p>
-    <ul>
-        <li>Browser type</li>
-        <li>IP address</li>
-        <li>Demographic information</li>
-    </ul>
+.privacy-hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
 
-    <h3><b>How I Use Your Information</b></h3>
-    <p>I do not use or process any user data personally. The non-personal information collected is used for:</p>
-    <ul>
-        <li>Improve my website and services</li>
-        <li>Analyze website traffic through Google Analytics</li>
-        <li>Display personalized ads through Google AdSense</li>
-        <li>Utilize Google Search for improved search functionality</li>
-        <li>Respond to your inquiries and requests</li>
-        <li>Send you my newsletter</li>
-        <li>Provide you with personalized advertising</li>
-    </ul>
+.privacy-hero h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 20px;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    text-shadow: 0 4px 30px rgba(0,0,0,0.3);
+}
 
-    <h3><b>Third-Party Services</b></h3>
-    <p>I use the following third-party services:</p>
-    <ul>
-        <li>Google Analytics for website analytics (<a href="https://policies.google.com/privacy" target="_blank">Google's privacy policy</a>)</li>
-        <li>Google AdSense for displaying ads (<a href="https://policies.google.com/privacy" target="_blank">Google's privacy policy</a>)</li>
-        <li>Google Search for improved search functionality</li>
-        <li>Social media icons for sharing purposes</li>
-        <li>Disqus for comments (<a href="https://help.disqus.com/en/articles/1717103-disqus-privacy-policy" target="_blank">Disqus's privacy policy</a>)</li>
-        <li>GitHub for content storage and publishing</li>
-        <li>Tinyletter for newsletters (<a href="https://tinyletter.com/privacy" target="_blank">Tinyletter's privacy policy</a>)</li>
-        <li>BuyMeACoffee for voluntary support</li>
-    </ul>
+.privacy-hero h1 span {
+    background: linear-gradient(135deg, #6366f1 0%, #10b981 50%, #06b6d4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
 
-    <p>Please review the privacy policies of these services for more information. Note that I  have no access to or control over the privacy policies of these services.</p>
+.privacy-hero p {
+    font-size: 1.25rem;
+    color: #94a3b8;
+    line-height: 1.8;
+    font-weight: 400;
+    max-width: 600px;
+    margin: 0 auto;
+}
 
-    <!-- Add other sections as needed -->
+.last-updated {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(99, 102, 241, 0.15);
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    padding: 10px 20px;
+    border-radius: 30px;
+    color: #a5b4fc;
+    font-size: 0.9rem;
+    margin-top: 30px;
+}
 
-    <h3><b>Cookies</b></h3>
-    <p>I do not use any cookies on my website. However, third-party services that I use, such as Google Analytics and Google Adsense, may use cookies to collect information about your use of my website. Please refer to the respective privacy policies mentioned above for details. Note that I have no access to or control over the cookies used by third-party advertisers. </p>
+.last-updated i {
+    font-size: 1rem;
+}
 
-    <h3><b>External Links</b></h3>
-    <p>My blog may contain links to external sites. I am not responsible for the privacy practices of these sites.</p>
+/* Shield Icon */
+.shield-icon {
+    font-size: 4rem;
+    margin-bottom: 24px;
+    display: inline-block;
+    color: #10b981;
+    text-shadow: 0 0 40px rgba(16, 185, 129, 0.5);
+}
 
-    <h3><b>Your Consent</b></h3>
-    <p>By using my website, you explicitly consent to my privacy policy.</p>
+/* Main Content Section */
+.privacy-section {
+    padding: 80px 0 120px;
+    background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+    position: relative;
+}
 
-    <h3><b>Information Security</b></h3>
-    <p>I implement a variety of security measures to maintain the safety of your information.</p>
+.privacy-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    background: linear-gradient(to bottom, #0f172a, transparent);
+    pointer-events: none;
+}
 
-    <h3><b>Changes to Privacy Policy</b></h3>
-    <p>I reserve the right to modify this privacy policy at any time. Changes will be effective immediately upon posting.</p>
+/* Content Container */
+.privacy-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 1;
+}
 
-    <h3><b>Open Source Content</b></h3>
-    <p>My blog is open source, and all content is intended for public view and use.</p>
+/* Table of Contents */
+.toc-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 32px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+}
 
-    <h4><b>Sharing Your Information</b></h4>
+.toc-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 
-    <p>I will not share your personal information with third parties without your consent. However, I may share your information with third parties in the following circumstances:</p>
+.toc-card h3 i {
+    color: #6366f1;
+}
 
-    <ul>
-        <li>To comply with legal requirements</li>
-        <li>To protect my rights and property</li>
-        <li>To protect the safety of my users</li>
-    </ul>
+.toc-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
 
-    <h4><b>Your Choices</b></h4>
+.toc-list li a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #64748b;
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
 
-    <p>You can unsubscribe from my newsletter at any time by clicking on the "Unsubscribe" link in any newsletter email. You can also contact me to request that I delete your personal information.</p>
+.toc-list li a:hover {
+    background: #f1f5f9;
+    color: #6366f1;
+}
 
-    <h3><b>Contact Information</b></h3>
-    <p>If you have any questions regarding this privacy policy, you may use the <a href="https://beingtechnicalwriter.com/contact/" target="_blank">Contact form</a>.</p>
+.toc-list li a::before {
+    content: '→';
+    color: #cbd5e1;
+    transition: color 0.2s ease;
+}
 
-</body>
-</html>
+.toc-list li a:hover::before {
+    color: #6366f1;
+}
+
+/* Policy Section */
+.policy-section {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 40px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    transition: all 0.3s ease;
+}
+
+.policy-section:hover {
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.08);
+}
+
+.policy-section h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid #f1f5f9;
+}
+
+.policy-section h2 .section-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: #fff;
+    flex-shrink: 0;
+}
+
+.policy-section h2 .section-icon.intro { background: linear-gradient(135deg, #6366f1, #8b5cf6); }
+.policy-section h2 .section-icon.collect { background: linear-gradient(135deg, #10b981, #059669); }
+.policy-section h2 .section-icon.use { background: linear-gradient(135deg, #f59e0b, #d97706); }
+.policy-section h2 .section-icon.third { background: linear-gradient(135deg, #3b82f6, #2563eb); }
+.policy-section h2 .section-icon.cookies { background: linear-gradient(135deg, #ec4899, #db2777); }
+.policy-section h2 .section-icon.rights { background: linear-gradient(135deg, #14b8a6, #0d9488); }
+.policy-section h2 .section-icon.security { background: linear-gradient(135deg, #ef4444, #dc2626); }
+.policy-section h2 .section-icon.ai { background: linear-gradient(135deg, #8b5cf6, #7c3aed); }
+.policy-section h2 .section-icon.contact { background: linear-gradient(135deg, #06b6d4, #0891b2); }
+
+.policy-section p {
+    color: #475569;
+    font-size: 1rem;
+    line-height: 1.8;
+    margin: 0 0 16px;
+}
+
+.policy-section p:last-child {
+    margin-bottom: 0;
+}
+
+.policy-section h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #0f172a;
+    margin: 28px 0 12px;
+}
+
+.policy-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0;
+}
+
+.policy-section ul li {
+    position: relative;
+    padding-left: 28px;
+    margin-bottom: 12px;
+    color: #475569;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.policy-section ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 8px;
+    height: 8px;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    border-radius: 50%;
+}
+
+.policy-section a {
+    color: #6366f1;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.policy-section a:hover {
+    color: #4f46e5;
+    text-decoration: underline;
+}
+
+/* Info Box */
+.info-box {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(139, 92, 246, 0.08));
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 20px 0;
+}
+
+.info-box p {
+    margin: 0;
+    color: #4f46e5;
+    font-size: 0.95rem;
+}
+
+.info-box i {
+    margin-right: 8px;
+}
+
+/* Contact CTA */
+.contact-cta {
+    text-align: center;
+    margin-top: 40px;
+    padding: 40px;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(16, 185, 129, 0.05));
+    border-radius: 20px;
+    border: 1px solid rgba(99, 102, 241, 0.1);
+}
+
+.contact-cta p {
+    color: #64748b;
+    margin: 0 0 20px;
+    font-size: 1.1rem;
+}
+
+.contact-cta a {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 32px;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 14px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+}
+
+.contact-cta a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+    color: #ffffff;
+    text-decoration: none;
+}
+
+/* Responsive Design */
+@media (max-width: 991px) {
+    .privacy-hero h1 {
+        font-size: 2.8rem;
+    }
+    
+    .toc-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 767px) {
+    .privacy-hero {
+        padding: 70px 0 50px;
+    }
+    
+    .privacy-hero h1 {
+        font-size: 2.2rem;
+    }
+    
+    .privacy-hero p {
+        font-size: 1.1rem;
+    }
+    
+    .privacy-section {
+        padding: 60px 0 80px;
+    }
+    
+    .policy-section {
+        padding: 28px 24px;
+    }
+    
+    .policy-section h2 {
+        font-size: 1.3rem;
+    }
+    
+    .shield-icon {
+        font-size: 3rem;
+    }
+}
+
+/* Animation for sections */
+.policy-section {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+.policy-section:nth-child(1) { animation-delay: 0.1s; }
+.policy-section:nth-child(2) { animation-delay: 0.15s; }
+.policy-section:nth-child(3) { animation-delay: 0.2s; }
+.policy-section:nth-child(4) { animation-delay: 0.25s; }
+.policy-section:nth-child(5) { animation-delay: 0.3s; }
+.policy-section:nth-child(6) { animation-delay: 0.35s; }
+.policy-section:nth-child(7) { animation-delay: 0.4s; }
+.policy-section:nth-child(8) { animation-delay: 0.45s; }
+.policy-section:nth-child(9) { animation-delay: 0.5s; }
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+</style>
+
+<div class="privacy-container">
+    <!-- Hero Section -->
+    <div class="privacy-hero">
+        <div class="privacy-hero-content">
+            <div class="shield-icon"><i class="fa fa-shield"></i></div>
+            <h1>Privacy <span>Policy</span></h1>
+            <p>Your privacy matters. This policy explains how I collect, use, and protect your information when you visit Being Technical Writer.</p>
+            <div class="last-updated">
+                <i class="fa fa-calendar"></i>
+                Last updated: January 9, 2026
+            </div>
+        </div>
+    </div>
+
+    <!-- Privacy Content Section -->
+    <div class="privacy-section">
+        <div class="privacy-content">
+            <!-- Table of Contents -->
+            <div class="toc-card">
+                <h3><i class="fa fa-list"></i> Quick Navigation</h3>
+                <ul class="toc-list">
+                    <li><a href="#introduction">Introduction</a></li>
+                    <li><a href="#information">Information I Collect</a></li>
+                    <li><a href="#usage">How I Use Your Data</a></li>
+                    <li><a href="#third-party">Third-Party Services</a></li>
+                    <li><a href="#cookies">Cookies & Tracking</a></li>
+                    <li><a href="#ai-content">AI-Generated Content</a></li>
+                    <li><a href="#rights">Your Rights</a></li>
+                    <li><a href="#security">Data Security</a></li>
+                    <li><a href="#contact">Contact Me</a></li>
+                </ul>
+            </div>
+
+            <!-- Introduction -->
+            <div class="policy-section" id="introduction">
+                <h2>
+                    <span class="section-icon intro"><i class="fa fa-info"></i></span>
+                    Introduction
+                </h2>
+                <p>Welcome to Being Technical Writer! This Privacy Policy explains how I collect, use, disclose, and safeguard your information when you visit my website. By accessing and using this website, you agree to the terms outlined in this Privacy Policy.</p>
+                <p>I am committed to protecting your privacy and ensuring transparency about my data practices. If you have any questions or concerns, please don't hesitate to contact me.</p>
+            </div>
+
+            <!-- Information I Collect -->
+            <div class="policy-section" id="information">
+                <h2>
+                    <span class="section-icon collect"><i class="fa fa-database"></i></span>
+                    Information I Collect
+                </h2>
+                
+                <h3>Personal Information</h3>
+                <p>I do not collect personal information directly unless you voluntarily provide it. You may choose to share information such as:</p>
+                <ul>
+                    <li>Name and email address when using the contact form</li>
+                    <li>Email address when subscribing to the newsletter</li>
+                    <li>Comments and feedback you leave on articles</li>
+                </ul>
+
+                <h3>Automatically Collected Information</h3>
+                <p>When you visit my website, certain information may be collected automatically through third-party services:</p>
+                <ul>
+                    <li>IP address and approximate location</li>
+                    <li>Browser type and version</li>
+                    <li>Device type and operating system</li>
+                    <li>Pages visited and time spent on the site</li>
+                    <li>Referring website or search terms</li>
+                </ul>
+
+                <div class="info-box">
+                    <p><i class="fa fa-info-circle"></i> This information helps me understand how visitors use the site and improve the content and user experience.</p>
+                </div>
+            </div>
+
+            <!-- How I Use Your Data -->
+            <div class="policy-section" id="usage">
+                <h2>
+                    <span class="section-icon use"><i class="fa fa-cogs"></i></span>
+                    How I Use Your Information
+                </h2>
+                <p>I use the collected information for the following purposes:</p>
+                <ul>
+                    <li>To improve website content and user experience</li>
+                    <li>To analyze website traffic and usage patterns</li>
+                    <li>To respond to your inquiries and messages</li>
+                    <li>To send newsletters (only if you subscribed)</li>
+                    <li>To display relevant advertisements through Google AdSense</li>
+                    <li>To maintain website security and prevent abuse</li>
+                    <li>To comply with legal obligations</li>
+                </ul>
+                <p>I do not sell, trade, or rent your personal information to third parties for marketing purposes.</p>
+            </div>
+
+            <!-- Third-Party Services -->
+            <div class="policy-section" id="third-party">
+                <h2>
+                    <span class="section-icon third"><i class="fa fa-plug"></i></span>
+                    Third-Party Services
+                </h2>
+                <p>My website uses the following third-party services that may collect data:</p>
+                <ul>
+                    <li><strong>Google Analytics</strong> — Website analytics and traffic analysis (<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy Policy</a>)</li>
+                    <li><strong>Google AdSense</strong> — Display advertising (<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy Policy</a>)</li>
+                    <li><strong>Disqus</strong> — Comment system (<a href="https://help.disqus.com/en/articles/1717103-disqus-privacy-policy" target="_blank" rel="noopener">Privacy Policy</a>)</li>
+                    <li><strong>GitHub Pages</strong> — Website hosting and content delivery</li>
+                    <li><strong>Buy Me a Coffee</strong> — Voluntary support platform</li>
+                    <li><strong>Social Media Platforms</strong> — Sharing buttons (Twitter, LinkedIn, etc.)</li>
+                </ul>
+                <p>Each of these services has their own privacy policies. I encourage you to review them to understand how they handle your data.</p>
+            </div>
+
+            <!-- Cookies & Tracking -->
+            <div class="policy-section" id="cookies">
+                <h2>
+                    <span class="section-icon cookies"><i class="fa fa-cookie-bite"></i></span>
+                    Cookies & Tracking Technologies
+                </h2>
+                <p>While I do not set cookies directly, third-party services used on this website may use cookies and similar tracking technologies:</p>
+                <ul>
+                    <li><strong>Analytics Cookies</strong> — Google Analytics uses cookies to track visitor behavior</li>
+                    <li><strong>Advertising Cookies</strong> — Google AdSense uses cookies to display personalized ads</li>
+                    <li><strong>Social Media Cookies</strong> — Social sharing buttons may set cookies</li>
+                </ul>
+                <p>You can control cookies through your browser settings. Most browsers allow you to block or delete cookies. However, this may affect your experience on some websites.</p>
+
+                <div class="info-box">
+                    <p><i class="fa fa-lightbulb-o"></i> <strong>Tip:</strong> You can opt out of Google's personalized advertising by visiting <a href="https://adssettings.google.com" target="_blank" rel="noopener">Google Ads Settings</a>.</p>
+                </div>
+            </div>
+
+            <!-- AI-Generated Content -->
+            <div class="policy-section" id="ai-content">
+                <h2>
+                    <span class="section-icon ai"><i class="fa fa-robot"></i></span>
+                    AI-Generated Content Disclosure
+                </h2>
+                <p>In the spirit of transparency, I want to disclose that some content on this website may be created with the assistance of AI tools. This includes:</p>
+                <ul>
+                    <li>Content drafting and editing assistance</li>
+                    <li>Code examples and technical demonstrations</li>
+                    <li>Image generation for illustrations</li>
+                    <li>Research summaries and content organization</li>
+                </ul>
+                <p>All AI-assisted content is reviewed, edited, and verified by me before publication to ensure accuracy and quality. The use of AI tools helps me create more content while maintaining high standards.</p>
+                <p>If you have concerns about any content on this site, please contact me directly.</p>
+            </div>
+
+            <!-- Your Rights -->
+            <div class="policy-section" id="rights">
+                <h2>
+                    <span class="section-icon rights"><i class="fa fa-user-shield"></i></span>
+                    Your Rights & Choices
+                </h2>
+                <p>Depending on your location, you may have certain rights regarding your personal data:</p>
+                
+                <h3>General Rights</h3>
+                <ul>
+                    <li><strong>Access</strong> — Request a copy of the data I have about you</li>
+                    <li><strong>Correction</strong> — Request correction of inaccurate information</li>
+                    <li><strong>Deletion</strong> — Request deletion of your personal data</li>
+                    <li><strong>Unsubscribe</strong> — Opt out of newsletters at any time</li>
+                </ul>
+
+                <h3>For EU Visitors (GDPR)</h3>
+                <p>If you are located in the European Union, you have additional rights under GDPR including the right to data portability and the right to lodge a complaint with a supervisory authority.</p>
+
+                <h3>For California Residents (CCPA)</h3>
+                <p>California residents have the right to know what personal information is collected, request deletion, and opt out of the sale of personal information. Note: I do not sell personal information.</p>
+            </div>
+
+            <!-- Data Security -->
+            <div class="policy-section" id="security">
+                <h2>
+                    <span class="section-icon security"><i class="fa fa-lock"></i></span>
+                    Data Security & Retention
+                </h2>
+                <p>I take reasonable measures to protect your information:</p>
+                <ul>
+                    <li>This website is served over HTTPS (secure connection)</li>
+                    <li>Hosted on GitHub Pages with enterprise-grade security</li>
+                    <li>No sensitive data is stored on the website servers</li>
+                    <li>Third-party services are chosen based on their security practices</li>
+                </ul>
+                <p>However, no method of transmission over the internet is 100% secure. While I strive to protect your information, I cannot guarantee absolute security.</p>
+
+                <h3>Data Retention</h3>
+                <p>I retain personal information only as long as necessary for the purposes outlined in this policy. Analytics data is retained according to Google's data retention policies. Newsletter subscriber data is retained until you unsubscribe.</p>
+            </div>
+
+            <!-- External Links -->
+            <div class="policy-section">
+                <h2>
+                    <span class="section-icon third"><i class="fa fa-external-link"></i></span>
+                    External Links
+                </h2>
+                <p>My website contains links to external websites. I am not responsible for the privacy practices or content of these third-party sites. I encourage you to review the privacy policies of any external sites you visit.</p>
+            </div>
+
+            <!-- Policy Changes -->
+            <div class="policy-section">
+                <h2>
+                    <span class="section-icon intro"><i class="fa fa-refresh"></i></span>
+                    Changes to This Policy
+                </h2>
+                <p>I may update this Privacy Policy from time to time to reflect changes in my practices or for legal reasons. When I make changes, I will update the "Last Updated" date at the top of this page.</p>
+                <p>I encourage you to review this Privacy Policy periodically to stay informed about how I protect your information.</p>
+            </div>
+
+            <!-- Contact -->
+            <div class="policy-section" id="contact">
+                <h2>
+                    <span class="section-icon contact"><i class="fa fa-envelope"></i></span>
+                    Contact Me
+                </h2>
+                <p>If you have any questions, concerns, or requests regarding this Privacy Policy or how your data is handled, please feel free to reach out.</p>
+            </div>
+
+            <!-- Contact CTA -->
+            <div class="contact-cta">
+                <p>Have questions about your privacy or this policy?</p>
+                <a href="{{ site.url }}/contact/">
+                    <i class="fa fa-paper-plane"></i>
+                    Get in Touch
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
