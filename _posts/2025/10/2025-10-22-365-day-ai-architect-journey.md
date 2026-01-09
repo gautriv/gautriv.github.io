@@ -745,7 +745,7 @@ I don't know if I'll make it to Day 365. But I know 49 days ago, I didn't think 
 
 **Path 1: Run It on Your Machine (5 minutes)**
 ```bash
-git clone https://github.com/gautriv/ai-solution-architect
+git clone https://github.com/gtrivedi88/ai-solution-architect
 cd ai-solution-architect
 python3 -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
@@ -823,7 +823,7 @@ The app is ready. The path is clear. The first task takes 5 minutes.
 
 ---
 
-**Repository:** [github.com/gautriv/ai-solution-architect](https://github.com/gautriv/ai-solution-architect)  
+**Repository:** [github.com/gtrivedi88/ai-solution-architect](https://github.com/gtrivedi88/ai-solution-architect)  
 **Current Status:** Day 49/365 (November 8, 2025)  
 **Next Major Update:** Day 100 detailed breakdown  
 **Hashtag:** #365ToAIArchitect  

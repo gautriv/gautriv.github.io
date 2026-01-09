@@ -48,15 +48,15 @@ Project Root
 
 **images**
 
-The [images](https://github.com/gautriv/api.languages.github.io/tree/main/images) directory is a treasure trove of visual delights. It's the go-to place where all the images used in our presentation find their cozy spot.
+The [images](https://github.com/gtrivedi88/api.languages.github.io/tree/main/images) directory is a treasure trove of visual delights. It's the go-to place where all the images used in our presentation find their cozy spot.
 
 **css**
 
-Ah, the [css](https://github.com/gautriv/api.languages.github.io/tree/main/css) directory – the fashionista of our presentation! Nestled within is a file that holds the power to transform the appearance of our RevealJS slides. Meet `main.css`, the sartorial genius that takes control of RevealJS styles and turns them into something uniquely ours.
+Ah, the [css](https://github.com/gtrivedi88/api.languages.github.io/tree/main/css) directory – the fashionista of our presentation! Nestled within is a file that holds the power to transform the appearance of our RevealJS slides. Meet `main.css`, the sartorial genius that takes control of RevealJS styles and turns them into something uniquely ours.
 
 **index.adoc**
 
-I organized everything in an [`index.adoc`](https://github.com/gautriv/api.languages.github.io/blob/main/index.adoc) file, using Asciidoctor - a text processor that converts AsciiDoc files to various formats, including HTML. This content would serve as the foundation of my presentation. 
+I organized everything in an [`index.adoc`](https://github.com/gtrivedi88/api.languages.github.io/blob/main/index.adoc) file, using Asciidoctor - a text processor that converts AsciiDoc files to various formats, including HTML. This content would serve as the foundation of my presentation. 
 
 Within this magical file, I set attributes like the author's name (:author: Gaurav Trivedi), chose the revealjs backend, and even summoned custom CSS (:customcss: main.css) to give my presentation a unique style. But that was just the tip of the iceberg.
 
@@ -64,7 +64,7 @@ And oh, animations! I sprinkled the magic of [%auto-animate] on my slides. From 
 
 **package.json**
 
-The [`package.json`](https://github.com/gautriv/api.languages.github.io/blob/main/package.json) file was my next stop. Here, I defined the project's details, dependencies, and scripts. It's like the mastermind behind the scenes, orchestrating the magic. I included dependencies such as @asciidoctor/reveal.js for RevealJS integration, asciidoctor-kroki for embedding diagrams, and more.  The magic spell lay in the scripts section of the package.json file. Running the prepare script executed the Asciidoctor command, transforming my AsciiDoc content into a dazzling RevealJS presentation. But that's not all - the script also handled copying the images and CSS to the appropriate directories in the public folder. This ensured that all the necessary assets were ready for the grand reveal.
+The [`package.json`](https://github.com/gtrivedi88/api.languages.github.io/blob/main/package.json) file was my next stop. Here, I defined the project's details, dependencies, and scripts. It's like the mastermind behind the scenes, orchestrating the magic. I included dependencies such as @asciidoctor/reveal.js for RevealJS integration, asciidoctor-kroki for embedding diagrams, and more.  The magic spell lay in the scripts section of the package.json file. Running the prepare script executed the Asciidoctor command, transforming my AsciiDoc content into a dazzling RevealJS presentation. But that's not all - the script also handled copying the images and CSS to the appropriate directories in the public folder. This ensured that all the necessary assets were ready for the grand reveal.
 
 ## The Local Output: Exploring Your Creation Up Close
 Before we unleash your presentation masterpiece, you need to make sure you've got a few things ready. Here's the checklist:
@@ -104,7 +104,7 @@ Project Root
 ## Publish to GitHub
 The journey didn't end with the presentation creation. I wanted to share my creation with the world. Thanks to the power of GitHub, I pushed all my content to a repository. To automate the publishing process, I turned to GitHub Actions.
 
-I crafted a [`publish.yml`](https://github.com/gautriv/api.languages.github.io/blob/main/.github/workflows/publish.yml) file, specifying the workflow details. This file told GitHub how to build and deploy my presentation whenever changes were pushed to the repository. It's like having a dedicated assistant ensuring your presentation is always ready to shine.
+I crafted a [`publish.yml`](https://github.com/gtrivedi88/api.languages.github.io/blob/main/.github/workflows/publish.yml) file, specifying the workflow details. This file told GitHub how to build and deploy my presentation whenever changes were pushed to the repository. It's like having a dedicated assistant ensuring your presentation is always ready to shine.
 
 After this my repository strcuture looked something like this:
 
@@ -143,7 +143,7 @@ And there it was, [my masterpiece](https://beingtechnicalwriter.com/api.language
 
 * To access the presentation, see [API DOCUMENTATION LANGUAGES A DEEP DIVE INTO JSON AND XML](https://beingtechnicalwriter.com/api.languages.github.io/)
 
-* To access the source repository, see [api.languages.github.io](https://github.com/gautriv/api.languages.github.io)
+* To access the source repository, see [api.languages.github.io](https://github.com/gtrivedi88/api.languages.github.io)
 
 **Wrapping Up**
 

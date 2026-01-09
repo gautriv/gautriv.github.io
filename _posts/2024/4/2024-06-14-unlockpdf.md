@@ -42,7 +42,7 @@ First things first, you'll need to download the repository from GitHub and set i
 Fire up your terminal (or command prompt) and run:
 
 ```bash
-git clone https://github.com/gautriv/unlockpdf.git
+git clone https://github.com/gtrivedi88/unlockpdf.git
 cd unlockpdf
 ```
 
