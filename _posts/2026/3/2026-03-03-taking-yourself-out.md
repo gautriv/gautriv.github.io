@@ -57,6 +57,8 @@ And he posted it himself.
 
 > “A significantly smaller team, using the tools we’re building, can do more and do it better. And intelligence tool capabilities are compounding faster every week.”
 
+Compounding interest is a miracle when it’s in your bank account. It’s a landslide when it’s your competition.
+
 No grief in it. No corporate softening. No HR-approved language about “restructuring for the future.”
 
 Just a man telling you, with the flat certainty of someone who has already run every number, that the machines had made four thousand jobs unnecessary.
@@ -141,6 +143,23 @@ One more thing. About Claude Code specifically.
 
 Here’s something you find once you’ve used Claude long enough. Not a prompt trick. Not a model setting. Two files. `CLAUDE.md` is the one most people land on first. But I run a second file alongside it. I call it `persona.md`. That one is where my thinking goes.
 
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 28px 0; font-size: 0.95em;">
+  <div style="background: #f0f4ff; border-radius: 12px; padding: 22px 24px; border-top: 4px solid #3a5bd9;">
+    <p style="margin: 0 0 14px; color: #3a5bd9; font-weight: 700; font-size: 1em; letter-spacing: 0.06em; text-transform: uppercase;">CLAUDE.md</p>
+    <p style="margin: 0 0 8px;"><strong>Holds:</strong> Project context</p>
+    <p style="margin: 0 0 8px;"><strong>Written by:</strong> Me</p>
+    <p style="margin: 0 0 8px;"><strong>Shapes:</strong> How Claude works <em>on</em> my project</p>
+    <p style="margin: 0; color: #555;"><strong>In mine:</strong> Jekyll conventions, AsciiDoc/DITA patterns, writing rules (no em dashes, no AI-sounding transitions), tool stack, voice guidelines</p>
+  </div>
+  <div style="background: #fff8f0; border-radius: 12px; padding: 22px 24px; border-top: 4px solid #d97706;">
+    <p style="margin: 0 0 14px; color: #d97706; font-weight: 700; font-size: 1em; letter-spacing: 0.06em; text-transform: uppercase;">persona.md</p>
+    <p style="margin: 0 0 8px;"><strong>Holds:</strong> Human context</p>
+    <p style="margin: 0 0 8px;"><strong>Written by:</strong> Me + Claude</p>
+    <p style="margin: 0 0 8px;"><strong>Shapes:</strong> How Claude works <em>with</em> me</p>
+    <p style="margin: 0; color: #555;"><strong>In mine:</strong> How I think under pressure, what I consistently avoid, when my writing is sharpest, the assumptions I keep making without realizing it</p>
+  </div>
+</div>
+
 **The first is `CLAUDE.md`.**
 
 If you use Claude Code or just Claude regularly for work, create a `CLAUDE.md` in your project. Treat it like a briefing document. Your tech stack. Your conventions. What “done” looks like. What you never want it to do. Update it after every four or five meaningful interactions. When something clicked, when something went wrong, when you discovered a preference you didn’t know you had.
@@ -185,7 +204,9 @@ That's not a small thing.
 
 ## The game I didn't expect to build
 
-Here's the strange one.
+Here's the one nobody expects.
+
+Taking yourself out of the equation isn't just about automating the work. It's about automating the dread of the work.
 
 Somewhere in the middle of all this, I got tired of tracking my own productivity the usual way. Spreadsheets. Habit apps. Streaks that broke every three weeks and took your momentum with them.
 
