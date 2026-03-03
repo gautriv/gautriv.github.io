@@ -135,23 +135,25 @@ Every framework I've outgrown taught me something about how information moves, h
 
 Learn the concept. Hold the implementation loosely.
 
-## The two files everybody recommends you to create
+One more thing. About Claude Code specifically.
 
-Here's something I rarely hear anyone mention about Claude. Not a prompt trick. Not a model setting. Two files. That's it. Two files that changed how I work with it completely.
+## The two files everybody eventually discovers
+
+Here’s something you find once you’ve used Claude long enough. Not a prompt trick. Not a model setting. Two files. `CLAUDE.md` is the one most people land on first. But I run a second file alongside it. I call it `persona.md`. That one is where my thinking goes.
 
 **The first is `CLAUDE.md`.**
 
-If you use Claude Code or just Claude regularly for work, create a `CLAUDE.md` in your project. Treat it like a briefing document. Your tech stack. Your conventions. What "done" looks like. What you never want it to do. Update it after every four or five meaningful interactions. When something clicked, when something went wrong, when you discovered a preference you didn't know you had.
+If you use Claude Code or just Claude regularly for work, create a `CLAUDE.md` in your project. Treat it like a briefing document. Your tech stack. Your conventions. What “done” looks like. What you never want it to do. Update it after every four or five meaningful interactions. When something clicked, when something went wrong, when you discovered a preference you didn’t know you had.
 
-You're not configuring a tool. You're building institutional memory.
+You’re not configuring a tool. You’re building institutional memory.
 
-**The second is what I call `persona.md`.**
+**The second is `persona.md`.**
 
-Create a file. Ask Claude to use it as a running portrait of you, based on everything it observes across your conversations. Your communication style. Your blind spots. The projects you're working on. The patterns in how you think.
+This one is mine. I created it to hold my thinking: patterns in how I work, assumptions I keep bumping into, mental models I’m still testing. I also ask Claude to add to it, based on everything it observes across our conversations. My communication style. My blind spots. The patterns in how I approach problems.
 
 Read it again after a month.
 
-I'm not going to tell you what it said about me. But I will say: it was accurate in ways that were uncomfortable. And useful in ways I hadn't anticipated. It surfaced assumptions I didn't know I was making. The AI had been paying attention in ways I hadn't asked it to. And because I'd created a place to put those observations, they didn't disappear at the end of each session.
+I’m not going to tell you what it said about me. But I will say: it was accurate in ways that were uncomfortable. And useful in ways I hadn’t anticipated. It surfaced assumptions I didn’t know I was making. The AI had been paying attention in ways I hadn’t asked it to. And because I’d created a place to put those observations, they didn’t disappear at the end of each session.
 
 Your AI should know you. Make space for that.
 
