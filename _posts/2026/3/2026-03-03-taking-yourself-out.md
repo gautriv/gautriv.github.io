@@ -110,7 +110,7 @@ I learned to prompt. Not the "please write me a paragraph about" kind of prompti
 
 I started using **Claude** for the actual work. Real reasoning, real edge cases, real documents that matter.
 **Gemini** for research and debate. When I need to stress-test an idea or triangulate across sources.
-**Cursor** when the documentation lives inside a codebase.
+[**Cursor**](/cursor-ai-api-doc/) when the documentation lives inside a codebase.
 **NotebookLM** when the source material is a mountain and I need a map.
 
 > "Each tool has a personality. You learn them the way you learn colleagues."
@@ -131,7 +131,7 @@ Then that started shifting too.
 
 Native retrieval. Longer context windows. Models that can hold entire codebases in their attention span without an external index. The problem vector databases solved is being dissolved by scale.
 
-The lesson I keep having to re-learn: **the tools are temporary. The understanding is permanent.**
+The lesson I keep having to re-learn: **the tools are temporary. The understanding is permanent.** (I sat with this thought properly in [my year-end reflection](/2025-year-end-reflection-technical-writer/).)
 
 Every framework I've outgrown taught me something about how information moves, how models reason, how systems fail. That thinking doesn't expire when the library does.
 
@@ -169,6 +169,12 @@ You’re not configuring a tool. You’re building institutional memory.
 **The second is `persona.md`.**
 
 This one is mine. I created it to hold my thinking: patterns in how I work, assumptions I keep bumping into, mental models I’m still testing. I also ask Claude to add to it, based on everything it observes across our conversations. My communication style. My blind spots. The patterns in how I approach problems.
+
+If you want to start yours, try dropping this into Claude:
+
+> *“Based on our conversations this week, identify three patterns in how I think, communicate, or make decisions. Record them in my persona.md file as short, honest observations. Don’t be diplomatic.”*
+
+Then read what it writes back. That last instruction matters more than you’d expect.
 
 Read it again after a month.
 
@@ -210,7 +216,7 @@ Taking yourself out of the equation isn't just about automating the work. It's a
 
 Somewhere in the middle of all this, I got tired of tracking my own productivity the usual way. Spreadsheets. Habit apps. Streaks that broke every three weeks and took your momentum with them.
 
-So I built my own gamified productivity tracker.
+So I built my own gamified productivity tracker. (That experiment eventually turned into a [365-day AI learning challenge](/365-day-ai-architect-journey/) I ran separately. Different beast, same instinct.)
 
 Points for completing a documentation sprint. A level up when a tool I built got adopted by the team. A streak counter that reset without punishment, but still made you want to defend it.
 
@@ -230,7 +236,7 @@ What you measure, you improve. What you gamify, you actually do.
 
 Here's what I've come to.
 
-Yes. AI will eventually touch every knowledge job. Including mine. Including yours. Not as a distant scenario but as an ongoing process, already underway, already changing what we do on a Tuesday afternoon.
+Yes. AI will eventually touch every knowledge job. Including mine. Including yours. Not as a distant scenario but as an ongoing process, already underway, already changing what we do on a Tuesday afternoon. I wrote about [which skills actually hold up under that pressure](/technical-writer-skills-2026-survival-guide/) if you want the longer version.
 
 You can feel that as a threat. Or you can do what I did.
 
