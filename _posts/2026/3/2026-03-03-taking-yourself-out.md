@@ -29,7 +29,7 @@ Two stories were running simultaneously on my feed at 10 PM on a Monday night.
 
 One had missiles in it.
 
-The other had a CEO, a public post, and four thousand people who no longer had jobs.
+The other had a CEO, a public post, and four thousand people who no longer had jobs. I came to it late. Didn’t matter.
 
 Only one of them kept me up that night.
 
