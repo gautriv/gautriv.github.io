@@ -113,8 +113,6 @@ I started using **Claude** for the actual work. Real reasoning, real edge cases,
 
 Each tool has a personality. You learn them the way you learn colleagues.
 
-<img src="/assets/talk.png" alt="A technical writer thinking out loud with AI tools" style="width:100%; border-radius:8px; margin:24px 0;">
-
 ## The things that got replaced, before I could even master them
 
 Here's the part that keeps the story honest.
