@@ -111,7 +111,7 @@ I started using **Claude** for the actual work. Real reasoning, real edge cases,
 **Cursor** when the documentation lives inside a codebase.
 **NotebookLM** when the source material is a mountain and I need a map.
 
-Each tool has a personality. You learn them the way you learn colleagues.
+> "Each tool has a personality. You learn them the way you learn colleagues."
 
 ## The things that got replaced, before I could even master them
 
