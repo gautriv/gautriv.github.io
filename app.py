@@ -26,7 +26,8 @@ BULLET_SIZE = 25000  # 25% allocation per trade
 NIFTY_STOCKS = NIFTY_500_STOCKS
 scan_lock = threading.Lock()
 
-scan_cache = {"data": None, "timestamp": 0}
+VERSION = "16.0-APEX-PREDATOR"
+scan_cache = {"data": None, "timestamp": 0, "refreshing": False}
 CACHE_TTL = 300 
 
 # ==========================================
@@ -88,9 +89,10 @@ def detect_choch(df):
 # ==========================================
 def get_hunter_signals():
     logging.info("===============================================================")
-    logging.info("--- STARTING SOVEREIGN HUNTER (v16.0 FULL VERBOSE) SCAN ---")
+    logging.info(f"--- STARTING SOVEREIGN HUNTER ({VERSION}) SCAN ---")
     logging.info("===============================================================")
     recommendations = []
+    failed_fetches = 0
     
     IST = pytz.timezone('Asia/Kolkata')
     current_time = datetime.now(IST)
@@ -210,7 +212,12 @@ def get_hunter_signals():
 
         except Exception as e:
             logging.error(f"Error processing {ticker}: {e}")
+            failed_fetches += 1
             
+    if failed_fetches > (total_stocks * 0.2):
+        logging.error(f"CRITICAL: {failed_fetches}/{total_stocks} stocks failed to fetch. Aborting scan to prevent false zero-trades.")
+        return None
+
     # --- THE SORTING MASTERSTROKE ---
     # This happens OUTSIDE the for loop, after all 500 stocks are processed
     recommendations = sorted(recommendations, key=lambda x: x['score'], reverse=True)
@@ -221,18 +228,42 @@ def get_hunter_signals():
 # ==========================================
 # 5. FLASK ROUTES
 # ==========================================
+def run_background_scan():
+    try:
+        signals = get_hunter_signals()
+        if signals is not None:
+            with scan_lock:
+                scan_cache["data"] = signals
+                scan_cache["timestamp"] = time.time()
+                scan_cache["refreshing"] = False
+        else:
+            logging.error("Scan aborted due to massive data failure.")
+            with scan_lock:
+                scan_cache["refreshing"] = False
+    except Exception as e:
+        logging.error(f"Background scan crashed: {e}")
+        with scan_lock:
+            scan_cache["refreshing"] = False
+
 @app.route('/api/signals')
 def get_signals():
     with scan_lock:
         current_time = time.time()
+        # 1. Fresh cache -> serve immediately
         if scan_cache["data"] is not None and (current_time - scan_cache["timestamp"] < CACHE_TTL):
-            return jsonify({"status": "success", "data": scan_cache["data"], "nifty_hunter_version": "15.0-APEX-PREDATOR (Cached)"})
+            return jsonify({"status": "success", "data": scan_cache["data"], "nifty_hunter_version": f"{VERSION} (Cached)"})
 
-        signals = get_hunter_signals()
-        scan_cache["data"] = signals
-        scan_cache["timestamp"] = time.time()
+        # 2. Cache missing or stale -> trigger background scan if not already refreshing
+        if not scan_cache.get("refreshing", False):
+            scan_cache["refreshing"] = True
+            threading.Thread(target=run_background_scan, daemon=True).start()
 
-    return jsonify({"status": "success", "data": signals, "nifty_hunter_version": "15.0-APEX-PREDATOR"})
+        # 3. Serve stale cache if available while refreshing
+        if scan_cache["data"] is not None:
+            return jsonify({"status": "success", "data": scan_cache["data"], "nifty_hunter_version": f"{VERSION} (Stale, Refreshing)"})
+
+        # 4. Total cold start -> return 202
+        return jsonify({"status": "accepted", "message": "Scan is running in background. Please wait.", "nifty_hunter_version": VERSION}), 202
 
 if __name__ == '__main__':
     app.run(debug=os.getenv("FLASK_DEBUG") == "1", port=5001)
