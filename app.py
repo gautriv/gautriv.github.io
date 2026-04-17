@@ -8,6 +8,7 @@ import pytz
 import logging
 import threading
 import time
+import os
 
 from nifty500 import NIFTY_500_STOCKS
 
@@ -42,6 +43,8 @@ def calculate_atr(df, period=14):
     return np.max(ranges, axis=1).rolling(period).mean()
 
 def calculate_evr(vol_z_score, body, curr_atr):
+    if not np.isfinite(curr_atr) or curr_atr <= 0:
+        return 0.0
     effort = max(vol_z_score, 0.1) 
     result = max(body / curr_atr, 0.05) 
     return effort / result
@@ -81,11 +84,10 @@ def detect_choch(df):
 # 3. THE CORE SCANNER
 # ==========================================
 def get_hunter_signals():
-    with scan_lock:
-        logging.info("===============================================================")
-        logging.info("--- STARTING SOVEREIGN HUNTER (v16.0 FULL VERBOSE) SCAN ---")
-        logging.info("===============================================================")
-        recommendations = []
+    logging.info("===============================================================")
+    logging.info("--- STARTING SOVEREIGN HUNTER (v16.0 FULL VERBOSE) SCAN ---")
+    logging.info("===============================================================")
+    recommendations = []
     
     IST = pytz.timezone('Asia/Kolkata')
     current_time = datetime.now(IST)
@@ -175,6 +177,9 @@ def get_hunter_signals():
                 stop_loss = c_low - (c_atr * 0.1) 
                 risk_per_share = c_close - stop_loss
                 qty = int(BULLET_SIZE / c_close)
+                if qty < 1:
+                    logging.info(f"    [-] Skipped. Bullet size cannot purchase a single share.")
+                    continue
                 target = c_close + (risk_per_share * 3) 
                 
                 trap_type = "Cascade+Classic" if is_classic_hunt and is_cascade_hunt else ("Cascade" if is_cascade_hunt else "Classic")
@@ -214,15 +219,16 @@ def get_hunter_signals():
 # ==========================================
 @app.route('/api/signals')
 def get_signals():
-    current_time = time.time()
-    if scan_cache["data"] is not None and (current_time - scan_cache["timestamp"] < CACHE_TTL):
-        return jsonify({"status": "success", "data": scan_cache["data"], "nifty_hunter_version": "15.0-APEX-PREDATOR (Cached)"})
+    with scan_lock:
+        current_time = time.time()
+        if scan_cache["data"] is not None and (current_time - scan_cache["timestamp"] < CACHE_TTL):
+            return jsonify({"status": "success", "data": scan_cache["data"], "nifty_hunter_version": "15.0-APEX-PREDATOR (Cached)"})
 
-    signals = get_hunter_signals()
-    scan_cache["data"] = signals
-    scan_cache["timestamp"] = current_time
+        signals = get_hunter_signals()
+        scan_cache["data"] = signals
+        scan_cache["timestamp"] = time.time()
 
     return jsonify({"status": "success", "data": signals, "nifty_hunter_version": "15.0-APEX-PREDATOR"})
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5001)
+    app.run(debug=os.getenv("FLASK_DEBUG") == "1", port=5001)
