@@ -3,6 +3,7 @@ from flask_cors import CORS
 import yfinance as yf
 import pandas as pd
 import numpy as np
+import math
 from datetime import datetime
 import pytz
 import logging
@@ -32,8 +33,8 @@ CACHE_TTL = 300
 # 2. THE BLOOMBERG-ENVY QUANT ENGINES
 # ==========================================
 def get_nearest_round_number(price):
-    if price > 1000: return round(price / 100) * 100
-    return round(price / 50) * 50
+    step = 100 if price > 1000 else 50
+    return int(math.floor(price / step + 0.5) * step)
 
 def calculate_atr(df, period=14):
     high_low = df['High'] - df['Low']
@@ -64,10 +65,12 @@ def detect_virgin_order_blocks(df, atr_series):
                 ob_high = df['High'].iloc[i-1]
                 ob_low = df['Low'].iloc[i-1]
                 
-                # Check for Mitigation (Did price ever touch it again?)
+                # Check for Mitigation (Actual footprint overlap)
                 mitigated = False
                 for j in range(i+1, len(df)-1):
-                    if df['Low'].iloc[j] <= ob_high:
+                    future_low = df['Low'].iloc[j]
+                    future_high = df['High'].iloc[j]
+                    if future_high >= ob_low and future_low <= ob_high:
                         mitigated = True
                         break
                 
@@ -100,8 +103,9 @@ def get_hunter_signals():
         n_close, n_open, n_low, n_high = n_curr['Close'], n_curr['Open'], n_curr['Low'], n_curr['High']
         n_change = (n_close - n_open) / n_open
         n_stable = n_close > (n_low + (n_high - n_low) * 0.2)
-    except:
-        n_stable, n_change = False, 0.0
+    except Exception as exc:
+        logging.warning("Failed to load NIFTY context: %s", exc)
+        n_stable, n_change = None, None
 
     total_stocks = len(NIFTY_STOCKS)
     for idx, ticker in enumerate(NIFTY_STOCKS):
@@ -143,7 +147,7 @@ def get_hunter_signals():
             body = abs(c_close - c_open)
             lower_wick = min(c_close, c_open) - c_low
             evr = calculate_evr(vol_z, body, c_atr)
-            is_immune = (n_change < -0.005 and s_change > 0)
+            is_immune = (n_change is not None and n_change < -0.005 and s_change > 0)
             choch = detect_choch(df)
 
             # --- THE GAUNTLET LOGGING ---
@@ -159,7 +163,7 @@ def get_hunter_signals():
                 logging.info(f"    [!] VETO. Effort vs Result Physics ({round(evr, 2)}) too weak.")
             elif not tapped_ob and num_cascades == 0:
                 logging.info(f"    [!] VETO. No SMC clusters or Unmitigated OBs present.")
-            elif not n_stable and not is_immune:
+            elif n_stable is False and not is_immune:
                 logging.warning(f"    [X] VETO. Nifty is crashing and stock lacks Immunity.")
             
             # --- START OF THE SLAYER SCORE ADDITION ---
