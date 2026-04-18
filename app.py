@@ -248,8 +248,8 @@ def get_hunter_signals():
                 slayer_score = ob_points + cascade_points + evr_points + z_points + immunity_points
 
                 # 2. POSITION & TARGET MATH
-                # FIX: Stop Loss buffer increased to 0.5 ATR to survive retail hunting
-                stop_loss = c_low - (c_atr * 0.5) 
+                # FIX: Stop Loss buffer increased to 1.5 ATR to survive retail hunting and daily volatility
+                stop_loss = c_low - (c_atr * 1.5) 
                 risk_per_share = c_close - stop_loss
                 if risk_per_share <= 0:
                     logging.info(f"    [-] {ticker}: Skipped. Invalid risk calculation.")
