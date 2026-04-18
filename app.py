@@ -27,8 +27,15 @@ NIFTY_STOCKS = NIFTY_500_STOCKS
 scan_lock = threading.Lock()
 
 VERSION = "16.0-APEX-PREDATOR"
-scan_cache = {"data": None, "timestamp": 0, "refreshing": False}
+scan_cache = {
+    "data": None, 
+    "timestamp": 0, 
+    "refreshing": False,
+    "last_failure": 0,
+    "last_error": None
+}
 CACHE_TTL = 300 
+FAILURE_BACKOFF = 60
 
 # ==========================================
 # 2. THE BLOOMBERG-ENVY QUANT ENGINES
@@ -239,14 +246,20 @@ def run_background_scan():
                 scan_cache["data"] = signals
                 scan_cache["timestamp"] = time.time()
                 scan_cache["refreshing"] = False
+                scan_cache["last_failure"] = 0
+                scan_cache["last_error"] = None
         else:
             logging.error("Scan aborted due to massive data failure.")
             with scan_lock:
                 scan_cache["refreshing"] = False
+                scan_cache["last_failure"] = time.time()
+                scan_cache["last_error"] = "Scan aborted due to massive data failure."
     except Exception as e:
         logging.error(f"Background scan crashed: {e}")
         with scan_lock:
             scan_cache["refreshing"] = False
+            scan_cache["last_failure"] = time.time()
+            scan_cache["last_error"] = str(e)
 
 @app.route('/api/signals')
 def get_signals():
@@ -257,15 +270,27 @@ def get_signals():
             return jsonify({"status": "success", "data": scan_cache["data"], "nifty_hunter_version": f"{VERSION} (Cached)"})
 
         # 2. Cache missing or stale -> trigger background scan if not already refreshing
-        if not scan_cache.get("refreshing", False):
+        recent_failure = (
+            scan_cache.get("last_failure", 0) > 0
+            and current_time - scan_cache["last_failure"] < FAILURE_BACKOFF
+        )
+        if not scan_cache.get("refreshing", False) and not recent_failure:
             scan_cache["refreshing"] = True
             threading.Thread(target=run_background_scan, daemon=True).start()
 
         # 3. Serve stale cache if available while refreshing
         if scan_cache["data"] is not None:
             return jsonify({"status": "success", "data": scan_cache["data"], "nifty_hunter_version": f"{VERSION} (Stale, Refreshing)"})
+        
+        # 4. Handle recent failure without cache
+        if recent_failure:
+            return jsonify({
+                "status": "error",
+                "message": scan_cache.get("last_error", "Latest refresh failed. Retry later."),
+                "nifty_hunter_version": VERSION,
+            }), 503
 
-        # 4. Total cold start -> return 202
+        # 5. Total cold start -> return 202
         return jsonify({"status": "accepted", "message": "Scan is running in background. Please wait.", "nifty_hunter_version": VERSION}), 202
 
 if __name__ == '__main__':
