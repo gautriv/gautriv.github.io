@@ -26,7 +26,7 @@ BULLET_SIZE = int(TOTAL_CAPITAL * 0.25)  # 25% allocation per trade
 NIFTY_STOCKS = NIFTY_500_STOCKS
 scan_lock = threading.Lock()
 
-VERSION = "16.0-APEX-PREDATOR"
+VERSION = "16.1-APEX-PREDATOR"
 scan_cache = {
     "data": None, 
     "timestamp": 0, 
@@ -113,17 +113,31 @@ def get_hunter_signals():
         n_change = (n_close - n_open) / n_open
         n_stable = n_close > (n_low + (n_high - n_low) * 0.2)
     except Exception as exc:
-        logging.warning("Failed to load NIFTY context: %s", exc)
-        n_stable, n_change = None, None
+        # FIX: Abort entirely if NIFTY fails. Do not buy blindly into the dark.
+        logging.error(f"CRITICAL: Failed to load NIFTY context: {exc}. Aborting scan to protect capital.")
+        return None
+
+    # 2. BATCH DOWNLOAD (RATE-LIMIT PROTECTION)
+    logging.info(f"Initiating batch download for {len(NIFTY_STOCKS)} NIFTY stocks...")
+    try:
+        # Downloads all 500 stocks in a single API call
+        batch_data = yf.download(NIFTY_STOCKS, period="90d", interval="1d", group_by="ticker", threads=True, progress=False)
+    except Exception as e:
+        logging.error(f"CRITICAL: Batch download failed: {e}")
+        return None
 
     total_stocks = len(NIFTY_STOCKS)
     for idx, ticker in enumerate(NIFTY_STOCKS):
-        logging.info(f"Scanning [{idx+1}/{total_stocks}] {ticker}...")
         
         try:
-            df = yf.Ticker(ticker).history(period="90d", interval="1d").dropna()
+            # Extract individual stock data from the batch
+            if ticker in batch_data:
+                df = batch_data[ticker].dropna()
+            else:
+                logging.info(f"    [-] {ticker} Skipped. Not found in batch data.")
+                continue
+                
             if len(df) < 30: 
-                logging.info("    [-] Skipped. Insufficient data.")
                 continue
 
             df['ATR'] = calculate_atr(df)
@@ -161,19 +175,19 @@ def get_hunter_signals():
 
             # --- THE GAUNTLET LOGGING ---
             if not hunted_and_reclaimed:
-                logging.info("    [-] Skipped. No Liquidity Trap triggered.")
+                continue # Silent skip to reduce log clutter
             elif not choch:
-                logging.info("    [▼] VETO. Trap triggered, but FAILED Change of Character.")
+                logging.info(f"    [▼] {ticker}: VETO. Trap triggered, but FAILED Change of Character.")
             elif vol_z < 1.0: 
-                logging.info(f"    [!] VETO. Weak Volume Z-Score ({round(vol_z, 2)}σ).")
+                logging.info(f"    [!] {ticker}: VETO. Weak Volume Z-Score ({round(vol_z, 2)}σ).")
             elif not ((lower_wick > (body * 1.5)) and (lower_wick > (c_atr * 0.3))):
-                logging.info("    [!] VETO. Rejection wick too small.")
+                logging.info(f"    [!] {ticker}: VETO. Rejection wick too small.")
             elif evr < 1.5:
-                logging.info(f"    [!] VETO. Effort vs Result Physics ({round(evr, 2)}) too weak.")
+                logging.info(f"    [!] {ticker}: VETO. Effort vs Result Physics ({round(evr, 2)}) too weak.")
             elif not tapped_ob and num_cascades == 0:
-                logging.info("    [!] VETO. No SMC clusters or Unmitigated OBs present.")
+                logging.info(f"    [!] {ticker}: VETO. No SMC clusters or Unmitigated OBs present.")
             elif n_stable is False and not is_immune:
-                logging.warning("    [X] VETO. Nifty is crashing and stock lacks Immunity.")
+                logging.warning(f"    [X] {ticker}: VETO. Nifty is crashing and stock lacks Immunity.")
             
             # --- START OF THE SLAYER SCORE ADDITION ---
             else:
@@ -187,16 +201,20 @@ def get_hunter_signals():
                 slayer_score = ob_points + cascade_points + evr_points + z_points + immunity_points
 
                 # 2. POSITION & TARGET MATH
-                stop_loss = c_low - (c_atr * 0.1) 
+                # FIX: Stop Loss buffer increased to 0.5 ATR to survive retail hunting
+                stop_loss = c_low - (c_atr * 0.5) 
                 risk_per_share = c_close - stop_loss
                 if risk_per_share <= 0:
-                    logging.info("    [-] Skipped. Invalid risk calculation (close <= stop).")
+                    logging.info(f"    [-] {ticker}: Skipped. Invalid risk calculation.")
                     continue
                 qty = int(BULLET_SIZE / c_close)
                 if qty < 1:
-                    logging.info("    [-] Skipped. Bullet size cannot purchase a single share.")
+                    logging.info(f"    [-] {ticker}: Skipped. Bullet size cannot purchase a single share.")
                     continue
                 target = c_close + (risk_per_share * 3) 
+                
+                # FIX: Max entry price to invalidate the trade if it gaps up the next morning
+                max_entry = c_close + (c_atr * 0.15)
                 
                 trap_type = "Cascade+Classic" if is_classic_hunt and is_cascade_hunt else ("Cascade" if is_cascade_hunt else "Classic")
 
@@ -210,7 +228,8 @@ def get_hunter_signals():
 
                 recommendations.append({
                     "ticker": ticker,
-                    "entry": round(c_close, 2),
+                    "ideal_entry": round(c_close, 2),
+                    "max_entry": round(max_entry, 2), # Do not buy above this price
                     "sl": round(stop_loss, 2),
                     "target": round(target, 2),
                     "qty": qty,
