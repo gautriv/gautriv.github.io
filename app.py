@@ -63,28 +63,52 @@ def map_liquidity_cascades(df):
                    (df['Low'] < df['Low'].shift(-1)) & (df['Low'] < df['Low'].shift(-2))
     return df['Low'][is_swing_low].dropna()
 
-def detect_virgin_order_blocks(df, atr_series):
-    """SMC: Finds only VIRGIN zones where Institutional Limit Buyers are waiting"""
-    order_blocks = []
+def detect_order_block_states(df, atr_series):
+    """
+    SMC: Finds Institutional Zones and categorizes them as:
+    - 'VIRGIN': Untouched limit orders waiting.
+    - 'SWEPT': Wick tapped the zone, but body rejected (Highly Bullish).
+    - Ignores 'BREACHED' zones where the candle closed inside/below.
+    """
+    valid_order_blocks = []
+    
     for i in range(2, len(df)-1):
-        # Displacement > 1.2x ATR
+        # 1. Identify Displacement (Institutional buying pressure > 1.2x ATR)
         if (df['Close'].iloc[i] - df['Open'].iloc[i]) > (atr_series.iloc[i] * 1.2):
-            if df['Close'].iloc[i-1] < df['Open'].iloc[i-1]: # Prior red candle
+            if df['Close'].iloc[i-1] < df['Open'].iloc[i-1]: # Prior candle was red
                 ob_high = df['High'].iloc[i-1]
                 ob_low = df['Low'].iloc[i-1]
                 
-                # Check for Mitigation (Actual footprint overlap)
-                mitigated = False
+                # Assume it's a virgin block until proven otherwise
+                ob_state = "VIRGIN"
+                
+                # 2. The Mitigation Gauntlet
                 for j in range(i+1, len(df)-1):
                     future_low = df['Low'].iloc[j]
-                    future_high = df['High'].iloc[j]
-                    if future_high >= ob_low and future_low <= ob_high:
-                        mitigated = True
-                        break
+                    future_close = df['Close'].iloc[j]
+                    
+                    # CONDITION A: THE DEATH BLOW (Body Breach)
+                    # If the candle CLOSES inside or below the OB, the zone is invalidated.
+                    if future_close <= ob_high:
+                        ob_state = "BREACHED"
+                        break # Zone is dead, stop checking future candles
+                        
+                    # CONDITION B: THE LIQUIDITY SWEEP (Wick Tap)
+                    # The low pierced the zone, but the close was safely above it.
+                    elif future_low <= ob_high and future_close > ob_high:
+                        ob_state = "SWEPT"
+                        # We DO NOT break here. A swept OB is still a valid support zone,
+                        # but we update its state because a SWEPT block is a high-probability trigger.
                 
-                if not mitigated:
-                    order_blocks.append((ob_low, ob_high))
-    return order_blocks
+                # 3. Only keep zones that survived the gauntlet
+                if ob_state != "BREACHED":
+                    valid_order_blocks.append({
+                        "ob_low": ob_low,
+                        "ob_high": ob_high,
+                        "state": ob_state
+                    })
+                    
+    return valid_order_blocks
 
 def detect_choch(df):
     """SMC: Change of Character (Engulfing yesterday's selling pressure)"""
@@ -154,12 +178,14 @@ def get_hunter_signals():
             # TRAP MAPS
             classic_target = min(df['Low'].iloc[-20:-1].min(), get_nearest_round_number(c_close))
             swing_lows = map_liquidity_cascades(df.iloc[:-1]) 
-            virgin_obs = detect_virgin_order_blocks(df, df['ATR'])
+            valid_obs = detect_order_block_states(df, df['ATR'])
             
             # SWEEP MATH
             swept_cascades = swing_lows[(swing_lows >= c_low) & (swing_lows <= c_close)]
             num_cascades = len(swept_cascades)
-            tapped_ob = any(c_low <= (ob_h * 1.002) and c_close >= (ob_low * 0.998) for ob_low, ob_h in virgin_obs[-3:])
+            is_virgin_tap = any(c_low <= (ob['ob_high'] * 1.002) and ob['state'] == "VIRGIN" for ob in valid_obs[-3:])
+            is_swept_tap = any(c_low <= (ob['ob_high'] * 1.002) and ob['state'] == "SWEPT" for ob in valid_obs[-3:])
+            is_any_ob_tap = is_virgin_tap or is_swept_tap
 
             # CORE LOGIC
             is_classic_hunt = c_low < classic_target and c_close > classic_target
@@ -184,15 +210,20 @@ def get_hunter_signals():
                 logging.info(f"    [!] {ticker}: VETO. Rejection wick too small.")
             elif evr < 1.5:
                 logging.info(f"    [!] {ticker}: VETO. Effort vs Result Physics ({round(evr, 2)}) too weak.")
-            elif not tapped_ob and num_cascades == 0:
-                logging.info(f"    [!] {ticker}: VETO. No SMC clusters or Unmitigated OBs present.")
+            elif not is_any_ob_tap and num_cascades == 0:
+                logging.info(f"    [!] {ticker}: VETO. No SMC clusters or Valid OBs present.")
             elif n_stable is False and not is_immune:
                 logging.warning(f"    [X] {ticker}: VETO. Nifty is crashing and stock lacks Immunity.")
             
             # --- START OF THE SLAYER SCORE ADDITION ---
             else:
                 # 1. CALCULATE THE SLAYER SCORE
-                ob_points = 50 if tapped_ob else 0
+                ob_points = 0
+                if is_swept_tap:
+                    ob_points = 75
+                elif is_virgin_tap:
+                    ob_points = 40
+                
                 cascade_points = num_cascades * 15
                 evr_points = evr * 10
                 z_points = vol_z * 10
@@ -222,7 +253,7 @@ def get_hunter_signals():
                 logging.info(f"    👑 SOVEREIGN TARGET ACQUIRED: {ticker} 👑")
                 logging.info(f"       - Slayer Score: {round(slayer_score, 2)}")
                 logging.info(f"       - Trap: {trap_type} (Cascades: {num_cascades})")
-                logging.info(f"       - Unmitigated OB Tapped: {tapped_ob}")
+                logging.info(f"       - OB Action: Swept {is_swept_tap} | Virgin {is_virgin_tap}")
                 logging.info(f"       - EvR Physics: {round(evr, 2)} (Vol: +{round(vol_z, 2)}σ)")
                 logging.info("    ==================================================")
 
@@ -235,7 +266,7 @@ def get_hunter_signals():
                     "qty": qty,
                     "score": round(slayer_score, 2), # FOR DASHBOARD RANKING
                     "status": "VALID" if is_closing_window else "STALKING",
-                    "game_detected": f"Trap: {trap_type}. Cascades: {num_cascades}. Virgin OB Tapped: {tapped_ob}. EvR Physics: {round(evr, 2)}."
+                    "game_detected": f"Trap: {trap_type}. Cascades: {num_cascades}. OB Action: Swept {is_swept_tap} | Virgin {is_virgin_tap}. EvR Physics: {round(evr, 2)}."
                 })
             # --- END OF THE SLAYER SCORE ADDITION ---
 
