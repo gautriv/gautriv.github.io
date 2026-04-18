@@ -143,7 +143,8 @@ def get_hunter_signals():
     
     IST = pytz.timezone('Asia/Kolkata')
     current_time = datetime.now(IST)
-    is_closing_window = current_time.hour == 15 and current_time.minute >= 15
+    market_minutes = current_time.hour * 60 + current_time.minute
+    is_closing_window = (15 * 60 + 15) <= market_minutes < (15 * 60 + 30)
 
     # MARKET CONTEXT
     try:
@@ -167,17 +168,19 @@ def get_hunter_signals():
         return None
 
     total_stocks = len(NIFTY_STOCKS)
-    for idx, ticker in enumerate(NIFTY_STOCKS):
+    for _, ticker in enumerate(NIFTY_STOCKS):
         
         try:
             # Extract individual stock data from the batch
             if ticker in batch_data:
                 df = batch_data[ticker].dropna()
             else:
-                logging.info(f"    [-] {ticker} Skipped. Not found in batch data.")
+                failed_fetches += 1
+                logging.warning(f"    [X] {ticker} Missing from batch data.")
                 continue
                 
             if len(df) < 30: 
+                failed_fetches += 1
                 continue
 
             df['ATR'] = calculate_atr(df)
@@ -346,7 +349,8 @@ def get_signals():
 
         # 3. Serve stale cache if available while refreshing
         if scan_cache["data"] is not None:
-            return jsonify({"status": "success", "data": scan_cache["data"], "nifty_hunter_version": f"{VERSION} (Stale, Refreshing)"})
+            cache_state = "Stale, Refreshing" if scan_cache.get("refreshing", False) else ("Stale, Backoff" if recent_failure else "Stale")
+            return jsonify({"status": "success", "data": scan_cache["data"], "nifty_hunter_version": f"{VERSION} ({cache_state})"})
         
         # 4. Handle recent failure without cache
         if recent_failure:
