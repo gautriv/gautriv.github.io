@@ -111,9 +111,25 @@ def detect_order_block_states(df, atr_series):
     return valid_order_blocks
 
 def detect_choch(df):
-    """SMC: Change of Character (Engulfing yesterday's selling pressure)"""
-    prev_high_body = max(df['Open'].iloc[-2], df['Close'].iloc[-2])
-    return df['Close'].iloc[-1] > prev_high_body
+    """
+    SMC: True Change of Character (ChoCh)
+    Requires the current price to break above the most recent structural Swing High.
+    """
+    historical_df = df.iloc[:-1]
+    
+    is_swing_high = (historical_df['High'] > historical_df['High'].shift(1)) & \
+                    (historical_df['High'] > historical_df['High'].shift(2)) & \
+                    (historical_df['High'] > historical_df['High'].shift(-1)) & \
+                    (historical_df['High'] > historical_df['High'].shift(-2))
+                    
+    swing_highs = historical_df['High'][is_swing_high].dropna()
+    
+    if len(swing_highs) == 0:
+        return False
+        
+    last_swing_high = swing_highs.iloc[-1]
+    
+    return df['Close'].iloc[-1] > last_swing_high
 
 # ==========================================
 # 3. THE CORE SCANNER
