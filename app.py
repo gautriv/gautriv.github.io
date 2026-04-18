@@ -22,7 +22,7 @@ app = Flask(__name__)
 CORS(app)
 
 TOTAL_CAPITAL = 100000
-BULLET_SIZE = 25000  # 25% allocation per trade
+BULLET_SIZE = int(TOTAL_CAPITAL * 0.25)  # 25% allocation per trade
 NIFTY_STOCKS = NIFTY_500_STOCKS
 scan_lock = threading.Lock()
 
@@ -116,7 +116,7 @@ def get_hunter_signals():
         try:
             df = yf.Ticker(ticker).history(period="90d", interval="1d").dropna()
             if len(df) < 30: 
-                logging.info(f"    [-] Skipped. Insufficient data.")
+                logging.info("    [-] Skipped. Insufficient data.")
                 continue
 
             df['ATR'] = calculate_atr(df)
@@ -138,7 +138,7 @@ def get_hunter_signals():
             # SWEEP MATH
             swept_cascades = swing_lows[(swing_lows >= c_low) & (swing_lows <= c_close)]
             num_cascades = len(swept_cascades)
-            tapped_ob = any(c_low <= (h * 1.002) and c_close >= (l * 0.998) for l, h in virgin_obs[-3:])
+            tapped_ob = any(c_low <= (ob_h * 1.002) and c_close >= (ob_low * 0.998) for ob_low, ob_h in virgin_obs[-3:])
 
             # CORE LOGIC
             is_classic_hunt = c_low < classic_target and c_close > classic_target
@@ -154,19 +154,19 @@ def get_hunter_signals():
 
             # --- THE GAUNTLET LOGGING ---
             if not hunted_and_reclaimed:
-                logging.info(f"    [-] Skipped. No Liquidity Trap triggered.")
+                logging.info("    [-] Skipped. No Liquidity Trap triggered.")
             elif not choch:
-                logging.info(f"    [▼] VETO. Trap triggered, but FAILED Change of Character.")
+                logging.info("    [▼] VETO. Trap triggered, but FAILED Change of Character.")
             elif vol_z < 1.0: 
                 logging.info(f"    [!] VETO. Weak Volume Z-Score ({round(vol_z, 2)}σ).")
             elif not ((lower_wick > (body * 1.5)) and (lower_wick > (c_atr * 0.3))):
-                logging.info(f"    [!] VETO. Rejection wick too small.")
+                logging.info("    [!] VETO. Rejection wick too small.")
             elif evr < 1.5:
                 logging.info(f"    [!] VETO. Effort vs Result Physics ({round(evr, 2)}) too weak.")
             elif not tapped_ob and num_cascades == 0:
-                logging.info(f"    [!] VETO. No SMC clusters or Unmitigated OBs present.")
+                logging.info("    [!] VETO. No SMC clusters or Unmitigated OBs present.")
             elif n_stable is False and not is_immune:
-                logging.warning(f"    [X] VETO. Nifty is crashing and stock lacks Immunity.")
+                logging.warning("    [X] VETO. Nifty is crashing and stock lacks Immunity.")
             
             # --- START OF THE SLAYER SCORE ADDITION ---
             else:
@@ -182,21 +182,24 @@ def get_hunter_signals():
                 # 2. POSITION & TARGET MATH
                 stop_loss = c_low - (c_atr * 0.1) 
                 risk_per_share = c_close - stop_loss
+                if risk_per_share <= 0:
+                    logging.info("    [-] Skipped. Invalid risk calculation (close <= stop).")
+                    continue
                 qty = int(BULLET_SIZE / c_close)
                 if qty < 1:
-                    logging.info(f"    [-] Skipped. Bullet size cannot purchase a single share.")
+                    logging.info("    [-] Skipped. Bullet size cannot purchase a single share.")
                     continue
                 target = c_close + (risk_per_share * 3) 
                 
                 trap_type = "Cascade+Classic" if is_classic_hunt and is_cascade_hunt else ("Cascade" if is_cascade_hunt else "Classic")
 
-                logging.info(f"    ==================================================")
+                logging.info("    ==================================================")
                 logging.info(f"    👑 SOVEREIGN TARGET ACQUIRED: {ticker} 👑")
                 logging.info(f"       - Slayer Score: {round(slayer_score, 2)}")
                 logging.info(f"       - Trap: {trap_type} (Cascades: {num_cascades})")
                 logging.info(f"       - Unmitigated OB Tapped: {tapped_ob}")
                 logging.info(f"       - EvR Physics: {round(evr, 2)} (Vol: +{round(vol_z, 2)}σ)")
-                logging.info(f"    ==================================================")
+                logging.info("    ==================================================")
 
                 recommendations.append({
                     "ticker": ticker,
