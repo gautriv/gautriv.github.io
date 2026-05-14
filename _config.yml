@@ -54,6 +54,8 @@ defaults:
 exclude:
   - _drafts
   - _site
+  - docs
+  - mockups
 
 target: web
 
