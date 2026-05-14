@@ -1,485 +1,79 @@
 ---
 layout: default
-
 ---
-{% include adsense.html %}
+<div class="reading-progress" aria-hidden="true"></div>
 
-<div class="post-header-wrapper">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-10 col-md-12 mx-auto">
-                <div class="post-header">
-                    <div class="post-categories">
-                        {% for cat in page.categories %}
-                        <a href="{{ "/category-" | prepend: site.baseurl | append: cat}}" class="post-category">{{cat}}</a>
-                        {% endfor %}
-                    </div>
-                    <h1 class="post-title">{{ page.title }}</h1>
-                    <div class="post-meta">
-                        <div class="post-author">
-                            <img src="/img/authors/{{ page.author | slugify }}.jpg" alt="{{ page.author }}" class="author-img" onerror="this.src='/img/authors/default.jpg'">
-                            <span>{{ page.author }}</span>
-                        </div>
-                        <div class="post-date">
-                            <i class="fas fa-calendar-alt"></i>
-                            <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
-                                {{ page.date | date: "%b %-d, %Y" }}
-                            </time>
-                        </div>
-                        <div class="post-readtime">
-                            <i class="fas fa-clock"></i>
-                            {% include readtime.html content=page.content %}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<article itemscope itemtype="https://schema.org/BlogPosting">
+
+  <header class="article-head">
+    <div class="pre-tags">
+      {% for cat in page.categories %}
+        <a href="{{ '/category-' | prepend: site.baseurl | append: cat | downcase }}/" class="chip accent">{{ cat }}</a>
+      {% endfor %}
+      {% if page.series %}<span class="chip">{{ page.series }}</span>{% endif %}
     </div>
-</div>
 
-<div class="featured-image-wrapper">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-10 col-md-12 mx-auto">
-                <div class="featured-image">
-                    <img src="{{ page.image | prepend: site.baseurl }}" alt="{{ page.title }}" title="{{ page.title }}" class="img-fluid">
-                </div>
-            </div>
-        </div>
+    <h1 itemprop="headline">{{ page.title }}</h1>
+
+    {% if page.subtitle %}<p class="dek">{{ page.subtitle | strip_html }}</p>{% endif %}
+
+    <div class="article-bar">
+      <div><span>by</span> <strong itemprop="author">{{ page.author | default: 'Gaurav Trivedi' | strip_html }}</strong></div>
+      <div><span>published</span> <time itemprop="datePublished" datetime="{{ page.date | date_to_xmlschema }}"><strong>{{ page.date | date: "%Y-%m-%d" }}</strong></time></div>
+      {% if page.last_modified_at %}
+        <div><span>updated</span> <time itemprop="dateModified" datetime="{{ page.last_modified_at | date_to_xmlschema }}"><strong>{{ page.last_modified_at | date: "%Y-%m-%d" }}</strong></time></div>
+      {% endif %}
+      <div><span>read</span> <strong>{% include readtime.html content=page.content %}</strong></div>
+      <div class="article-bar-actions">
+        <button type="button" class="focus-toggle" aria-label="Enter focus mode" data-action="enter-focus">⊙ Focus</button>
+      </div>
     </div>
-</div>
+  </header>
 
-<!-- Enhanced Main content with intelligent side rail ads -->
-<div class="container-fluid post-content-wrapper" id="postContentWrapper">
-    <div class="row">
-        <!-- Intelligent Left Side Rail -->
-        <div class="col-xl-1 d-none d-xl-block">
-            <div class="side-rail-container left-rail" id="leftRail">
-                <!-- Dynamic ads will be inserted here -->
-            </div>
-        </div>
-        
-        <!-- Main Content -->
-        <div class="col-xl-10 col-lg-12">
-            <main class="post blog-post" id="mainContent">
-                <div class="post-body" id="postBody">
-                    {{content}}
-                </div>
-                
-                {% include previousnext.html %}
-            </main>
-        </div>
-        
-        <!-- Intelligent Right Side Rail -->
-        <div class="col-xl-1 d-none d-xl-block">
-            <div class="side-rail-container right-rail" id="rightRail">
-                <!-- Dynamic ads will be inserted here -->
-            </div>
-        </div>
-    </div>
-</div>
+  <div class="layout">
+    {% include v2/post-toc.html %}
 
-<!-- Redesigned section starts here -->
-<div class="container post-footer-container mt-5">
-    <div class="row">
-        <div class="col-lg-10 col-md-12 mx-auto">
-            <!-- Share Bar -->
-            <div class="post-share-section mb-5">
-                <h4 class="section-title"><span>Share This Post</span></h4>
-                <div class="share-buttons">
-                    {% include share_bar.html %}
-                </div>
-            </div>
-            
-            <!-- Related Posts -->
-            <div class="related-posts-section mb-5">
-                <h4 class="section-title"><span>You Might Also Like</span></h4>
-                <div class="row">
-                    {% for post in site.related_posts limit:3 %}
-                    <div class="col-md-4 mb-4">
-                        <div class="related-post-card shadow-sm">
-                            <a href="{{ post.url | prepend: site.baseurl }}" class="related-post-img">
-                                <img src="{{ post.image }}" alt="{{ post.title }}" class="img-fluid">
-                            </a>
-                            <div class="related-post-content p-3">
-                                <h5><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h5>
-                                <div class="related-post-meta">
-                                    <i class="fas fa-calendar-alt"></i> {{ post.date | date: "%b %-d, %Y" }}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-                    <div class="view-all-posts">
-                        <a href="/index.html" class="view-all-link">
-                            View All Posts <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Sidebar -->
-        <div class="col-lg-4 col-md-12 mt-4 mt-lg-0">
-            <div class="sidebar-sticky">
-                <!-- Widget [Categories Widget]-->
-                {% include categorieswidget.html %}
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Comments -->
-<div class="comments-section">
-    <h4 class="section-title"><span>Join the Discussion</span></h4>
-    <div class="comments-container mt-4">
-        {% include disqus.html %}
-    </div>
-</div>
+    <main class="article-body" itemprop="articleBody">
+      {{ content }}
+    </main>
 
-{% include multiplex.html %}
+    {% include v2/post-rails.html %}
+  </div>
 
-<!-- Enhanced CSS for intelligent side rail ads -->
-<style>
-    .side-rail-container {
-        position: relative;
-        min-height: 100vh;
-        padding: 20px 10px;
-    }
-    
-    .side-rail-ad {
-        position: sticky;
-        margin-bottom: 30px;
-        border-radius: 8px;
-        background: #f8f9fa;
-        border: 1px solid #e9ecef;
-        transition: all 0.3s ease;
-        opacity: 0;
-        transform: translateY(20px);
-        animation: fadeInUp 0.6s ease forwards;
-        top: 20px;
-    }
-    
-    .side-rail-ad ins.adsbygoogle {
-        display: block !important;
-    }
-    
-    .side-rail-ad.visible {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    
-    .side-rail-ad:hover {
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        transform: translateY(-2px);
-    }
-    
-    .side-rail-ad .ad-label {
-        font-size: 10px;
-        color: #6c757d;
-        text-align: center;
-        padding: 4px 8px;
-        background: #e9ecef;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        font-weight: 500;
-    }
-    
-    .left-rail .side-rail-ad {
-        animation-delay: 0.2s;
-    }
-    
-    .right-rail .side-rail-ad {
-        animation-delay: 0.4s;
-    }
-    
-    .side-rail-ad:nth-child(2) { animation-delay: 0.6s; }
-    .side-rail-ad:nth-child(3) { animation-delay: 0.8s; }
-    .side-rail-ad:nth-child(4) { animation-delay: 1.0s; }
-    
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-    
-    /* Responsive design */
-    @media (max-width: 1199px) {
-        .side-rail-container {
-            display: none !important;
-        }
-    }
-    
-    @media (min-width: 1400px) {
-        .side-rail-container {
-            padding: 20px 15px;
-        }
-    }
-    
-    /* Performance optimizations */
-    .side-rail-ad ins {
-        display: block !important;
-    }
-    
-    /* Smooth scrolling for ad positioning */
-    .post-content-wrapper {
-        scroll-behavior: smooth;
-    }
-    
-    /* Loading state */
-    .side-rail-ad.loading {
-        background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-        background-size: 200% 100%;
-        animation: loading 1.5s infinite;
-    }
-    
-    .side-rail-ad.ad-failed {
-        display: none;
-    }
-    
-    @keyframes loading {
-        0% { background-position: 200% 0; }
-        100% { background-position: -200% 0; }
-    }
-</style>
+  <div class="end">
+    <div class="end-divider">— end of essay —</div>
 
-<!-- Intelligent Side Rail Management Script -->
-<script>
-class IntelligentSideRails {
-    constructor() {
-        this.leftRail = document.getElementById('leftRail');
-        this.rightRail = document.getElementById('rightRail');
-        this.postBody = document.getElementById('postBody');
-        this.mainContent = document.getElementById('mainContent');
-        
-        this.adConfig = {
-            client: 'ca-pub-7149683584202371',
-            leftSlots: ['5231074513'], // Your existing left slot
-            rightSlots: ['2604911171'], // Your existing right slot
-            minContentHeight: 800, // Minimum content height to show ads
-            adSpacing: 400 // Reduced spacing between ads for longer content
-        };
-        
-        this.init();
-    }
-    
-    init() {
-        // Ensure AdSense script is loaded
-        this.ensureAdSenseLoaded();
-        
-        // Wait for content to load
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', () => this.setupRails());
-        } else {
-            this.setupRails();
-        }
-        
-        // Handle resize events
-        window.addEventListener('resize', this.debounce(() => this.handleResize(), 250));
-        
-        // Handle scroll for performance
-        window.addEventListener('scroll', this.throttle(() => this.handleScroll(), 16));
-    }
-    
-    ensureAdSenseLoaded() {
-        // Initialize adsbygoogle array if it doesn't exist
-        if (typeof window.adsbygoogle === 'undefined') {
-            window.adsbygoogle = [];
-        }
-        
-        // Check if AdSense script is already loaded
-        const existingScript = document.querySelector('script[src*="adsbygoogle"]');
-        if (!existingScript) {
-            console.log('AdSense script not found, but will rely on existing page load');
-        }
-    }
-    
-    setupRails() {
-        const contentHeight = this.postBody.offsetHeight;
-        const minHeight = this.adConfig.minContentHeight;
-        
-        if (contentHeight < minHeight) {
-            console.log('Content too short for side rail ads');
-            return;
-        }
-        
-        const adCount = this.calculateAdCount(contentHeight);
-        
-        this.createAds('left', adCount);
-        this.createAds('right', adCount);
-        
-        // Initialize intersection observer for lazy loading
-        this.initLazyLoading();
-        
-        // Setup sticky positioning
-        this.setupStickyPositioning();
-    }
-    
-    calculateAdCount(contentHeight) {
-        // Only 1 ad per side to avoid duplicate slot IDs
-        return 1;
-    }
-    
-    createAds(side, count) {
-        const container = side === 'left' ? this.leftRail : this.rightRail;
-        const slots = side === 'left' ? this.adConfig.leftSlots : this.adConfig.rightSlots;
-        
-        for (let i = 0; i < count; i++) {
-            // Rotate through available slots
-            const slotIndex = i % slots.length;
-            const slotId = slots[slotIndex];
-            const adElement = this.createAdElement(slotId, i);
-            container.appendChild(adElement);
-        }
-    }
-    
-    createAdElement(slotId, index) {
-        const adWrapper = document.createElement('div');
-        adWrapper.className = 'side-rail-ad loading';
-        adWrapper.style.top = `${20 + (index * 60)}px`; // Better spacing calculation
-        
-        const label = document.createElement('div');
-        label.className = 'ad-label';
-        label.textContent = '';
-        
-        const adIns = document.createElement('ins');
-        adIns.className = 'adsbygoogle';
-        adIns.style.display = 'block';
-        adIns.setAttribute('data-ad-client', this.adConfig.client);
-        adIns.setAttribute('data-ad-slot', slotId);
-        adIns.setAttribute('data-ad-format', 'auto');
-        adIns.setAttribute('data-full-width-responsive', 'true');
-        
-        adWrapper.appendChild(label);
-        adWrapper.appendChild(adIns);
-        
-        return adWrapper;
-    }
-    
-    initLazyLoading() {
-        // Wait for AdSense to be fully loaded
-        const waitForAdSense = () => {
-            if (typeof window.adsbygoogle !== 'undefined' && window.adsbygoogle.loaded) {
-                // AdSense is ready, load all ads
-                const adElements = document.querySelectorAll('.side-rail-ad');
-                adElements.forEach((adElement, index) => {
-                    setTimeout(() => {
-                        this.loadAd(adElement);
-                    }, index * 200); // Stagger more
-                });
-            } else if (typeof window.adsbygoogle !== 'undefined' && Array.isArray(window.adsbygoogle)) {
-                // AdSense array exists, try loading after a delay
-                setTimeout(() => {
-                    const adElements = document.querySelectorAll('.side-rail-ad');
-                    adElements.forEach((adElement, index) => {
-                        setTimeout(() => {
-                            this.loadAd(adElement);
-                        }, index * 200);
-                    });
-                }, 2000);
-            } else {
-                // Wait longer for AdSense
-                setTimeout(waitForAdSense, 500);
-            }
-        };
-        
-        waitForAdSense();
-    }
-    
-    loadAd(adElement) {
-        // Remove loading class and add visible class
-        adElement.classList.remove('loading');
-        adElement.classList.add('visible');
-        
-        // Initialize AdSense with better error handling
-        try {
-            // Ensure adsbygoogle array exists
-            if (typeof window.adsbygoogle === 'undefined') {
-                window.adsbygoogle = [];
-            }
-            
-            // Check if AdSense script is loaded
-            if (typeof window.adsbygoogle.push === 'function') {
-                window.adsbygoogle.push({});
-            } else {
-                // Try again after a delay
-                setTimeout(() => {
-                    try {
-                        if (window.adsbygoogle && typeof window.adsbygoogle.push === 'function') {
-                            window.adsbygoogle.push({});
-                        }
-                    } catch (retryError) {
-                        console.warn('AdSense retry failed:', retryError);
-                    }
-                }, 2000);
-            }
-            
-        } catch (e) {
-            console.warn('AdSense initialization failed:', e);
-            adElement.classList.add('ad-failed');
-        }
-    }
-    
-    setupStickyPositioning() {
-        const rails = [this.leftRail, this.rightRail];
-        
-        rails.forEach(rail => {
-            if (rail) {
-                rail.style.position = 'sticky';
-                rail.style.top = '20px';
-                rail.style.height = 'fit-content';
-            }
-        });
-    }
-    
-    handleResize() {
-        // Recalculate ad positions on resize
-        this.clearRails();
-        this.setupRails();
-    }
-    
-    handleScroll() {
-        // Optional: Add any scroll-based behaviors here
-        // Currently keeping it minimal for performance
-    }
-    
-    clearRails() {
-        [this.leftRail, this.rightRail].forEach(rail => {
-            if (rail) rail.innerHTML = '';
-        });
-    }
-    
-    // Utility functions
-    debounce(func, wait) {
-        let timeout;
-        return function executedFunction(...args) {
-            const later = () => {
-                clearTimeout(timeout);
-                func(...args);
-            };
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-        };
-    }
-    
-    throttle(func, limit) {
-        let inThrottle;
-        return function() {
-            const args = arguments;
-            const context = this;
-            if (!inThrottle) {
-                func.apply(context, args);
-                inThrottle = true;
-                setTimeout(() => inThrottle = false, limit);
-            }
-        }
-    }
-}
+    {% include v2/previousnext.html %}
 
-// Initialize the intelligent side rails
-new IntelligentSideRails();
-</script>
+    {% if site.related_posts.size > 0 %}
+    <section class="related" aria-label="Related essays">
+      <h4>Read after this</h4>
+      <div class="related-grid">
+        {% for post in site.related_posts limit:3 %}
+          <article class="rel-card">
+            <h5><a href="{{ post.url | prepend: site.url }}">{{ post.title }}</a></h5>
+            {% if post.description %}<p>{{ post.description | strip_html | truncate: 120 }}</p>{% endif %}
+          </article>
+        {% endfor %}
+      </div>
+    </section>
+    {% endif %}
+
+    <section class="share" aria-label="Share">
+      {% include v2/share-bar.html %}
+    </section>
+
+    <section class="comments" aria-label="Comments">
+      {% include disqus.html %}
+    </section>
+  </div>
+</article>
+
+<button type="button" class="focus-exit" aria-label="Exit focus mode" data-action="exit-focus">
+  × Exit focus <kbd>Esc</kbd>
+</button>
+
+<script defer src="{{ site.url }}/js/v2/toc.js"></script>
+<script defer src="{{ site.url }}/js/v2/progress.js"></script>
+<script defer src="{{ site.url }}/js/v2/focus.js"></script>
+<script defer src="{{ site.url }}/js/v2/fragment-glow.js"></script>

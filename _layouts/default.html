@@ -1,149 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    {% include google_analytics.html %}
-    {% include adsense.html %}
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <title>
-        {% if page.hometype == "homepage" %}
-        {{ site.title }} | {{site.description}}
-        {% else %}
-        {{page.title}} | {{ site.title }}
-        {% endif %}
-    </title>
-    
-    <!-- Preconnect to external domains -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
-    
-    <!-- SEO meta tags -->
-    {% seo %}
-    <meta name="description"
-        content="{% if page.description %}{{ page.description | strip_html | strip_newlines | truncate: 170 }}{% else %}{{page.content | strip | strip_html | truncate: 170}}{% endif %}">
-    <meta name="keywords" content="{{page.tags}}{% if page.tags %}, {% endif %} {{page.keywords}}">
-    <meta name="robots" content="all,follow">
-    <meta name="p:domain_verify" content="110e96fb74a1a7312dbb2bc27e2b8a0b"/>
-    {% if page.author %}
-    {% assign author = site.data.authors[page.author] %}
-    <meta property="article:author" content="{{ author.name }}" />
-    {% endif %}
-    
-    <!-- Open Graph meta tags for better social sharing -->
-    <meta property="og:title" content="{% if page.og_title %}{{ page.og_title }}{% elsif page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
-    <meta property="og:description" content="{% if page.og_description %}{{ page.og_description }}{% elsif page.description %}{{ page.description | strip_html | strip_newlines | truncate: 170 }}{% else %}{{ page.content | strip_html | truncate: 170 }}{% endif %}">
-    <meta property="og:image" content="{% if page.og_image %}{{ page.og_image | prepend: site.url }}{% elsif page.image %}{{ page.image | prepend: site.url }}{% else %}{{ site.url }}/img/logo.png{% endif %}">
-    <meta property="og:url" content="{{ page.url | replace:'index.html','' | prepend: site.url }}">
-    <meta property="og:type" content="{% if page.layout == 'posts' %}article{% else %}website{% endif %}">
-    
-    <!-- Twitter Card meta tags for Twitter sharing -->
-    <meta name="twitter:card" content="{% if page.twitter_card %}{{ page.twitter_card }}{% else %}summary_large_image{% endif %}">
-    <meta name="twitter:title" content="{% if page.og_title %}{{ page.og_title }}{% elsif page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
-    <meta name="twitter:description" content="{% if page.og_description %}{{ page.og_description }}{% elsif page.description %}{{ page.description | strip_html | strip_newlines | truncate: 170 }}{% else %}{{ page.content | strip_html | truncate: 170 }}{% endif %}">
-    <meta name="twitter:image" content="{% if page.og_image %}{{ page.og_image | prepend: site.url }}{% elsif page.image %}{{ page.image | prepend: site.url }}{% else %}{{ site.url }}/img/logo.png{% endif %}">
-    
-    <!-- Structured Data for Rich Snippets -->
-    {% if page.layout == 'posts' %}
-      {% include structured-data-article.html %}
-      {% include structured-data-howto.html %}
-      {% include structured-data-faq.html %}
-    {% endif %}
-    
-    <!-- Critical CSS -->
-    <link rel="stylesheet" href="{{site.url}}/css/critical.css">
-    
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="{{site.url}}/img/favicon.ico">
-
-    <!-- Non-critical CSS loaded with preload -->
-    <link rel="preload" href="{{site.url}}/css/fontastic.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="{{site.url}}/css/fontastic.css"></noscript>
-    
-    <link rel="preload" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <noscript><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"></noscript>
-    
-    <link rel="preload" href="{{site.url}}/css/style.default.css" as="style" onload="this.onload=null;this.rel='stylesheet'" id="theme-stylesheet">
-    <noscript><link rel="stylesheet" href="{{site.url}}/css/style.default.css" id="theme-stylesheet"></noscript>
-    
-    <link rel="preload" href="{{site.url}}/css/custom.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="{{site.url}}/css/custom.css"></noscript>
-    
-    <!-- Font loading strategy -->
-    <link rel="preload" href="https://kit.fontawesome.com/31fd33d141.js" as="script" crossorigin="anonymous">
-    <script defer src="https://kit.fontawesome.com/31fd33d141.js" crossorigin="anonymous"></script>
-    
-    <!-- Preload image helper script -->
-    <script>
-      !function(n){"use strict";n.loadCSS||(n.loadCSS=function(){});var o=loadCSS.relpreload={};if(o.support=function(){var e;try{e=n.document.createElement("link").relList.supports("preload")}catch(t){e=!1}return function(){return e}}(),o.bindMediaToggle=function(t){var e=t.media||"all";function a(){t.addEventListener?t.removeEventListener("load",a):t.attachEvent&&t.detachEvent("onload",a),t.setAttribute("onload",null),t.media=e}t.addEventListener?t.addEventListener("load",a):t.attachEvent&&t.attachEvent("onload",a),setTimeout(function(){t.rel="stylesheet",t.media="only x"}),setTimeout(a,3e3)},o.poly=function(){if(!o.support())for(var t=n.document.getElementsByTagName("link"),e=0;e<t.length;e++){var a=t[e];"preload"!==a.rel||"style"!==a.getAttribute("as")||a.getAttribute("data-loadcss")||(a.setAttribute("data-loadcss",!0),o.bindMediaToggle(a))}},!o.support()){o.poly();var t=n.setInterval(o.poly,500);n.addEventListener?n.addEventListener("load",function(){o.poly(),n.clearInterval(t)}):n.attachEvent&&n.attachEvent("onload",function(){o.poly(),n.clearInterval(t)})}"undefined"!=typeof exports?exports.loadCSS=loadCSS:n.loadCSS=loadCSS}("undefined"!=typeof global?global:this);
-    </script>
+  {% include v2/site-head.html %}
 </head>
+<body{% if page.body_class %} class="{{ page.body_class }}"{% endif %}>
+  {% include v2/nav.html %}
 
-<body>
-    <header class="header">
-        <!-- Main Navbar-->
-        {% include topnavigation.html %}
-    </header>
-    <!-- Slider Section-->
-    {% if page.hometype == "homepage" %}
-    <section class="hero">
-        {% include slider.html %}
-    </section>
-    {% endif %}
-    <!-- Intro Section-->
-    {% if page.hometype == "homepage" %}
-    <section class="intro">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="h1">Being technical writer blog</h1>
-                    <p class="text-big">A place where you learn about all the <strong>innovations</strong> ,
-                        <strong>standards</strong>, and <strong>trends</strong> in technical writing.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-    {% endif %}
+  <main id="main" role="main">
+    {{ content }}
+  </main>
 
-    <section class="featured-posts no-padding-top">
-        <div class="container">
-            {{ content }}
-        </div>
-    </section>
+  {% include v2/foot.html %}
 
-    <!-- Newsletter Section-->
-    {% if page.hometype == "homepage" %}
-    <section class="newsletter-section">
-        {% include newsletter.html %}
-    </section>
-    {% endif %}
+  <!-- Search palette markup — empty shell, JS populates results via Simple Jekyll Search -->
+  <div class="search-overlay" data-open="false" aria-hidden="true">
+    <div class="search-panel" role="dialog" aria-label="Search">
+      <input type="search" class="search-panel-input" id="search-input" placeholder="Search essays…" autocomplete="off">
+      <ul class="search-results" id="results-container"></ul>
+      <div class="search-hint">↑↓ navigate · ↵ open · esc close</div>
+    </div>
+  </div>
 
-    <!-- Page Footer-->
-    <footer class="main-footer">
-        {% include footer.html %}
-    </footer>
-
-    <!-- JavaScript files loaded efficiently -->
-    <script defer src="{{site.url}}/js/lazyload.js"></script>
-    
-    <!-- jQuery must load first - using CDN -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    
-    <!-- Popper.js (required for Bootstrap) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    
-    <!-- Bootstrap JS -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    
-    <!-- jQuery dependent scripts loaded after jQuery -->
-    <script defer src="{{site.url}}/js/assessment.js"></script>
-    <script defer src="{{site.url}}/js/front.js"></script>
-    <script defer src="{{site.url}}/js/toc.js"></script>
+  <script defer src="{{ site.url }}/js/v2/nav.js"></script>
+  <script defer src="{{ site.url }}/js/lazyload.js"></script>
+  <script defer src="{{ site.url }}/js/search-script.js"></script>
+  <script defer src="{{ site.url }}/js/v2/search.js"></script>
 </body>
-
 </html>

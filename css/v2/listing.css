@@ -1,0 +1,206 @@
+/* listing.css — generic page layout, archive, category listing pages, 404. */
+
+.page-frame {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 72px 32px;
+  position: relative;
+  z-index: 1;
+}
+.page-head { margin-bottom: 48px; }
+.page-head h1 {
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  margin-bottom: 14px;
+}
+.page-head .dek {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 22px;
+  color: var(--text-2);
+  line-height: 1.4;
+}
+.page-body {
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--text);
+}
+.page-body p { margin-bottom: 1.4em; color: var(--text); }
+.page-body h2 {
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin: 48px 0 16px;
+}
+.page-body h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 32px 0 12px;
+}
+.page-body a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.page-body a:hover { color: var(--accent-2); }
+.page-body ul, .page-body ol { margin: 0 0 1.4em 1.4em; }
+.page-body li { margin-bottom: 0.6em; }
+.page-body code {
+  font-family: var(--mono);
+  background: var(--bg-2);
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-size: 0.92em;
+  color: var(--accent);
+}
+
+/* Listing rows (used by category pages, archives) */
+.listing {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 48px 32px 80px;
+}
+.listing-row {
+  display: grid;
+  grid-template-columns: 56px 1fr 120px;
+  gap: 24px;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--line);
+  align-items: center;
+  transition: background var(--t-fast);
+}
+.listing-row:hover { background: var(--bg-2); }
+.listing-row .n {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-3);
+  letter-spacing: 0.04em;
+}
+.listing-row h3 {
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  margin-bottom: 4px;
+}
+.listing-row h3 a { transition: color var(--t-fast); }
+.listing-row h3 a:hover { color: var(--accent); }
+.listing-row .sub {
+  font-size: 14px;
+  color: var(--text-2);
+  line-height: 1.45;
+  max-width: 56ch;
+}
+.listing-row .date {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-3);
+  text-align: right;
+}
+
+/* 404 */
+.not-found {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 120px 32px;
+  text-align: center;
+}
+.not-found .glyph {
+  font-family: var(--mono);
+  font-size: 56px;
+  color: var(--text-3);
+  margin-bottom: 24px;
+  letter-spacing: -0.04em;
+}
+.not-found h1 { font-size: 32px; margin-bottom: 14px; }
+.not-found p { font-size: 16px; color: var(--text-2); margin-bottom: 28px; }
+
+/* Year-grouped archive */
+.archive-year {
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  text-transform: uppercase;
+  padding: 32px 0 8px;
+  border-bottom: 1px solid var(--line);
+  margin-top: 32px;
+}
+
+@media (max-width: 700px) {
+  .page-frame { padding: 48px 16px; }
+  .listing-row { grid-template-columns: 1fr; gap: 6px; }
+  .listing-row .n, .listing-row .date { display: none; }
+}
+
+.cat-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 48px 32px 80px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+.cat-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 24px 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--bg-2);
+  transition: all var(--t-fast);
+}
+.cat-tile:hover { border-color: var(--accent); transform: translateY(-2px); }
+.cat-tile-title {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--text);
+}
+.cat-tile-count {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--accent);
+  letter-spacing: 0.04em;
+}
+
+.courses {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 32px 32px 80px;
+  display: grid;
+  gap: 24px;
+}
+.course-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--bg-2);
+  padding: 32px 36px;
+  transition: border-color var(--t-fast);
+}
+.course-card:hover { border-color: var(--line-2); }
+.course-tag {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--accent);
+  background: var(--bg-3);
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(91, 141, 239, 0.3);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.course-card h2 {
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+.course-card .dek { font-size: 16px; color: var(--text-2); line-height: 1.55; margin-bottom: 20px; }
+.course-features { list-style: none; margin: 0 0 24px; padding: 18px 20px; background: var(--bg); border-radius: var(--radius); border: 1px solid var(--line); display: grid; gap: 6px; }
+.course-features li { font-size: 14px; color: var(--text-2); }
+.course-features strong { color: var(--text); font-weight: 600; }

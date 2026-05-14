@@ -1,0 +1,31 @@
+<aside class="right-rail" aria-label="Sidebar">
+  {% include v2/ai-ask-card.html %}
+
+  <div class="panel">
+    <div class="panel-h">— Sponsored —</div>
+    <div class="rail-ad">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-7149683584202371"
+           data-ad-slot="2604911171"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+  </div>
+</aside>
+
+{% if page.ad_left_rail %}
+<aside class="left-rail-ad" aria-label="Sidebar ad">
+  <div class="panel">
+    <div class="panel-h">— Sponsored —</div>
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-7149683584202371"
+         data-ad-slot="5231074513"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+</aside>
+{% endif %}

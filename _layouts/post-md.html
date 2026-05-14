@@ -1,0 +1,15 @@
+---
+layout: null
+---
+---
+title: "{{ page.title }}"
+author: "{{ page.author | default: 'Gaurav Trivedi' | strip_html }}"
+date: {{ page.date | date_to_xmlschema }}
+canonical: {{ site.url }}{{ page.url }}
+category: {{ page.category }}
+---
+
+# {{ page.title }}
+{% if page.subtitle %}*{{ page.subtitle }}*{% endif %}
+
+{{ content | strip_html }}

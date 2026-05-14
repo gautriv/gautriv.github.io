@@ -1,0 +1,66 @@
+{% include google_analytics.html %}
+{% include adsense.html %}
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>
+  {% if page.hometype == "homepage" %}{{ site.title }} | {{ site.description }}{% else %}{{ page.title }} | {{ site.title }}{% endif %}
+</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+
+{% seo %}
+<meta name="description" content="{% if page.description %}{{ page.description | strip_html | strip_newlines | truncate: 170 }}{% else %}{{ page.content | strip | strip_html | truncate: 170 }}{% endif %}">
+<meta name="keywords" content="{{ page.tags }}{% if page.tags %}, {% endif %}{{ page.keywords }}">
+<meta name="robots" content="all,follow">
+<meta name="p:domain_verify" content="110e96fb74a1a7312dbb2bc27e2b8a0b">
+{% if page.author %}
+  {% assign author = site.data.authors[page.author] %}
+  <meta property="article:author" content="{{ author.name }}">
+{% endif %}
+
+<!-- Open Graph -->
+<meta property="og:title" content="{% if page.og_title %}{{ page.og_title }}{% elsif page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
+<meta property="og:description" content="{% if page.og_description %}{{ page.og_description }}{% elsif page.description %}{{ page.description | strip_html | strip_newlines | truncate: 170 }}{% else %}{{ page.content | strip_html | truncate: 170 }}{% endif %}">
+<meta property="og:image" content="{% if page.og_image %}{{ page.og_image | prepend: site.url }}{% elsif page.image %}{{ page.image | prepend: site.url }}{% else %}{{ site.url }}/img/logo.png{% endif %}">
+<meta property="og:url" content="{{ page.url | replace:'index.html','' | prepend: site.url }}">
+<meta property="og:type" content="{% if page.layout == 'posts' %}article{% else %}website{% endif %}">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="{% if page.twitter_card %}{{ page.twitter_card }}{% else %}summary_large_image{% endif %}">
+<meta name="twitter:title" content="{% if page.og_title %}{{ page.og_title }}{% elsif page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
+<meta name="twitter:description" content="{% if page.og_description %}{{ page.og_description }}{% elsif page.description %}{{ page.description | strip_html | strip_newlines | truncate: 170 }}{% else %}{{ page.content | strip_html | truncate: 170 }}{% endif %}">
+<meta name="twitter:image" content="{% if page.og_image %}{{ page.og_image | prepend: site.url }}{% elsif page.image %}{{ page.image | prepend: site.url }}{% else %}{{ site.url }}/img/logo.png{% endif %}">
+
+<!-- Structured data for posts -->
+{% if page.layout == 'posts' %}
+  {% include structured-data-article.html %}
+  {% include structured-data-howto.html %}
+  {% include structured-data-faq.html %}
+  {% include v2/llms-meta.html %}
+{% endif %}
+
+<!-- Fonts: single Google Fonts request, swap behavior -->
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=Geist+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+
+<!-- Favicon -->
+<link rel="shortcut icon" href="{{ site.url }}/img/favicon.ico">
+
+<!-- Design system CSS — load order matters -->
+<link rel="stylesheet" href="{{ site.url }}/css/v2/tokens.css">
+<link rel="stylesheet" href="{{ site.url }}/css/v2/base.css">
+<link rel="stylesheet" href="{{ site.url }}/css/v2/chrome.css">
+<link rel="stylesheet" href="{{ site.url }}/css/v2/utility.css">
+{% if page.hometype == "homepage" %}
+  <link rel="stylesheet" href="{{ site.url }}/css/v2/feed.css">
+{% endif %}
+{% if page.layout == 'posts' %}
+  <link rel="stylesheet" href="{{ site.url }}/css/v2/post.css">
+{% endif %}
+{% if page.layout == 'page' or page.is_listing %}
+  <link rel="stylesheet" href="{{ site.url }}/css/v2/listing.css">
+{% endif %}

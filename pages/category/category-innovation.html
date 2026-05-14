@@ -1,16 +1,25 @@
 ---
-title: "Innovation"
+layout: page
+title: Innovation
 permalink: /category-innovation/
 categoryName: Innovation
+is_listing: true
+description: "Essays on innovation."
 ---
 
-<p>The following content is in the <b>{{page.categoryName}}</b> category:
-
-{% for c in site.categories.Innovation %}
-<div class="card mb-4">            
-    <div class="card-body">
-      <h4 class="card-title"><a href="{{site.url}}{{c.url}}">{{c.title}}</a><span class="postDate"> &nbsp; {{ c.date | date: "%b %-d, %Y" }}</span></h4>
-    </div>
-</div>
-
-    {% endfor %}
+<section class="listing">
+  {% assign cat_posts = site.posts | where: 'category', page.categoryName %}
+  {% for post in cat_posts %}
+    <article class="listing-row">
+      <div class="n">{{ forloop.rindex | divided_by: 1 }}</div>
+      <div>
+        <h3><a href="{{ post.url | prepend: site.url }}">{{ post.title }}</a></h3>
+        {% if post.subtitle %}<p class="sub">{{ post.subtitle | strip_html }}</p>{% endif %}
+      </div>
+      <div class="date">{{ post.date | date: "%b %-d, %Y" }}</div>
+    </article>
+  {% endfor %}
+  {% if cat_posts.size == 0 %}
+    <p style="text-align:center; color: var(--text-3); padding: 48px 0;">No essays in this category yet.</p>
+  {% endif %}
+</section>

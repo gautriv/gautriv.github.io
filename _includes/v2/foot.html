@@ -1,0 +1,40 @@
+<footer class="site-foot" role="contentinfo">
+  <div class="site-foot-inner">
+    <div class="foot-brand">
+      <span class="brand-mark" aria-hidden="true">B</span>
+      <span>beingtechnical<span class="brand-sub">.writer</span></span>
+    </div>
+
+    <div class="foot-status">
+      <span class="dot" aria-hidden="true"></span>
+      <span>{{ site.posts | size }} essays · est. 2018</span>
+    </div>
+
+    <nav class="foot-cols" aria-label="Footer">
+      <div class="foot-col">
+        <h6>Project</h6>
+        <a href="{{ site.url }}/aboutme/">About</a>
+        <a href="{{ site.url }}/contact/">Contact</a>
+        <a href="{{ site.url }}/appreciate/">Appreciate</a>
+      </div>
+      <div class="foot-col">
+        <h6>Catalogue</h6>
+        <a href="{{ site.url }}/archives/">All essays</a>
+        <a href="{{ site.url }}/category-ai/">AI</a>
+        <a href="{{ site.url }}/category-technical-writing/">Craft</a>
+        <a href="{{ site.url }}/feed.xml">RSS</a>
+      </div>
+      <div class="foot-col">
+        <h6>Find me</h6>
+        <a href="https://www.linkedin.com/in/gauravtrivedi1988/" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/gtrivedi88" rel="noopener">GitHub</a>
+        <a href="https://twitter.com/beingtechwriter" rel="noopener">X / Twitter</a>
+      </div>
+    </nav>
+  </div>
+
+  <div class="site-foot-bottom">
+    <span>© {{ site.time | date: '%Y' }} Being Technical Writer. The opinions expressed are my own.</span>
+    <span><a href="{{ site.url }}/privacy/">Privacy</a> · Set in Geist + Geist Mono + Instrument Serif</span>
+  </div>
+</footer>

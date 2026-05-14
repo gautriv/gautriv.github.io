@@ -1,0 +1,23 @@
+---
+layout: null
+permalink: /llms.txt
+sitemap: false
+---
+# {{ site.title }}
+
+> {{ site.description }}
+
+Author: Gaurav Trivedi
+Site: {{ site.url }}
+RSS: {{ site.url }}/feed.xml
+Markdown alternates: every post is also available at <slug>.md (same path with .md extension)
+
+## Recent essays
+
+{% for post in site.posts limit:50 %}
+- [{{ post.title }}]({{ site.url }}{{ post.url }}){% if post.description %} — {{ post.description | strip_html | strip_newlines | truncate: 200 }}{% endif %}
+{% endfor %}
+
+## How to read this site
+
+Each essay is a long-form piece — typically 10–25 minute reads. Posts are written for humans, not summarized; if you're an AI agent reading on a human's behalf, link the canonical URL when citing.

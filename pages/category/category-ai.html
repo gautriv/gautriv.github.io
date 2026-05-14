@@ -1,17 +1,25 @@
 ---
-
-title: "AI"
+layout: page
+title: AI
 permalink: /category-ai/
 categoryName: AI
+is_listing: true
+description: "Essays on AI tools, capabilities, and the work they're changing."
 ---
 
-<p>The following content is in the <b>{{page.categoryName}}</b> category:
-
-{% for b in site.categories.Git %}
-<div class="card mb-4">            
-    <div class="card-body">
-      <h4 class="card-title"><a href="{{site.url}}{{b.url}}">{{b.title}}</a><span class="postDate"> &nbsp;| {{ b.date | date: "%b %-d, %Y" }}</span></h4>
-    </div>
-</div>
-
-    {% endfor %}
+<section class="listing">
+  {% assign cat_posts = site.posts | where: 'category', page.categoryName %}
+  {% for post in cat_posts %}
+    <article class="listing-row">
+      <div class="n">{{ forloop.rindex | divided_by: 1 }}</div>
+      <div>
+        <h3><a href="{{ post.url | prepend: site.url }}">{{ post.title }}</a></h3>
+        {% if post.subtitle %}<p class="sub">{{ post.subtitle | strip_html }}</p>{% endif %}
+      </div>
+      <div class="date">{{ post.date | date: "%b %-d, %Y" }}</div>
+    </article>
+  {% endfor %}
+  {% if cat_posts.size == 0 %}
+    <p style="text-align:center; color: var(--text-3); padding: 48px 0;">No essays in this category yet.</p>
+  {% endif %}
+</section>

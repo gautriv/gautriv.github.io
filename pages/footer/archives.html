@@ -1,9 +1,24 @@
 ---
-layout: default
-title: Archives
+layout: page
+title: Archive
 permalink: /archives/
-
+is_listing: true
+description: "Every essay, by year."
 ---
 
-<h3>Coming soon...</h3>
-  
+<section class="listing">
+  {% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" %}
+  {% for year_group in posts_by_year %}
+    <div class="archive-year">{{ year_group.name }} · {{ year_group.items | size }} essays</div>
+    {% for post in year_group.items %}
+      <article class="listing-row">
+        <div class="n">{{ post.date | date: "%m/%d" }}</div>
+        <div>
+          <h3><a href="{{ post.url | prepend: site.url }}">{{ post.title }}</a></h3>
+          {% if post.subtitle %}<p class="sub">{{ post.subtitle | strip_html | truncate: 140 }}</p>{% endif %}
+        </div>
+        <div class="date">{% if post.category %}{{ post.category }}{% endif %}</div>
+      </article>
+    {% endfor %}
+  {% endfor %}
+</section>

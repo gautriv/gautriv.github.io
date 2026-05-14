@@ -1,0 +1,141 @@
+/* utility.css — focus mode, fragment-glow, reading-progress, sponsor slot. */
+
+/* Reading progress bar */
+.reading-progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent), var(--signal));
+  z-index: 60;
+  transition: width 150ms linear;
+}
+
+/* Focus exit pill */
+.focus-exit {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  display: none;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg-2);
+  color: var(--text-2);
+  border: 1px solid var(--line-2);
+  border-radius: var(--radius-pill);
+  padding: 8px 14px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  z-index: 90;
+  transition: all var(--t-fast);
+}
+.focus-exit kbd {
+  font-family: var(--mono);
+  font-size: 10px;
+  background: var(--bg-3);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 2px 6px;
+  color: var(--text-3);
+}
+.focus-exit:hover { color: var(--text); border-color: var(--accent); }
+
+/* Focus mode active state */
+body.focus .site-top,
+body.focus .left-rail,
+body.focus .right-rail,
+body.focus .sponsor,
+body.focus .share,
+body.focus .related,
+body.focus .pre-tags,
+body.focus .focus-toggle,
+body.focus .site-foot {
+  display: none !important;
+}
+body.focus .focus-exit { display: inline-flex; }
+body.focus .layout {
+  grid-template-columns: 1fr !important;
+  max-width: 720px !important;
+  padding-top: 32px !important;
+}
+body.focus .article-head {
+  padding-top: 48px;
+  text-align: center;
+}
+body.focus .article-bar { justify-content: center; }
+
+/* Fragment-glow — see Phase 7 */
+.fragment-glow {
+  background: var(--highlight);
+  padding: 2px 6px;
+  margin: -2px -6px;
+  border-radius: 3px;
+  border-bottom: 1px solid var(--signal);
+  position: relative;
+  animation: fragment-pulse 1.8s ease-out 0.4s 2;
+}
+.fragment-glow::before {
+  content: "↳ AI deep link";
+  position: absolute;
+  top: -28px; left: 0;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--signal);
+  background: var(--bg);
+  padding: 4px 8px;
+  border: 1px solid var(--line-2);
+  border-radius: 4px;
+  white-space: nowrap;
+}
+@keyframes fragment-pulse {
+  0%   { background: var(--highlight); }
+  50%  { background: rgba(255, 210, 63, 0.35); }
+  100% { background: var(--highlight); }
+}
+
+/* Sponsor slot (in-content single ad) */
+.sponsor {
+  margin: 48px 0;
+  padding: 18px 22px;
+  border: 1px dashed var(--line-2);
+  border-radius: var(--radius);
+  background: var(--bg-2);
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.sponsor-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--text-3);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+  border-right: 1px solid var(--line);
+  padding-right: 18px;
+}
+.sponsor-body {
+  flex: 1;
+  font-size: 14px;
+  color: var(--text-2);
+  line-height: 1.5;
+}
+
+/* Article-head Focus toggle button styling (reuse btn-ghost-mini) */
+.focus-toggle {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--text-2);
+  padding: 6px 10px;
+  border-radius: var(--radius);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: all var(--t-fast);
+}
+.focus-toggle:hover { border-color: var(--line-2); color: var(--text); background: var(--bg-2); }

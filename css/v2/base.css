@@ -1,0 +1,85 @@
+/* Resets and element-level defaults. Selectors stay element-level — no classes. */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.55;
+  font-feature-settings: "kern", "liga";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--t-fast);
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+input, button, textarea, select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+code, pre, kbd, samp {
+  font-family: var(--mono);
+  font-size: 0.92em;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+::selection {
+  background: var(--accent-glow);
+  color: var(--text);
+}
+
+/* Skip link — accessibility */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 16px;
+  background: var(--bg-2);
+  color: var(--text);
+  padding: 10px 16px;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: 12px;
+  z-index: 999;
+  transition: top var(--t-fast);
+}
+.skip-link:focus-visible {
+  top: 16px;
+}
