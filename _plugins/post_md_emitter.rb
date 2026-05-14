@@ -10,6 +10,7 @@ module Jekyll
         'layout' => nil,
         'title'  => post.data['title'],
         'sitemap' => false,
+        'permalink' => post.url.sub(%r{/$}, '') + '.md'
       }
       front = {
         'title' => post.data['title'],
