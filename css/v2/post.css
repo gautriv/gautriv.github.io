@@ -188,22 +188,30 @@
   letter-spacing: -0.01em;
 }
 .article-body h2 {
-  font-size: 28px;
+  font-size: 30px;
   font-weight: 600;
   letter-spacing: -0.02em;
-  line-height: 1.2;
-  margin: 56px 0 20px;
+  line-height: 1.25;
+  margin: 72px 0 24px;
   position: relative;
 }
 .article-body h2::before {
-  content: "§ " counter(post-section, decimal-leading-zero);
+  content: "Part " counter(post-section, decimal-leading-zero);
   counter-increment: post-section;
-  font-family: var(--mono);
-  font-size: 12px;
-  color: var(--text-3);
-  font-weight: 400;
   display: block;
-  margin-bottom: 6px;
+  width: fit-content;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  padding: 4px 12px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px color-mix(in srgb, var(--accent) 8%, transparent);
 }
 .article-body p { margin-bottom: 1.4em; }
 .article-body p strong { color: var(--text); font-weight: 600; }
@@ -510,7 +518,6 @@ body.focus .layout { grid-template-columns: 1fr; max-width: 780px; }
 @media (max-width: 1100px) {
   .layout { grid-template-columns: 1fr; }
   .left-rail, .right-rail { display: none; }
-  .article-body h2::before { display: block; margin-bottom: 4px; }
   .article-body h2 { flex-direction: column; align-items: flex-start; }
 }
 @media (max-width: 700px) {
