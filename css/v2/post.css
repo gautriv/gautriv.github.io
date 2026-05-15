@@ -247,6 +247,15 @@
   border-radius: var(--radius);
   border: 1px solid var(--line);
 }
+.article-body p img[src*="shields.io"],
+.article-body p img[src*="komarev.com"],
+.article-body img[src*="github-readme"] {
+  display: inline-block;
+  margin: 0 6px 6px 0;
+  border: none;
+  border-radius: 0;
+  vertical-align: middle;
+}
 .article-body ul, .article-body ol {
   margin: 0 0 1.4em 1.4em;
   padding: 0;
@@ -259,14 +268,23 @@
 }
 .article-body table {
   width: 100%;
-  border-collapse: collapse;
-  margin: 28px 0;
-  font-size: 15px;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 36px 0;
+  font-size: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
 }
 .article-body th, .article-body td {
-  padding: 12px 14px;
+  padding: 16px 20px;
   border-bottom: 1px solid var(--line);
   text-align: left;
+  vertical-align: top;
+  line-height: 1.5;
+}
+.article-body tr:last-child td {
+  border-bottom: none;
 }
 .article-body th {
   background: var(--bg-2);
@@ -275,6 +293,11 @@
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--text-2);
+  font-weight: 500;
+}
+.article-body td:first-child {
+  font-weight: 500;
+  color: var(--text);
 }
 
 /* fragment glow */

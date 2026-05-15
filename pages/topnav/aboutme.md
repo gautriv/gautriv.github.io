@@ -17,7 +17,7 @@ And I've spent the last year trying to automate myself out of that job.
 
 Not because I hate it. Because I wanted to know: *what happens when you actually succeed?*
 
-[![LinkedIn](https://img.shields.io/badge/-LinkedIn-0072b1?&style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/gauravtrivedi88/) * [![X/Twitter](https://img.shields.io/badge/-X-000000?&style=for-the-badge&logo=x&logoColor=white)](https://x.com/beingtechwriter) * [![Blog](https://img.shields.io/badge/-Blog-E03C31?&style=for-the-badge&logo=ghost&logoColor=white)](https://beingtechnicalwriter.com)
+[![LinkedIn](https://img.shields.io/badge/-LinkedIn-0072b1?&style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/gauravtrivedi88/) [![X/Twitter](https://img.shields.io/badge/-X-000000?&style=for-the-badge&logo=x&logoColor=white)](https://x.com/beingtechwriter) [![Blog](https://img.shields.io/badge/-Blog-E03C31?&style=for-the-badge&logo=ghost&logoColor=white)](https://beingtechnicalwriter.com)
 
 ---
 
@@ -45,7 +45,7 @@ Every repetitive thing I used to do by hand, I turned into tooling. Editorial re
 
 These aren't prototypes. They run against real documentation pipelines, on real content, every day.
 
-![Python](https://img.shields.io/badge/-Python-14354C?style=flat&logo=python&logoColor=white) * ![Claude SDK](https://img.shields.io/badge/-Claude_SDK-D4A574?style=flat&logo=anthropic&logoColor=white) * ![LangChain](https://img.shields.io/badge/-LangChain-1C3C3C?style=flat&logo=langchain&logoColor=white) * ![Hugging Face](https://img.shields.io/badge/-Hugging%20Face-FFD21E?style=flat&logo=huggingface&logoColor=000) * ![Azure](https://img.shields.io/badge/-Azure-0089D6?style=flat&logo=microsoft-azure&logoColor=white) * ![Flask](https://img.shields.io/badge/-Flask-000000?style=flat&logo=flask&logoColor=white) * ![React](https://img.shields.io/badge/-React-20232A?style=flat&logo=react&logoColor=61DAFB)
+![Python](https://img.shields.io/badge/-Python-14354C?style=flat&logo=python&logoColor=white) ![Claude SDK](https://img.shields.io/badge/-Claude_SDK-D4A574?style=flat&logo=anthropic&logoColor=white) ![LangChain](https://img.shields.io/badge/-LangChain-1C3C3C?style=flat&logo=langchain&logoColor=white) ![Hugging Face](https://img.shields.io/badge/-Hugging%20Face-FFD21E?style=flat&logo=huggingface&logoColor=000) ![Azure](https://img.shields.io/badge/-Azure-0089D6?style=flat&logo=microsoft-azure&logoColor=white) ![Flask](https://img.shields.io/badge/-Flask-000000?style=flat&logo=flask&logoColor=white) ![React](https://img.shields.io/badge/-React-20232A?style=flat&logo=react&logoColor=61DAFB)
 ![GitHub Actions](https://img.shields.io/badge/-GitHub_Actions-2088FF?style=flat&logo=github-actions&logoColor=white)
 
 ---
