@@ -58,8 +58,11 @@
   margin-bottom: 36px;
 }
 .article-bar {
-  display: flex; gap: 32px; flex-wrap: wrap;
-  padding: 20px 0;
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 18px 0;
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
   font-family: var(--mono);
@@ -68,6 +71,14 @@
 }
 .article-bar > div { display: flex; gap: 8px; align-items: center; }
 .article-bar strong { color: var(--text); font-weight: 500; }
+.article-bar-actions {
+  margin-left: auto;
+  display: flex;
+  gap: 8px;
+}
+@media (max-width: 700px) {
+  .article-bar-actions { margin-left: 0; width: 100%; }
+}
 
 /* 3-col layout */
 .layout {

@@ -49,13 +49,16 @@ defaults:
       layout: "posts"
       comments: true
       search: true
-      author: <a href='/aboutme/'>Gaurav Trivedi</a>
+      author: Gaurav Trivedi
+      author_url: /aboutme/
 
 exclude:
   - _drafts
   - _site
   - docs
   - mockups
+  - CLAUDE.md
+  - README.md
 
 target: web
 

@@ -3,9 +3,10 @@
   <ol class="toc" id="post-toc">
     <!-- Populated by js/v2/toc.js after DOM ready -->
   </ol>
+  {% assign md_url = page.url | append: '.md' | replace: '/.md', '.md' %}
   <div class="toc-note">
     <span>LLM-friendly</span>
     Plain Markdown variant at
-    <a href="{{ page.url | append: '.md' }}"><code>{{ page.slug }}.md</code></a>
+    <a href="{{ md_url }}"><code>{{ page.slug }}.md</code></a>
   </div>
 </aside>

@@ -96,12 +96,12 @@ body_class: homepage
     <div class="panel newsletter" id="subscribe">
       <h5>Get the <span class="accent">dispatch</span></h5>
       <p>One essay every other Sunday. Slow, considered, no filler.</p>
-      <form action="https://tinyletter.com/beingtechnicalwriter" method="post" target="popupwindow"
-            onsubmit="window.open('https://tinyletter.com/beingtechnicalwriter','popupwindow','scrollbars=yes,width=800,height=600');return true">
+      <form data-newsletter aria-label="Newsletter signup">
         <div class="input-row">
-          <input type="email" name="email" id="tinyletter-email" placeholder="you@somewhere.com" required>
-          <button type="submit">→</button>
+          <input type="email" name="email" placeholder="you@somewhere.com" required>
+          <button type="submit" aria-label="Subscribe">→</button>
         </div>
+        <p class="newsletter-status" data-newsletter-status role="status" aria-live="polite"></p>
       </form>
     </div>
   </aside>

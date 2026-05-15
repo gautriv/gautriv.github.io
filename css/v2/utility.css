@@ -125,17 +125,26 @@ body.focus .article-bar { justify-content: center; }
   line-height: 1.5;
 }
 
-/* Article-head Focus toggle button styling (reuse btn-ghost-mini) */
+/* Article-head Focus toggle button — pushed right + visible on dark surfaces */
+.article-bar-actions { margin-left: auto; display: inline-flex; align-items: center; }
 .focus-toggle {
-  background: transparent;
-  border: 1px solid var(--line);
-  color: var(--text-2);
-  padding: 6px 10px;
+  background: var(--bg-2);
+  border: 1px solid var(--line-2);
+  color: var(--text);
+  padding: 6px 12px;
   border-radius: var(--radius);
   font-family: var(--mono);
   font-size: 11px;
   letter-spacing: 0.06em;
   cursor: pointer;
   transition: all var(--t-fast);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
 }
-.focus-toggle:hover { border-color: var(--line-2); color: var(--text); background: var(--bg-2); }
+.focus-toggle:hover { border-color: var(--accent); color: var(--accent); background: var(--bg-3); }
+.focus-toggle:focus-visible { border-color: var(--accent); outline: none; box-shadow: 0 0 0 3px var(--accent-glow); }
+@media (max-width: 700px) {
+  .article-bar-actions { margin-left: 0; width: 100%; }
+}

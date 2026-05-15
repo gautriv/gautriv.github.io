@@ -15,12 +15,15 @@
 
 {% seo %}
 <meta name="description" content="{% if page.description %}{{ page.description | strip_html | strip_newlines | truncate: 170 }}{% else %}{{ page.content | strip | strip_html | truncate: 170 }}{% endif %}">
-<meta name="keywords" content="{{ page.tags }}{% if page.tags %}, {% endif %}{{ page.keywords }}">
+{% capture kw_raw %}{{ page.tags }}{% if page.tags and page.keywords %}, {% endif %}{{ page.keywords }}{% endcapture %}
+{% assign kw = kw_raw | strip %}
+{% if kw != "" %}<meta name="keywords" content="{{ kw }}">{% endif %}
 <meta name="robots" content="all,follow">
 <meta name="p:domain_verify" content="110e96fb74a1a7312dbb2bc27e2b8a0b">
 {% if page.author %}
-  {% assign author = site.data.authors[page.author] %}
-  <meta property="article:author" content="{{ author.name }}">
+  {% assign author_data = site.data.authors[page.author] %}
+  {% assign author_name = author_data.name | default: page.author | strip_html %}
+  {% if author_name != "" %}<meta property="article:author" content="{{ author_name }}">{% endif %}
 {% endif %}
 
 <!-- Open Graph -->

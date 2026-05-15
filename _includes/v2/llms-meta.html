@@ -1,3 +1,4 @@
-<link rel="alternate" type="text/markdown" href="{{ site.url }}{{ page.url | append: '.md' }}">
+{% assign md_url = page.url | append: '.md' | replace: '/.md', '.md' %}
+<link rel="alternate" type="text/markdown" href="{{ site.url }}{{ md_url }}">
 <meta name="llms:summary" content="{{ page.description | strip_html | strip_newlines | truncate: 280 }}">
 {% if page.seo_keywords %}<meta name="llms:topics" content="{{ page.seo_keywords }}">{% endif %}

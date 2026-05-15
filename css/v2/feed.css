@@ -421,3 +421,55 @@
   .row { grid-template-columns: 1fr; gap: 8px; padding-left: 0; padding-right: 0; margin: 0; }
   .row-num, .row-date { display: none; }
 }
+
+/* Pagination — at the foot of the feed and any paginated listing */
+.pagination {
+  margin: 56px 0 24px;
+  padding: 24px 0;
+  border-top: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--text-3);
+}
+.pagination a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: var(--text-2);
+  transition: all var(--t-fast);
+}
+.pagination a:hover {
+  color: var(--text);
+  border-color: var(--accent);
+  background: var(--bg-3);
+}
+.pagination span {
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 11px;
+}
+@media (max-width: 700px) {
+  .pagination { flex-wrap: wrap; gap: 12px; padding: 20px 0; }
+  .pagination span { order: -1; width: 100%; text-align: center; }
+}
+
+/* Newsletter status (mailto fallback feedback) */
+.newsletter-status {
+  margin-top: 10px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 0.04em;
+  min-height: 1em;
+}
+.newsletter-status:empty { display: none; }
