@@ -5,10 +5,6 @@ permalink: /aboutme/
 description: "Gaurav Trivedi — technical writer, AI tinkerer, slow-writing advocate."
 ---
 
-<p align="right">
-  <img src="https://komarev.com/ghpvc/?username=gtrivedi88&label=visitors&color=0e75b6&style=flat" alt="profile views" />
-</p>
-
 # 👋 Hi, I'm Gaurav
 
 I'm a Principal Technical Writer at Red Hat. I maintain open-source documentation at enterprise scale. OpenShift Dev Spaces, OpenShift Docs, the kind of docs that ship with products millions of people depend on.
