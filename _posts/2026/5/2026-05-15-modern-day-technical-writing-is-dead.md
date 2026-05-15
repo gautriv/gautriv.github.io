@@ -1,5 +1,5 @@
 ---
-title: "The industrialization of Technical Writing"
+title: "The industrialization of technical writing"
 subtitle: "How enterprise economics are compressing the craft."
 category: AI
 image: "/assets/industrialization.png"
@@ -34,11 +34,11 @@ It didn't.
 
 If you look at how organizations are actually implementing AI today, the DDLC isn't a moat. It is a sequence of tasks. Every single stage is being industrialized. Quietly. While you read this. While you slept last night.
 
-### The Autopsy of the DDLC
+### The autopsy of the DDLC
 
 Let's look at what is actually happening on the ground, phase by phase.
 
-#### 1. Requirement Gathering
+#### 1. Requirement gathering
 
 <div class="ddlc-grid">
   <div class="ddlc-col human">
@@ -51,7 +51,7 @@ Let's look at what is actually happening on the ground, phase by phase.
   </div>
 </div>
 
-#### 2. Drafting and Translation
+#### 2. Drafting and translation
 
 <div class="ddlc-grid">
   <div class="ddlc-col human">
@@ -64,7 +64,7 @@ Let's look at what is actually happening on the ground, phase by phase.
   </div>
 </div>
 
-#### 3. Review and Validation
+#### 3. Review and validation
 
 <div class="ddlc-grid">
   <div class="ddlc-col human">
@@ -79,7 +79,7 @@ Let's look at what is actually happening on the ground, phase by phase.
 
 {% include v2/sponsor-slot.html %}
 
-### The Economic Meat Grinder
+### The economic meat grinder
 
 This apocalypse isn't about AI being "smarter" than us. It's about AI being free at scale. 
 
@@ -89,7 +89,7 @@ This is the CFO logic. If the documentation pipeline is 50x faster and 100x chea
 
 You don't have to look far for the proof. Look at Zendesk's AI agent auto-generating support knowledge base articles directly from closed tickets. Look at GitBook's AI workflows summarizing PRs into user-facing changelogs without human intervention. These aren't beta tests; they are active, deployed workflows compressing the marginal labor cost of documentation.
 
-### The 50% Fallacy
+### The 50% fallacy
 
 When you present this picture to technical writers, the defense mechanism is immediate.
 
@@ -138,7 +138,7 @@ There will be security blockers, compliance reviews, and AI governance committee
 
 But the economics overwhelm the friction. None of this stops the compression. It only slows it.
 
-### The Segmented Grave
+### The segmented grave
 
 We need to be clear: not all documentation dies at the exact same rate. 
 
@@ -148,7 +148,7 @@ API references, release notes, and standard operating procedures are already in 
 
 But make no mistake—they are all in the same building.
 
-### The "I Learned AI" Fallacy
+### The "I learned AI" fallacy
 
 This is the cope with a LinkedIn badge.
 
@@ -166,7 +166,7 @@ The people on the LinkedIn lives shouting *learn AI or be replaced* are themselv
 
 You did not learn AI. You learned this year's version of how to ride it. Next year's version arrives without asking your permission.
 
-### The "Institutional Knowledge" Fallacy
+### The "institutional knowledge" fallacy
 
 Then you might also be thinking: *fine, but the agent doesn't know us. Not really. Not the way I do.*
 
@@ -188,7 +188,7 @@ Institutional knowledge was never the thing in your head. It was the thing in th
 
 > The agent does not need a librarian when it can read the library directly.
 
-### The illusion of the "Human in the Loop"
+### The illusion of the "human in the loop"
 
 The most dangerous lie circulating in our industry right now is the myth of the permanent editor.
 
@@ -249,7 +249,7 @@ The CTO is not cruel. The CTO is doing arithmetic. Twelve months of disruption c
 
 You can argue with the per-page math. You can argue with the human-in-the-loop math. You cannot argue with a curve that flattens to two percent in four quarters. It is the most boring chart in the deck. It is also the one that closes the meeting.
 
-### The "Context Engineer" Paradox
+### The "context engineer" paradox
 
 If you are still employed as a technical writer right now, look closely at what you are actually doing.
 
@@ -269,7 +269,7 @@ The better you do your job, the faster you [take yourself out of the equation](/
 
 ---
 
-### The "Credible Gloom" Reference Table
+### The "credible gloom" reference table
 
 *A framework for understanding the compression of the craft.*
 
