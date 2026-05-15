@@ -1,5 +1,5 @@
 ---
-title: "The Industrialization of Technical Writing"
+title: "The industrialization of Technical Writing"
 subtitle: "How enterprise economics are compressing the craft."
 category: AI
 image: "/assets/industrialization.png"
