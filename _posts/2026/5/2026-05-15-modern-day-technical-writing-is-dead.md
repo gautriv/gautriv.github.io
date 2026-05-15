@@ -2,8 +2,8 @@
 title: "The Industrialization of Technical Writing"
 subtitle: "How enterprise economics are compressing the craft."
 category: AI
-image: "/assets/dead-docs.png"
-header-img: "/assets/dead-docs.png"
+image: "/assets/industrialization.png"
+header-img: "/assets/industrialization.png"
 seo_keywords: "future of technical writing, AI technical writing, Document Development Life Cycle, DDLC automation, MCP Jira Slack, Claude Code skills, Cursor AI docs, the death of technical writing, AI replacing technical writers 2026, human in the loop myth, context engineer role, agentic documentation pipeline, training your replacement"
 permalink: /modern-day-technical-writing-is-dead/
 og_title: "The Industrialization of Technical Writing"
