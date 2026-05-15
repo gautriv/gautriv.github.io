@@ -57,7 +57,6 @@
   line-height: 1.04;
   letter-spacing: -0.035em;
   margin-bottom: 18px;
-  max-width: 22ch;
 }
 
 .article-head .dek {
@@ -66,7 +65,6 @@
   font-size: 24px;
   color: var(--text-2);
   line-height: 1.4;
-  max-width: 40ch;
   margin-bottom: 36px;
 }
 
