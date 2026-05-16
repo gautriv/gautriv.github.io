@@ -420,7 +420,7 @@
 .pinned, .row { animation: spot-in 0.5s ease forwards; }
 
 @media (max-width: 1100px) {
-  .feed { grid-template-columns: 1fr; gap: 24px; }
+  .feed { grid-template-columns: minmax(0, 1fr); gap: 24px; }
   .feed-rail, .side { display: none; }
 }
 @media (max-width: 700px) {

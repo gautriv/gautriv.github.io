@@ -23,6 +23,7 @@
 
 .pre-tags {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
   margin-bottom: 28px;
   font-family: var(--mono);
@@ -57,6 +58,8 @@
   line-height: 1.04;
   letter-spacing: -0.035em;
   margin-bottom: 18px;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .article-head .dek {
@@ -191,6 +194,7 @@
   max-width: var(--reading-measure);
   margin: 0 auto;
   counter-reset: post-section;
+  min-width: 0;
 }
 
 .article-body>p:first-of-type::first-letter {
@@ -346,6 +350,7 @@
 
 .article-body table {
   width: 100%;
+  table-layout: fixed;
   border-collapse: separate;
   border-spacing: 0;
   margin: 36px 0;
@@ -362,6 +367,8 @@
   text-align: left;
   vertical-align: top;
   line-height: 1.5;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .article-body tr:last-child td {
@@ -728,7 +735,7 @@ body.focus .layout {
 
 @media (max-width: 1100px) {
   .layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .left-rail,
@@ -737,14 +744,35 @@ body.focus .layout {
   }
 }
 
-@media (max-width: 900px) {
-  /* Wide tables become horizontally scrollable instead of getting clipped by body overflow:hidden */
-  .article-body table {
-    display: block;
-    width: max-content;
-    max-width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+/* Tables are locked to parent width via .article-body table { table-layout: fixed }.
+   The .table-scroll wrapper (added by js/v2/table-scroll.js) is kept as a harmless
+   container — defensive belt-and-suspenders if a future post opts into a wide
+   data table by adding .table-scroll markup manually. */
+.table-scroll {
+  max-width: 100%;
+  margin: 36px 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.table-scroll table { margin: 0; }
+
+/* In-content sponsor must never push the page wider than its column */
+.sponsor { max-width: 100%; overflow: hidden; }
+.sponsor-body { min-width: 0; flex: 1; }
+.sponsor ins.adsbygoogle,
+.sponsor iframe { max-width: 100% !important; }
+@media (max-width: 700px) {
+  .sponsor {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    padding: 16px;
+  }
+  .sponsor-tag {
+    border-right: none;
+    border-bottom: 1px solid var(--line);
+    padding-right: 0;
+    padding-bottom: 8px;
   }
 }
 

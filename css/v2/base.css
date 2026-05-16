@@ -10,6 +10,8 @@ html {
   scroll-behavior: smooth;
   text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 body {
@@ -23,6 +25,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
+  max-width: 100%;
   min-height: 100vh;
 }
 
