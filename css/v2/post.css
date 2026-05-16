@@ -191,14 +191,14 @@
   font-size: 19px;
   line-height: 1.72;
   color: var(--text);
+  /* width: 100% locks the grid item to its track. Without it, margin: 0 auto
+     triggers shrink-to-fit sizing on grid items, which sizes the box to its
+     content's min-content — letting it grow past the grid track on narrow
+     viewports and break the .layout's horizontal padding. */
+  width: 100%;
   max-width: var(--reading-measure);
   margin: 0 auto;
   counter-reset: post-section;
-  /* Two-part fix for mobile overflow on grid layouts:
-     1. min-width: 0 lets this grid item shrink below its content's min-content.
-     2. overflow-wrap: anywhere lets long unbreakable tokens (URLs, hashtags,
-        slugs) break at any character, so a single long word can't push the
-        column wider than its grid track. */
   min-width: 0;
   overflow-wrap: anywhere;
 }
