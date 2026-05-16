@@ -424,7 +424,6 @@
 
 /* Pagination — at the foot of the feed and any paginated listing */
 .pagination {
-  margin: 56px 0 24px;
   padding: 24px 0;
   border-top: 1px solid var(--line);
   display: flex;
