@@ -185,6 +185,21 @@
   margin-bottom: 4px;
 }
 
+/* Comments section — outside the article so the newsletter above it stays
+   the actual #subscribe scroll target even when Disqus loads late. */
+.comments-section {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 48px 32px 80px;
+}
+.comments-inner {
+  max-width: 800px;
+  margin: 0 auto;
+}
+@media (max-width: 700px) {
+  .comments-section { padding: 32px 16px 56px; }
+}
+
 /* Article body */
 .article-body {
   font-family: var(--sans);

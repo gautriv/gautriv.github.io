@@ -10,6 +10,15 @@
     {{ content }}
   </main>
 
+  {% comment %}
+    Post pages render the newsletter inside posts.html, just above Disqus, so
+    the #subscribe anchor still works once async-loading Disqus inflates the
+    page. Skip it here to avoid a duplicate.
+  {% endcomment %}
+  {% unless page.layout == 'posts' %}
+    {% include v2/newsletter-block.html %}
+  {% endunless %}
+
   {% include v2/foot.html %}
 
   <!-- Search palette markup — empty shell, JS populates results via Simple Jekyll Search -->

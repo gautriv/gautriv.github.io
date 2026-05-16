@@ -85,24 +85,12 @@ body_class: homepage
     </nav>
   </div>
 
-  <aside class="side" aria-label="Site status and subscription">
+  <aside class="side" aria-label="Site status">
     <div class="panel">
       <div class="panel-head"><span>System status</span><span class="live">Live</span></div>
       <div class="status-line"><span>Latest essay</span><span>{{ site.posts.first.date | date: "%b %-d" }}</span></div>
       <div class="status-line"><span>Currently writing</span><span>—</span></div>
       <div class="status-line"><span>Reading queue</span><span>—</span></div>
-    </div>
-
-    <div class="panel newsletter" id="subscribe">
-      <h5>Get the <span class="accent">dispatch</span></h5>
-      <p>One essay every other Sunday. Slow, considered, no filler.</p>
-      <form data-newsletter aria-label="Newsletter signup">
-        <div class="input-row">
-          <input type="email" name="email" placeholder="you@somewhere.com" required>
-          <button type="submit" aria-label="Subscribe">→</button>
-        </div>
-        <p class="newsletter-status" data-newsletter-status role="status" aria-live="polite"></p>
-      </form>
     </div>
   </aside>
 </section>

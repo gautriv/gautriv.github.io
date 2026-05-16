@@ -64,12 +64,16 @@ layout: default
     <section class="share" aria-label="Share">
       {% include v2/share-bar.html %}
     </section>
-
-    <section class="comments" aria-label="Comments">
-      {% include disqus.html %}
-    </section>
   </div>
 </article>
+
+{% include v2/newsletter-block.html %}
+
+<section class="comments-section" aria-label="Comments">
+  <div class="comments-inner">
+    {% include disqus.html %}
+  </div>
+</section>
 
 <button type="button" class="focus-exit" aria-label="Exit focus mode" data-action="exit-focus">
   × Exit focus <kbd>Esc</kbd>
