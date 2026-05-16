@@ -247,6 +247,18 @@
   padding-top: 20px;
   border-top: 1px solid var(--line);
 }
+.pinned-cta {
+  margin-left: auto;
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  transition: color var(--t-fast), transform var(--t-fast);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.pinned-cta:hover { color: var(--accent-2); transform: translateX(2px); }
 
 /* Article rows */
 .row {

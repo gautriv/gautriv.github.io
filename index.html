@@ -51,7 +51,7 @@ body_class: homepage
         {% if featured.description %}<p class="dek">{{ featured.description | strip_html | truncate: 240 }}</p>{% endif %}
         <div class="footer-meta">
           <span>By Gaurav Trivedi</span>
-          <span style="margin-left: auto; color: var(--accent);">Read essay →</span>
+          <a href="{{ featured.url | prepend: site.url }}" class="pinned-cta" aria-label="Read essay: {{ featured.title | strip_html | escape }}">Read essay →</a>
         </div>
       </div>
     </article>
