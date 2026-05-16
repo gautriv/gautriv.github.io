@@ -143,7 +143,7 @@ One more thing. About Claude Code specifically.
 
 Here’s something you find once you’ve used Claude long enough. Not a prompt trick. Not a model setting. Two files. `CLAUDE.md` is the one most people land on first. But I run a second file alongside it. I call it `persona.md`. That one is where my thinking goes.
 
-<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 28px 0; font-size: 0.95em;">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin: 28px 0; font-size: 0.95em;">
   <div style="background: #f0f4ff; border-radius: 12px; padding: 22px 24px; border-top: 4px solid #3a5bd9;">
     <p style="margin: 0 0 14px; color: #3a5bd9; font-weight: 700; font-size: 1em; letter-spacing: 0.06em; text-transform: uppercase;">CLAUDE.md</p>
     <p style="margin: 0 0 8px;"><strong>Holds:</strong> Project context</p>

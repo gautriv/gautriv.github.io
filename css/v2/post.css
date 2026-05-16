@@ -726,10 +726,16 @@ body.focus .layout {
   .right-rail {
     display: none;
   }
+}
 
-  .article-body h2 {
-    flex-direction: column;
-    align-items: flex-start;
+@media (max-width: 900px) {
+  /* Wide tables become horizontally scrollable instead of getting clipped by body overflow:hidden */
+  .article-body table {
+    display: block;
+    width: max-content;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
 }
 
@@ -738,12 +744,46 @@ body.focus .layout {
     padding: 40px 16px 24px;
   }
 
+  .article-head h1 { letter-spacing: -0.025em; }
+  .article-head .dek { font-size: 20px; margin-bottom: 24px; }
+  .article-bar { gap: 14px; padding: 14px 0; }
+
   .layout {
     padding: 32px 16px;
   }
 
+  .article-body { font-size: 17px; line-height: 1.65; }
+
+  /* Drop cap scales down so it doesn't overpower the column on narrow screens */
+  .article-body > p:first-of-type::first-letter {
+    font-size: 60px;
+    padding: 6px 10px 0 0;
+  }
+
+  .article-body h2 {
+    font-size: 24px;
+    margin: 56px 0 18px;
+  }
+  .article-body h2::before {
+    font-size: 10px;
+    padding: 3px 10px;
+    margin-bottom: 12px;
+  }
+  .article-body p.emph { font-size: 21px; padding: 22px 0; margin: 32px 0; }
+  .article-body blockquote { font-size: 19px; margin: 28px 0; padding: 20px 22px; }
+  .article-body pre { padding: 14px 16px; font-size: 13px; }
+  .article-body th, .article-body td { padding: 12px 14px; }
+
+  .end { padding: 0 16px 56px; }
   .related {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 380px) {
+  .article-body > p:first-of-type::first-letter {
+    font-size: 48px;
+    padding: 4px 8px 0 0;
   }
 }
 

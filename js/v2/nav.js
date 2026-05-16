@@ -7,10 +7,21 @@
   const searchTriggers = document.querySelectorAll('[data-action="open-search"]');
   const overlay = document.querySelector('.search-overlay');
 
+  function setNavOpen (open) {
+    if (!burger || !siteNav) return;
+    siteNav.classList.toggle('site-nav--open', open);
+    document.body.classList.toggle('nav-open', open);
+    burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+
   if (burger && siteNav) {
+    burger.setAttribute('aria-expanded', 'false');
     burger.addEventListener('click', () => {
-      const open = siteNav.classList.toggle('site-nav--open');
-      burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      setNavOpen(!siteNav.classList.contains('site-nav--open'));
+    });
+    siteNav.addEventListener('click', (e) => {
+      if (e.target.closest('a')) setNavOpen(false);
     });
   }
 
@@ -25,13 +36,17 @@
     overlay.setAttribute('data-open', 'false');
   }
 
-  searchTriggers.forEach((el) => el.addEventListener('click', openSearch));
+  searchTriggers.forEach((el) => el.addEventListener('click', () => {
+    setNavOpen(false);
+    openSearch();
+  }));
 
   document.addEventListener('keydown', (e) => {
     const isCmdK = (e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k';
     if (isCmdK) { e.preventDefault(); openSearch(); }
-    if (e.key === 'Escape' && overlay && overlay.getAttribute('data-open') === 'true') {
-      closeSearch();
+    if (e.key === 'Escape') {
+      if (overlay && overlay.getAttribute('data-open') === 'true') closeSearch();
+      if (document.body.classList.contains('nav-open')) setNavOpen(false);
     }
   });
 
