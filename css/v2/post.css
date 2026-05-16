@@ -194,7 +194,13 @@
   max-width: var(--reading-measure);
   margin: 0 auto;
   counter-reset: post-section;
+  /* Two-part fix for mobile overflow on grid layouts:
+     1. min-width: 0 lets this grid item shrink below its content's min-content.
+     2. overflow-wrap: anywhere lets long unbreakable tokens (URLs, hashtags,
+        slugs) break at any character, so a single long word can't push the
+        column wider than its grid track. */
   min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .article-body>p:first-of-type::first-letter {
