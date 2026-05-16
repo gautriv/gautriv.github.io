@@ -655,9 +655,18 @@
   border-top: 1px solid var(--line);
 }
 
-.related {
+.related { margin-top: 32px; }
+.related h4 {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 16px;
+}
+.related-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 16px;
 }
 
@@ -775,7 +784,7 @@ body.focus .layout {
   .article-body th, .article-body td { padding: 12px 14px; }
 
   .end { padding: 0 16px 56px; }
-  .related {
+  .related-grid {
     grid-template-columns: 1fr;
   }
 }
