@@ -21,10 +21,11 @@
     </div>
   </div>
 
-  <script defer src="{{ site.url }}/js/v2/nav.js"></script>
-  <script defer src="{{ site.url }}/js/lazyload.js"></script>
-  <script defer src="{{ site.url }}/js/search-script.js"></script>
-  <script defer src="{{ site.url }}/js/v2/search.js"></script>
-  <script defer src="{{ site.url }}/js/v2/newsletter.js"></script>
+  {% assign v = site.time | date: '%s' %}
+  <script defer src="{{ site.url }}/js/v2/nav.js?v={{ v }}"></script>
+  <script defer src="{{ site.url }}/js/lazyload.js?v={{ v }}"></script>
+  <script defer src="{{ site.url }}/js/search-script.js?v={{ v }}"></script>
+  <script defer src="{{ site.url }}/js/v2/search.js?v={{ v }}"></script>
+  <script defer src="{{ site.url }}/js/v2/newsletter.js?v={{ v }}"></script>
 </body>
 </html>
