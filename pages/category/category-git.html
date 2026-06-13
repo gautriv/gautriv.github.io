@@ -1,0 +1,25 @@
+---
+layout: page
+title: Git
+permalink: /category-git/
+categoryName: Git
+is_listing: true
+description: "Essays on Git."
+---
+
+<section class="listing">
+  {% assign cat_posts = site.posts | where: 'category', page.categoryName %}
+  {% for post in cat_posts %}
+    <article class="listing-row">
+      <div class="n">{{ forloop.rindex | divided_by: 1 }}</div>
+      <div>
+        <h3><a href="{{ post.url | prepend: site.url }}">{{ post.title }}</a></h3>
+        {% if post.subtitle %}<p class="sub">{{ post.subtitle | strip_html }}</p>{% endif %}
+      </div>
+      <div class="date">{{ post.date | date: "%b %-d, %Y" }}</div>
+    </article>
+  {% endfor %}
+  {% if cat_posts.size == 0 %}
+    <p style="text-align:center; color: var(--text-3); padding: 48px 0;">No essays in this category yet.</p>
+  {% endif %}
+</section>

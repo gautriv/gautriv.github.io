@@ -1,0 +1,19 @@
+topnavigation:
+
+    - title: Feed
+      url: /
+
+    - title: AI
+      url: /category-ai/
+
+    - title: Craft
+      url: /category-technical-writing/
+
+    - title: Archive
+      url: /archives/
+
+    - title: Courses
+      url: /courses/
+
+    - title: About
+      url: /aboutme/

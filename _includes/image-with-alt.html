@@ -1,0 +1,7 @@
+{% if include.alt %}
+  <img src="{{ include.src }}" alt="{{ include.alt }}" {% if include.class %}class="{{ include.class }}"{% endif %} {% if include.style %}style="{{ include.style }}"{% endif %}>
+{% elsif page.alt_text %}
+  <img src="{{ include.src }}" alt="{{ page.alt_text }}" {% if include.class %}class="{{ include.class }}"{% endif %} {% if include.style %}style="{{ include.style }}"{% endif %}>
+{% else %}
+  <img src="{{ include.src }}" alt="{{ page.title }}" {% if include.class %}class="{{ include.class }}"{% endif %} {% if include.style %}style="{{ include.style }}"{% endif %}>
+{% endif %} 

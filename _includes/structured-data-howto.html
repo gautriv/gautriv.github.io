@@ -1,0 +1,22 @@
+{% if page.howto_steps %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "{{ page.title | escape }}",
+  "description": "{{ page.description | strip_html | strip_newlines | truncate: 160 }}",
+  "totalTime": "{{ page.howto_time | default: 'PT30M' }}",
+  "image": "{{ site.url }}{{ page.image }}",
+  "step": [
+    {% for step in page.howto_steps %}
+    {
+      "@type": "HowToStep",
+      "name": "{{ step.name }}",
+      "text": "{{ step.text }}",
+      "url": "{{ site.url }}{{ page.url }}#{{ step.name | slugify }}"
+    }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ]
+}
+</script>
+{% endif %} 

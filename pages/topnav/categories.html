@@ -1,0 +1,17 @@
+---
+layout: page
+title: Categories
+permalink: /categories/
+is_listing: true
+description: "Browse essays by topic."
+---
+
+<section class="cat-grid">
+  {% for cat in site.data.categories.categories %}
+    {% assign cat_posts = site.posts | where: 'category', cat.title %}
+    <a href="{{ cat.url | prepend: site.url }}" class="cat-tile">
+      <span class="cat-tile-title">{{ cat.title }}</span>
+      <span class="cat-tile-count">{{ cat_posts.size }} essays →</span>
+    </a>
+  {% endfor %}
+</section>

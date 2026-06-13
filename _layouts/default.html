@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% include v2/site-head.html %}
+</head>
+<body{% if page.body_class %} class="{{ page.body_class }}"{% endif %}>
+  {% include v2/nav.html %}
+
+  <main id="main" role="main">
+    {{ content }}
+  </main>
+
+  {% comment %}
+    Post pages render the newsletter inside posts.html, just above Disqus, so
+    the #subscribe anchor still works once async-loading Disqus inflates the
+    page. Skip it here to avoid a duplicate. Landing pages (front matter
+    `landing: true`) suppress it too — the whole page is already the CTA.
+  {% endcomment %}
+  {% unless page.layout == 'posts' or page.landing %}
+    {% include v2/newsletter-block.html %}
+  {% endunless %}
+
+  {% include v2/foot.html %}
+
+  <!-- Search palette markup — empty shell, JS populates results via Simple Jekyll Search -->
+  <div class="search-overlay" data-open="false" aria-hidden="true">
+    <div class="search-panel" role="dialog" aria-label="Search">
+      <input type="search" class="search-panel-input" id="search-input" placeholder="Search essays…" autocomplete="off">
+      <ul class="search-results" id="results-container"></ul>
+      <div class="search-hint">↑↓ navigate · ↵ open · esc close</div>
+    </div>
+  </div>
+
+  {% assign v = site.time | date: '%s' %}
+  <script defer src="{{ site.url }}/js/v2/nav.js?v={{ v }}"></script>
+  <script defer src="{{ site.url }}/js/lazyload.js?v={{ v }}"></script>
+  <script defer src="{{ site.url }}/js/search-script.js?v={{ v }}"></script>
+  <script defer src="{{ site.url }}/js/v2/search.js?v={{ v }}"></script>
+  <script defer src="{{ site.url }}/js/v2/newsletter.js?v={{ v }}"></script>
+  <script defer src="{{ site.url }}/js/v2/optin.js?v={{ v }}"></script>
+
+  <!-- The Survival Stack Slide-in Popup.
+       Suppressed on landing pages — the page itself IS the conversion target. -->
+  {% unless page.landing %}
+    {% include v2/optin-popup.html %}
+  {% endunless %}
+</body>
+</html>

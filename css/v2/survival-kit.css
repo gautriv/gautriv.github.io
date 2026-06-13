@@ -1,0 +1,1505 @@
+/* ===========================================================
+   Survival Kit — Field Kit 001
+   Scoped to .kit so styles cannot leak into the rest of the site.
+   Tokens come from /css/v2/tokens.css; this file re-declares them on
+   body.survival-kit so the kit stays dark regardless of the visitor's
+   prefers-color-scheme or print media.
+   =========================================================== */
+
+/* Force dark Studio tokens for the kit, even when the OS asks for light
+   and even in print. Re-declared at body scope so it wins over :root. */
+body.survival-kit {
+  --bg:          #0A0A0B;
+  --bg-2:        #111114;
+  --bg-3:        #18181C;
+  --line:        #1F1F25;
+  --line-2:      #2A2A33;
+  --text:        #EDEDF0;
+  --text-2:      #A0A0AA;
+  --text-3:      #5A5A66;
+  --accent:      #5B8DEF;
+  --accent-2:    #3E7BFB;
+  --accent-glow: rgba(91, 141, 239, 0.18);
+  --signal:      #FFD23F;
+  background-color: #0A0A0B;
+  color: #EDEDF0;
+  color-scheme: dark;
+}
+
+.kit {
+  position: relative;
+  isolation: isolate;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* ---- Section primitive: every "page" of the kit is a full-bleed section ---- */
+.kit-section {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 96px 40px;
+  overflow: hidden;
+}
+.kit-section > * { position: relative; z-index: 1; }
+
+/* Blueprint grid only on opt-in sections (cover, dividers, philosophy) */
+.kit-section[data-grid="true"]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right,  rgba(91,141,239,0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(91,141,239,0.05) 1px, transparent 1px);
+  background-size: 48px 48px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 0%, transparent 75%);
+          mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 0%, transparent 75%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Optional accent glow halo, opt-in via data-halo */
+.kit-section[data-halo="true"]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 600px 360px at 70% 25%, var(--accent-glow), transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ---------- Page 1: Cover ---------- */
+.kit-cover {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.kit-cover-meta {
+  position: absolute;
+  top: 32px;
+  left: 32px;
+  right: 32px;
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-3);
+  letter-spacing: 0.08em;
+  z-index: 2;
+}
+.kit-cover-title {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: clamp(56px, 11vw, 112px);
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+  color: var(--text);
+  max-width: 14ch;
+  margin: 0 auto;
+}
+.kit-cover-subtitle {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: clamp(15px, 1.4vw, 18px);
+  color: var(--text-3);
+  margin: 32px auto 0;
+  max-width: 56ch;
+  line-height: 1.5;
+}
+.kit-cover-threat {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(22px, 2.6vw, 32px);
+  color: var(--text-2);
+  margin: clamp(72px, 12vh, 160px) auto 0;
+  max-width: 30ch;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+.kit-cover-footer {
+  position: absolute;
+  bottom: 32px;
+  left: 32px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-3);
+  letter-spacing: 0.08em;
+  z-index: 2;
+}
+
+/* ---------- Page 2: Cold open ---------- */
+.kit-coldopen {
+  justify-content: space-between;
+}
+.kit-coldopen-inner {
+  max-width: 720px;
+  margin: auto;
+  width: 100%;
+}
+.kit-coldopen-body {
+  font-family: var(--sans);
+  font-size: clamp(19px, 2vw, 24px);
+  line-height: 1.5;
+  color: var(--text);
+  font-weight: 400;
+  letter-spacing: -0.005em;
+  max-width: 40ch;
+}
+.kit-coldopen-body p { margin-bottom: 1.2em; }
+.kit-coldopen-body p:last-child { margin-bottom: 0; }
+.kit-coldopen-final {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(30px, 4.2vw, 52px);
+  color: var(--text);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  max-width: 22ch;
+  margin: 0 auto 0 0;
+  padding-top: 56px;
+}
+
+/* ---------- Page 3: Full-bleed one-liner ---------- */
+.kit-oneliner {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.kit-oneliner-text {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: clamp(32px, 6.4vw, 80px);
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  color: var(--text);
+  max-width: 22ch;
+}
+.kit-oneliner-text .pivot {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--accent);
+  letter-spacing: -0.01em;
+}
+
+/* ---------- Page 4: Diagnosis (compression curve) ---------- */
+.kit-diagnosis {
+  align-items: center;
+  justify-content: center;
+}
+.kit-diagnosis-svg {
+  width: 100%;
+  max-width: 880px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+.kit-diagnosis-caption {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(20px, 2.4vw, 30px);
+  color: var(--text-2);
+  text-align: center;
+  margin: 48px auto 0;
+  max-width: 32ch;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+
+/* ---------- Page 5: Shame ---------- */
+.kit-shame {
+  justify-content: center;
+}
+.kit-shame-inner {
+  max-width: 720px;
+  margin: auto;
+  width: 100%;
+}
+.kit-shame-lead {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(28px, 4vw, 52px);
+  line-height: 1.2;
+  letter-spacing: -0.022em;
+  color: var(--text);
+  max-width: 20ch;
+  margin: 0 0 48px;
+}
+.kit-shame-body {
+  font-family: var(--sans);
+  font-size: clamp(17px, 1.6vw, 21px);
+  line-height: 1.6;
+  color: var(--text-2);
+  max-width: 42ch;
+}
+.kit-shame-body p { margin-bottom: 1.2em; }
+.kit-shame-body p:last-child { margin-bottom: 0; }
+.kit-shame-body strong { color: var(--text); font-weight: 500; }
+.kit-shame-final {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(20px, 2vw, 26px);
+  color: var(--text);
+  margin-top: 56px;
+  max-width: 38ch;
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+}
+
+/* ---------- Page 8 — Things nobody is naming (observation list) ---------- */
+.kit-observed { justify-content: center; }
+.kit-observed-inner {
+  max-width: 760px;
+  margin: auto;
+  width: 100%;
+}
+.kit-observed-mark {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--accent);
+  letter-spacing: 0.14em;
+  margin-bottom: 18px;
+  text-transform: uppercase;
+}
+.kit-observed-lead {
+  font-family: var(--sans);
+  font-size: clamp(18px, 2vw, 24px);
+  color: var(--text);
+  margin: 0 0 36px;
+  max-width: 38ch;
+  line-height: 1.4;
+  font-weight: 400;
+}
+.kit-observed-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.kit-observed-item {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 14px;
+  margin-bottom: 26px;
+}
+.kit-observed-item:last-child { margin-bottom: 0; }
+.kit-observed-num {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text-3);
+  letter-spacing: 0.04em;
+  padding-top: 4px;
+}
+.kit-observed-quote {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(18px, 2vw, 24px);
+  color: var(--text);
+  margin: 0 0 6px;
+  line-height: 1.3;
+  letter-spacing: -0.012em;
+}
+.kit-observed-tail {
+  font-family: var(--sans);
+  font-size: clamp(14px, 1.4vw, 17px);
+  color: var(--text-2);
+  line-height: 1.55;
+  margin: 0;
+}
+.kit-observed-final {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(20px, 2.2vw, 28px);
+  color: var(--text);
+  margin-top: 44px;
+  max-width: 42ch;
+  line-height: 1.35;
+}
+
+/* ---------- Pages 6, 12, 18 — Confession (three tiers) ---------- */
+.kit-confession { justify-content: center; }
+.kit-confession-inner {
+  max-width: 720px;
+  margin: auto;
+  width: 100%;
+}
+.kit-confession-mark {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-3);
+  letter-spacing: 0.14em;
+  margin-bottom: 28px;
+  text-transform: uppercase;
+}
+.kit-confession-lead {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(24px, 3.2vw, 40px);
+  line-height: 1.22;
+  letter-spacing: -0.018em;
+  color: var(--text);
+  margin: 0 0 36px;
+  max-width: 24ch;
+}
+.kit-confession-body {
+  font-family: var(--sans);
+  font-size: clamp(17px, 1.7vw, 21px);
+  line-height: 1.65;
+  color: var(--text-2);
+  max-width: 44ch;
+}
+.kit-confession-body p { margin-bottom: 1.3em; }
+.kit-confession-body p:last-child { margin-bottom: 0; }
+.kit-confession-body strong { color: var(--text); font-weight: 500; }
+.kit-confession-final {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(20px, 2.2vw, 28px);
+  color: var(--text);
+  margin-top: 56px;
+  max-width: 38ch;
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+}
+
+/* ---------- Page 7 — The Reveal (first labeled section) ---------- */
+.kit-reveal { justify-content: center; }
+.kit-reveal-inner {
+  max-width: 720px;
+  margin: auto;
+  width: 100%;
+}
+.kit-section-mark {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--accent);
+  letter-spacing: 0.12em;
+  margin-bottom: 32px;
+}
+.kit-reveal-body {
+  font-family: var(--sans);
+  font-size: clamp(18px, 1.8vw, 22px);
+  line-height: 1.6;
+  color: var(--text);
+  max-width: 44ch;
+}
+.kit-reveal-body p { margin-bottom: 1.3em; }
+.kit-reveal-body p:last-child { margin-bottom: 0; }
+.kit-reveal-body em {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--text);
+}
+.kit-reveal-final {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(22px, 2.4vw, 32px);
+  color: var(--text);
+  margin-top: 48px;
+  max-width: 32ch;
+  line-height: 1.3;
+}
+
+/* ---------- Page 9 — Satire #1: Fake Job Ad ---------- */
+.kit-jobad {
+  justify-content: center;
+  background: var(--bg-2);
+}
+.kit-jobad-inner {
+  max-width: 640px;
+  margin: auto;
+  width: 100%;
+}
+.kit-jobad-card {
+  background: #FAFAFA;
+  color: #1A1A1A;
+  border-radius: 8px;
+  padding: 34px 36px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 14px;
+  line-height: 1.55;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.45);
+  border: 1px solid #E0E0E0;
+}
+.kit-jobad-meta {
+  font-family: ui-monospace, "SF Mono", monospace;
+  font-size: 11px;
+  color: #6B6B6B;
+  letter-spacing: 0.04em;
+  margin-bottom: 14px;
+}
+.kit-jobad-h {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1A1A1A;
+  margin: 0 0 4px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+.kit-jobad-sub {
+  font-size: 14px;
+  color: #555;
+  margin: 0 0 8px;
+}
+.kit-jobad-salary {
+  font-size: 14px;
+  color: #1A1A1A;
+  font-weight: 600;
+  margin: 0 0 18px;
+}
+.kit-jobad-section {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #1A1A1A;
+  margin: 22px 0 8px;
+}
+.kit-jobad-card p { margin: 0 0 10px; color: #2A2A2A; font-size: 14px; }
+.kit-jobad-card ul { margin: 0 0 10px; padding-left: 1.2em; }
+.kit-jobad-card li { margin-bottom: 6px; color: #2A2A2A; font-size: 14px; }
+.kit-jobad-final {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(18px, 2vw, 24px);
+  color: var(--text-2);
+  margin: 40px auto 0;
+  text-align: center;
+  max-width: 38ch;
+}
+
+/* ---------- Page 14 — Evidence artifact: Performance Review (HR form) ---------- */
+.kit-review {
+  justify-content: center;
+  background: var(--bg-2);
+}
+.kit-review-inner {
+  max-width: 680px;
+  margin: auto;
+  width: 100%;
+}
+.kit-review-doc {
+  background: #FAFAF8;
+  color: #1A1A1A;
+  border-radius: 6px;
+  padding: 32px 36px 26px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 13.5px;
+  line-height: 1.55;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.45);
+  border: 1px solid #DEDED8;
+}
+.kit-review-header {
+  border-bottom: 1px solid #DEDED8;
+  padding-bottom: 14px;
+  margin-bottom: 18px;
+}
+.kit-review-meta {
+  font-family: ui-monospace, "SF Mono", monospace;
+  font-size: 10px;
+  color: #888;
+  letter-spacing: 0.12em;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+.kit-review-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1A1A1A;
+  letter-spacing: -0.01em;
+}
+.kit-review-rows {
+  margin-bottom: 16px;
+}
+.kit-review-row {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 12px;
+  padding: 7px 0;
+  border-bottom: 1px solid #EEEEE8;
+  font-size: 13px;
+}
+.kit-review-row:last-child { border-bottom: none; }
+.kit-review-label {
+  font-weight: 500;
+  color: #6A6A6A;
+}
+.kit-review-value {
+  color: #1A1A1A;
+}
+.kit-review-rating {
+  background: #FFF8E8;
+  border: 1px solid #E8D78A;
+  border-radius: 4px;
+  padding: 12px 16px;
+  margin: 0 0 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.kit-review-rating-label {
+  font-family: ui-monospace, "SF Mono", monospace;
+  font-size: 10px;
+  color: #7A6B2A;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+}
+.kit-review-rating-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1A1A1A;
+}
+.kit-review-section {
+  margin-bottom: 16px;
+}
+.kit-review-section h4 {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #1A1A1A;
+  margin: 0 0 8px;
+}
+.kit-review-section ul {
+  margin: 0;
+  padding-left: 1.3em;
+}
+.kit-review-section li {
+  margin-bottom: 4px;
+  color: #2A2A2A;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.kit-review-note {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid #DEDED8;
+}
+.kit-review-note-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #6A6A6A;
+  margin-bottom: 6px;
+}
+.kit-review-note p {
+  font-style: italic;
+  color: #1A1A1A;
+  font-size: 13.5px;
+  margin: 0;
+  line-height: 1.5;
+}
+.kit-review-final {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(18px, 2vw, 24px);
+  color: var(--text-2);
+  margin: 36px auto 0;
+  text-align: center;
+  max-width: 42ch;
+  line-height: 1.35;
+}
+
+/* ---------- Page 21 — Evidence artifact: Internal Memo (corporate paper) ---------- */
+.kit-memo {
+  justify-content: center;
+  background: var(--bg-2);
+}
+.kit-memo-inner {
+  max-width: 640px;
+  margin: auto;
+  width: 100%;
+}
+.kit-memo-doc {
+  background: #F5F1E8;
+  color: #1A1714;
+  border-radius: 4px;
+  padding: 30px 38px 28px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 13.5px;
+  line-height: 1.55;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.45);
+  border: 1px solid #D8D2C0;
+  border-top: 4px solid #8B2C24;
+}
+.kit-memo-classification {
+  font-family: ui-monospace, "SF Mono", monospace;
+  font-size: 10px;
+  color: #8B2C24;
+  letter-spacing: 0.18em;
+  text-align: center;
+  margin-bottom: 22px;
+  font-weight: 700;
+}
+.kit-memo-header {
+  border-bottom: 1px solid #C8C0A8;
+  padding-bottom: 14px;
+  margin-bottom: 18px;
+}
+.kit-memo-row {
+  font-size: 13.5px;
+  margin-bottom: 5px;
+  color: #1A1714;
+}
+.kit-memo-row:last-child { margin-bottom: 0; }
+.kit-memo-key {
+  font-weight: 700;
+  display: inline-block;
+  width: 64px;
+  letter-spacing: 0.02em;
+}
+.kit-memo-body {
+  font-size: 14px;
+  line-height: 1.62;
+  color: #1A1714;
+}
+.kit-memo-body p { margin: 0 0 12px; }
+.kit-memo-body p:last-child { margin-bottom: 0; }
+.kit-memo-body ul {
+  margin: 4px 0 14px;
+  padding-left: 1.4em;
+}
+.kit-memo-body li { margin-bottom: 6px; }
+.kit-memo-final {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(20px, 2.4vw, 28px);
+  color: var(--text);
+  margin: 40px auto 0;
+  text-align: center;
+  max-width: 36ch;
+  line-height: 1.35;
+}
+
+/* ---------- Page 10 — The Map ---------- */
+.kit-map {
+  align-items: center;
+  justify-content: center;
+}
+.kit-map-svg {
+  width: 100%;
+  max-width: 880px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+.kit-map-final {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(22px, 2.6vw, 32px);
+  color: var(--text);
+  text-align: center;
+  margin: 48px auto 0;
+  max-width: 28ch;
+  line-height: 1.3;
+}
+
+/* ---------- Page 11 — Mid-Spike (Slack mock) ---------- */
+.kit-spike { justify-content: center; }
+.kit-spike-inner {
+  max-width: 680px;
+  margin: auto;
+  width: 100%;
+}
+.kit-slack-mock {
+  background: #1A1D21;
+  border-radius: 8px;
+  padding: 18px 22px;
+  font-family: "Lato", "Helvetica Neue", Arial, sans-serif;
+  border: 1px solid #2B2D31;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+.kit-slack-channel {
+  font-weight: 700;
+  color: #ABABAD;
+  font-size: 13px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #2B2D31;
+  margin-bottom: 18px;
+}
+.kit-slack-msg {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 12px;
+  padding: 8px 0 6px;
+}
+.kit-slack-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  background: #6B47ED;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 16px;
+}
+.kit-slack-header {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+.kit-slack-name {
+  font-weight: 700;
+  color: #E8E8E8;
+  font-size: 15px;
+}
+.kit-slack-time {
+  font-size: 11px;
+  color: #ABABAD;
+}
+.kit-slack-text {
+  color: #D1D2D3;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.kit-slack-noreply {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-3);
+  text-align: center;
+  margin-top: 18px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.kit-spike-final {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(20px, 2.2vw, 28px);
+  color: var(--text);
+  margin: 48px auto 0;
+  text-align: center;
+  max-width: 42ch;
+  line-height: 1.35;
+}
+
+/* ---------- Page 13 — Urgency Ladder ---------- */
+.kit-urgency { justify-content: center; }
+.kit-urgency-inner {
+  max-width: 720px;
+  margin: auto;
+  width: 100%;
+}
+.kit-urgency-mark {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--accent);
+  letter-spacing: 0.12em;
+  margin-bottom: 36px;
+}
+.kit-urgency-block {
+  border-left: 2px solid var(--accent);
+  padding: 4px 0 4px 24px;
+  margin-bottom: 36px;
+}
+.kit-urgency-block:last-child { margin-bottom: 0; }
+.kit-urgency-when {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(20px, 2.4vw, 28px);
+  color: var(--text);
+  margin-bottom: 14px;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+}
+.kit-urgency-open {
+  font-family: var(--sans);
+  font-size: clamp(16px, 1.7vw, 20px);
+  font-weight: 500;
+  color: var(--text);
+  margin: 0 0 12px;
+  line-height: 1.45;
+  letter-spacing: -0.005em;
+  max-width: 52ch;
+}
+.kit-urgency-text {
+  font-family: var(--sans);
+  font-size: clamp(15px, 1.5vw, 18px);
+  line-height: 1.6;
+  color: var(--text-2);
+  max-width: 52ch;
+  margin: 0;
+}
+.kit-urgency-text code,
+.kit-urgency-open code {
+  font-family: var(--mono);
+  font-size: 0.9em;
+  color: var(--accent);
+  background: var(--bg-2);
+  padding: 1px 6px;
+  border-radius: 3px;
+  border: 1px solid var(--line);
+}
+
+/* ---------- Page 14 — Kit Contents ---------- */
+.kit-contents { justify-content: center; }
+.kit-contents-inner {
+  max-width: 900px;
+  margin: auto;
+  width: 100%;
+}
+.kit-contents-title {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--accent);
+  letter-spacing: 0.12em;
+  margin-bottom: 28px;
+}
+.kit-contents-lead {
+  font-family: var(--sans);
+  font-size: clamp(18px, 2vw, 24px);
+  color: var(--text);
+  margin: 0 0 36px;
+  max-width: 40ch;
+  line-height: 1.4;
+  font-weight: 400;
+}
+.kit-items-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+}
+.kit-item {
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-top: 2px solid var(--accent);
+  border-radius: 4px;
+  padding: 22px 22px 20px;
+  display: flex;
+  flex-direction: column;
+}
+.kit-item-num {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-3);
+  letter-spacing: 0.08em;
+  margin-bottom: 10px;
+}
+.kit-item-name {
+  font-family: var(--sans);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
+  letter-spacing: -0.012em;
+}
+.kit-item-tool {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--accent);
+  margin-bottom: 14px;
+  letter-spacing: 0.02em;
+}
+.kit-item-story {
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text-2);
+}
+.kit-contents-final {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(20px, 2.2vw, 26px);
+  color: var(--text);
+  margin-top: 40px;
+}
+
+/* ---------- Page 15 — The Structural Prompt ---------- */
+.kit-prompt { justify-content: center; }
+.kit-prompt-inner {
+  max-width: 760px;
+  margin: auto;
+  width: 100%;
+}
+.kit-prompt-mark {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--accent);
+  letter-spacing: 0.12em;
+  margin-bottom: 16px;
+}
+.kit-prompt-title {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: clamp(26px, 3.2vw, 36px);
+  color: var(--text);
+  margin: 0 0 16px;
+  letter-spacing: -0.02em;
+}
+.kit-prompt-lead {
+  font-family: var(--sans);
+  font-size: clamp(16px, 1.6vw, 19px);
+  line-height: 1.55;
+  color: var(--text-2);
+  margin-bottom: 28px;
+  max-width: 52ch;
+}
+.kit-prompt-block {
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 28px;
+}
+.kit-prompt-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg-3);
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-3);
+  letter-spacing: 0.08em;
+}
+.kit-prompt-dots {
+  display: flex;
+  gap: 6px;
+}
+.kit-prompt-dots span {
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: var(--line-2);
+}
+.kit-prompt-code {
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--text);
+  padding: 22px 24px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  margin: 0;
+}
+.kit-prompt-code .req { color: var(--signal); font-weight: 600; }
+.kit-prompt-code .kw  { color: var(--accent); }
+.kit-prompt-final {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(18px, 2vw, 24px);
+  color: var(--text);
+  margin-top: 0;
+  max-width: 42ch;
+  line-height: 1.35;
+}
+
+/* ---------- Page 16 — Before / After ---------- */
+.kit-beforeafter { justify-content: center; }
+.kit-beforeafter-inner {
+  max-width: 1000px;
+  margin: auto;
+  width: 100%;
+}
+.kit-ba-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.kit-ba-panel {
+  padding: 26px 24px;
+  display: flex;
+  flex-direction: column;
+}
+.kit-ba-before {
+  background: var(--bg-3);
+  color: var(--text-2);
+}
+.kit-ba-after {
+  background: var(--bg);
+}
+.kit-ba-cap {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+.kit-ba-before .kit-ba-cap { color: #B85B4F; }
+.kit-ba-after  .kit-ba-cap { color: var(--accent); }
+.kit-ba-bubble {
+  font-family: var(--sans);
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--text-3);
+  background: #2A2A33;
+  padding: 14px 16px;
+  border-radius: 12px 12px 12px 4px;
+  font-style: italic;
+}
+.kit-ba-code {
+  font-family: var(--mono);
+  font-size: 12px;
+  line-height: 1.65;
+  color: var(--text);
+  white-space: pre-wrap;
+  margin: 0;
+}
+.kit-ba-code .endpoint { color: var(--accent); }
+.kit-ba-code .key      { color: var(--signal); }
+.kit-ba-code .com      { color: var(--text-3); }
+.kit-ba-code .prompt   { color: #4ADE80; font-weight: 500; }
+.kit-ba-code .head     { color: var(--accent); font-weight: 500; }
+.kit-beforeafter-final {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(22px, 2.6vw, 30px);
+  color: var(--text);
+  text-align: center;
+  margin: 36px auto 0;
+  max-width: 36ch;
+  line-height: 1.3;
+}
+
+/* ---------- Page 17 — Satire #2: Org Chart 2027 ---------- */
+.kit-orgchart {
+  justify-content: center;
+  background: #F2F2F0 !important;
+  color: #1A1A1A !important;
+}
+.kit-orgchart-inner {
+  max-width: 640px;
+  margin: auto;
+  width: 100%;
+  text-align: center;
+}
+.kit-orgchart-meta {
+  font-family: ui-monospace, "SF Mono", monospace;
+  font-size: 10px;
+  color: #6B6B6B;
+  letter-spacing: 0.16em;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+.kit-orgchart-watermark {
+  font-family: ui-monospace, "SF Mono", monospace;
+  font-size: 10px;
+  color: #B0B0B0;
+  letter-spacing: 0.22em;
+  margin-bottom: 36px;
+}
+.kit-orgchart-box {
+  display: inline-block;
+  min-width: 320px;
+  padding: 13px 20px;
+  background: #FFFFFF;
+  border: 1px solid #C8C8C8;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 13px;
+  color: #1A1A1A;
+  margin: 0 auto;
+  font-weight: 500;
+  border-radius: 2px;
+}
+.kit-orgchart-box em {
+  font-style: italic;
+  color: #6B6B6B;
+  font-weight: 400;
+  display: block;
+  margin-top: 3px;
+  font-size: 11px;
+}
+.kit-orgchart-line {
+  width: 1px;
+  height: 22px;
+  background: #999;
+  margin: 0 auto;
+}
+.kit-orgchart-aside {
+  font-family: ui-monospace, "SF Mono", monospace;
+  font-size: 10.5px;
+  color: #555;
+  margin-top: 34px;
+  text-align: center;
+  max-width: 50ch;
+  margin-inline: auto;
+  line-height: 1.6;
+  font-style: italic;
+}
+.kit-orgchart-final {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(18px, 2vw, 24px);
+  color: #1A1A1A;
+  margin-top: 36px;
+  text-align: center;
+  max-width: 40ch;
+  margin-inline: auto;
+}
+
+/* ---------- Page 19 — Philosophy ---------- */
+.kit-philosophy {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.kit-philosophy-text {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(26px, 3.4vw, 44px);
+  line-height: 1.32;
+  letter-spacing: -0.018em;
+  color: var(--text);
+  max-width: 22ch;
+}
+.kit-philosophy-text p { margin-bottom: 1em; }
+.kit-philosophy-text p:last-child { margin-bottom: 0; }
+.kit-philosophy-text .accent {
+  color: var(--accent);
+}
+
+/* ---------- Page 20 — Demo (proof beat) ---------- */
+.kit-demo {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.kit-demo-eyebrow {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--accent);
+  letter-spacing: 0.14em;
+  margin-bottom: 18px;
+  text-transform: uppercase;
+}
+.kit-demo-title {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: clamp(36px, 5.6vw, 76px);
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+  color: var(--text);
+  margin: 0 0 22px;
+  max-width: 14ch;
+}
+.kit-demo-line {
+  font-family: var(--sans);
+  font-size: clamp(18px, 2vw, 24px);
+  color: var(--text-2);
+  margin: 0 0 56px;
+  max-width: 32ch;
+  line-height: 1.45;
+}
+.kit-demo-url-box {
+  display: inline-block;
+  padding: 18px 28px;
+  border: 1.5px solid var(--accent);
+  border-radius: 8px;
+  background: rgba(91,141,239,0.08);
+}
+.kit-demo-url {
+  font-family: var(--mono);
+  font-size: clamp(16px, 1.9vw, 24px);
+  color: var(--accent);
+  letter-spacing: 0.04em;
+  margin: 0;
+  font-weight: 500;
+}
+.kit-demo-meta {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text-3);
+  letter-spacing: 0.08em;
+  margin: 22px 0 0;
+}
+.kit-demo-final {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(20px, 2.2vw, 28px);
+  color: var(--text);
+  margin-top: 56px;
+  max-width: 30ch;
+  line-height: 1.3;
+}
+
+/* ---------- Page 21 — Closing Loop ---------- */
+.kit-closing { justify-content: space-between; }
+.kit-closing-inner {
+  max-width: 720px;
+  margin: auto;
+  width: 100%;
+}
+.kit-closing-body {
+  font-family: var(--sans);
+  font-size: clamp(18px, 1.9vw, 22px);
+  line-height: 1.55;
+  color: var(--text);
+  font-weight: 400;
+  letter-spacing: -0.005em;
+  max-width: 42ch;
+}
+.kit-closing-body p { margin-bottom: 1.25em; }
+.kit-closing-body p:last-child { margin-bottom: 0; }
+.kit-closing-final {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(30px, 4.2vw, 52px);
+  color: var(--text);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  max-width: 22ch;
+  margin: 0 auto 0 0;
+  padding-top: 56px;
+}
+
+/* ---------- Page 22 (now 23) — Address with franchise tease ---------- */
+.kit-address { justify-content: center; }
+.kit-address-inner {
+  max-width: 680px;
+  margin: auto;
+  width: 100%;
+}
+.kit-address-tag {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--accent);
+  letter-spacing: 0.14em;
+  margin: 0 0 36px;
+  text-transform: uppercase;
+}
+.kit-address-coming {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 22px 24px 20px;
+  margin: 0 0 36px;
+  background: var(--bg-2);
+}
+.kit-address-coming-title {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-3);
+  letter-spacing: 0.16em;
+  margin-bottom: 16px;
+}
+.kit-address-coming-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.kit-address-coming-list li {
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+}
+.kit-address-coming-list li:first-child {
+  padding-top: 0;
+  border-top: none;
+}
+.kit-address-coming-list li:last-child {
+  padding-bottom: 0;
+}
+.kit-coming-name {
+  font-family: var(--mono);
+  font-size: clamp(13px, 1.4vw, 15px);
+  color: var(--text);
+  margin: 0 0 4px;
+  letter-spacing: 0.03em;
+  font-weight: 500;
+}
+.kit-coming-line {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(14px, 1.5vw, 17px);
+  color: var(--text-2);
+  margin: 0;
+  line-height: 1.4;
+  letter-spacing: -0.005em;
+}
+.kit-address-body {
+  font-family: var(--sans);
+  font-size: clamp(16px, 1.7vw, 20px);
+  line-height: 1.55;
+  color: var(--text-2);
+  max-width: 44ch;
+  margin: 0 0 28px;
+}
+.kit-address-body p { margin-bottom: 0.9em; }
+.kit-address-signoff {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(20px, 2.2vw, 28px);
+  color: var(--text);
+  margin: 0 0 24px;
+}
+.kit-address-url {
+  font-family: var(--mono);
+  font-size: clamp(15px, 1.6vw, 20px);
+  color: var(--accent);
+  letter-spacing: 0.04em;
+  margin: 0;
+}
+
+/* ---------- Mobile rhythm preservation ---------- */
+@media (max-width: 640px) {
+  .kit-section {
+    min-height: auto;
+    padding: 112px 22px;
+  }
+  /* Keep vertical-anchor sections single-fold on phones */
+  .kit-cover,
+  .kit-oneliner,
+  .kit-diagnosis,
+  .kit-philosophy,
+  .kit-demo { min-height: 100vh; }
+
+  .kit-cover-meta   { top: 20px; left: 20px; right: 20px; }
+  .kit-cover-footer { bottom: 20px; left: 20px; }
+  .kit-cover-threat { margin-top: clamp(64px, 16vh, 120px); }
+
+  .kit-coldopen-final,
+  .kit-closing-final { padding-top: 40px; }
+
+  .kit-jobad-card { padding: 24px 22px; }
+  .kit-ba-split { grid-template-columns: 1fr; }
+  .kit-items-grid { gap: 12px; }
+  .kit-orgchart-box { min-width: auto; width: 100%; }
+}
+
+/* ---------- Reduced motion already handled in tokens.css ---------- */
+
+/* ===========================================================
+   Print stylesheet — for headless Chrome --print-to-pdf
+   Each .kit-section becomes one PDF page (US Letter, no margins).
+   Site chrome (nav, footer, newsletter) is hidden.
+   =========================================================== */
+@media print {
+  @page {
+    size: letter;
+    margin: 0;
+  }
+  html, body {
+    background: var(--bg) !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    color-adjust: exact;
+  }
+  /* Nuke everything that isn't the kit. Aggressive on purpose. */
+  body > *:not(main) { display: none !important; }
+  body > main > *:not(.kit) { display: none !important; }
+  body.survival-kit > *:not(main):not(.kit) { display: none !important; }
+  main, main#main {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  .kit {
+    background: var(--bg);
+  }
+  .kit-section {
+    min-height: 11in;
+    height: 11in;
+    max-height: 11in;
+    overflow: hidden;
+    page-break-after: always;
+    page-break-inside: avoid;
+    break-after: page;
+    break-inside: avoid;
+    padding: 0.85in 0.7in;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    color-adjust: exact;
+  }
+  .kit-section:last-of-type {
+    page-break-after: auto;
+    break-after: auto;
+  }
+  /* Backgrounds and grids must print */
+  .kit-section[data-grid="true"]::before,
+  .kit-section[data-halo="true"]::after {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  /* Tighten responsive clamps for the print viewport */
+  .kit-cover-title    { font-size: 88px; line-height: 0.92; }
+  .kit-cover-subtitle { font-size: 17px; }
+  .kit-cover-threat   { font-size: 26px; margin-top: 1.6in; }
+  .kit-coldopen-body  { font-size: 20px; }
+  .kit-coldopen-final { font-size: 40px; padding-top: 48px; }
+  .kit-oneliner-text  { font-size: 64px; }
+  .kit-diagnosis-svg  { max-width: 7in; }
+  .kit-diagnosis-caption { font-size: 24px; }
+  .kit-shame-lead     { font-size: 40px; }
+  .kit-shame-body     { font-size: 18px; }
+  .kit-shame-final    { font-size: 22px; }
+
+  /* New observation-list page print sizing */
+  .kit-observed-lead      { font-size: 20px; }
+  .kit-observed-quote     { font-size: 21px; }
+  .kit-observed-tail      { font-size: 15px; }
+  .kit-observed-item      { margin-bottom: 20px; }
+  .kit-observed-final     { font-size: 23px; }
+  /* Evidence-artifact pages (review + memo) print sizing */
+  .kit-review-doc         { padding: 28px 32px 24px; }
+  .kit-review-title       { font-size: 17px; }
+  .kit-review-row         { font-size: 12px; padding: 6px 0; }
+  .kit-review-rating      { padding: 10px 14px; margin: 0 0 18px; }
+  .kit-review-rating-value{ font-size: 14px; }
+  .kit-review-section h4  { font-size: 11px; }
+  .kit-review-section li  { font-size: 12px; }
+  .kit-review-note p      { font-size: 12.5px; }
+  .kit-review-final       { font-size: 22px; margin-top: 32px; }
+  .kit-memo-doc           { padding: 28px 34px 26px; }
+  .kit-memo-body          { font-size: 13px; line-height: 1.58; }
+  .kit-memo-row           { font-size: 12.5px; }
+  .kit-memo-final         { font-size: 24px; margin-top: 32px; }
+
+  /* Inline prompt/comment colors for the After panel */
+  .kit-ba-code .prompt    { color: #4ADE80; }
+
+  /* Pages 6–22 print sizing */
+  .kit-confession-lead    { font-size: 32px; }
+  .kit-confession-body    { font-size: 18px; }
+  .kit-confession-final   { font-size: 22px; }
+  .kit-reveal-body        { font-size: 19px; }
+  .kit-reveal-final       { font-size: 26px; }
+  .kit-jobad-card         { padding: 28px 30px; }
+  .kit-jobad-card,
+  .kit-jobad-card p,
+  .kit-jobad-card li      { font-size: 13px; }
+  .kit-jobad-h            { font-size: 20px; }
+  .kit-jobad-final        { font-size: 20px; }
+  .kit-map-svg            { max-width: 7in; }
+  .kit-map-final          { font-size: 26px; }
+  .kit-slack-text         { font-size: 14px; }
+  .kit-slack-name         { font-size: 14px; }
+  .kit-spike-final        { font-size: 22px; }
+  .kit-urgency-when       { font-size: 22px; margin-bottom: 12px; }
+  .kit-urgency-open       { font-size: 18px; margin-bottom: 10px; }
+  .kit-urgency-text       { font-size: 15px; }
+  .kit-urgency-block      { margin-bottom: 26px; padding-left: 20px; }
+  .kit-contents-lead      { font-size: 20px; }
+  .kit-items-grid         { grid-template-columns: 1fr 1fr; gap: 14px; }
+  .kit-item               { padding: 16px 18px 14px; }
+  .kit-item-name          { font-size: 18px; }
+  .kit-item-story         { font-size: 13px; }
+  .kit-contents-final     { font-size: 22px; }
+  .kit-prompt-title       { font-size: 30px; }
+  .kit-prompt-lead        { font-size: 17px; }
+  .kit-prompt-code        { font-size: 12px; line-height: 1.6; }
+  .kit-prompt-final       { font-size: 20px; }
+  .kit-ba-split           { grid-template-columns: 1fr 1fr; }
+  .kit-ba-code            { font-size: 11px; }
+  .kit-beforeafter-final  { font-size: 26px; }
+  .kit-orgchart-box       { font-size: 12px; min-width: 320px; }
+  .kit-orgchart-aside     { font-size: 10px; }
+  .kit-orgchart-final     { font-size: 20px; }
+  .kit-philosophy-text    { font-size: 38px; }
+  .kit-demo-title         { font-size: 64px; }
+  .kit-demo-line          { font-size: 22px; }
+  .kit-demo-url           { font-size: 22px; }
+  .kit-demo-final         { font-size: 24px; }
+  .kit-closing-body       { font-size: 19px; }
+  .kit-closing-final      { font-size: 42px; padding-top: 48px; }
+  .kit-address-tag        { font-size: 12px; }
+  .kit-address-coming     { padding: 20px 22px; }
+  .kit-coming-name        { font-size: 14px; }
+  .kit-coming-line        { font-size: 16px; }
+  .kit-address-body       { font-size: 17px; }
+  .kit-address-signoff    { font-size: 24px; }
+  .kit-address-url        { font-size: 19px; }
+}

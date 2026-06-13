@@ -1,0 +1,87 @@
+media: https://beingtechnicalwriter.s3.ap-south-1.amazonaws.com/
+paginate: 15
+output: web
+timezone: Asia/Kolkata
+highlighter: rouge
+markdown: kramdown
+kramdown:
+  input: GFM
+  auto_ids: true
+  syntax_highlighter: rouge
+
+format: web
+
+# Collections
+collections:
+  docs:
+    output: true
+  slides:
+    output: true
+  smartphones:
+    output: true
+  newsletters:
+    output: true
+    permalink: /newsletters/:path/
+
+
+# Build settings
+
+plugins:
+  - jekyll-feed
+  - jekyll-paginate
+  - jekyll-seo-tag
+  - jemoji
+  - jekyll-redirect-from
+
+
+permalink: /:year/:month/:day/:title/
+defaults:
+  -
+    scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "page"
+      comments: true
+      search: true
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "posts"
+      comments: true
+      search: true
+      author: Gaurav Trivedi
+      author_url: /aboutme/
+  -
+    scope:
+      path: ""
+      type: "newsletters"
+    values:
+      layout: "newsletter"
+      published: false   # drafts never publish unless explicitly overridden in the file's front matter
+
+exclude:
+  - _drafts
+  - _site
+  - docs
+  - mockups
+  - CLAUDE.md
+  - README.md
+
+target: web
+
+####### jekyll seo tag configuration #######
+title: Being technical writer
+tagline: Only place where you learn about all the <strong>innovations</strong>, <strong>standards</strong>, and <strong>trends</strong> in technical writing.
+description: Making technical writing easy
+url: https://beingtechnicalwriter.com
+social:
+  name: Gaurav Trivedi
+  links:
+    - https://www.linkedin.com/in/gauravtrivedi1988/
+    - https://github.com/Trivedi-Gaurav
+
+lang: en_US
+

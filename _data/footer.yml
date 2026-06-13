@@ -1,0 +1,13 @@
+footercolumnone:
+
+    - title: About me
+      url: /gaurav.trivedi.io/
+
+    - title: Contact
+      url: /contact/
+
+footercolumnthree:
+
+    - title: Like the content?
+      url: /appreciate/
+    

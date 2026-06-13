@@ -1,0 +1,357 @@
+<div id="survival-stack-popup" class="survival-popup-container" aria-hidden="true">
+    <button id="close-survival-popup" class="survival-popup-close" aria-label="Close popup">&times;</button>
+    <div class="survival-popup-content">
+        <h3 class="survival-popup-eyebrow">Operational briefing</h3>
+        <h4 class="survival-popup-title">The technical writer's AI survival kit.</h4>
+        <p class="survival-popup-desc">A practical operational briefing for technical writers navigating AI assisted workflows. Built from real world documentation automation pipelines.</p>
+        
+        <form id="survival-stack-form" class="survival-popup-form" onsubmit="event.preventDefault();">
+            <input type="email" id="survival-email" placeholder="Your best email address" required autocomplete="email" />
+            <button type="submit" id="survival-submit-btn" class="pulse-button">Access the operational briefing</button>
+        </form>
+        <div id="survival-success-msg" class="survival-success-hidden">
+            <strong>Check your inbox.</strong> The kit lands the moment you click the confirmation link.
+        </div>
+        <div id="survival-error-msg" class="survival-error-hidden" role="alert"></div>
+        <p class="survival-popup-meta">Includes real workflow failures, debugging logic, and automation templates.</p>
+    </div>
+</div>
+
+<style>
+    /* Styling for the delayed slide-in popup */
+    .survival-popup-container {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 400px;
+        background-color: var(--bg-2);
+        color: var(--text);
+        padding: 28px 28px 24px;
+        border-radius: 12px;
+        box-shadow: 0 20px 40px -10px rgba(10, 10, 11, 0.25), 0 8px 16px -8px rgba(10, 10, 11, 0.12);
+        border: 1px solid var(--line);
+        transform: translateY(150%);
+        opacity: 0;
+        transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease, box-shadow var(--t-med), border-color var(--t-med);
+        z-index: 9999;
+        font-family: var(--sans);
+        overflow: hidden;
+    }
+
+    /* Blueprint-grid ghost — ties the card to the Studio chrome DNA. */
+    .survival-popup-container::before {
+        content: "";
+        position: absolute;
+        top: 0; right: 0; bottom: 0; left: 0; /* inset fallback */
+        inset: 0;
+        background-image:
+            linear-gradient(var(--line) 1px, transparent 1px),
+            linear-gradient(90deg, var(--line) 1px, transparent 1px);
+        background-size: 28px 28px;
+        opacity: 0.45;
+        pointer-events: none;
+        mask-image: radial-gradient(circle at 100% 0%, #000 0%, transparent 65%);
+        -webkit-mask-image: radial-gradient(circle at 100% 0%, #000 0%, transparent 65%);
+    }
+    .survival-popup-container > * { position: relative; z-index: 1; }
+
+    /* Entrance: slide + soft settle. Less manic than a shake — more "lands". */
+    .survival-popup-container.active {
+        transform: translateY(0);
+        opacity: 1;
+        animation: popupSettle 0.9s cubic-bezier(.36,.07,.19,.97) both;
+        animation-delay: 0.55s;
+    }
+
+    @keyframes popupSettle {
+        0%   { transform: translateY(0) rotate(0deg); }
+        18%  { transform: translateY(-3px) rotate(-0.25deg); }
+        36%  { transform: translateY(0) rotate(0.18deg); }
+        58%  { transform: translateY(-1px) rotate(-0.08deg); }
+        100% { transform: translateY(0) rotate(0deg); }
+    }
+
+    /* Idle re-attract: one slow nudge ~14s after appearing if no engagement. */
+    .survival-popup-container.nudge {
+        animation: popupNudge 1s ease-in-out 1;
+        border-color: var(--accent);
+    }
+    @keyframes popupNudge {
+        0%, 100% { transform: translateY(0); }
+        40%      { transform: translateY(-5px); }
+    }
+
+    .survival-popup-close {
+        position: absolute;
+        top: 12px;
+        right: 15px;
+        background: none;
+        border: none;
+        color: var(--text-3);
+        opacity: 0.7;
+        font-size: 24px;
+        cursor: pointer;
+        transition: opacity 0.2s ease, color 0.2s ease;
+    }
+
+    .survival-popup-close:hover {
+        opacity: 1;
+        color: var(--text);
+    }
+
+    .survival-popup-eyebrow {
+        font-family: var(--mono);
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--accent);
+        margin: 0 0 10px 0;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+    }
+    /* Transmission beacon — three blinks then steady. Reads as "live signal", */
+    /* triggers the brain's "something is happening" attention response. */
+    .survival-popup-eyebrow::before {
+        content: "";
+        display: inline-block;
+        width: 7px;
+        height: 7px;
+        border-radius: 999px;
+        background: var(--accent);
+        box-shadow: 0 0 0 0 var(--accent-glow);
+        animation: eyebrowBeacon 1.6s ease-in-out 3;
+        animation-delay: 1.4s;
+    }
+    @keyframes eyebrowBeacon {
+        0%, 100% { box-shadow: 0 0 0 0 rgba(91, 141, 239, 0); opacity: 1; }
+        40%      { box-shadow: 0 0 0 6px rgba(91, 141, 239, 0); opacity: 0.4; }
+        60%      { opacity: 1; }
+    }
+
+    .survival-popup-title {
+        font-size: 18px;
+        font-weight: 700;
+        margin: 0 0 10px 0;
+        line-height: 1.3;
+        color: var(--text);
+        letter-spacing: -0.01em;
+    }
+
+    .survival-popup-desc {
+        font-size: 14px;
+        color: var(--text-2);
+        margin: 0 0 24px 0;
+        line-height: 1.6;
+    }
+
+    .survival-popup-form {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .survival-popup-form input[type="email"] {
+        padding: 14px 16px;
+        border-radius: 6px;
+        border: 1px solid var(--line-2);
+        background-color: var(--bg-3);
+        color: var(--text);
+        font-family: var(--sans);
+        font-size: 14px;
+        outline: none;
+        transition: border-color var(--t-fast);
+    }
+
+    .survival-popup-form input[type="email"]::placeholder {
+        color: var(--text-3);
+    }
+
+    .survival-popup-form input[type="email"]:focus {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px var(--accent-glow);
+        background-color: var(--bg);
+    }
+    /* Chrome / Safari autofill paints the input yellow. Override with brand bg. */
+    .survival-popup-form input[type="email"]:-webkit-autofill,
+    .survival-popup-form input[type="email"]:-webkit-autofill:hover,
+    .survival-popup-form input[type="email"]:-webkit-autofill:focus {
+        -webkit-box-shadow: 0 0 0 1000px var(--bg-3) inset !important;
+        -webkit-text-fill-color: var(--text) !important;
+        caret-color: var(--text);
+        transition: background-color 5000s ease-in-out 0s; /* defeat the autofill flash */
+    }
+    /* Zeigarnik trigger: once user starts typing, CTA stops looking like an */
+    /* invitation and starts looking "ready" — pushes them to complete the loop. */
+    .survival-popup-form.is-engaged .pulse-button {
+        animation-play-state: paused;
+        background-color: var(--accent-2);
+        box-shadow: 0 10px 28px -10px var(--accent-glow);
+    }
+
+    /* CTA: slow breath glow + a sheen sweep every ~5s. Industry-standard */
+    /* high-conversion pattern — restrained so it doesn't read as spam. */
+    .pulse-button {
+        position: relative;
+        padding: 13px 16px;
+        border-radius: 6px;
+        border: none;
+        background-color: var(--accent);
+        color: #ffffff;
+        font-family: var(--sans);
+        font-weight: 600;
+        font-size: 14px;
+        letter-spacing: 0.005em;
+        cursor: pointer;
+        overflow: hidden;
+        transition: background-color var(--t-fast), transform var(--t-fast), box-shadow var(--t-fast);
+        animation: ctaBreath 3.6s ease-in-out infinite;
+    }
+
+    .pulse-button::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -60%;
+        width: 50%;
+        height: 100%;
+        background: linear-gradient(110deg,
+            transparent 0%,
+            rgba(255, 255, 255, 0.22) 50%,
+            transparent 100%);
+        transform: skewX(-18deg);
+        animation: ctaSheen 5s ease-in-out infinite;
+        animation-delay: 2s;
+        pointer-events: none;
+    }
+
+    .pulse-button:hover {
+        background-color: var(--accent-2);
+        transform: translateY(-1px);
+        box-shadow: 0 12px 28px -10px var(--accent-glow);
+    }
+    .pulse-button:active { transform: translateY(0); }
+
+    .pulse-button:disabled {
+        background-color: var(--text-3);
+        cursor: wait;
+        animation: none;
+    }
+    .pulse-button:disabled::after { display: none; }
+
+    @keyframes ctaBreath {
+        0%, 100% { box-shadow: 0 0 0 0 rgba(91, 141, 239, 0); }
+        50%      { box-shadow: 0 6px 22px -6px rgba(91, 141, 239, 0.35); }
+    }
+    @keyframes ctaSheen {
+        0%, 70%, 100% { left: -60%; opacity: 0; }
+        72%           { opacity: 1; }
+        92%           { left: 130%; opacity: 0; }
+    }
+
+    .survival-popup-meta {
+        font-size: 12px;
+        color: var(--text-3);
+        margin: 16px 0 0 0;
+        text-align: center;
+        line-height: 1.5;
+        font-weight: 400;
+    }
+
+    .survival-success-hidden,
+    .survival-error-hidden {
+        display: none;
+    }
+
+    .survival-offline-msg {
+        display: block;
+        font-size: 14px;
+        color: var(--text);
+        line-height: 1.55;
+        background-color: rgba(91, 141, 239, 0.10);
+        background-color: color-mix(in srgb, var(--accent) 10%, transparent);
+        border: 1px solid rgba(91, 141, 239, 0.28);
+        border: 1px solid color-mix(in srgb, var(--accent) 28%, transparent);
+        padding: 14px 16px;
+        border-radius: 6px;
+        margin-top: 4px;
+    }
+    .survival-offline-msg strong { color: var(--accent); }
+
+    .survival-success-visible {
+        display: block;
+        font-size: 14px;
+        color: var(--green);
+        line-height: 1.5;
+        background-color: rgba(74, 222, 128, 0.12); /* fallback */
+        background-color: color-mix(in srgb, var(--green) 12%, transparent);
+        border: 1px solid rgba(74, 222, 128, 0.28); /* fallback */
+        border: 1px solid color-mix(in srgb, var(--green) 28%, transparent);
+        padding: 14px;
+        border-radius: 6px;
+        margin-top: 12px;
+    }
+
+    .survival-error-visible {
+        display: block;
+        font-size: 13px;
+        color: #fca5a5;
+        line-height: 1.5;
+        background-color: rgba(239, 68, 68, 0.12);
+        border: 1px solid rgba(239, 68, 68, 0.32);
+        padding: 12px 14px;
+        border-radius: 6px;
+        margin-top: 12px;
+    }
+
+    @media (max-width: 700px) {
+        .survival-popup-container {
+            /* Sit above iOS safe-area inset, leave thumb room. */
+            bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+            left: 16px;
+            right: 16px;
+            width: auto;
+            max-width: none;
+            border-radius: 14px;
+            padding: 22px 20px 18px;
+            box-sizing: border-box;
+            transform: translateY(150%);
+        }
+        .survival-popup-container.active { transform: translateY(0); }
+        .survival-popup-title { font-size: 18px; }
+        .survival-popup-desc { font-size: 13.5px; margin-bottom: 16px; }
+        /* iOS auto-zooms when an input's font-size is < 16px on focus. */
+        /* Bumping to 16px keeps the page from scaling on email tap. */
+        .survival-popup-form input[type="email"] {
+            font-size: 16px;
+            padding: 14px 14px;
+        }
+        .pulse-button {
+            font-size: 15px;
+            padding: 14px 16px;
+        }
+        /* Proper 44x44 tap target for close on touch. */
+        .survival-popup-close {
+            top: 6px;
+            right: 6px;
+            width: 44px;
+            height: 44px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            padding: 0;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .survival-popup-container.active,
+        .survival-popup-container.nudge,
+        .pulse-button,
+        .pulse-button::after,
+        .survival-popup-eyebrow::before {
+            animation: none !important;
+        }
+    }
+</style>

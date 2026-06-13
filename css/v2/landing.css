@@ -1,0 +1,371 @@
+/* ---------------------------------------------------------------------------
+   Landing pages — shared styles for opt-in / post-confirm surfaces.
+   Scoped to body.landing-page so nothing leaks into the rest of the site.
+   Uses tokens from tokens.css.
+   --------------------------------------------------------------------------- */
+
+/* Studio-chrome backdrop: blueprint grid fading from top-right. */
+body.landing-page::before {
+  content: "";
+  position: fixed;
+  top: 0; right: 0; bottom: 0; left: 0;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(91, 141, 239, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(91, 141, 239, 0.045) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 80% 60% at 80% 0%, black 0%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 80% 0%, black 0%, transparent 70%);
+  z-index: 0;
+}
+body.landing-page main { position: relative; z-index: 1; }
+
+.landing {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 80px 32px 96px;
+}
+
+.landing-eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  margin: 0 0 28px 0;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.landing-eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--accent);
+  box-shadow: 0 0 0 0 var(--accent-glow);
+  animation: landingBeacon 1.8s ease-in-out 4;
+  animation-delay: 0.8s;
+}
+@keyframes landingBeacon {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(91, 141, 239, 0); opacity: 1; }
+  40%      { box-shadow: 0 0 0 6px rgba(91, 141, 239, 0); opacity: 0.4; }
+  60%      { opacity: 1; }
+}
+
+.landing-headline {
+  font-family: var(--sans);
+  font-size: clamp(2rem, 4.2vw, 3rem);
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0 0 20px 0;
+}
+.landing-headline em {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--accent);
+  letter-spacing: 0;
+}
+
+.landing-dek {
+  font-family: var(--sans);
+  font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+  line-height: 1.45;
+  color: var(--text-2);
+  margin: 0 0 56px 0;
+  max-width: 56ch;
+}
+
+.landing-thesis {
+  border-left: 2px solid var(--accent);
+  background: linear-gradient(90deg, rgba(91, 141, 239, 0.06), transparent 70%);
+  padding: 18px 0 18px 24px;
+  margin: 0 0 40px 0;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  color: var(--text);
+}
+.landing-thesis p { margin: 0 0 10px 0; }
+.landing-thesis p:last-child { margin-bottom: 0; }
+.landing-thesis-warning {
+  font-family: var(--sans);
+  font-style: normal;
+  font-size: 0.9rem;
+  color: var(--text-2);
+  margin-top: 14px !important;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  letter-spacing: 0.005em;
+}
+
+.landing-credibility-line {
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-2);
+  margin: 0 0 36px 0;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--line);
+}
+
+.landing-anti-pitch {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 48px 0;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--text-2);
+}
+.landing-anti-pitch li {
+  position: relative;
+  padding: 6px 0 6px 28px;
+}
+.landing-anti-pitch li::before {
+  content: "\00d7";
+  position: absolute;
+  left: 4px;
+  top: 6px;
+  color: #ef4444;
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: 1.1rem;
+  line-height: 1.55;
+}
+.landing-anti-pitch li:last-child {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.landing-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 28px;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  position: relative;
+  overflow: hidden;
+}
+.landing-form::before {
+  content: "";
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 32px 32px;
+  opacity: 0.35;
+  pointer-events: none;
+  mask-image: radial-gradient(circle at 100% 0%, #000 0%, transparent 65%);
+  -webkit-mask-image: radial-gradient(circle at 100% 0%, #000 0%, transparent 65%);
+}
+.landing-form > * { position: relative; z-index: 1; }
+
+.landing-form-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.landing-form-row {
+  display: flex;
+  gap: 10px;
+}
+
+.landing-input {
+  flex: 1;
+  min-width: 0;
+  padding: 14px 16px;
+  font-family: var(--sans);
+  font-size: 15px;
+  border: 1px solid var(--line-2);
+  background-color: var(--bg-3);
+  color: var(--text);
+  border-radius: 8px;
+  outline: none;
+  transition: border-color var(--t-fast), box-shadow var(--t-fast), background var(--t-fast);
+}
+.landing-input::placeholder { color: var(--text-3); }
+.landing-input:hover { border-color: var(--text-3); }
+.landing-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+  background-color: var(--bg);
+}
+/* Chrome / Safari autofill paints the input yellow. Override with brand bg. */
+.landing-input:-webkit-autofill,
+.landing-input:-webkit-autofill:hover,
+.landing-input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px var(--bg-3) inset !important;
+  -webkit-text-fill-color: var(--text) !important;
+  caret-color: var(--text);
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* CTA: brand-blue with breath glow + slow sheen sweep — matches popup. */
+.landing-cta {
+  position: relative;
+  display: inline-block;
+  padding: 14px 22px;
+  border-radius: 8px;
+  border: none;
+  background-color: var(--accent);
+  color: #fff;
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.005em;
+  cursor: pointer;
+  overflow: hidden;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: background-color var(--t-fast), transform var(--t-fast), box-shadow var(--t-fast);
+  animation: landingCtaBreath 3.6s ease-in-out infinite;
+}
+.landing-cta::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(110deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.22) 50%,
+    transparent 100%);
+  transform: skewX(-18deg);
+  animation: landingCtaSheen 5s ease-in-out infinite;
+  animation-delay: 2.2s;
+  pointer-events: none;
+}
+@keyframes landingCtaBreath {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(91, 141, 239, 0); }
+  50%      { box-shadow: 0 6px 22px -6px rgba(91, 141, 239, 0.40); }
+}
+@keyframes landingCtaSheen {
+  0%, 70%, 100% { left: -60%; opacity: 0; }
+  72%           { opacity: 1; }
+  92%           { left: 130%; opacity: 0; }
+}
+.landing-cta:hover {
+  background-color: var(--accent-2);
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px -10px var(--accent-glow);
+  color: #fff;
+}
+.landing-cta:active { transform: translateY(0); }
+.landing-cta:disabled {
+  background-color: var(--text-3);
+  cursor: wait;
+  animation: none;
+}
+.landing-cta:disabled::after { display: none; }
+
+/* User started typing → CTA stops looking like an invitation, looks "ready". */
+.landing-form.is-engaged .landing-cta {
+  animation-play-state: paused;
+  background-color: var(--accent-2);
+  box-shadow: 0 10px 28px -10px var(--accent-glow);
+}
+
+.landing-disclaimer {
+  font-family: var(--sans);
+  font-size: 0.825rem;
+  line-height: 1.55;
+  color: var(--text-3);
+  margin: 6px 0 0 0;
+}
+.landing-disclaimer-strong { color: var(--text-2); font-weight: 500; }
+
+.landing-success {
+  display: block;
+  font-size: 14px;
+  color: var(--green);
+  line-height: 1.55;
+  background-color: rgba(74, 222, 128, 0.12); /* fallback */
+  background-color: color-mix(in srgb, var(--green) 12%, transparent);
+  border: 1px solid rgba(74, 222, 128, 0.28); /* fallback */
+  border: 1px solid color-mix(in srgb, var(--green) 28%, transparent);
+  padding: 14px;
+  border-radius: 8px;
+  margin-top: 4px;
+}
+.landing-success[hidden] { display: none; }
+
+.landing-error {
+  display: block;
+  font-family: var(--sans);
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: #ef4444;
+  background-color: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.28);
+  padding: 12px 14px;
+  border-radius: 8px;
+  margin-top: 4px;
+}
+.landing-error[hidden] { display: none; }
+
+.landing-credibility-anchor {
+  margin: 48px 0 0 0;
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--text-3);
+  text-transform: uppercase;
+}
+
+/* Offline message — shown while the email pipeline is mid-migration. */
+.landing-offline {
+  padding: 24px 26px;
+  background: var(--bg-2);
+  border: 1px solid color-mix(in srgb, var(--accent) 28%, transparent);
+  border-radius: 12px;
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-2);
+}
+.landing-offline p { margin: 0 0 10px 0; }
+.landing-offline p:last-child { margin-bottom: 0; }
+.landing-offline strong { color: var(--accent); }
+.landing-offline-meta {
+  font-size: 0.85rem;
+  color: var(--text-3);
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 700px) {
+  .landing { padding: 48px 20px 72px; }
+  .landing-headline { font-size: clamp(1.6rem, 7vw, 2rem); }
+  .landing-dek { font-size: 1rem; margin-bottom: 40px; }
+  .landing-thesis { font-size: 1.05rem; padding: 14px 0 14px 18px; }
+  .landing-form { padding: 22px 18px; }
+  .landing-form-row { flex-direction: column; }
+  .landing-cta { width: 100%; }
+  /* iOS auto-zooms when input font-size < 16px on focus. Bump to 16. */
+  .landing-input { font-size: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .landing-cta,
+  .landing-cta::after,
+  .landing-eyebrow::before {
+    animation: none !important;
+  }
+}

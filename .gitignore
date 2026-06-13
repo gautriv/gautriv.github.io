@@ -1,0 +1,31 @@
+_site/
+.jekyll-cache
+
+vendor
+.bundle/
+
+CLAUDE.md
+
+docs/
+mockups/
+
+# AWS Deployment Artifacts
+lambda.zip
+trust-policy.json
+s3-policy.json
+.env
+.env.*
+!.env.example
+backend/node_modules/
+
+# Local IDE & Analytics Dump
+.claude/
+*.csv
+
+# Local Test Files & Lead Magnets (Served via AWS now)
+survival-stack.pdf
+survival-kit-*.pdf
+convertkit-sequence.md
+
+
+redeploy.sh

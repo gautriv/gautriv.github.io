@@ -1,0 +1,40 @@
+<div class="panel ai-panel" aria-label="Ask this essay">
+  <div class="panel-h">Ask this essay</div>
+  <button type="button" class="ai-prompt" data-prompt="Explain section 03 for a junior dev">Explain section 03 for a junior dev <span class="arrow">→</span></button>
+  <button type="button" class="ai-prompt" data-prompt="Give me a checklist from this post">Give me a checklist from this post <span class="arrow">→</span></button>
+  <button type="button" class="ai-prompt" data-prompt="What's the one core idea here?">What's the one core idea here? <span class="arrow">→</span></button>
+  <form class="ai-input" data-ai-ask>
+    <input type="text" placeholder="Ask anything about this essay…" aria-label="Question about this essay">
+    <button type="submit" aria-label="Ask">↵</button>
+  </form>
+  <div class="ai-disclaimer">Answers grounded in this article only · No web search</div>
+</div>
+
+<!-- Coming-soon modal -->
+<div class="ai-modal" data-ai-modal aria-hidden="true">
+  <div class="ai-modal-panel" role="dialog" aria-label="AI ask — coming in v2">
+    <h3>Coming in v2</h3>
+    <p>"Ask this essay" will answer using only the content of this article — no web search, no hallucinated context. The grounded retrieval system isn't ready yet. Until then, you can read the full essay directly. It's better that way anyway.</p>
+    <button type="button" class="btn-ghost" data-action="close-ai-modal">Got it</button>
+  </div>
+</div>
+
+<script>
+  // Local handler — the AI ask card is a static stub in v1.
+  (function () {
+    const card = document.currentScript.previousElementSibling;
+    const prompts = document.querySelectorAll('.ai-prompt');
+    const form = document.querySelector('[data-ai-ask]');
+    const modal = document.querySelector('[data-ai-modal]');
+    const close = modal && modal.querySelector('[data-action="close-ai-modal"]');
+
+    function openModal () { if (modal) modal.setAttribute('aria-hidden', 'false'); }
+    function closeModal () { if (modal) modal.setAttribute('aria-hidden', 'true'); }
+
+    prompts.forEach((p) => p.addEventListener('click', openModal));
+    if (form) form.addEventListener('submit', (e) => { e.preventDefault(); openModal(); });
+    if (close) close.addEventListener('click', closeModal);
+    if (modal) modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+  })();
+</script>

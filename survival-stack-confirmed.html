@@ -1,0 +1,132 @@
+---
+layout: default
+title: "Access granted. Your kit is ready."
+description: "You confirmed your email. The survival kit PDF download is below."
+permalink: /survival-stack/confirmed/
+landing: true
+body_class: "landing-page"
+sitemap: false
+---
+
+<section class="landing">
+  <div class="landing-inner">
+    <p class="landing-eyebrow">Channel confirmed</p>
+
+    <h1 class="landing-headline">
+      The briefing is yours. <em>One click below.</em>
+    </h1>
+
+    <p class="landing-dek">
+      You confirmed the channel. The 15-page operational briefing is ready.
+    </p>
+
+    <div class="confirmed-action">
+      <a id="confirmed-download" class="landing-cta" href="https://survival-stack-assets-1779420038.s3.us-east-1.amazonaws.com/dl/vjvZDCKLZg47uGE8BDQQ4Fq2/survival-stack.pdf" download="survival-stack.pdf" rel="noopener">
+        <span class="landing-cta-label">Download the PDF</span>
+      </a>
+      <p class="confirmed-fallback">
+        Download didn't start? <a href="https://survival-stack-assets-1779420038.s3.us-east-1.amazonaws.com/dl/vjvZDCKLZg47uGE8BDQQ4Fq2/survival-stack.pdf" target="_blank" rel="noopener">Open it in a new tab.</a>
+      </p>
+    </div>
+
+    <div class="confirmed-next">
+      <p class="confirmed-next-label">While you read</p>
+      <ul class="confirmed-next-list">
+        <li><a href="/cursor-ai-api-doc/">Cursor AI for API documentation</a></li>
+        <li><a href="/technical-writer-skills-2026-survival-guide/">Technical writer skills 2026</a></li>
+        <li><a href="/there-is-more-to-ai/">There is more to AI: five papers worth reading</a></li>
+      </ul>
+    </div>
+
+    <p class="landing-credibility-anchor">
+      You're on the weekly dispatch list. No generic recaps. Unsubscribe link in every email.
+    </p>
+  </div>
+</section>
+
+<style>
+  body.landing-page { background: var(--bg); }
+
+  .confirmed-action {
+    margin: 36px 0 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .confirmed-action .landing-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 28px;
+    border-radius: 8px;
+    border: none;
+    background-color: var(--accent);
+    color: #fff;
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 12px 32px -10px var(--accent-glow);
+    transition: transform var(--t-fast), box-shadow var(--t-fast), background-color var(--t-fast);
+  }
+  .confirmed-action .landing-cta:hover {
+    background-color: var(--accent-2);
+    transform: translateY(-1px);
+    box-shadow: 0 18px 40px -12px var(--accent-glow);
+  }
+
+  .confirmed-fallback {
+    font-size: 13px;
+    color: var(--text-3);
+    margin: 0;
+  }
+  .confirmed-fallback a { color: var(--accent); }
+
+  .confirmed-next {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+  }
+  .confirmed-next-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin: 0 0 12px 0;
+    font-weight: 600;
+  }
+  .confirmed-next-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .confirmed-next-list a {
+    color: var(--text);
+    text-decoration: none;
+    border-bottom: 1px solid var(--line-2);
+    padding-bottom: 4px;
+    transition: color var(--t-fast), border-color var(--t-fast);
+  }
+  .confirmed-next-list a:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+</style>
+
+<script>
+  (function () {
+    var link = document.getElementById('confirmed-download');
+    if (!link) return;
+    setTimeout(function () {
+      try { link.click(); } catch (_) { /* user can click manually */ }
+    }, 600);
+  })();
+</script>

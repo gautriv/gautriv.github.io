@@ -1,0 +1,199 @@
+<header class="site-top" role="banner">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="site-top-inner">
+    <a href="{{ site.url }}/" class="site-brand" aria-label="Being Technical Writer — home">
+      <span class="brand-mark" aria-hidden="true">B</span>
+      <span class="brand-name">Being Technical Writer</span>
+    </a>
+
+    <nav class="site-nav" aria-label="Primary">
+      {% for item in site.data.topnavigation.topnavigation %}
+        {% assign current = false %}
+        {% if item.url == "/" and page.hometype == "homepage" %}{% assign current = true %}{% endif %}
+        {% if item.url != "/" and page.url contains item.url %}{% assign current = true %}{% endif %}
+        <a href="{{ item.url | prepend: site.url }}"{% if current %} aria-current="page"{% endif %}>{{ item.title }}</a>
+      {% endfor %}
+    </nav>
+
+    <div class="site-top-cta">
+      <button type="button" class="search-trigger" aria-label="Open search (Ctrl+K)" data-action="open-search">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" width="14" height="14">
+          <circle cx="7" cy="7" r="5"></circle>
+          <path d="M11 11l3 3"></path>
+        </svg>
+        <span>Search</span>
+        <kbd>⌘K</kbd>
+      </button>
+      <div class="nav-alert-wrapper">
+        <button type="button" class="btn-nav-alert" aria-expanded="false" id="navAlertTrigger">
+          <span class="notification-badge">1</span><span class="alert-text">Unread briefing</span>
+        </button>
+        <div class="nav-alert-dropdown" id="navAlertDropdown" aria-hidden="true">
+          <div class="alert-dropdown-header">Status: 1 critical briefing available</div>
+          <div class="alert-dropdown-body">
+            <p>The documentation industry quietly changed.</p>
+            <p>Technical writers who only write are becoming economically fragile.</p>
+          </div>
+          <div class="alert-dropdown-footer">
+            <a href="{{ site.url }}/survival-stack.html" class="btn-alert-primary">Access the survival stack</a>
+          </div>
+        </div>
+      </div>
+      
+      <style>
+      .nav-alert-wrapper {
+        position: relative;
+        display: inline-block;
+        margin-right: 16px;
+      }
+      /* Mobile: drop the "Unread briefing" label, keep the urgent badge.
+         Also bumps tap target to WCAG 44px minimum. */
+      @media (max-width: 900px) {
+        .nav-alert-wrapper { margin-right: 8px; }
+        .btn-nav-alert {
+          padding: 8px 10px;
+          min-height: 44px;
+          min-width: 44px;
+        }
+        .btn-nav-alert .alert-text { display: none; }
+      }
+      .btn-nav-alert {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: transparent;
+        border: 1px solid var(--line-2);
+        padding: 6px 12px;
+        border-radius: 6px;
+        cursor: pointer;
+        color: var(--text);
+        font-family: var(--sans);
+        font-size: 13px;
+        font-weight: 500;
+        transition: border-color var(--t-fast), background var(--t-fast), color var(--t-fast);
+      }
+      .btn-nav-alert:hover,
+      .btn-nav-alert:focus-visible {
+        border-color: #ef4444;
+        background: rgba(239, 68, 68, 0.08);
+        color: var(--text);
+      }
+      .notification-badge {
+        background-color: #ef4444;
+        color: #fff;
+        border-radius: 999px;
+        min-width: 18px;
+        height: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 11px;
+        font-weight: 700;
+        font-family: var(--mono);
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.55);
+        animation: badgeHeartbeat 4.2s ease-in-out infinite;
+        padding: 0 4px;
+        transform-origin: center;
+      }
+      /* Heartbeat: two quick ticks then rest — eye reads this as a "live" signal. */
+      @keyframes badgeHeartbeat {
+        0%, 60%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+        6%  { transform: scale(1.18); box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.25); }
+        12% { transform: scale(1); box-shadow: 0 0 0 6px rgba(239, 68, 68, 0); }
+        18% { transform: scale(1.12); box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.18); }
+        26% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+      }
+      .btn-nav-alert[aria-expanded="true"] .notification-badge,
+      .btn-nav-alert:hover .notification-badge {
+        animation-play-state: paused;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .notification-badge { animation: none; }
+      }
+      .nav-alert-dropdown {
+        position: absolute;
+        top: 48px;
+        right: 0;
+        width: 320px;
+        background-color: var(--bg-2);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.25);
+        color: var(--text);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+        z-index: 1000;
+        text-align: left;
+        font-family: var(--sans);
+      }
+      .nav-alert-dropdown[aria-hidden="false"] {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+      .alert-dropdown-header {
+        font-family: var(--mono);
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: #ef4444;
+        font-weight: 700;
+        padding: 12px 16px;
+        border-bottom: 1px solid var(--line);
+      }
+      .alert-dropdown-body {
+        padding: 16px;
+        font-size: 13px;
+        color: var(--text-2);
+        line-height: 1.5;
+      }
+      .alert-dropdown-body p {
+        margin: 0 0 10px 0;
+      }
+      .alert-dropdown-body p:last-child {
+        margin-bottom: 0;
+      }
+      .alert-dropdown-footer {
+        padding: 16px;
+        background-color: var(--bg-3);
+        border-top: 1px solid var(--line);
+        border-radius: 0 0 8px 8px;
+      }
+      .btn-alert-primary {
+        display: block;
+        width: 100%;
+        text-align: center;
+        padding: 10px 14px;
+        background-color: var(--accent);
+        color: #fff;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 13px;
+        font-family: var(--sans);
+        border-radius: 6px;
+        transition: background var(--t-fast), transform var(--t-fast), box-shadow var(--t-fast);
+        box-sizing: border-box;
+      }
+      .btn-alert-primary:hover {
+        background-color: var(--accent-2);
+        transform: translateY(-1px);
+        box-shadow: 0 6px 16px -6px var(--accent-glow);
+      }
+      @media (max-width: 600px) {
+        .nav-alert-dropdown {
+          position: fixed;
+          top: 60px;
+          left: 10px;
+          right: 10px;
+          width: auto;
+        }
+      }
+      </style>
+      <button type="button" class="nav-burger" aria-label="Open menu" data-action="open-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>

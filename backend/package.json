@@ -1,0 +1,16 @@
+{
+  "name": "survival-stack-optin-lambda",
+  "version": "2.0.0",
+  "description": "Kit DOI + dispatch newsletter on AWS SES, S3 subscribers, HMAC magic-links",
+  "main": "handler.js",
+  "private": true,
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@aws-sdk/client-sesv2": "^3.633.0",
+    "juice": "^11.0.0",
+    "marked": "^14.1.0"
+  }
+}

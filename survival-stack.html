@@ -1,0 +1,156 @@
+---
+layout: default
+title: "The technical writer's AI survival kit"
+description: "A 15-page operational briefing on how the economics of technical communication just changed — and how to survive the transition into the orchestration layer."
+permalink: /survival-stack.html
+landing: true
+body_class: "landing-page"
+og_title: "The technical writer's AI survival kit"
+og_description: "Operational briefing on AI documentation workflows. Free PDF."
+twitter_card: "summary_large_image"
+---
+
+<section class="landing">
+  <div class="landing-inner">
+    <p class="landing-eyebrow">Operational briefing</p>
+
+    <h1 class="landing-headline">
+      The documentation industry quietly changed. Most technical writers <em>haven&rsquo;t realized it yet</em>.
+    </h1>
+
+    <p class="landing-dek">
+      The future technical writer is not the fastest drafter. It&rsquo;s the best system thinker.
+    </p>
+
+    <blockquote class="landing-thesis">
+      <p>AI commoditized generic documentation.</p>
+      <p>Judgment became the premium layer.</p>
+      <p class="landing-thesis-warning">Technical writers who only write are becoming economically fragile.</p>
+    </blockquote>
+
+    <p class="landing-credibility-line">
+      Built after watching AI workflows compress weeks of documentation work into minutes, and after breaking enough pipelines to understand where the real value moved.
+    </p>
+
+    <ul class="landing-anti-pitch">
+      <li>This is not a list of 50 ChatGPT prompts.</li>
+      <li>This is not AI productivity content.</li>
+      <li>This is a 15-page operational briefing on how the economics of technical communication just changed, and how to survive the transition into the orchestration layer.</li>
+    </ul>
+
+    <form id="landing-optin-form" class="landing-form" aria-label="Download the briefing" onsubmit="event.preventDefault();" novalidate>
+      <label for="landing-email" class="landing-form-label">Enter your email to receive the full PDF briefing.</label>
+      <div class="landing-form-row">
+        <input
+          type="email"
+          id="landing-email"
+          name="email"
+          class="landing-input"
+          placeholder="you@company.com"
+          required
+          autocomplete="email"
+          inputmode="email"
+        />
+        <button type="submit" id="landing-submit-btn" class="landing-cta">
+          <span class="landing-cta-label">Access the briefing</span>
+        </button>
+      </div>
+      <p class="landing-disclaimer">
+        You will also receive the weekly intelligence dispatch detailing operational breakdowns of AI documentation workflows. <span class="landing-disclaimer-strong">No generic news recaps.</span> Unsubscribe anytime.
+      </p>
+      <div id="landing-success-msg" class="landing-success" hidden>
+        <strong>Check your inbox.</strong> The kit lands the moment you click the confirmation link.
+      </div>
+      <div id="landing-error-msg" class="landing-error" hidden role="alert"></div>
+    </form>
+
+    <p class="landing-credibility-anchor">
+      Derived from live orchestration workflows in production systems.
+    </p>
+  </div>
+</section>
+
+<script>
+(function () {
+  'use strict';
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var form        = document.getElementById('landing-optin-form');
+    var emailInput  = document.getElementById('landing-email');
+    var submitBtn   = document.getElementById('landing-submit-btn');
+    var ctaLabel    = submitBtn ? submitBtn.querySelector('.landing-cta-label') : null;
+    var successMsg  = document.getElementById('landing-success-msg');
+    var errorMsg    = document.getElementById('landing-error-msg');
+
+    if (!form || !emailInput || !submitBtn) return;
+
+    // Same lambda endpoint the popup uses
+    var ENDPOINT = 'https://sbzzbnh7me.execute-api.us-east-1.amazonaws.com/';
+
+    var engaged = false;
+    function markEngaged () {
+      if (engaged) return;
+      engaged = true;
+      form.classList.add('is-engaged');
+    }
+    emailInput.addEventListener('input', markEngaged);
+    emailInput.addEventListener('focus', markEngaged);
+
+    function setLabel (text) { if (ctaLabel) ctaLabel.textContent = text; }
+    function showError (text) {
+      if (!errorMsg) return;
+      errorMsg.textContent = text;
+      errorMsg.hidden = false;
+    }
+    function clearError () { if (errorMsg) errorMsg.hidden = true; }
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      clearError();
+
+      var email = emailInput.value.trim();
+      if (!email) { emailInput.focus(); return; }
+
+      submitBtn.disabled = true;
+      setLabel('Sending confirmation…');
+
+      try {
+        const ENDPOINT = 'https://sbzzbnh7me.execute-api.us-east-1.amazonaws.com/';
+        const response = await fetch(ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email, source: 'kit_optin' })
+        });
+
+        var data;
+        try { data = await response.json(); }
+        catch (_) { data = null; }
+
+        if (!response.ok || !data || !data.success) {
+          var msg = (data && data.error) ? data.error : 'Server rejected the request.';
+          throw new Error(msg);
+        }
+
+        // Returning subscriber → bounce them straight to the kit page (no email).
+        // First-time → show "check your inbox" until they click the DOI link.
+        if (data.alreadyConfirmed && data.redirectUrl) {
+          window.location.href = data.redirectUrl;
+          return;
+        }
+        if (successMsg) {
+          successMsg.innerHTML = '<strong>Check your inbox.</strong> The kit lands the moment you click the confirmation link.';
+          successMsg.hidden = false;
+        }
+        setLabel('Check your inbox');
+        emailInput.value = '';
+
+      } catch (err) {
+        console.error('Survival stack opt-in failed:', err);
+        submitBtn.disabled = false;
+        setLabel('Access the briefing');
+        showError(err && err.message ? err.message : 'We couldn\'t reach the briefing service just now. Please try again in a moment.');
+      }
+    });
+  });
+})();
+</script>

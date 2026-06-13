@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="mapTitle mapDesc">
+  <title id="mapTitle">The map: where documentation lives now</title>
+  <desc id="mapDesc">A floor-plan diagram with two zones. The left zone is dimly outlined in rust red and contains rooms labeled Confluence, Google Docs, Slack Threads, and The Wiki. The right zone is brightly outlined in electric blue and contains rooms labeled Codebase, PR Reviews, CI/CD, and Prompts. An electric-blue marker labeled "you are here" sits inside the Wiki room in the left zone, indicating the writer is in the wrong building.</desc>
+
+  <!-- Zone headers -->
+  <text x="200" y="56" font-family="Geist Mono, ui-monospace, monospace" font-size="11" fill="#B85B4F" letter-spacing="0.12em" text-anchor="middle">YESTERDAY  &#183;  DIM ZONE</text>
+  <text x="600" y="56" font-family="Geist Mono, ui-monospace, monospace" font-size="11" fill="#5B8DEF" letter-spacing="0.12em" text-anchor="middle">TODAY  &#183;  LIVE ZONE</text>
+
+  <!-- Left zone outline (rust red, dashed, dim) -->
+  <rect x="60" y="80" width="280" height="360" fill="none" stroke="#8B2C24" stroke-width="1.2" stroke-dasharray="6,4" opacity="0.55"/>
+
+  <!-- Left zone rooms (dim) -->
+  <g opacity="0.62">
+    <rect x="80" y="100" width="240" height="76" fill="none" stroke="#8B2C24" stroke-width="1"/>
+    <text x="200" y="145" font-family="Geist, sans-serif" font-size="15" fill="#A0A0AA" text-anchor="middle">Confluence</text>
+
+    <rect x="80" y="186" width="240" height="76" fill="none" stroke="#8B2C24" stroke-width="1"/>
+    <text x="200" y="231" font-family="Geist, sans-serif" font-size="15" fill="#A0A0AA" text-anchor="middle">Google Docs</text>
+
+    <rect x="80" y="272" width="240" height="76" fill="none" stroke="#8B2C24" stroke-width="1"/>
+    <text x="200" y="317" font-family="Geist, sans-serif" font-size="15" fill="#A0A0AA" text-anchor="middle">Slack Threads</text>
+  </g>
+  <!-- The Wiki — slightly highlighted because "you are here" lives in it.
+       Label sits in the top half so the "you are here" marker can claim
+       the bottom half without overlap. -->
+  <rect x="80" y="358" width="240" height="76" fill="#1A0F0E" stroke="#8B2C24" stroke-width="1.4"/>
+  <text x="200" y="382" font-family="Geist, sans-serif" font-size="15" fill="#EDEDF0" text-anchor="middle">The Wiki</text>
+
+  <!-- Corridor (dashed bridge) -->
+  <line x1="340" y1="270" x2="460" y2="270" stroke="#5A5A66" stroke-width="1" stroke-dasharray="4,4"/>
+  <text x="400" y="262" font-family="Geist Mono, ui-monospace, monospace" font-size="9" fill="#5A5A66" letter-spacing="0.08em" text-anchor="middle">corridor</text>
+
+  <!-- Right zone outline (electric blue, solid, bright) -->
+  <rect x="460" y="80" width="280" height="360" fill="none" stroke="#5B8DEF" stroke-width="1.5"/>
+
+  <!-- Right zone rooms (live) -->
+  <rect x="480" y="100" width="240" height="76" fill="none" stroke="#5B8DEF" stroke-width="1"/>
+  <text x="600" y="145" font-family="Geist, sans-serif" font-size="15" fill="#EDEDF0" text-anchor="middle">Codebase</text>
+
+  <rect x="480" y="186" width="240" height="76" fill="none" stroke="#5B8DEF" stroke-width="1"/>
+  <text x="600" y="231" font-family="Geist, sans-serif" font-size="15" fill="#EDEDF0" text-anchor="middle">PR Reviews</text>
+
+  <rect x="480" y="272" width="240" height="76" fill="none" stroke="#5B8DEF" stroke-width="1"/>
+  <text x="600" y="317" font-family="Geist, sans-serif" font-size="15" fill="#EDEDF0" text-anchor="middle">CI/CD</text>
+
+  <rect x="480" y="358" width="240" height="76" fill="none" stroke="#5B8DEF" stroke-width="1"/>
+  <text x="600" y="403" font-family="Geist, sans-serif" font-size="15" fill="#EDEDF0" text-anchor="middle">Prompts</text>
+
+  <!-- "You are here" marker, planted in The Wiki (bottom half, clear of label) -->
+  <circle cx="100" cy="416" r="5" fill="#5B8DEF"/>
+  <circle cx="100" cy="416" r="11" fill="none" stroke="#5B8DEF" stroke-width="1" opacity="0.45"/>
+  <text x="114" y="420" font-family="Geist Mono, ui-monospace, monospace" font-size="11" fill="#EDEDF0" letter-spacing="0.06em">&#167; you are here</text>
+
+  <!-- Legend -->
+  <text x="400" y="478" font-family="Geist Mono, ui-monospace, monospace" font-size="11" fill="#5A5A66" letter-spacing="0.04em" text-anchor="middle" font-style="italic">the room you spend your day in is no longer the room where the work gets done</text>
+</svg>

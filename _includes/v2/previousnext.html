@@ -1,0 +1,16 @@
+<nav class="prev-next" aria-label="Adjacent essays">
+  {% if page.previous.url %}
+    <a class="prev-next-card prev" href="{{ page.previous.url | prepend: site.url }}">
+      <span class="prev-next-label">← Previous</span>
+      <h5>{{ page.previous.title }}</h5>
+      {% if page.previous.description %}<p>{{ page.previous.description | strip_html | truncate: 100 }}</p>{% endif %}
+    </a>
+  {% endif %}
+  {% if page.next.url %}
+    <a class="prev-next-card next" href="{{ page.next.url | prepend: site.url }}">
+      <span class="prev-next-label">Next →</span>
+      <h5>{{ page.next.title }}</h5>
+      {% if page.next.description %}<p>{{ page.next.description | strip_html | truncate: 100 }}</p>{% endif %}
+    </a>
+  {% endif %}
+</nav>

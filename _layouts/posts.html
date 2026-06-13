@@ -1,0 +1,91 @@
+---
+layout: default
+---
+<div class="reading-progress" aria-hidden="true"></div>
+
+<article itemscope itemtype="https://schema.org/BlogPosting">
+
+  <header class="article-head">
+    <div class="pre-tags">
+      {% for cat in page.categories %}
+        <a href="{{ '/category-' | prepend: site.baseurl | append: cat | downcase }}/" class="chip accent">{{ cat }}</a>
+      {% endfor %}
+      {% if page.series %}<span class="chip">{{ page.series }}</span>{% endif %}
+    </div>
+
+    <h1 itemprop="headline">{{ page.title }}</h1>
+
+    {% if page.subtitle %}<p class="dek">{{ page.subtitle | strip_html }}</p>{% endif %}
+
+    <div class="article-bar">
+      <div><span>by</span> <strong itemprop="author">{{ page.author | default: 'Gaurav Trivedi' | strip_html }}</strong></div>
+      <div><span>published</span> <time itemprop="datePublished" datetime="{{ page.date | date_to_xmlschema }}"><strong>{{ page.date | date: "%Y-%m-%d" }}</strong></time></div>
+      {% if page.last_modified_at %}
+        <div><span>updated</span> <time itemprop="dateModified" datetime="{{ page.last_modified_at | date_to_xmlschema }}"><strong>{{ page.last_modified_at | date: "%Y-%m-%d" }}</strong></time></div>
+      {% endif %}
+      <div><span>read</span> <strong>{% include readtime.html content=page.content %}</strong></div>
+      <div class="article-bar-actions">
+        <button type="button" class="focus-toggle" aria-label="Enter focus mode" data-action="enter-focus">⊙ Focus</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="layout">
+    {% include v2/post-toc.html %}
+
+    <main class="article-body" itemprop="articleBody">
+      {{ content }}
+    </main>
+
+    {% include v2/post-rails.html %}
+  </div>
+
+  <div class="end">
+    <div class="end-divider">— end of essay —</div>
+
+    <p class="author-disclaimer" style="text-align: center; font-size: 0.82em; color: #64748b; font-style: italic; max-width: 720px; margin: 14px auto 10px; padding: 0 20px; line-height: 1.5;">Personal essay. Views are my own and do not represent any current or former employer.</p>
+
+    {% if page.ai_assisted != false %}
+    <p class="ai-method-note" style="text-align: center; font-size: 0.82em; color: #64748b; font-style: italic; max-width: 720px; margin: 0 auto 28px; padding: 0 20px; line-height: 1.5;">Written with AI in the loop. The argument is mine. The polish isn't entirely. <a href="{{ site.baseurl }}/how-i-write/" style="color: inherit; text-decoration: underline;">How I work &rarr;</a></p>
+    {% endif %}
+
+    {% include v2/previousnext.html %}
+
+    {% if site.related_posts.size > 0 %}
+    <section class="related" aria-label="Related essays">
+      <h4>Read after this</h4>
+      <div class="related-grid">
+        {% for post in site.related_posts limit:3 %}
+          <article class="rel-card">
+            <h5><a href="{{ post.url | prepend: site.url }}">{{ post.title }}</a></h5>
+            {% if post.description %}<p>{{ post.description | strip_html | truncate: 120 }}</p>{% endif %}
+          </article>
+        {% endfor %}
+      </div>
+    </section>
+    {% endif %}
+
+    <section class="share" aria-label="Share">
+      {% include v2/share-bar.html %}
+    </section>
+  </div>
+</article>
+
+{% include v2/newsletter-block.html %}
+
+<section class="comments-section" aria-label="Comments">
+  <div class="comments-inner">
+    {% include disqus.html %}
+  </div>
+</section>
+
+<button type="button" class="focus-exit" aria-label="Exit focus mode" data-action="exit-focus">
+  × Exit focus <kbd>Esc</kbd>
+</button>
+
+{% assign vp = site.time | date: '%s' %}
+<script defer src="{{ site.url }}/js/v2/toc.js?v={{ vp }}"></script>
+<script defer src="{{ site.url }}/js/v2/progress.js?v={{ vp }}"></script>
+<script defer src="{{ site.url }}/js/v2/focus.js?v={{ vp }}"></script>
+<script defer src="{{ site.url }}/js/v2/fragment-glow.js?v={{ vp }}"></script>
+<script defer src="{{ site.url }}/js/v2/table-scroll.js?v={{ vp }}"></script>

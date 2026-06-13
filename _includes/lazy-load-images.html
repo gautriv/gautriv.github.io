@@ -1,0 +1,11 @@
+{% if include.src %}
+<img 
+  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 {{ include.width | default: '800' }} {{ include.height | default: '450' }}'%3E%3C/svg%3E" 
+  data-src="{{ include.src }}" 
+  alt="{% if include.alt %}{{ include.alt }}{% elsif page.alt_text %}{{ page.alt_text }}{% else %}{{ page.title }}{% endif %}" 
+  class="lazyload {% if include.class %}{{ include.class }}{% endif %}"
+  {% if include.width %}width="{{ include.width }}"{% endif %}
+  {% if include.height %}height="{{ include.height }}"{% endif %}
+  {% if include.style %}style="{{ include.style }}"{% endif %}
+  loading="lazy">
+{% endif %} 
