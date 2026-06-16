@@ -14,7 +14,7 @@ alt_text: "A faint architecture diagram on a desk, dim light, technical writer's
 last_modified_at: 2026-05-15
 faqs:
   - question: "Is modern technical writing actually dead?"
-    answer: "The job title remains. The craft—owning the lifecycle end-to-end—is being hollowed out by agentic workflows. The role persists, but the labor footprint is compressing."
+    answer: "The job title remains. The craft, owning the lifecycle end-to-end, is being hollowed out by agentic workflows. The role persists, but the labor footprint is compressing."
   - question: "Why doesn't the DDLC protect technical writers?"
     answer: "The Document Development Life Cycle was a sequence of friction-heavy tasks, not a strategic moat. Agents using MCP servers now automate the heavy lifting of the discovery, drafting, and validation phases."
   - question: "Will human-in-the-loop save documentation teams?"
@@ -31,6 +31,8 @@ Almost every engineering team is quietly building its own docs-orchestrator to b
 For years, we believed our process was sacred. We called it the Document Development Life Cycle. DDLC. We thought the sheer friction of navigating it made us irreplaceable.
 
 It didn't.
+
+I know, because I spent the last six months building the thing that proves it. Custom orchestrators. Retrieval pipelines wired straight into our own ticket history and PR comments. I told myself I was improving the documentation. Hold that thought. I come back to it.
 
 If you look at how organizations are actually implementing AI today, the DDLC isn't a moat. It is a sequence of tasks. Every single stage is being industrialized. Quietly. While you read this. While you slept last night.
 
@@ -83,11 +85,11 @@ Let's look at what is actually happening on the ground, phase by phase.
 
 This apocalypse isn't about AI being "smarter" than us. It's about AI being free at scale. 
 
-The disruption comes down to zero marginal cost. A senior human technical writer can draft 2,000 words a day. An agentic pipeline writes 2,000,000. Even if the human is stylistically superior, the human loses the war of attrition. 
+The disruption comes down to zero marginal cost. A senior human technical writer drafts maybe 2,000 words on a good day. An agentic pipeline does not have good days and bad days. It has throughput, and the throughput is effectively uncapped. Even if the human is stylistically superior, the human loses the war of attrition. 
 
-This is the CFO logic. If the documentation pipeline is 50x faster and 100x cheaper, the "quality gap" is an irrelevant luxury. 
+This is the CFO logic. If the documentation pipeline is dramatically faster and an order of magnitude cheaper, the "quality gap" is an irrelevant luxury. 
 
-You don't have to look far for the proof. Look at Zendesk's AI agent auto-generating support knowledge base articles directly from closed tickets. Look at GitBook's AI workflows summarizing PRs into user-facing changelogs without human intervention. These aren't beta tests; they are active, deployed workflows compressing the marginal labor cost of documentation.
+You don't have to look far for the proof, and you don't have to take my word for it. In February 2024, Klarna's AI assistant handled two-thirds of the company's customer service chats in its first month, the work of an estimated 700 full-time agents. Klarna booked it as a forty-million-dollar profit swing and watched resolution time fall from eleven minutes to under two. That is not a demo. That is a public earnings story. Look at Zendesk's AI agent auto-generating support knowledge base articles directly from closed tickets. Look at GitBook's AI workflows summarizing PRs into user-facing changelogs without human intervention. The support desks even publish the receipts: vendors report 40 to 60 percent ticket deflection on mature queues, and the honest first-year floor still lands at 10 to 20 percent. The market that sells these pipelines grew from 5.23 billion dollars in 2024 to 7.71 billion in 2025. These aren't beta tests. They are deployed workflows, and the money has already chosen a side.
 
 ### The 50% fallacy
 
@@ -102,6 +104,8 @@ But the 50% argument is a trap. It assumes the technology is static. And it assu
 The hallucination argument ignores a brutal truth: the enterprise has decided that a "good enough" 70% accurate doc produced autonomously in two seconds is fundamentally more valuable than a "perfect" 95% accurate doc that takes two weeks to write. 
 
 If a multi-agent system can do 50% of your DDLC today, what is the fundamental barrier preventing it from doing 70% next year? Or 90% the year after? What is the guarantee it won't hit 100%? 
+
+The steps below are mine. A directional model, not a measured forecast. Argue the exact percentages all you want. The direction is the whole point.
 
 <div class="hitl-stairs">
   <div class="stair">
@@ -136,7 +140,9 @@ Real enterprises are chaos machines. The transition will be slower and more dysf
 
 There will be security blockers, compliance reviews, and AI governance committees slowing down every deployment. LLMs will hallucinate critical infrastructure steps. Automated pipelines will choke on terrible internal data hygiene, fragmented permissions, and shadow documentation. Legal teams will freeze deployments because of exposure risk. 
 
-But the economics overwhelm the friction. None of this stops the compression. It only slows it.
+Klarna is the cautionary tale here. By 2025 it had quietly walked its all-AI service posture back and started re-hiring humans, because at the top end the quality still mattered and customers noticed. The triumphant case study and the correction are the same company, eighteen months apart. The headcount picture is just as muddy: practitioners watching the field estimate writing teams have already thinned by roughly a third, though even they admit it may be an overcorrection that some companies reverse.
+
+But notice what Klarna corrected. The quality at the top, not the cost at the scale. The economics overwhelm the friction. None of this stops the compression. It only slows it.
 
 ### The segmented grave
 
@@ -146,7 +152,7 @@ We are seeing a staggered industrialization. The hierarchy is clear: structured 
 
 API references, release notes, and standard operating procedures are already in the coffin because they are predictable and directly tied to codebase changes. Aviation manuals, medical device documentation, and life-critical hardware specs are in the waiting room because they carry heavy legal and compliance weight. 
 
-But make no mistake—they are all in the same building.
+But make no mistake. They are all in the same building.
 
 ### The "I learned AI" fallacy
 
@@ -247,13 +253,13 @@ The CTO is not cruel. The CTO is doing arithmetic. Twelve months of disruption c
 
 > The disruption is finite. That is what makes it survivable. That is also what makes it inevitable.
 
-You can argue with the per-page math. You can argue with the human-in-the-loop math. You cannot argue with a curve that flattens to two percent in four quarters. It is the most boring chart in the deck. It is also the one that closes the meeting.
+You can argue with the per-page math. You can argue with the human-in-the-loop math. You can argue with my exact percentages, and you should, because that curve is my model and not a leaked deck. What you cannot argue with is the shape. It is the most boring chart in the deck. It is also the one that closes the meeting.
 
 ### The "context engineer" paradox
 
 If you are still employed as a technical writer right now, look closely at what you are actually doing.
 
-I spent the last six months building custom Python orchestrators and RAG pipelines. I thought I was "enhancing the documentation experience." I wasn't. I was training my replacement.
+Remember those orchestrators I told you I was building. I thought I was enhancing the documentation experience. I wasn't. I was training my replacement.
 
 We used to hold a monopoly on translation. The line between [robots, humans, and technical writers](/robots-humans-technical-writers/) used to be clear. But the machine learned to speak human. And the users realized they never actually wanted to read our beautiful, meticulously crafted, 14-step tutorials anyway. They just want an agent to fix their database connection.
 
@@ -261,7 +267,7 @@ You can pivot. You can [become an AI Solutions Architect](/365-day-ai-architect-
 
 But do not treat "Context Engineer" as a happy new career. It is the final stage of industrialization. 
 
-The new job isn't writing; it's cleaning the data supply chain so the agents don't choke on fake "done" tickets. We are the people decommissioning the library. The orchestration layer survives longer than the execution layer—that is the key insight for survival. But what survives longest is not writing. It is organizational arbitration. 
+The new job isn't writing; it's cleaning the data supply chain so the agents don't choke on fake "done" tickets. We are the people decommissioning the library. The orchestration layer survives longer than the execution layer. That is the key insight for survival. But what survives longest is not writing. It is organizational arbitration. 
 
 The strategic nihilism of being a Context Engineer is that the better you build the Context, the less the Engineer is needed. It is a self-consuming role.
 
@@ -289,6 +295,8 @@ That quiet initiative is no longer quiet. The internal architecture diagrams are
 And when you look inside that room, you see exactly what the spreadsheets demanded. 
 
 The dashboards are green. The support queue is moving. The organization has stopped caring whether the documentation is beautiful.
+
+I helped build that room.
 
 And there are no chairs.
 
