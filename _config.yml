@@ -69,6 +69,8 @@ exclude:
   - mockups
   - CLAUDE.md
   - README.md
+  - scripts
+  - state
 
 target: web
 
