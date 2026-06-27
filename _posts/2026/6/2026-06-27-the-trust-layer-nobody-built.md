@@ -137,6 +137,12 @@ description: "You handed your docs pipeline to AI agents and trusted a few lines
   font-size: 0.95em;
 }
 .article-body .tl-result b { color: #ffc2c2; font-weight: 600; }
+@media (max-width: 480px) {
+  .article-body .tl-step { grid-template-columns: 24px 1fr; }
+  .article-body .tl-step .tl-pill { grid-column: 2; justify-self: start; margin-top: 8px; }
+  .article-body .tl-q { flex-direction: column; align-items: flex-start; gap: 5px; }
+  .article-body .tl-q .tl-q-val { text-align: left; }
+}
 </style>
 
 I have spent months building a doc orchestrator. It is a Claude plugin, a bundle of skills that runs my whole document lifecycle. One skill pulls the ticket from Jira and writes the draft. Another reads that draft, checks it against the style guide and the source, sends back feedback. Draft, review, revise, publish, with me lifted out of the middle of it. I wrote about [building it](/modern-day-technical-writing-is-dead/) a few weeks ago, and I was proud of it.
@@ -169,7 +175,7 @@ The instinct, when you want quality, is to add another agent to check the first 
 
 It isn't.
 
-A second agent will catch a clumsy sentence, a missing step, a broken bit of formatting. It makes the draft better. It does not make the draft correct, and those are not the same thing. The reviewer reads the same sources the writer read, anchored to the same spec, carrying the same blind spots. It is not an independent source of truth. It is the same weakness wearing a different lanyard. If the draft was built on a stale spec, the reviewer reads that same stale spec and approves it. And the model is not consistent: the draft it passes today it flags tomorrow, for no reason you can write down or explain to your editor.
+A second agent will catch a clumsy sentence, a missing step, a broken bit of formatting. It makes the draft better. It does not make the draft correct, and those are not the same thing. The reviewer reads the same sources the writer read, anchored to the same spec, carrying the same blind spots. It is not an independent source of truth. It is the same weakness wearing a different lanyard. And it has no memory of the world. A model knows only what sits in its context at the instant of the call. It cannot tell that the spec changed five minutes ago unless something outside it fetched that change and set it down in front of it. If the draft was built on a stale spec, the reviewer reads that same stale spec and approves it. And the model is not consistent: the draft it passes today it flags tomorrow, for no reason you can write down or explain to your editor.
 
 > A second model raises the quality of a draft. It cannot establish whether the draft is true.
 
@@ -236,7 +242,7 @@ trust_record:
   status:      draft-unverified
 ```
 
-It is the same idea writers already live with: front matter, but for trust instead of layout. Now the publish gate has something real to read. It compares the `source` version in the record against the live spec. If the spec moved, the versions do not match, and the gate blocks the draft. No model votes. A string comparison decides, and it returns the same verdict every time you run it.
+It is the same idea writers already live with: front matter, but for trust instead of layout. It rides in the draft file itself if you work in docs-as-code, or as a small JSON sidecar passed from one skill to the next if your pipeline talks over an API. Either way it travels with the draft, not in someone's memory. Now the publish gate has something real to read. It compares the `source` version in the record against the live spec. If the spec moved, the versions do not match, and the gate blocks the draft. No model votes. A string comparison decides, and it returns the same verdict every time you run it.
 
 The spec check is one gate, not the only one. Docs also break on a flipped feature flag, a drifted environment, an API version that moved underneath you. Each is its own deterministic check, and each reads the record and the world instead of the model's confidence. Add as many as the work needs.
 
