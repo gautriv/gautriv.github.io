@@ -1,8 +1,9 @@
-// SurvivalStackOptin — single Lambda serving 4 routes:
+// SurvivalStackOptin — single Lambda serving 5 routes:
 //   POST /                  → kit + dispatch opt-in (DOI flow)
 //   GET  /confirm           → DOI magic-link confirm + redirect
 //   GET  /unsubscribe       → mark subscriber unsubscribed
 //   POST /send-newsletter   → render + batch-send newsletter (AWS_IAM-protected)
+//   POST /resend-webhook    → Resend bounce/complaint events → auto-suppress
 
 const token = require('./lib/token');
 const blocklist = require('./lib/blocklist');
@@ -10,6 +11,7 @@ const subscribers = require('./lib/subscribers');
 const email = require('./lib/email');
 const render = require('./lib/render');
 const github = require('./lib/github');
+const webhook = require('./lib/webhook');
 const { S3Client, PutObjectCommand } = require('@aws-sdk/client-s3');
 
 const s3 = new S3Client({ region: 'us-east-1' });
@@ -182,8 +184,8 @@ function unsubscribeToken(emailAddress) {
 
 // =========== POST /send-newsletter : render + batch send ===========
 
-// SES default rate: 14 emails/sec for new accounts. Throttle conservatively.
-const SEND_RATE_PER_SEC = 10;
+// Resend default rate: 5 requests/sec per team. Throttle below it for headroom.
+const SEND_RATE_PER_SEC = 4;
 
 async function handleSendNewsletter(event) {
   const body = parseBody(event);
@@ -271,6 +273,70 @@ async function handleSendNewsletter(event) {
   return json(200, { success: true, sent, failed, startedAt, finishedAt });
 }
 
+// =========== POST /resend-webhook : bounce/complaint auto-suppression ===========
+
+// Replaces the old SES → SNS → SurvivalKitBounceHandler path. Resend posts
+// Svix-signed events here; we verify the signature and prune the subscriber store
+// so sender reputation stays healthy.
+async function handleResendWebhook(event) {
+  // Svix signs the RAW body — verify before parsing.
+  const rawBody = event.body
+    ? (event.isBase64Encoded ? Buffer.from(event.body, 'base64').toString('utf8') : event.body)
+    : '';
+  const h = event.headers || {};
+
+  let evt;
+  try {
+    evt = webhook.verify({
+      rawBody,
+      headers: {
+        'svix-id': h['svix-id'],
+        'svix-timestamp': h['svix-timestamp'],
+        'svix-signature': h['svix-signature'],
+      },
+      secret: process.env.RESEND_WEBHOOK_SECRET,
+    });
+  } catch (err) {
+    console.error('webhook verify failed:', err.message);
+    return json(401, { error: 'invalid signature' });
+  }
+
+  const type = evt.type;
+  const to = evt.data?.to;
+  const recipients = Array.isArray(to) ? to : (to ? [to] : []);
+
+  if (type === 'email.bounced') {
+    // Resend fires email.bounced for permanent rejections; transient issues come
+    // through email.delivery_delayed. Suppress unless explicitly tagged Transient.
+    const bounceType = evt.data?.bounce?.type;
+    if (bounceType && bounceType !== 'Permanent') {
+      console.log('Ignoring non-permanent bounce:', bounceType);
+      return json(200, { ok: true, ignored: 'transient-bounce' });
+    }
+    for (const r of recipients) await prune(r, { complaint: false, reason: 'bounce' });
+  } else if (type === 'email.complained') {
+    // Spam-marked: harshest signal. Never email this address again, even on re-opt-in.
+    for (const r of recipients) await prune(r, { complaint: true, reason: 'complaint' });
+  } else {
+    // delivered / opened / clicked / etc — informational, no state change.
+    console.log('Webhook event (no-op):', type);
+  }
+
+  return json(200, { ok: true });
+}
+
+async function prune(emailAddress, { complaint, reason }) {
+  if (!emailAddress) return;
+  try {
+    const result = await subscribers.markUnsubscribed(emailAddress, { complaint });
+    console.log(result
+      ? `Pruned ${emailAddress} (${reason})`
+      : `No subscriber for ${emailAddress} (${reason}) — no-op`);
+  } catch (err) {
+    console.error(`Failed to prune ${emailAddress}`, err);
+  }
+}
+
 // =========== Router ===========
 
 exports.handler = async (event) => {
@@ -284,6 +350,7 @@ exports.handler = async (event) => {
     if (m === 'GET' && p === '/confirm') return await handleConfirm(event);
     if (m === 'GET' && p === '/unsubscribe') return await handleUnsubscribe(event);
     if (m === 'POST' && p === '/send-newsletter') return await handleSendNewsletter(event);
+    if (m === 'POST' && p === '/resend-webhook') return await handleResendWebhook(event);
     return json(404, { error: `Unknown route: ${m} ${p}` });
   } catch (err) {
     console.error('handler error', err && err.stack ? err.stack : err);

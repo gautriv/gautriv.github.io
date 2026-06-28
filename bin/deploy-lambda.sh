@@ -1,29 +1,28 @@
 #!/usr/bin/env bash
-# deploy-lambda.sh — idempotent code refresh for the survival-stack Lambdas.
+# deploy-lambda.sh — idempotent code refresh for the SurvivalStackOptin Lambda.
 #
 # Usage:
-#   ./bin/deploy-lambda.sh                   # deploys SurvivalStackOptin (default)
-#   ./bin/deploy-lambda.sh optin             # deploys SurvivalStackOptin
-#   ./bin/deploy-lambda.sh bounce            # deploys SurvivalKitBounceHandler
-#   ./bin/deploy-lambda.sh all               # deploys both
+#   ./bin/deploy-lambda.sh        # deploys SurvivalStackOptin
 #
 # What it does:
 #   1. cd into backend/
 #   2. npm install --omit=dev (so node_modules has just runtime deps)
 #   3. zip the whole directory to /tmp/lambda.zip
-#   4. aws lambda update-function-code on the target function(s)
+#   4. aws lambda update-function-code on SurvivalStackOptin
 #   5. wait for the update to settle
 #
+# Email + bounce/complaint handling now run through Resend (sending) and the
+# POST /resend-webhook route on this same Lambda (suppression). There is no
+# separate bounce Lambda, SNS topic, or SES Config Set anymore.
+#
 # Infrastructure (function existence, IAM role, env vars, API Gateway routes,
-# SNS topic, SES identities, S3 bucket policy) is NOT touched. Those were set
-# up once via the AWS console + CLI during the AWS-native migration and live
-# in AWS state. This script only refreshes code.
+# S3 bucket policy) is NOT touched. Those live in AWS state. This script only
+# refreshes code.
 
 set -euo pipefail
 
 cd "$(dirname "$0")/.."
 
-TARGET="${1:-optin}"
 REGION="us-east-1"
 ZIP_PATH="/tmp/survival-stack-lambda.zip"
 
@@ -50,24 +49,7 @@ deploy_one() {
   echo "  ✓ $name updated"
 }
 
-case "$TARGET" in
-  optin)
-    build_zip
-    deploy_one "SurvivalStackOptin"
-    ;;
-  bounce)
-    build_zip
-    deploy_one "SurvivalKitBounceHandler"
-    ;;
-  all)
-    build_zip
-    deploy_one "SurvivalStackOptin"
-    deploy_one "SurvivalKitBounceHandler"
-    ;;
-  *)
-    echo "ERROR: unknown target '$TARGET' (expected: optin | bounce | all)" >&2
-    exit 1
-    ;;
-esac
+build_zip
+deploy_one "SurvivalStackOptin"
 
 echo "✓ Done."

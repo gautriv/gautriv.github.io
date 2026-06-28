@@ -1,14 +1,15 @@
-// SES wrapper. Three send modes:
+// Email relay. The provider boundary is rawSend() — it is the ONLY function that
+// knows which transactional provider we use. Swapping providers is a one-function
+// change; nothing else in this file (templates, links, footers, headers) cares.
+//
+// Three send modes:
 //  - DOI confirmation email (kit or dispatch source)
 //  - "Already confirmed" kit delivery email (skip DOI for returning kit subscribers)
-//  - Newsletter batch send (BCC up to 50 per call)
+//  - Newsletter send (one recipient per call; caller batches + throttles)
 
-const { SESv2Client, SendEmailCommand } = require('@aws-sdk/client-sesv2');
-
-const ses = new SESv2Client({ region: 'us-east-1' });
-
-const FROM = `${process.env.SES_FROM_NAME || 'Gaurav Trivedi'} <${process.env.SES_FROM_EMAIL}>`;
-const CONFIG_SET = process.env.SES_CONFIG_SET;
+const FROM = `${process.env.MAIL_FROM_NAME || 'Gaurav Trivedi'} <${process.env.MAIL_FROM_EMAIL}>`;
+const RESEND_ENDPOINT = 'https://api.resend.com/emails';
+const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const CONFIRM_BASE = 'https://sbzzbnh7me.execute-api.us-east-1.amazonaws.com/confirm';
 const UNSUB_BASE = process.env.UNSUBSCRIBE_BASE_URL || 'https://sbzzbnh7me.execute-api.us-east-1.amazonaws.com/unsubscribe';
 const KIT_REDIRECT = process.env.CONFIRM_REDIRECT_KIT;
@@ -24,23 +25,32 @@ function unsubscribeLink({ email, token }) {
   return `${UNSUB_BASE}?${params.toString()}`;
 }
 
+// === PROVIDER BOUNDARY ===
+// Sends one email via Resend's REST API. `headers` is a plain object of custom
+// SMTP headers (e.g. List-Unsubscribe). To move to another provider, this is the
+// only function you rewrite.
 async function rawSend({ to, subject, htmlBody, textBody, headers = {} }) {
-  const params = {
-    FromEmailAddress: FROM,
-    Destination: { ToAddresses: [to] },
-    Content: {
-      Simple: {
-        Subject: { Data: subject, Charset: 'UTF-8' },
-        Body: {
-          Html: { Data: htmlBody, Charset: 'UTF-8' },
-          Text: { Data: textBody, Charset: 'UTF-8' },
-        },
-        Headers: Object.entries(headers).map(([Name, Value]) => ({ Name, Value })),
-      },
+  if (!RESEND_API_KEY) throw new Error('RESEND_API_KEY not configured');
+  const resp = await fetch(RESEND_ENDPOINT, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${RESEND_API_KEY}`,
+      'Content-Type': 'application/json',
     },
-  };
-  if (CONFIG_SET) params.ConfigurationSetName = CONFIG_SET;
-  return ses.send(new SendEmailCommand(params));
+    body: JSON.stringify({
+      from: FROM,
+      to: [to],
+      subject,
+      html: htmlBody,
+      text: textBody,
+      headers,
+    }),
+  });
+  if (!resp.ok) {
+    const detail = await resp.text().catch(() => '');
+    throw new Error(`Resend send failed (${resp.status}): ${detail}`);
+  }
+  return resp.json();
 }
 
 async function sendKitDoi({ to, source, expiry, token, dest }) {
