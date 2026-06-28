@@ -1,11 +1,11 @@
 ---
-title: Exploring the Inner Workings of URLs in API Documentation
+title: "Endpoint vs Domain: Reading a URL in API Docs"
 category: API documentation
 image: "/assets/url-dissect.png"
 header-img: "/assets/url-dissect.png"
 keywords: [URLs, API documentation, web addresses, web resources, protocols, domains, paths, query parameters, endpoints, developers, marketers, troubleshoot API issues, track website performance, API development, web development, resources access, API understanding, API usage, API resources, API endpoints, API troubleshoot, API performance tracking, API mastery]
 permalink: /dissecting-urls/
-description: Discover the secrets of URLs and how they're used in API documentation. This informative blog post delves into the different components of a URL, including the protocol, domain, path, and query parameters. Learn how these components work together to specify resources in APIs and how understanding them can make it easier to use APIs. Real-world examples and scenarios are included to provide a deeper understanding of the concepts discussed.
+description: "Endpoint or domain? Path or query string? A plain-English breakdown of every part of an API URL, with real examples you can map to your own docs."
 ---
 
 Have you ever wondered what is a URL that you enter into the address bar of your browser to access a website or web page? What does it contain? How to document it when working on a API documentation?
