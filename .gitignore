@@ -19,7 +19,8 @@ s3-policy.json
 backend/node_modules/
 
 # Local IDE & Analytics Dump
-.claude/
+.claude/*
+!.claude/skills/
 *.csv
 
 # SEO workflow generated artifacts (manifest is rebuilt from posts; backlog is durable)
