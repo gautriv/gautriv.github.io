@@ -6,6 +6,7 @@ image: "/assets/trust-layer.png"
 header-img: "/assets/trust-layer.png"
 seo_keywords: "technical writer AI workflow, trust AI documentation pipeline, CLAUDE.md enforcement, AI agent for technical writers, doc orchestrator, DDLC automation, agent self review problem, verifying AI generated docs, documentation provenance, stale spec docs, deterministic check AI agent, Claude skills technical writing, Agent Name Service, Claude Tag, do not let an agent review itself"
 permalink: /trust-layer-nobody-built/
+radar_theme: agent_trust_authorization
 og_title: "The Trust layer nobody built"
 og_description: "You handed your docs pipeline to AI agents and trusted a few lines of markdown to keep them in line. It can't. A technical writer's guide to building real trust into your AI workflow: why the agent can't review itself, why done is not one status, and the seven things you ship this week."
 og_image: "/assets/trust-layer.png"

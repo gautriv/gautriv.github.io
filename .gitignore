@@ -25,6 +25,7 @@ backend/node_modules/
 
 # SEO workflow generated artifacts (manifest is rebuilt from posts; backlog is durable)
 state/seo-manifest.json
+state/db/
 
 # Local MCP server registration (absolute paths + property id; machine-specific)
 .mcp.json
