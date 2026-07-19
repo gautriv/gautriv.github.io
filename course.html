@@ -1,0 +1,599 @@
+<title>AI-300 Mission Control</title>
+<style>
+  :root{
+    --bg:#F5F7FA; --grid:rgba(20,40,80,.05);
+    --panel:#FFFFFF; --panel-2:#EEF1F6; --line:#DCE1EA;
+    --ink:#141A24; --ink-2:#3A4453; --mut:#6B7482;
+    --accent:#2F6BE0; --accent-soft:rgba(47,107,224,.10);
+    --amber:#B26E12; --amber-soft:rgba(178,110,18,.10);
+    --green:#1E874B; --green-soft:rgba(30,135,75,.10);
+    --red:#C43D30; --red-soft:rgba(196,61,48,.10);
+    --mono:ui-monospace,"SF Mono",Menlo,"Cascadia Mono",monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+    --r:14px; --r-s:9px;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:#0A0D14; --grid:rgba(120,160,255,.045);
+      --panel:#121722; --panel-2:#0F141E; --line:#232C3A;
+      --ink:#E4E8F0; --ink-2:#B7C0CF; --mut:#7A8494;
+      --accent:#5B8DEF; --accent-soft:rgba(91,141,239,.13);
+      --amber:#E0A94B; --amber-soft:rgba(224,169,75,.12);
+      --green:#4FB477; --green-soft:rgba(79,180,119,.12);
+      --red:#E5695B; --red-soft:rgba(229,105,91,.12);
+    }
+  }
+  :root[data-theme="light"]{
+    --bg:#F5F7FA; --grid:rgba(20,40,80,.05);
+    --panel:#FFFFFF; --panel-2:#EEF1F6; --line:#DCE1EA;
+    --ink:#141A24; --ink-2:#3A4453; --mut:#6B7482;
+    --accent:#2F6BE0; --accent-soft:rgba(47,107,224,.10);
+    --amber:#B26E12; --amber-soft:rgba(178,110,18,.10);
+    --green:#1E874B; --green-soft:rgba(30,135,75,.10);
+    --red:#C43D30; --red-soft:rgba(196,61,48,.10);
+  }
+  :root[data-theme="dark"]{
+    --bg:#0A0D14; --grid:rgba(120,160,255,.045);
+    --panel:#121722; --panel-2:#0F141E; --line:#232C3A;
+    --ink:#E4E8F0; --ink-2:#B7C0CF; --mut:#7A8494;
+    --accent:#5B8DEF; --accent-soft:rgba(91,141,239,.13);
+    --amber:#E0A94B; --amber-soft:rgba(224,169,75,.12);
+    --green:#4FB477; --green-soft:rgba(79,180,119,.12);
+    --red:#E5695B; --red-soft:rgba(229,105,91,.12);
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto} *{transition:none!important;animation:none!important}}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+    line-height:1.55;-webkit-font-smoothing:antialiased;
+    background-image:
+      linear-gradient(var(--grid) 1px,transparent 1px),
+      linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+    background-size:34px 34px;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px 90px}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--mut)}
+  .tnum{font-variant-numeric:tabular-nums}
+
+  /* ===== console header ===== */
+  header.console{
+    position:sticky;top:0;z-index:30;
+    background:color-mix(in srgb,var(--bg) 88%,transparent);
+    backdrop-filter:blur(10px);border-bottom:1px solid var(--line);
+  }
+  .console-inner{max-width:1080px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .brand{display:flex;align-items:center;gap:11px;margin-right:auto}
+  .dot{width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green)}
+  .brand b{font-size:15px;letter-spacing:-.01em}
+  .brand span{font-family:var(--mono);font-size:10.5px;color:var(--mut);letter-spacing:.14em}
+  .stat{display:flex;flex-direction:column;line-height:1.15}
+  .stat .k{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+  .stat .v{font-size:16px;font-weight:650;font-variant-numeric:tabular-nums}
+  .stat .v.acc{color:var(--accent)} .stat .v.amb{color:var(--amber)}
+  .pbar{flex-basis:100%;height:4px;background:var(--panel-2);border-radius:99px;overflow:hidden}
+  .pbar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--green));transition:width .5s ease}
+  .theme-btn{font-family:var(--mono);font-size:11px;padding:6px 10px;border:1px solid var(--line);background:var(--panel);color:var(--ink-2);border-radius:8px;cursor:pointer}
+
+  /* ===== hero ===== */
+  .hero{padding:54px 0 30px}
+  .hero .eyebrow{margin-bottom:16px}
+  h1{font-size:clamp(30px,6vw,52px);line-height:1.03;letter-spacing:-.025em;margin:0 0 18px;text-wrap:balance;font-weight:730}
+  h1 em{font-style:normal;color:var(--accent)}
+  .lede{font-size:clamp(16px,2.1vw,19px);color:var(--ink-2);max-width:60ch;margin:0}
+  .hero-meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+  .chip{font-family:var(--mono);font-size:11.5px;padding:7px 12px;border-radius:99px;border:1px solid var(--line);background:var(--panel);color:var(--ink-2)}
+  .chip b{color:var(--ink)}
+
+  section{margin-top:44px}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:18px;border-bottom:1px solid var(--line);padding-bottom:10px}
+  .sec-head h2{font-size:21px;letter-spacing:-.015em;margin:0;font-weight:680}
+  .sec-head .num{font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:.1em}
+  .sec-head p{margin:0 0 0 auto;font-size:13px;color:var(--mut);max-width:44ch;text-align:right}
+
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:22px 24px}
+  .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:16px}
+
+  /* method */
+  .method h3{font-size:14.5px;margin:0 0 6px;display:flex;align-items:center;gap:9px}
+  .method .tag{font-family:var(--mono);font-size:10px;padding:2px 7px;border-radius:6px;background:var(--accent-soft);color:var(--accent);letter-spacing:.08em}
+  .method p{margin:0;font-size:13.5px;color:var(--ink-2)}
+
+  /* rosetta */
+  .scroll-x{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--panel)}
+  table{border-collapse:collapse;width:100%;min-width:520px;font-size:13.5px}
+  th,td{text-align:left;padding:11px 16px;border-bottom:1px solid var(--line)}
+  thead th{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);background:var(--panel-2)}
+  tbody tr:last-child td{border-bottom:0}
+  td.aws{color:var(--mut)} td.arrow{color:var(--accent);font-family:var(--mono);text-align:center;width:42px}
+  td.az b{color:var(--ink)}
+
+  /* resource bank */
+  .res{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--line)}
+  .res:last-child{border-bottom:0}
+  .res .code{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--accent);background:var(--accent-soft);padding:3px 8px;border-radius:6px;white-space:nowrap;min-width:74px;text-align:center}
+  .res .body{font-size:13.5px}
+  .res .body .lang{font-family:var(--mono);font-size:10px;color:var(--mut);letter-spacing:.1em;margin-left:6px}
+
+  /* weeks */
+  .week{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);margin-bottom:14px;overflow:hidden}
+  .week-head{display:flex;align-items:center;gap:14px;padding:16px 20px;cursor:pointer;user-select:none;width:100%;text-align:left;background:none;border:0;color:inherit;font-family:inherit}
+  .week-head:hover{background:var(--panel-2)}
+  .wk-no{font-family:var(--mono);font-size:11px;color:var(--mut);letter-spacing:.1em}
+  .wk-title{font-size:15.5px;font-weight:640;letter-spacing:-.01em}
+  .wk-badge{font-family:var(--mono);font-size:10px;padding:3px 9px;border-radius:99px;letter-spacing:.06em;border:1px solid var(--line);color:var(--ink-2)}
+  .wk-badge.d1{color:var(--accent);border-color:color-mix(in srgb,var(--accent) 40%,var(--line))}
+  .wk-badge.d2{color:var(--amber);border-color:color-mix(in srgb,var(--amber) 40%,var(--line))}
+  .wk-badge.d3{color:var(--green);border-color:color-mix(in srgb,var(--green) 40%,var(--line))}
+  .wk-prog{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--mut);font-variant-numeric:tabular-nums}
+  .caret{transition:transform .25s;color:var(--mut);font-size:13px}
+  .week.open .caret{transform:rotate(90deg)}
+  .days{display:none;padding:6px 14px 16px;flex-direction:column;gap:8px}
+  .week.open .days{display:flex}
+
+  .day{display:flex;gap:13px;padding:13px 14px;border-radius:var(--r-s);border:1px solid var(--line);background:var(--panel-2);align-items:flex-start}
+  .day.rest{opacity:.72;background:transparent}
+  .day.review{border-color:color-mix(in srgb,var(--amber) 35%,var(--line));background:var(--amber-soft)}
+  .day.exam{border-color:color-mix(in srgb,var(--red) 45%,var(--line));background:var(--red-soft)}
+  .day.done{border-color:color-mix(in srgb,var(--green) 45%,var(--line))}
+  .day.done .d-title{text-decoration:line-through;text-decoration-color:var(--green);color:var(--mut)}
+  .cbox{flex-shrink:0;width:22px;height:22px;margin-top:1px;border-radius:6px;border:1.6px solid var(--line);background:var(--panel);cursor:pointer;display:grid;place-items:center;color:transparent;font-size:13px;transition:.15s}
+  .day.done .cbox{background:var(--green);border-color:var(--green);color:#fff}
+  .d-main{flex:1;min-width:0}
+  .d-code{font-family:var(--mono);font-size:10.5px;color:var(--mut);letter-spacing:.08em}
+  .d-title{font-size:14px;font-weight:600;margin:1px 0 7px;letter-spacing:-.01em}
+  .d-items{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px}
+  .d-items li{font-size:12.8px;color:var(--ink-2);display:flex;gap:8px;line-height:1.45}
+  .d-items .lab{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;padding:1px 6px;border-radius:5px;height:fit-content;margin-top:1px;white-space:nowrap;flex-shrink:0}
+  .lab.watch{color:var(--accent);background:var(--accent-soft)}
+  .lab.do{color:var(--green);background:var(--green-soft)}
+  .lab.lock{color:var(--amber);background:var(--amber-soft)}
+
+  /* exam vault */
+  .vault{display:flex;flex-direction:column;gap:16px}
+  .prompt{border:1px solid var(--line);border-radius:var(--r);background:var(--panel);overflow:hidden}
+  .prompt-head{display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid var(--line);background:var(--panel-2)}
+  .prompt-head .t{font-weight:640;font-size:14.5px}
+  .prompt-head .t small{display:block;font-weight:400;color:var(--mut);font-size:12px;margin-top:2px}
+  .copy{margin-left:auto;font-family:var(--mono);font-size:11px;padding:7px 13px;border:1px solid var(--line);background:var(--panel);color:var(--accent);border-radius:8px;cursor:pointer;white-space:nowrap}
+  .copy:hover{background:var(--accent-soft)}
+  .copy.ok{color:var(--green);border-color:var(--green)}
+  pre{margin:0;padding:16px 18px;overflow-x:auto;font-family:var(--mono);font-size:12px;line-height:1.6;color:var(--ink-2);white-space:pre-wrap;word-break:break-word}
+
+  .cap{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:4px}
+  .cap .card h4{margin:0 0 8px;font-size:13.5px;color:var(--accent)}
+  .cap .card ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink-2)} .cap .card li{margin:4px 0}
+
+  .bridge{border-left:3px solid var(--accent);padding:4px 0 4px 20px;display:flex;flex-direction:column;gap:16px}
+  .bridge .step{display:flex;gap:14px;align-items:flex-start}
+  .bridge .n{font-family:var(--mono);font-size:12px;color:var(--accent);border:1px solid var(--line);border-radius:8px;padding:5px 9px;white-space:nowrap}
+  .bridge h4{margin:0 0 3px;font-size:14.5px}
+  .bridge p{margin:0;font-size:13.5px;color:var(--ink-2)}
+
+  .foot{margin-top:56px;padding-top:22px;border-top:1px solid var(--line);font-size:12px;color:var(--mut)}
+  .foot a{color:var(--mut);text-decoration:underline}
+  .reset{font-family:var(--mono);font-size:11px;background:none;border:1px solid var(--line);color:var(--mut);padding:6px 11px;border-radius:8px;cursor:pointer;margin-top:12px}
+  .reset:hover{color:var(--red);border-color:var(--red)}
+  .callout{border:1px dashed color-mix(in srgb,var(--amber) 45%,var(--line));background:var(--amber-soft);border-radius:var(--r);padding:14px 18px;font-size:13px;color:var(--ink-2)}
+  .callout b{color:var(--amber)}
+</style>
+
+<header class="console">
+  <div class="console-inner">
+    <div class="brand"><span class="dot"></span><div><b>AI-300 MISSION CONTROL</b><br><span>OPERATIONALIZING ML &amp; GENAI</span></div></div>
+    <div class="stat"><span class="k">Day</span><span class="v tnum" id="s-day">0<span style="color:var(--mut);font-weight:400">/112</span></span></div>
+    <div class="stat"><span class="k">Complete</span><span class="v acc tnum" id="s-pct">0%</span></div>
+    <div class="stat"><span class="k">Signal lock</span><span class="v amb tnum" id="s-streak">0d</span></div>
+    <button class="theme-btn" id="themeBtn" type="button">◐ THEME</button>
+    <div class="pbar"><i id="pbar"></i></div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="hero">
+    <div class="eyebrow">16 weeks · 6–8 h/wk · student azure · beta exam</div>
+    <h1>Pass AI-300 with <em>flying colors.</em><br>112 days, engineered so nothing leaks.</h1>
+    <p class="lede">This isn't a reading list. It's an operating system for your brain: a daily build in your own Azure, a nightly recall that drags old material back before it fades, and a strict examiner you summon on demand. You operate ML for a living by Week 8. You pass the exam on Day 112.</p>
+    <div class="hero-meta">
+      <span class="chip">Target: <b>AI-300</b> → bridge to <b>AB-100</b></span>
+      <span class="chip">Domains weighted: <b>MLOps 15–20 · Lifecycle 25–30 · GenAIOps 20–25 · QA 10–15 · Optimize 10–15</b></span>
+      <span class="chip">You: <b>AZ-900 ✓ · AWS-native · Azure ML beginner</b></span>
+    </div>
+  </div>
+
+  <!-- METHOD -->
+  <section id="method">
+    <div class="sec-head"><span class="num">01</span><h2>How this hacks your memory</h2><p>Read once. These nine levers are wired into every single day.</p></div>
+    <div class="grid2">
+      <div class="card method"><h3><span class="tag">RETRIEVAL</span> Active recall beats re-reading</h3><p>Every build day ends with a closed-book "Lock-in." You pull the answer from memory instead of recognising it on a page. The pulling is what builds the wire.</p></div>
+      <div class="card method"><h3><span class="tag">SPACED</span> Callbacks on a decay curve</h3><p>Day 43 asks you to recall Day 9. Day 41 resurfaces a Week-1 concept. Material comes back right as it's about to fade. Forgetting a little, then recovering, is the point.</p></div>
+      <div class="card method"><h3><span class="tag">INTERLEAVE</span> Mixed, not blocked</h3><p>Review days shuffle domains together instead of drilling one. Messier, slower, and it sticks far harder than clean repetition of a single topic.</p></div>
+      <div class="card method"><h3><span class="tag">FEYNMAN</span> Teach it back</h3><p>You're a technical writer. Your unfair advantage is explaining. Half the Lock-ins make you narrate a concept in your own words. If you can't, you didn't learn it.</p></div>
+      <div class="card method"><h3><span class="tag">ANCHOR</span> New hung on known</h3><p>You already own the AWS mental model. Every Azure concept gets pinned to its AWS twin (see the Rosetta table). You're not memorising from zero, you're mapping.</p></div>
+      <div class="card method"><h3><span class="tag">GENERATE</span> Guess before you're told</h3><p>Try the lab before the video where you can. A wrong prediction you then correct is remembered better than a right answer you were handed.</p></div>
+      <div class="card method"><h3><span class="tag">STREAK</span> Don't break the chain</h3><p>Signal lock counts your completed days. A visible streak turns "should study" into "can't lose the chain." Cheap dopamine, aimed at the exam.</p></div>
+      <div class="card method"><h3><span class="tag">SLEEP</span> Consolidate on the pillow</h3><p>Rest days say reread before sleep for a reason. Memory consolidates overnight. Light review at night + one recall at wake doubles retention for near-zero effort.</p></div>
+      <div class="card method"><h3><span class="tag">METACOG</span> Hunt your weak spots</h3><p>Every exam prompt ends with a weak-spot report. You don't study what you know, you study what the score says you don't. Confidence is a liar; the report isn't.</p></div>
+    </div>
+  </section>
+
+  <!-- ROSETTA -->
+  <section id="rosetta">
+    <div class="sec-head"><span class="num">02</span><h2>Your AWS → Azure Rosetta</h2><p>Your cheat code. Rebuild this from memory every review day until it's reflex.</p></div>
+    <div class="scroll-x">
+      <table>
+        <thead><tr><th>You already know (AWS)</th><th></th><th>What it maps to (Azure / AI-300)</th></tr></thead>
+        <tbody>
+          <tr><td class="aws">SageMaker domain / Studio</td><td class="arrow">→</td><td class="az"><b>Azure ML workspace</b> (bundles storage, key vault, app insights, ACR)</td></tr>
+          <tr><td class="aws">S3 bucket</td><td class="arrow">→</td><td class="az"><b>Datastore</b> (blob-backed) + versioned <b>data assets</b></td></tr>
+          <tr><td class="aws">IAM roles / policies</td><td class="arrow">→</td><td class="az"><b>Entra ID + RBAC</b> + workspace <b>managed identity</b></td></tr>
+          <tr><td class="aws">CloudFormation / CDK</td><td class="arrow">→</td><td class="az"><b>Bicep</b> + <code>az</code> CLI</td></tr>
+          <tr><td class="aws">CodePipeline / CodeBuild</td><td class="arrow">→</td><td class="az"><b>GitHub Actions</b> (with OIDC federated creds)</td></tr>
+          <tr><td class="aws">SageMaker training job</td><td class="arrow">→</td><td class="az"><b>Command job</b> on a <b>compute cluster</b>, tracked by <b>MLflow</b></td></tr>
+          <tr><td class="aws">SageMaker Autopilot</td><td class="arrow">→</td><td class="az"><b>AutoML</b> job</td></tr>
+          <tr><td class="aws">SageMaker Pipelines / Step Functions</td><td class="arrow">→</td><td class="az"><b>Azure ML pipelines</b> built from <b>components</b></td></tr>
+          <tr><td class="aws">SageMaker endpoint</td><td class="arrow">→</td><td class="az"><b>Managed online endpoint</b> (real-time) / <b>batch endpoint</b></td></tr>
+          <tr><td class="aws">CloudWatch</td><td class="arrow">→</td><td class="az"><b>Azure Monitor + Application Insights</b></td></tr>
+          <tr><td class="aws">Bedrock (on-demand / provisioned)</td><td class="arrow">→</td><td class="az"><b>Microsoft Foundry</b> models: serverless API / managed compute / <b>PTU</b></td></tr>
+          <tr><td class="aws">Model Monitor (drift)</td><td class="arrow">→</td><td class="az"><b>Data drift monitors</b> + retrain triggers</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- RESOURCE BANK -->
+  <section id="bank">
+    <div class="sec-head"><span class="num">03</span><h2>Resource bank</h2><p>Day cards reference these codes. All links verified real. Hindi = foundations only.</p></div>
+    <div class="card" id="resList"></div>
+    <div class="callout" style="margin-top:14px"><b>Language honesty:</b> AI-300 is a brand-new beta exam, so the deep Foundry / GenAIOps material is English-only right now. Use Hindi/Hinglish channels for the <b>foundation layer</b> (Python, ML concepts, MLflow, MLOps intuition) and the official English docs for the exam-specific Azure ML + Foundry mechanics. Do not wait for a Hindi AI-300 course; it does not exist yet.</div>
+  </section>
+
+  <!-- THE PLAN -->
+  <section id="plan">
+    <div class="sec-head"><span class="num">04</span><h2>The 112-day plan</h2><p>Tap a week to open it. Tick a day when its whole checklist is done.</p></div>
+    <div id="weeks"></div>
+  </section>
+
+  <!-- EXAM VAULT -->
+  <section id="vault">
+    <div class="sec-head"><span class="num">05</span><h2>The exam prompts — ping me to test you</h2><p>Copy a prompt, paste it to Claude, fill the [BRACKETS]. I become your examiner.</p></div>
+    <div class="vault" id="vaultList"></div>
+  </section>
+
+  <!-- CAPSTONE -->
+  <section id="capstone">
+    <div class="sec-head"><span class="num">06</span><h2>The capstone — your architect calling card</h2><p>One repo you grow from Day 15. By Week 15 it <em>is</em> the interview.</p></div>
+    <div class="card">
+      <p style="margin:0 0 4px;font-size:14px;color:var(--ink-2)">Repo: <code>ai300-aiops-lab</code> — one reproducible platform that proves you have personally operated every AI-300 domain. Not a demo. A system with a README an architect would sign.</p>
+    </div>
+    <div class="cap">
+      <div class="card"><h4>Classical MLOps spine</h4><ul><li>Bicep + GitHub Actions provision the workspace</li><li>Pipeline: prep → train → sweep → register</li><li>Online + batch endpoints, blue/green rollout</li><li>Drift monitor + retrain trigger</li></ul></div>
+      <div class="card"><h4>GenAIOps spine</h4><ul><li>Foundry project via Bicep, RBAC, private net</li><li>Foundation model deployed + versioned</li><li>Prompts version-controlled in Git</li><li>Optimized RAG service with before/after metrics</li></ul></div>
+      <div class="card"><h4>The proof layer</h4><ul><li>Eval suite: groundedness / relevance / safety</li><li>Observability: latency, tokens, cost, tracing</li><li>Architecture diagram you can narrate</li><li>Decision log — why each choice was made</li></ul></div>
+    </div>
+  </section>
+
+  <!-- BRIDGE -->
+  <section id="bridge">
+    <div class="sec-head"><span class="num">07</span><h2>The bridge to AI Solutions Architect (AB-100)</h2><p>AI-300 is the anchor, not the destination. Here's the honest route onward.</p></div>
+    <div class="bridge">
+      <div class="step"><span class="n">STEP 1</span><div><h4>AI-300 — this plan</h4><p>The deepest hands-on AI foundation of any associate cert: GenAIOps, evaluation, observability, RAG, fine-tuning. An architect who has operated these designs them better.</p></div></div>
+      <div class="step"><span class="n">STEP 2</span><div><h4>Azure AI Apps &amp; Agents Developer Associate (beta)</h4><p>The <em>actual</em> associate cert that unlocks AB-100 (AI-300 is not on its prerequisite list — I checked). Roughly half its content overlaps what you'll already have built here, so it's a short hop, not a fresh climb.</p></div></div>
+      <div class="step"><span class="n">STEP 3</span><div><h4>AB-100 — Agentic AI Business Solutions Architect</h4><p>The real "AI solutions architect" credential: multi-agent orchestration, Agent2Agent + Model Context Protocol, responsible-AI governance, ROI analysis. You arrive having <em>built</em> the layers most candidates only read about.</p></div></div>
+    </div>
+  </section>
+
+  <div class="foot">
+    <p>Built from the live Microsoft Learn <a href="https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/ai-300" target="_blank" rel="noopener">AI-300 study guide</a> (updated 2026, beta). Domain weights and skills are Microsoft's; verify against the study guide before exam day as the beta objectives can shift. Passing score is 700. You have 120 minutes. Progress is saved in this browser only.</p>
+    <button class="reset" id="resetBtn" type="button">RESET ALL PROGRESS</button>
+  </div>
+</div>
+
+<script>
+"use strict";
+/* ============ RESOURCE BANK ============ */
+const RES=[
+  ["MSL","Microsoft Learn — official modules, paths &amp; the AI-300 study guide. Your source of truth.","English",[["AI-300 study guide","https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/ai-300"],["MLOps path","https://learn.microsoft.com/en-us/training/paths/build-first-machine-operations-workflow/"],["Azure ML in a day","https://learn.microsoft.com/en-us/azure/machine-learning/tutorial-azure-ml-in-a-day"],["Set up MLOps with GitHub","https://learn.microsoft.com/en-us/azure/machine-learning/how-to-setup-mlops-github-azure-ml"]]],
+  ["MLOPS-LAB","The official hands-on MLOps challenge lab — do the exercises, don't just read them.","English",[["mslearn-mlops","https://microsoftlearning.github.io/mslearn-mlops/"]]],
+  ["FDRY","Microsoft Foundry training hub + the GenAI apps learning path. Your Domain 3–5 spine.","English",[["Foundry training","https://learn.microsoft.com/en-us/training/azure/ai-foundry"],["Develop GenAI apps","https://learn.microsoft.com/en-us/training/paths/develop-generative-ai-apps/"]]],
+  ["AI3016","YouTube playlist: Develop generative AI apps in Azure AI Foundry portal. Follow along in your own project.","English",[["Playlist","https://www.youtube.com/playlist?list=PLahhVEj9XNTcDyFifvvqrn4A_07BTK-oF"]]],
+  ["GH","Official Foundry tutorial repo — clone it, run the RAG + agent samples.","English",[["microsoft-foundry/ai-tutorials","https://github.com/microsoft-foundry/ai-tutorials"]]],
+  ["WAF","Well-Architected: MLOps &amp; GenAIOps. The architect's-eye view — read this for the AB-100 mindset too.","English",[["MLOps &amp; GenAIOps","https://learn.microsoft.com/en-us/azure/well-architected/ai/mlops-genaiops"]]],
+  ["JS","John Savill's Technical Training — the standard for Azure cert study crams. Watch at 1.25x.","English",[["Channel","https://www.youtube.com/channel/UCpIn7ox7j7bH_OFj7tYouOQ"]]],
+  ["KN","Krish Naik — MLOps, MLflow &amp; ML explained in Hinglish. Best for the foundation layer.","Hinglish",[["Search: MLflow tutorial","https://www.youtube.com/results?search_query=krish+naik+mlflow+tutorial"],["Search: MLOps","https://www.youtube.com/results?search_query=krish+naik+mlops"]]],
+  ["CWH","CodeWithHarry — Python &amp; pandas in clean Hindi. Only if you want the Python refresher in Hindi.","Hindi",[["Search: Python","https://www.youtube.com/results?search_query=codewithharry+python+pandas"]]]
+];
+const resEl=document.getElementById("resList");
+resEl.innerHTML=RES.map(r=>`<div class="res"><span class="code">${r[0]}</span><div class="body">${r[1]}<span class="lang">${r[2]}</span><div style="margin-top:5px;display:flex;flex-wrap:wrap;gap:6px 14px">${r[3].map(l=>`<a href="${l[1]}" target="_blank" rel="noopener">${l[0]} ↗</a>`).join("")}</div></div></div>`).join("");
+
+/* ============ THE 112 DAYS ============ */
+// tag: build | review | rest | exam.  items: [type, text]  type: w=watch r=read/do d=do l=lock
+const W=(n,e)=>({t:"w",x:e}), D=(e)=>({t:"d",x:e}), L=(e)=>({t:"l",x:e});
+const WEEKS=[
+ {n:1,title:"Foundations — terrain & your AWS map",badge:"SETUP",cls:"",days:[
+  {tag:"build",title:"Boot the environment",items:[D("Activate Azure Student sub. Install Azure CLI + the <code>az ml</code> extension, VS Code, Python 3.11 + venv. Create resource group <code>rg-ai300</code>."),W("[JS] skim an Azure fundamentals refresher — you're AZ-900, so 1.25x."),L("Write one honest paragraph: <em>why</em> you want AI-300. You reread it on Day 112.")]},
+  {tag:"build",title:"First workspace (portal)",items:[W("[MSL] Azure ML in a day — first half."),D("Create an Azure ML workspace in the portal. Tour the Studio: jobs, assets, endpoints, compute."),L("Rosetta, Feynman: write in your own words why workspace ≈ SageMaker domain.")]},
+  {tag:"build",title:"Workspace via CLI + the resource model",items:[W("[MSL] Azure ML in a day — second half."),D("Create a 2nd workspace with <code>az ml workspace create</code>, then delete it."),L("Closed-book: name the 4 resources a workspace bundles. (storage, key vault, app insights, ACR)")]},
+  {tag:"build",title:"Python-for-ML footing",items:[W("[KN] pandas + scikit-learn crash (Hinglish), or [CWH] if you want pure Hindi Python."),D("Local notebook: load a public dataset (diabetes/iris), train a scikit-learn model. No Azure yet."),L("Teach-back in 3 sentences: train/test split and why it exists.")]},
+  {tag:"build",title:"Notebook → Azure ML job",items:[W("[MSL] Python SDK v2 quickstart."),D("Run that same training as an Azure ML <b>command job</b> via <code>MLClient</code>."),L("Anchor: MLClient ≈ the boto3 SageMaker client. Say it out loud.")]},
+  {tag:"review",title:"Review + Weekly Exam",items:[D("Closed-book brain-dump of everything from Week 1 onto blank paper."),D("Run the WEEKLY CHECKPOINT prompt — Domain: Foundations, 10 Qs. Log your score."),L("Rebuild the Rosetta table from memory. Check what you missed.")]},
+  {tag:"rest",title:"Rest / buffer",items:[L("10 min before sleep: reread your Rosetta table."),D("Spill over any unfinished lab from the week. Nothing new.")]}
+ ]},
+ {n:2,title:"Workspace assets & access",badge:"DOMAIN 1 · 15–20%",cls:"d1",days:[
+  {tag:"build",title:"Datastores",items:[W("[MSL] manage data in Azure ML."),D("Create a blob-backed datastore. Upload a dataset to it."),L("Anchor: datastore ≈ an S3 bucket the workspace can mount.")]},
+  {tag:"build",title:"Data assets (versioned)",items:[D("Register a data asset as v1, change it, register v2. Inspect lineage."),L("Closed-book: datastore vs data asset — what's the difference?")]},
+  {tag:"build",title:"Compute targets",items:[D("Create a compute instance + a compute cluster (autoscale min 0, max 2)."),L("Anchor: cluster ≈ SageMaker training instances. Why min=0 is a good habit.")]},
+  {tag:"build",title:"Environments",items:[D("Create a curated environment + a custom one from a conda yaml / Dockerfile."),L("Anchor: environment ≈ a container image. Recall D1's 4 bundled resources — where's the registry?")]},
+  {tag:"build",title:"Identity & access (RBAC)",items:[W("[JS] Entra ID + RBAC primer."),D("Assign a role on the workspace. Explore the workspace managed identity."),L("Map 3 concepts: IAM role→?, IAM policy→?, instance profile→?")]},
+  {tag:"review",title:"Review + Weekly Exam",items:[D("Interleave: WEEKLY CHECKPOINT — Domain 1 partial, 12 Qs, mixed with 3 Week-1 callbacks."),L("Name all 5 asset types from memory: datastore, data asset, compute, environment, component.")]},
+  {tag:"rest",title:"Rest / buffer",items:[L("Recall before sleep: the RBAC → IAM mapping.")]}
+ ]},
+ {n:3,title:"MLOps infrastructure as code",badge:"DOMAIN 1 · 15–20%",cls:"d1",days:[
+  {tag:"build",title:"Bicep basics",items:[W("[MSL] Automate Azure deployments with Bicep + GitHub Actions, Ep01."),D("Write Bicep for a storage account. Deploy with <code>az deployment group create</code>."),L("Anchor: Bicep ≈ CloudFormation / CDK. Teach-back: what is idempotency?")]},
+  {tag:"build",title:"Bicep for an Azure ML workspace",items:[D("Author Bicep that provisions a full workspace + its dependencies."),L("Recall D1 (wk1): do all 4 bundled resources appear in your template?")]},
+  {tag:"build",title:"Parameterize + modularize",items:[D("Split Bicep into modules; add params and outputs."),L("Teach-back: why IaC needs idempotency to be safe to re-run.")]},
+  {tag:"build",title:"Git for ML projects",items:[D("Init repo <code>ai300-aiops-lab</code>. Structure: <code>infra/ src/ pipelines/</code>. Commit your Bicep."),L("Callback: which identity does a deployment run as? (recall RBAC, D5 wk2)")]},
+  {tag:"build",title:"Restrict network access",items:[W("[MSL] workspace network isolation (concept)."),D("Read + configure private endpoint settings at concept level. Do NOT lock yourself out."),L("Anchor: private endpoint ≈ VPC endpoint / PrivateLink.")]},
+  {tag:"review",title:"Review + Weekly Exam",items:[D("WEEKLY CHECKPOINT — Domain 1 FULL, 15 Qs."),D("Portfolio checkpoint: your <code>infra/</code> folder deploys clean from scratch.")]},
+  {tag:"rest",title:"Rest / buffer",items:[L("Reread your Bicep top-to-bottom; explain each resource aloud.")]}
+ ]},
+ {n:4,title:"CI/CD with GitHub Actions",badge:"DOMAIN 1 · 15–20%",cls:"d1",days:[
+  {tag:"build",title:"GitHub → Azure auth (OIDC)",items:[W("[MSL] Set up MLOps with GitHub."),D("Create a service principal / federated credential. Set repo secrets or OIDC."),L("Anchor: SP ≈ an IAM role for CI.")]},
+  {tag:"build",title:"First Actions workflow",items:[D("Workflow that runs <code>az</code> to provision the workspace from your Bicep on push."),L("Teach-back: why federated creds beat long-lived secrets.")]},
+  {tag:"build",title:"Teardown / rebuild workflow",items:[D("A <code>workflow_dispatch</code> that tears down + rebuilds the resource group on demand."),L("Anchor: GitHub Actions ≈ CodePipeline / CodeBuild.")]},
+  {tag:"build",title:"Source-control ML properly",items:[D("Add branch protection, a PR template, a <code>.gitignore</code> that excludes data."),L("Interleave: recall data asset versioning (D2 wk2) — why data doesn't live in Git.")]},
+  {tag:"build",title:"Integrate GitHub with the workspace",items:[D("Connect the repo to the workspace. Trigger a training job from a workflow."),L("Teach-back the full chain: push → provision → train.")]},
+  {tag:"review",title:"Review + Weekly Exam",items:[D("CUMULATIVE MOCK #1 — Foundations + Domain 1, 20 Qs, timed."),L("Note your weakest sub-skill from the report.")]},
+  {tag:"rest",title:"Milestone",items:[D("Infra + CI is DONE. Screenshot the green workflow run."),L("Momentum note: you can now build and ship Azure infra from a push. That's real.")]}
+ ]},
+ {n:5,title:"Model training & tracking",badge:"DOMAIN 2 · 25–30%",cls:"d2",days:[
+  {tag:"build",title:"MLflow tracking",items:[W("[KN] MLflow tutorial (Hinglish)."),D("Enable MLflow autolog in an Azure ML job. Log params + metrics."),L("Anchor: an MLflow run ≈ one experiment record.")]},
+  {tag:"build",title:"Notebooks for experimentation",items:[D("Run an exploratory notebook on your compute instance; log to MLflow."),L("Callback: recall command-job submission via MLClient (D5 wk1).")]},
+  {tag:"build",title:"Training scripts (command jobs)",items:[D("Convert the notebook into a <code>command</code> job with a script + typed inputs."),L("Teach-back: why scripts beat notebooks for reproducibility.")]},
+  {tag:"build",title:"Compare model performance",items:[D("Run 3 variants. Compare them in the Studio + MLflow UI."),L("Interleave: which environment (D4 wk2) did each job use?")]},
+  {tag:"build",title:"Tracking discipline",items:[D("Tag runs, register best metrics. Write a short model card (your TW edge)."),L("Callback: how did the compute get provisioned? (Domain 1)")]},
+  {tag:"review",title:"Review + Weekly Exam",items:[D("WEEKLY CHECKPOINT — Domain 2 part 1, 15 Qs."),L("Recall the 4 MLflow log types: params, metrics, artifacts, models.")]},
+  {tag:"rest",title:"Rest / buffer",items:[L("Before sleep: recall the training → track → compare loop.")]}
+ ]},
+ {n:6,title:"AutoML, sweeps & distributed",badge:"DOMAIN 2 · 25–30%",cls:"d2",days:[
+  {tag:"build",title:"AutoML",items:[D("Run an AutoML classification or regression job. Inspect the leaderboard."),L("Anchor: AutoML ≈ SageMaker Autopilot.")]},
+  {tag:"build",title:"Hyperparameter sweeps",items:[D("Configure a <code>sweep</code> job: grid/random/bayesian, define the search space."),L("Teach-back: what an early-termination policy saves you.")]},
+  {tag:"build",title:"Analyze sweep results",items:[D("Pick the best trial. Register its metrics."),L("Callback: recall the compare-across-jobs workflow (D4 wk5).")]},
+  {tag:"build",title:"Distributed training (concept)",items:[W("[MSL] distributed training."),D("Read + configure a multi-node job at concept level."),L("Callback: recall compute cluster scaling (D3 wk2).")]},
+  {tag:"build",title:"Pipelines intro (components)",items:[D("Build a 2-step pipeline (prep → train) from reusable components."),L("Anchor: a component ≈ a reusable, versioned step.")]},
+  {tag:"review",title:"Review + Weekly Exam",items:[D("WEEKLY CHECKPOINT — interleave Weeks 5+6, 15 Qs. Expect a Week-1 Rosetta question."),L("Rebuild the train → sweep → compare flow on paper from memory.")]},
+  {tag:"rest",title:"Rest / buffer",items:[L("Recall: grid vs random vs bayesian sweep — when each.")]}
+ ]},
+ {n:7,title:"Pipelines, registry & Responsible AI",badge:"DOMAIN 2 · 25–30%",cls:"d2",days:[
+  {tag:"build",title:"Multi-step pipelines",items:[W("[MLOPS-LAB] pipeline exercises."),D("Extend to prep → train → evaluate → register."),L("Anchor: pipeline ≈ Step Functions / SageMaker Pipelines.")]},
+  {tag:"build",title:"Model registration & versioning",items:[D("Register an MLflow model as v1, then v2. Inspect lineage."),L("Callback: same versioning model as data assets (D2 wk2).")]},
+  {tag:"build",title:"Package feature spec + artifact",items:[D("Bundle a scoring / feature-retrieval spec with the model artifact."),L("Teach-back: what breaks when serving features ≠ training features (train/serve skew).")]},
+  {tag:"build",title:"Responsible AI evaluation",items:[W("[MSL] Responsible AI dashboard."),D("Run the RAI dashboard: error analysis + fairness on your model."),L("Preview link: RAI shows up again on the GenAI side (Domain 4). Note that.")]},
+  {tag:"build",title:"Lifecycle & archiving",items:[D("Archive an old model version. Document your promotion criteria."),L("Interleave: registry vs workspace assets — where does each live?")]},
+  {tag:"review",title:"Review + Weekly Exam",items:[D("WEEKLY CHECKPOINT — Domain 2 part 2, 15 Qs."),L("Recall the full lifecycle: train → track → compare → register → RAI → archive.")]},
+  {tag:"rest",title:"Rest / buffer",items:[L("Before sleep: narrate the lifecycle in one breath.")]}
+ ]},
+ {n:8,title:"Deploy & monitor — close the loop",badge:"DOMAIN 2 · 25–30%",cls:"d2",days:[
+  {tag:"build",title:"Real-time online endpoints",items:[D("Deploy your registered model to a managed online endpoint. Test from Python."),L("Anchor: online endpoint ≈ a SageMaker real-time endpoint.")]},
+  {tag:"build",title:"Batch endpoints",items:[D("Create a batch endpoint for bulk scoring."),L("Teach-back: online vs batch — when you reach for each.")]},
+  {tag:"build",title:"Rollout & safe rollback",items:[D("Blue/green deploy with a traffic split. Then practice a rollback."),L("Callback: recall the CI workflow (D3 wk4) — deployment automation.")]},
+  {tag:"build",title:"Troubleshoot endpoints",items:[D("Read endpoint logs. Force a failed deployment, then fix it."),L("Callback: which bundled resource captures those logs? (App Insights, D3 wk1)")]},
+  {tag:"build",title:"Drift, monitoring & retrain triggers",items:[D("Configure a data-drift monitor vs your training baseline. Set an alert threshold."),L("Teach-back the retrain-trigger loop: drift detected → alert → retrain.")]},
+  {tag:"exam",title:"DOMAIN 2 FULL MOCK",items:[D("Run the FULL MOCK prompt scoped to Domain 2 only, 20 Qs, timed."),D("Portfolio: classical MLOps pipeline is end-to-end. Screenshot the live endpoint.")]},
+  {tag:"rest",title:"Halfway milestone",items:[L("You now operate ML in production. Reread your Day-1 'why'. Halfway.")]}
+ ]},
+ {n:9,title:"Foundry environments",badge:"DOMAIN 3 · 20–25%",cls:"d3",days:[
+  {tag:"build",title:"Foundry orientation",items:[W("[FDRY] Foundry training + [AI3016] Ep1."),D("Create a Foundry resource + a project."),L("Anchor: Foundry ≈ Bedrock + SageMaker, but for GenAI.")]},
+  {tag:"build",title:"Foundry identity & RBAC",items:[D("Configure managed identity + RBAC on the project."),L("Callback: same Entra model as workspace RBAC (D5 wk2).")]},
+  {tag:"build",title:"Foundry networking",items:[D("Review the private-networking config for Foundry."),L("Callback: recall private endpoint (D5 wk3).")]},
+  {tag:"build",title:"Bicep for Foundry",items:[D("Author Bicep to deploy a Foundry project."),L("Callback: reuse the pattern from your ML workspace Bicep (D2 wk3).")]},
+  {tag:"build",title:"Connect Foundry to source control",items:[D("Repo structure for GenAI: <code>prompts/ evals/</code>. Commit it."),L("Interleave: recall Git-for-ML setup (D4 wk3).")]},
+  {tag:"review",title:"Review + Weekly Exam",items:[D("WEEKLY CHECKPOINT — Domain 3 part 1, 15 Qs."),L("Recall: Foundry vs Azure ML workspace — when you use each.")]},
+  {tag:"rest",title:"Rest / buffer",items:[L("Before sleep: the Foundry ≈ Bedrock anchor.")]}
+ ]},
+ {n:10,title:"Foundation models in production",badge:"DOMAIN 3 · 20–25%",cls:"d3",days:[
+  {tag:"build",title:"Deploy foundation models",items:[W("[AI3016] model deployment."),D("Deploy a model via a serverless API endpoint. Call it from Python."),L("Anchor: serverless API ≈ Bedrock on-demand.")]},
+  {tag:"build",title:"Managed compute deployment",items:[D("Deploy a model to managed compute. Compare to serverless."),L("Teach-back: serverless vs managed compute tradeoffs.")]},
+  {tag:"build",title:"Model selection",items:[D("Use the model catalog + benchmarks to pick a model for a use case."),L("Callback: same evaluative muscle as model comparison (D4 wk5).")]},
+  {tag:"build",title:"Provisioned throughput (PTU)",items:[W("[MSL] provisioned throughput."),D("Read PTU sizing for high-volume workloads."),L("Anchor: PTU ≈ reserved / provisioned capacity.")]},
+  {tag:"build",title:"Versioning & deploy strategy",items:[D("Version a deployment. Plan a promotion path."),L("Callback: recall model registry versioning (D2 wk7).")]},
+  {tag:"review",title:"Review + Weekly Exam",items:[D("WEEKLY CHECKPOINT — interleave Weeks 9+10, 15 Qs."),L("Recall the serverless vs managed vs PTU decision tree.")]},
+  {tag:"rest",title:"Rest / buffer",items:[L("Before sleep: when would cost force you off serverless?")]}
+ ]},
+ {n:11,title:"Prompts & versioning",badge:"DOMAIN 3 · 20–25%",cls:"d3",days:[
+  {tag:"build",title:"Prompt design",items:[W("[GH] Foundry tutorials."),D("Build a prompt for a real task in the Foundry playground."),L("Teach-back: system vs user prompt roles.")]},
+  {tag:"build",title:"Prompt variants + comparison",items:[D("Create prompt variants. Compare outputs systematically."),L("Callback: same A/B mindset as hyperparameter sweeps (D2 wk6).")]},
+  {tag:"build",title:"Version control for prompts",items:[D("Store prompts in Git. Version them. Diff two variants."),L("Anchor: a prompt is a code artifact — treat it like one.")]},
+  {tag:"build",title:"Build a small GenAI app",items:[D("Wire a prompt-based app via the SDK (no RAG yet)."),L("Interleave: recall Foundry model deploy (D1 wk10).")]},
+  {tag:"build",title:"Orchestration / prompt flow",items:[D("Build one simple flow: input → prompt → model → output."),L("Teach-back the full app → model → response path.")]},
+  {tag:"exam",title:"DOMAIN 3 FULL CHECKPOINT",items:[D("FULL MOCK scoped to Domain 3, 18 Qs."),D("Portfolio: Foundry app + prompt repo are live.")]},
+  {tag:"rest",title:"Rest / buffer",items:[L("Recall Domain 3 top to bottom: infra → models → prompts.")]}
+ ]},
+ {n:12,title:"GenAI evaluation",badge:"DOMAIN 4 · 10–15%",cls:"d1",days:[
+  {tag:"build",title:"Eval datasets + data mapping",items:[W("[AI3016] evaluation."),D("Build a test dataset + data mapping for your app."),L("Anchor: an eval set ≈ a test / holdout set.")]},
+  {tag:"build",title:"Quality metrics",items:[D("Run groundedness, relevance, coherence, fluency evals."),L("Teach-back: what groundedness catches (hallucination).")]},
+  {tag:"build",title:"Risk & safety evals",items:[D("Run a harmful-content / safety evaluation."),L("Callback: recall RAI (D4 wk7) — classical vs GenAI safety.")]},
+  {tag:"build",title:"Automated eval workflows",items:[D("Wire an automated eval: one built-in + one custom metric."),L("Callback: evals as CI gates — recall GitHub Actions (D2 wk4).")]},
+  {tag:"build",title:"Eval-driven iteration",items:[D("Change a prompt, re-run evals, compare before/after."),L("Interleave: recall prompt variants (D2 wk11).")]},
+  {tag:"review",title:"Review + Weekly Exam",items:[D("WEEKLY CHECKPOINT — Domain 4, 12 Qs."),L("Recall the 4 quality metrics + what each is for.")]},
+  {tag:"rest",title:"Rest / buffer",items:[L("Before sleep: groundedness vs relevance — the difference.")]}
+ ]},
+ {n:13,title:"Observability",badge:"DOMAIN 4 · 10–15%",cls:"d1",days:[
+  {tag:"build",title:"Continuous monitoring in Foundry",items:[W("[WAF] GenAIOps."),D("Enable monitoring on your app."),L("Anchor: monitoring ≈ CloudWatch, for GenAI.")]},
+  {tag:"build",title:"Performance metrics",items:[D("Instrument + view latency, throughput, response time."),L("Callback: recall endpoint troubleshooting (D4 wk8).")]},
+  {tag:"build",title:"Cost & token tracking",items:[D("Track token consumption + cost per request."),L("Teach-back: the token-cost drivers (context size, output length).")]},
+  {tag:"build",title:"Logging, tracing, debugging",items:[D("Enable tracing. Debug one bad response end-to-end."),L("Callback: which resource backs this? (App Insights, D3 wk1)")]},
+  {tag:"build",title:"Build an observability view",items:[D("Assemble a dashboard of latency + tokens + cost + traces."),L("Interleave: recall the eval metrics (D2 wk12).")]},
+  {tag:"exam",title:"DOMAIN 4 FULL",items:[D("FULL MOCK scoped to Domain 4, 15 Qs."),D("Portfolio: eval + observability are wired into the app.")]},
+  {tag:"rest",title:"Rest / buffer",items:[L("Recall: evaluation (pre-prod quality) vs observability (prod telemetry).")]}
+ ]},
+ {n:14,title:"Optimize — RAG & fine-tuning",badge:"DOMAIN 5 · 10–15%",cls:"d1",days:[
+  {tag:"build",title:"RAG basics",items:[W("[GH] RAG tutorial."),D("Build a RAG app: Foundry + a vector index over your docs."),L("Anchor: RAG ≈ retrieval + prompt augmentation.")]},
+  {tag:"build",title:"Retrieval tuning",items:[D("Tune chunk size + similarity threshold. Measure the effect."),L("Teach-back: the chunk-size tradeoff (too small vs too big).")]},
+  {tag:"build",title:"Hybrid search + embeddings",items:[D("Enable hybrid (semantic + keyword). Swap in a different embedding model."),L("Callback: recall model selection (D3 wk10).")]},
+  {tag:"build",title:"Evaluate + A/B the RAG",items:[D("Run relevance metrics. A/B two configs. Pick the winner with data."),L("Interleave: recall groundedness (D2 wk12) as your RAG quality gate.")]},
+  {tag:"build",title:"Fine-tuning + synthetic data",items:[W("[MSL] fine-tuning."),D("Run or plan a fine-tune. Generate synthetic data for it."),L("Teach-back: fine-tune vs RAG — when each wins.")]},
+  {tag:"exam",title:"DOMAIN 5 FULL",items:[D("FULL MOCK scoped to Domain 5, 15 Qs."),D("Portfolio: optimized RAG service with before/after metrics documented.")]},
+  {tag:"rest",title:"Rest / buffer",items:[L("Recall the RAG levers: chunk, threshold, hybrid, embedding, rerank.")]}
+ ]},
+ {n:15,title:"Capstone integration",badge:"PORTFOLIO",cls:"d3",days:[
+  {tag:"build",title:"Architecture diagram",items:[D("Draw the full AIOps platform architecture — your architect calling card."),L("Feynman: narrate the whole diagram aloud, end to end.")]},
+  {tag:"build",title:"Wire the capstone repo",items:[D("Unify infra + classical pipeline + GenAI app + eval/obs + RAG into one README."),L("Recall each domain's role in the whole system.")]},
+  {tag:"build",title:"Reproducibility pass",items:[D("Ensure provision → train → deploy → eval runs from scripts / Actions."),L("Callback: recall the OIDC + CI setup (Week 4).")]},
+  {tag:"build",title:"Documentation pass",items:[D("Write the platform README + a decision log (why each choice)."),L("Teach-back the whole platform in 5 sentences.")]},
+  {tag:"build",title:"Polish + LinkedIn draft",items:[D("Screenshots, diagram, and a 'what I built' post in your own voice."),L("Callback: reread Day-1 'why'. Look how far.")]},
+  {tag:"exam",title:"CUMULATIVE MOCK #2",items:[D("FULL MOCK — all 5 domains, 40 Qs, weighted, timed."),L("Write down your single weakest domain from the report.")]},
+  {tag:"rest",title:"Rest / buffer",items:[L("Recall your weakest domain. Tomorrow you hunt it.")]}
+ ]},
+ {n:16,title:"Exam readiness & launch",badge:"EXAM",cls:"d2",days:[
+  {tag:"build",title:"Official practice assessment",items:[W("[MSL] AI-300 practice assessment (free, on the cert page)."),D("Take it. Log every gap."),L("List your 5 weakest sub-skills. Be honest.")]},
+  {tag:"build",title:"Targeted gap drill #1",items:[D("Re-lab your 2 weakest sub-skills, hands-on."),D("Run the DAILY DRILL prompt focused on exactly those."),L("Teach-back each gap you just closed.")]},
+  {tag:"build",title:"Targeted gap drill #2",items:[D("Re-lab the next 2 weak sub-skills."),L("Closed-book recall of both.")]},
+  {tag:"exam",title:"FULL TIMED MOCK #3",items:[D("FULL MOCK — 50 Qs, 120 minutes, exam conditions. No notes, no pausing."),L("Review every wrong answer with its explanation. Understand, don't memorize.")]},
+  {tag:"build",title:"Sandbox + logistics",items:[D("Run the MS exam sandbox (question types). Confirm booking, ID, quiet room."),L("Recall the 5 domain weights — budget your exam minutes to match them.")]},
+  {tag:"rest",title:"Taper",items:[D("Reread only your own artifacts: model cards, Rosetta, decision trees. No new material."),L("Sleep early. Tonight, consolidation is the whole job.")]},
+  {tag:"exam",title:"EXAM DAY — go pass",items:[D("5-minute confidence warmup: five easy recalls. Then sit AI-300."),L("Reread your Day-1 'why'. Then go get your flying colors.")]}
+ ]}
+];
+
+/* ============ RENDER ============ */
+const LAB={w:["watch","WATCH"],d:["do","DO"],r:["do","DO"],l:["lock","LOCK-IN"]};
+let store={};
+try{store=JSON.parse(localStorage.getItem("ai300")||"{}")}catch(e){store={}}
+function save(){try{localStorage.setItem("ai300",JSON.stringify(store))}catch(e){}}
+
+const weeksEl=document.getElementById("weeks");
+let dayCounter=0;
+WEEKS.forEach((wk,wi)=>{
+  const wkEl=document.createElement("div");wkEl.className="week";wkEl.dataset.wi=wi;
+  const dayIds=[];
+  const daysHtml=wk.days.map(d=>{
+    dayCounter++;const id="d"+dayCounter;dayIds.push(id);
+    const done=!!store[id];
+    const items=d.items.map(it=>`<li><span class="lab ${LAB[it.t][0]}">${LAB[it.t][1]}</span><span>${it.x}</span></li>`).join("");
+    return `<div class="day ${d.tag} ${done?'done':''}" data-id="${id}">
+      <button class="cbox" aria-label="Toggle day ${dayCounter}" data-id="${id}">✓</button>
+      <div class="d-main"><div class="d-code">DAY ${String(dayCounter).padStart(3,"0")} · ${d.tag.toUpperCase()}</div>
+      <div class="d-title">${d.title}</div><ul class="d-items">${items}</ul></div></div>`;
+  }).join("");
+  wkEl.dataset.ids=dayIds.join(",");
+  wkEl.innerHTML=`<button class="week-head" type="button">
+      <span class="wk-no">WK ${String(wk.n).padStart(2,"0")}</span>
+      <span class="wk-title">${wk.title}</span>
+      <span class="wk-badge ${wk.cls}">${wk.badge}</span>
+      <span class="wk-prog" data-wkprog></span>
+      <span class="caret">▶</span>
+    </button><div class="days">${daysHtml}</div>`;
+  weeksEl.appendChild(wkEl);
+});
+
+function refresh(){
+  const total=dayCounter;let done=0;
+  document.querySelectorAll(".day").forEach(d=>{if(store[d.dataset.id])done++;});
+  const pct=Math.round(done/total*100);
+  document.getElementById("s-day").innerHTML=done+'<span style="color:var(--mut);font-weight:400">/'+total+'</span>';
+  document.getElementById("s-pct").textContent=pct+"%";
+  document.getElementById("s-streak").textContent=done+"d";
+  document.getElementById("pbar").style.width=pct+"%";
+  document.querySelectorAll(".week").forEach(w=>{
+    const ids=w.dataset.ids.split(",");const c=ids.filter(i=>store[i]).length;
+    w.querySelector("[data-wkprog]").textContent=c+"/"+ids.length;
+  });
+}
+function toggle(id){
+  store[id]=!store[id];save();
+  const el=document.querySelector('.day[data-id="'+id+'"]');
+  if(el)el.classList.toggle("done",!!store[id]);
+  refresh();
+}
+weeksEl.addEventListener("click",e=>{
+  const cb=e.target.closest(".cbox");
+  if(cb){e.stopPropagation();toggle(cb.dataset.id);return;}
+  const head=e.target.closest(".week-head");
+  if(head){head.parentElement.classList.toggle("open");}
+});
+refresh();
+document.querySelector(".week").classList.add("open");
+
+/* ============ EXAM PROMPTS ============ */
+const PROMPTS=[
+ {t:"Daily Drill",sub:"5 questions · today's topic · 5 minutes",body:
+`You are my strict Microsoft AI-300 examiner (Operationalizing Machine Learning and Generative AI Solutions). Today I studied: [TODAY'S TOPIC — e.g. "managed online endpoints and blue/green rollout"].
+
+Ask me 5 exam-style questions on that topic ONLY, one at a time. Wait for my answer before revealing the next.
+- Mix formats like the real exam: single-answer multiple choice, multiple-response ("pick 3"), and one short scenario ("You need to... What should you do?").
+- After each answer: say CORRECT or INCORRECT, give the right answer, and explain in 2 lines why the distractors are wrong.
+Do not soften. If I'm vague, mark it wrong.
+
+At the end give me: score /5, the one concept I was weakest on, and exactly what to re-drill tomorrow.`},
+ {t:"Weekly Checkpoint",sub:"12–18 questions · one domain · graded",body:
+`You are my strict Microsoft AI-300 examiner. Run a WEEKLY CHECKPOINT.
+
+Domain to test: [DOMAIN — e.g. "Design and implement a GenAIOps infrastructure (20–25%)"]
+Number of questions: [12 / 15 / 18]
+Also fold in [2–3] spaced-repetition callback questions from earlier weeks so I don't forget old material.
+
+Rules:
+- One question at a time. Wait for my answer.
+- Use real AI-300 question formats: multiple choice, multiple-response, a "yes/no for each statement" series, and at least one case-style scenario with a requirement + constraint.
+- Grade each immediately: CORRECT/INCORRECT + the right answer + why each distractor fails.
+- Pitch difficulty at the real exam (700 to pass), not tutorial level.
+
+Final report: score, % by sub-skill, my 2 weakest sub-skills, and a specific 30-minute re-drill plan for those two. Be blunt.`},
+ {t:"Full Mock Exam",sub:"40–50 questions · all domains · weighted & timed",body:
+`You are my Microsoft AI-300 examiner. Run a FULL MOCK under exam conditions.
+
+Questions: [40 for a checkpoint / 50 for a final]. Time budget I'm giving myself: [minutes].
+Weight the questions to the real domain split:
+- Design & implement MLOps infrastructure — 15–20%
+- Implement ML model lifecycle & operations — 25–30%
+- Design & implement GenAIOps infrastructure — 20–25%
+- Implement GenAI quality assurance & observability — 10–15%
+- Optimize GenAI systems & model performance — 10–15%
+
+Rules:
+- One question at a time, numbered (e.g. 12/50). Wait for my answer each time. Do NOT reveal answers until the end (real exam behaviour).
+- Use the full format range: multiple choice, multiple-response, yes/no statement series, drag-and-order (describe it in text), and 2–3 case studies (shared scenario, several questions).
+- Track my answers silently.
+
+At the end, grade everything at once:
+- Overall score out of the count + PASS/FAIL against 700 (scale it).
+- Score per domain vs its weight — flag any domain under 70%.
+- My 5 weakest sub-skills, ranked.
+- A prioritized fix list: what to re-lab, what to re-watch, what to just re-read.
+No encouragement filler. I want the truth so I pass the real thing.`}
+];
+const vEl=document.getElementById("vaultList");
+vEl.innerHTML=PROMPTS.map((p,i)=>`<div class="prompt">
+  <div class="prompt-head"><div class="t">${p.t}<small>${p.sub}</small></div>
+  <button class="copy" data-i="${i}" type="button">COPY</button></div>
+  <pre id="pr${i}">${p.body.replace(/&/g,"&amp;").replace(/</g,"&lt;")}</pre></div>`).join("");
+vEl.addEventListener("click",e=>{
+  const b=e.target.closest(".copy");if(!b)return;
+  const txt=PROMPTS[+b.dataset.i].body;
+  const done=()=>{b.textContent="COPIED ✓";b.classList.add("ok");setTimeout(()=>{b.textContent="COPY";b.classList.remove("ok")},1600);};
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done).catch(()=>fallback(txt,done));}
+  else fallback(txt,done);
+});
+function fallback(txt,cb){const ta=document.createElement("textarea");ta.value=txt;ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();try{document.execCommand("copy")}catch(e){}document.body.removeChild(ta);cb();}
+
+/* ============ THEME ============ */
+const root=document.documentElement;
+document.getElementById("themeBtn").addEventListener("click",()=>{
+  const cur=root.getAttribute("data-theme");
+  const isDark=cur?cur==="dark":matchMedia("(prefers-color-scheme:dark)").matches;
+  root.setAttribute("data-theme",isDark?"light":"dark");
+});
+
+/* ============ RESET ============ */
+document.getElementById("resetBtn").addEventListener("click",()=>{
+  if(confirm("Wipe all 112 days of progress? This can't be undone.")){store={};save();
+    document.querySelectorAll(".day.done").forEach(d=>d.classList.remove("done"));refresh();}
+});
+</script>
