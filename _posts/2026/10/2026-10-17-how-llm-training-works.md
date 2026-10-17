@@ -302,6 +302,7 @@ description: "How LLM training actually works, shown in a real 44-knob transform
 .article-body .enx-verdict-tag.is-wrong { color: var(--x-wrong); background: rgba(255, 138, 122, 0.08); }
 .article-body .enx-verdict-tag.is-right { color: var(--x-calc); background: rgba(98, 217, 163, 0.08); }
 .article-body .enx-try { display: block; margin-top: 4px; color: var(--x-calc); }
+.article-body .enx-sentence.is-small { font-size: clamp(24px, 4.6vw, 32px); margin: 4px 0 14px; }
 .article-body .enx-guide { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--x-line); }
 .article-body .enx-guide-h { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--x-accent); margin-bottom: 10px; }
 .article-body .enx-guide ol { list-style: none; margin: 0 0 14px; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px; }
@@ -364,7 +365,7 @@ So today this blog starts a series. I'm calling it **Weights to Words**: first h
 
 And this one isn't a diagram post. It comes with a real model.
 
-A tiny one. Forty-four trainable numbers, one attention head, three possible answers. It reads "I drink hot" and has to guess the next word. Nothing here is a cartoon of learning. It genuinely makes a guess, genuinely works out which of its numbers to blame for the mistake, and genuinely adjusts them with Adam, the optimizer family the big labs still build on. Each of those steps gets its own lab below, and you train it with a button in Lab 07.
+A tiny one. Forty-four trainable numbers, one attention head, three possible answers. It reads "I drink hot" and has to guess the next word. The 44 break down like this: 6 numbers for the word embeddings, 12 in the attention machines, 17 in a small feed-forward block, and 9 in the answer judges. You'll meet every one of them. Nothing here is a cartoon of learning. It genuinely makes a guess, genuinely works out which of its numbers to blame for the mistake, and genuinely adjusts them with Adam, the optimizer family the big labs still build on. Each of those steps gets its own lab below, and you train it with a button in Lab 07.
 
 Here it is right now, before anyone has taught it anything.
 
@@ -387,6 +388,8 @@ Every number on this page belongs to one of three families, and the colors never
 > Every number in a language model was chosen by a person, set as a knob and turned by training, or calculated by a rule. There is no fourth kind.
 
 That sentence is the whole post. The eight labs below are the proof, one stage at a time. The box above shows how to use them: step through the tabs, tap any colored number, open the drawers when you want the arithmetic.
+
+Two ways to read this. Straight through, skipping the labs: the text stands on its own. Or stop at every lab and poke the numbers. Either way, this model is simplified on purpose, one attention head, one layer, three words, so the bottom of every stage has a note called "What a real LLM does instead." Nothing here pretends to be production scale.
 
 ## The name tags
 
@@ -420,7 +423,7 @@ If you write docs for a living, you already know this shape. Wq is the template.
 
 Here is the famous part. The one with [the paper title](https://arxiv.org/abs/1706.03762) everybody quotes.
 
-"Hot" holds its Q card up against every word's K card, including its own. Each comparison is a multiply-and-add, divided by √2, the square root of the card length, so the scores don't blow up as cards get longer. Softmax, a fixed recipe (raise e to each score, divide by the total), turns the three scores into three shares of one pie. Those shares decide how much of each word's V message gets mixed into hot. Then the original hot is added back on top, so nothing is lost.
+"Hot" holds its Q card up against every word's K card, including its own. Each comparison is a multiply-and-add, divided by √2, the square root of the card length, so the scores don't blow up as cards get longer. Softmax, a fixed recipe (raise e to each score, divide by the total), turns the three scores into three shares of one pie. Those shares decide how much of each word's V message gets mixed into hot. Then the original hot is added back on top, so the original isn't thrown away.
 
 That's attention. A weighted average, with weights the model computes for itself.
 
@@ -464,6 +467,8 @@ Up to here, the model has only guessed. Nobody has graded it.
 
 The answer card finally comes out of the drawer.
 
+One honest word about "wrong" first. Coffee isn't bad English. *I drink hot coffee* is a perfectly good sentence. In training, the target is simply whatever the text actually said next, and this page of text said tea. Across a whole library, both words would earn probability, roughly in proportion to how often each one follows. Wrong here means one thing only: not what this example said.
+
 The book says tea. The model gave tea 22.7 percent. A fixed formula, the negative log of that chance, turns it into one number: 1.4815. That is the loss. If the model had given tea 100 percent, the loss would be zero. The smaller the chance, the steeper it climbs. That's the reason for the log: it punishes confident misses hard. A 50 percent chance costs 0.69. A 1 percent chance costs 4.6.
 
 Then the clever part. Backpropagation walks the whole calculation backward, from the loss through the judges, the workshop, attention, Q, K, V, all the way to the embedding rows, and hands every one of the 44 knobs a gradient: if you turn this knob up a hair, here is how much the mistake changes. It works because each step only needs to know one local fact, how much its output moves when its input moves, and a rule from school calculus, the chain rule, multiplies those local facts together on the way back.
@@ -478,7 +483,7 @@ Most of them you can't. So the lab proves one the hard way. It takes a single Q 
 
 Play with the sandbox in stage 20, the "Prove it" tab. Pick the tea bonus and the curve is steep: that knob matters a lot right now. Pick the Q knob and the curve is nearly flat. Turn it as far as you like. The mistake barely notices.
 
-That's what a gradient really is. Not a mysterious signal. A ranked list of which knobs matter right now, and in which direction.
+That's what a gradient really is. Not a mysterious signal. A measurement, for this one example and these exact knob settings, of how much each knob would move the mistake, and in which direction. Change the example or the settings and the measurement changes too.
 
 ## The coach
 
@@ -486,7 +491,7 @@ Knowing which way to turn a knob is not the same as turning it.
 
 That's the optimizer's job, and this toy uses Adam, from [Kingma and Ba's 2014 paper](https://arxiv.org/abs/1412.6980). It keeps two running memories for every knob, the average gradient and the average squared gradient, and divides one by the square root of the other. Dividing a gradient by its own typical size cancels the size out. What's left is mostly direction.
 
-Here's the one nobody expects. Before training, the tea bonus has a gradient of −0.77. One of the K knobs, Wk[1][0], has a gradient of −0.000146. A shout and a whisper, more than five thousand times apart. Ten rounds later, that whispering K knob has moved 0.43, one of the biggest moves on the whole board. Adam doesn't care how loud a gradient is. It cares whether the gradient keeps pointing the same way.
+Here's the one nobody expects. Before training, the tea bonus has a gradient of −0.77. One of the K knobs, Wk[1][0], has a gradient of −0.000146. A shout and a whisper, more than five thousand times apart. Ten rounds later, that whispering K knob has moved 0.43, one of the biggest moves on the whole board. Adam cares far less about how loud a gradient is than plain gradient descent does. What moves a knob far is a gradient that keeps pointing the same way.
 
 One press of its button is one round: guess, grade the guess, backprop, nudge all 44 knobs.
 
@@ -500,7 +505,7 @@ One round: tea goes from 22.7 to 29.0 percent. Two rounds: 36.9. Five: 73.2. Ten
 
 Then scroll back up the page. Every lab has recalculated. The embedding dots in Lab 01 have drifted. The Q, K and V cards have new values. The judges' knobs have turned. Same sentence, same rules, same arrows. Only the knobs changed, and that changed everything downstream.
 
-That is pretraining, the first and by far the biggest phase of training a language model. All of it. The rest is scale.
+That is the core loop of pretraining, the first and by far the biggest phase of training a language model. Real pretraining runs this same loop with more than just more data. It predicts the next token at every position of every sentence at once, in batches of millions of tokens, through dozens of layers, with a mask so no word can peek at the words after it. Bigger in every direction. Same loop.
 
 ## What ten rounds actually taught it
 
@@ -510,7 +515,15 @@ Now go back to Lab 03 and look at the attention shares again. After ten rounds t
 
 It didn't learn to listen to "drink." It didn't learn that "hot" goes with beverages. It learned to say tea. Every knob got nudged until the right answer fell out for the one sentence it has ever seen. It is a student who memorized the answer key and never opened the textbook, and the training loss cannot tell the difference. That is exactly why real labs grade their models on text the model never trained on.
 
-This is why real training needs an absurd amount of text. [GPT-3](https://arxiv.org/abs/2005.14165) had 175 billion parameters and trained on about 300 billion tokens. Llama 3 trained on over 15 trillion. At that scale, memorizing any one sentence stops paying. The only way to push the loss down everywhere at once is to learn something that generalizes: grammar, facts, the shape of an argument.
+Don't take my word for it. Test it.
+
+<div class="enx-probe" aria-label="Memorization test">
+<p class="enx-fallback">Interactive test: after 10 rounds of training, the model gives tea 99.4% for "I drink hot", but also 98.2% for "hot drink I" and 97.1% for "I I I". Needs JavaScript.</p>
+</div>
+
+After ten rounds, "I I I" gets tea at 97 percent. So does "hot drink I". Before training, every one of them got coffee. The model never read the sentence at all.
+
+This is why real training needs an absurd amount of text. [GPT-3](https://arxiv.org/abs/2005.14165) had 175 billion parameters and trained on about 300 billion tokens. Llama 3 trained on over 15 trillion. Big models still memorize some of what they see: [Carlini and colleagues](https://arxiv.org/abs/2202.07646) found memorization grows with model size and with how often a passage is duplicated in the training data. But no model can memorize its way through fifteen trillion tokens. The cheapest way to push the loss down across all of it is to learn patterns that generalize: grammar, facts, the shape of an argument.
 
 > Same loop. Same three kinds of numbers. Just enough sentences that cheating stops working.
 
@@ -560,4 +573,4 @@ Before you go, make it guess right.
 
 *Press train.*
 
-<script defer src="/js/posts/llm-training-lab.js?v=2"></script>
+<script defer src="/js/posts/llm-training-lab.js?v=3"></script>

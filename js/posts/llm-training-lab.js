@@ -4,7 +4,7 @@
 // Vanilla JS, no globals, no dependencies. Mounts into .enx-hero and .enx-lab[data-lab].
 (() => {
   'use strict';
-  const mounts = document.querySelectorAll('.enx-hero, .enx-lab[data-lab]');
+  const mounts = document.querySelectorAll('.enx-hero, .enx-lab[data-lab], .enx-probe');
   if (!mounts.length) return;
 
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -147,6 +147,7 @@
     loss: ['calc', 'Loss (mistake score)', () => `Calculated. −ln(chance of tea) = −ln(${f(cur.prob[0], 6)}) = ${f(cur.loss, 6)}. The formula itself was chosen by the builder.`],
     grad: ['calc', 'Gradients', () => `Calculated by backpropagation from the current loss. Tea bonus: ${f(cur.grad['bo[0]'], 6)}. Q knob [0][0]: ${f(cur.grad['Wq[0][0]'], 6)}. None of them are random.`],
     adam: ['chosen', 'Optimizer settings', () => 'Chosen by us: step size 0.045, memory factors 0.9 and 0.999, safety constant 0.00000001. These are hyperparameters. The model never touches them.'],
+    probeP: ['calc', 'Chances for this test sentence', () => 'Calculated by running the same 44 knobs on a sentence the model never trained on. Nothing inside the model changed. Only the input did.'],
     probe: ['chosen', 'The wiggle size', () => 'We picked 0.0001 as a measuring distance. It is a ruler, not a weight and not a learning rate.']
   };
   const PKEY = { b1: 'W1', b2: 'W2', bo: 'Wo' };
@@ -584,7 +585,7 @@
   // The hero: the blank re-rolls on a loop while it is on screen and lands on the model's real guess.
   const verdictHTML = (top) => top === 0
     ? `<span class="enx-verdict-tag is-right">Right</span> The book says <b>tea</b>, and so does the model. Nobody typed it. ${rounds(steps)} of training turned the knobs until it fell out.`
-    : `<span class="enx-verdict-tag is-wrong">Wrong</span> The book says <b>tea</b>. ${steps === 0 ? 'This guess comes from 44 knobs set by hand that nobody has trained yet.' : `Still wrong after ${rounds(steps)}. Keep training.`}`;
+    : `<span class="enx-verdict-tag is-wrong">Wrong</span> Wrong for this training example: the text the model is learning from says <b>tea</b>. ${steps === 0 ? 'This guess comes from 44 knobs set by hand that nobody has trained yet.' : `Still wrong after ${rounds(steps)}. Keep training.`}`;
   function heroTop(el) {
     const top = cur.prob.indexOf(Math.max(...cur.prob)), t = el.querySelector('.enx-hero-top');
     if (!t.firstChild) t.innerHTML = `<div class="enx-head"><span class="enx-tagline">The model in this post</span><span class="enx-live-slot"></span></div><div class="enx-sentence"><span>I</span><span>drink</span><span>hot</span><span class="enx-blank"></span></div><p class="enx-verdict" aria-live="polite"></p>`;
@@ -631,10 +632,33 @@
     tween(el, 'hero');
   }
 
+  // The memorization test: same knobs, sentences the model never trained on.
+  const PROBES = [['I drink hot', [0, 1, 2]], ['hot drink I', [2, 1, 0]], ['I I I', [0, 0, 0]], ['hot hot hot', [2, 2, 2]]];
+  let probeAt = 1;
+  function forwardOrder(order) { const P = clone(params); P.E = order.map((i) => params.E[i]); return forward(P); }
+  function renderProbe(el) {
+    shell(el); closePop(el, true);
+    const [label, order] = PROBES[probeAt], r = forwardOrder(order), top = r.prob.indexOf(Math.max(...r.prob));
+    const note = steps === 0
+      ? `Untrained, it says coffee to every one of these, at about the same confidence. It isn't reading the words yet. Train it in Lab 07, then come back and try again.`
+      : probeAt === 0
+        ? `This is the one sentence it practiced: ${options[top]} at ${pct(r.prob[top])}. Now press the other buttons.`
+        : `It never saw "${label}" during training, and it still says ${options[top]}, at ${pct(r.prob[top])}. A model that read the words would hesitate. This one learned what to say, not how to read.`;
+    el._body.innerHTML = `
+      <div class="enx-head"><span class="enx-tagline">Test · Did it learn, or memorize?</span>${live()}</div>
+      <p class="enx-lede">Feed the model sentences it never trained on. Same 44 knobs, different words. Pick one:</p>
+      <div class="enx-tabs" role="group" aria-label="Test sentences">${PROBES.map(([l], k) => `<button type="button" class="enx-tab${k === probeAt ? ' is-on' : ''}" data-probe="${k}" aria-pressed="${k === probeAt}"><span>${k === 0 ? 'trained on' : 'new'}</span>${l}</button>`).join('')}</div>
+      <div class="enx-sentence is-small">${label.split(' ').map((w) => `<span>${w}</span>`).join('')}<span class="enx-blank">${options[top]}</span></div>
+      ${bars(options, r.prob, 'probeP', probeAt === 0 ? 0 : -1)}
+      <p class="enx-note">${note}</p>`;
+    tween(el, 'probe:' + probeAt);
+  }
+
   function renderAll(enterId) {
     ALL = stages();
     for (const id in LABS) renderLab(id, id === enterId);
     document.querySelectorAll('.enx-hero').forEach(renderHero);
+    document.querySelectorAll('.enx-probe').forEach(renderProbe);
   }
 
   // Count-up from the last value each number showed, so changes are visible, not just correct.
@@ -717,6 +741,8 @@
     if (e.target.closest('.enx-pop-x')) { const was = closePop(box); was?.focus({ preventScroll: true }); return; }
     const jump = e.target.closest('[data-jump]');
     if (jump) { const L = LABS[jump.dataset.jump]; L.at = L.idx.length - 1; L.seen.add(L.at); renderLab(jump.dataset.jump, true, kb); goTo(L.el, kb); return; }
+    const pb = e.target.closest('[data-probe]');
+    if (pb) { probeAt = +pb.dataset.probe; renderProbe(box); if (kb) box.querySelector(`[data-probe="${probeAt}"]`)?.focus({ preventScroll: true }); return; }
     const go = e.target.closest('[data-go]'), stepB = e.target.closest('[data-step]'), id = box.dataset.lab;
     if ((go || stepB) && id) {
       const L = LABS[id];
