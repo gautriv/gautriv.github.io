@@ -1,13 +1,13 @@
 ---
 title: "Every Number Has a Parent"
-subtitle: "Part 1 of Weights to Words, a series on how language models are built and run. A real 44-knob transformer you can train in your browser, where every number on the page tells you who made it."
+subtitle: "Part 1 of Weights to Words, a series on how language models are built and run. A working miniature transformer-style model with 44 knobs that you can train in your browser, where every number on the page tells you who made it."
 category: AI
 image: "/assets/how-llm-training-works.png"
 header-img: "/assets/how-llm-training-works.png"
 seo_keywords: "how LLMs are trained, how does LLM training work, LLM training explained, transformer step by step, interactive transformer, what is a parameter in an LLM, what are weights in a neural network, embeddings explained, query key value attention explained, softmax explained, backpropagation explained, Adam optimizer explained, cross entropy loss, train a tiny transformer in browser, AI for technical writers"
 permalink: /how-llm-training-works/
 og_title: "How an LLM Is Trained: Every Number Explained, in a Model You Can Train Yourself"
-og_description: "A real 44-knob transformer that runs in your browser. Follow one sentence through tokens, embeddings, attention, logits, loss, backprop and Adam, then press train and watch every number on the page recalculate."
+og_description: "A working miniature transformer-style model with 44 knobs that runs in your browser. Follow one sentence through tokens, embeddings, attention, logits, loss, backprop and Adam, then press train and watch every number on the page recalculate."
 og_image: "/assets/how-llm-training-works.png"
 twitter_card: "summary_large_image"
 alt_text: "A tiny language model's three guesses for the word after I drink hot, with tea, coffee and pizza bars, and every number color-coded as chosen, trainable or calculated"
@@ -22,7 +22,7 @@ faqs:
     answer: "Because the cheapest way to get one sentence right is to memorize it. In the toy model in this post, ten rounds of training push the chance of the right word above 99 percent while the attention shares barely move. Real models train on hundreds of billions to trillions of tokens, so memorizing any single sentence stops paying off and the only way to lower the loss everywhere is to learn patterns that generalize."
   - question: "Is the model in this post a real neural network?"
     answer: "Yes, a very small one. It has 44 trainable parameters, one attention head, one feed-forward block and three candidate answers. It genuinely runs the forward pass, computes exact gradients with backpropagation, checks one against a finite difference, and updates every weight with Adam. It is simplified on purpose so that every number can be traced, not a claim that production models are this small."
-description: "How LLM training actually works, shown in a real 44-knob transformer you can train in your browser. Tokens, embeddings, Q K V attention, logits, loss, backpropagation and Adam, with every number traced to who made it."
+description: "How LLM training actually works, shown in a working miniature transformer-style model with 44 knobs that you can train in your browser. Tokens, embeddings, Q K V attention, logits, loss, backpropagation and Adam, with every number traced to who made it."
 ---
 
 <style>
@@ -302,6 +302,7 @@ description: "How LLM training actually works, shown in a real 44-knob transform
 .article-body .enx-verdict-tag.is-wrong { color: var(--x-wrong); background: rgba(255, 138, 122, 0.08); }
 .article-body .enx-verdict-tag.is-right { color: var(--x-calc); background: rgba(98, 217, 163, 0.08); }
 .article-body .enx-try { display: block; margin-top: 4px; color: var(--x-calc); }
+.article-body table.enx-compare th, .article-body table.enx-compare td { overflow-wrap: normal; word-break: normal; hyphens: auto; -webkit-hyphens: auto; }
 .article-body .enx-sentence.is-small { font-size: clamp(24px, 4.6vw, 32px); margin: 4px 0 14px; }
 .article-body .enx-guide { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--x-line); }
 .article-body .enx-guide-h { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--x-accent); margin-bottom: 10px; }
@@ -373,7 +374,7 @@ Here it is right now, before anyone has taught it anything.
 <p class="enx-fallback">Interactive model: the untrained network reads "I drink hot" and gives coffee 58.2%, tea 22.7%, pizza 19.1%. Needs JavaScript.</p>
 </div>
 
-It picked coffee. Fifty-eight percent sure. The book says tea.
+It picked coffee: 58 percent of its probability went there. The book says tea.
 
 Why coffee? Because when we set the starting numbers by hand, the coffee judge got a head-start bonus of +0.60 and the tea judge got −0.35. Nothing learned that. We typed it. You'll meet those judges in Lab 05.
 
@@ -475,7 +476,7 @@ Then the clever part. Backpropagation walks the whole calculation backward, from
 
 One gradient you can check on a napkin. For the tea bonus, it is just the chance of tea minus one, a clean shortcut you get from pairing softmax with this log loss. 0.227 minus 1. That's −0.773.
 
-Most of them you can't. So the lab proves one the hard way. It takes a single Q knob, nudges it up by 0.0001 and reruns the entire network, nudges it down and reruns again, and measures the slope directly. Backprop says 0.000194411. The wiggle says 0.000194411. They agree to the twelfth decimal place.
+Most of them you can't. So the lab proves one the hard way. It takes a single Q knob, nudges it up by 0.0001 and reruns the entire network, nudges it down and reruns again, and measures the slope directly. Backprop says 0.00019441093488. The wiggle says 0.00019441093402. They agree to the twelfth decimal place. The gap is about 0.0000000000009, smaller than the error the wiggle itself introduces.
 
 <div class="enx-lab" data-lab="mistake" data-num="06" data-title="How the machine learns">
 <p class="enx-fallback">Interactive lab, stages 18 to 20: cross-entropy loss, backpropagation gradients, and a finite-difference proof that a Q knob's gradient is real, plus a sandbox knob you can turn. Needs JavaScript.</p>
@@ -507,9 +508,28 @@ Then scroll back up the page. Every lab has recalculated. The embedding dots in 
 
 That is the core loop of pretraining, the first and by far the biggest phase of training a language model. Real pretraining runs this same loop with more than just more data. It predicts the next token at every position of every sentence at once, in batches of millions of tokens, through dozens of layers, with a mask so no word can peek at the words after it. Bigger in every direction. Same loop.
 
+Here is everything else that differs, side by side, against a real open model, [Llama 3 8B](https://github.com/meta-llama/llama3/blob/main/MODEL_CARD.md). The toy is a teaching instrument, not a shrunken copy.
+
+| | This toy | Llama 3 8B |
+|---|---|---|
+| Trainable numbers | 44 | about 8 billion |
+| Layers | 1 | 32 |
+| Attention heads | 1 | 32, sharing 8 key/value heads |
+| Numbers per token | 2 | 4,096 |
+| Feed-forward width | 3 | 14,336 |
+| Normalization | none | RMSNorm in every layer |
+| Position | added stickers | RoPE rotations |
+| Causal mask | not needed, it predicts one position | every position, every sequence |
+| Vocabulary | 3 answers | 128,256 tokens |
+| Context | 3 words | 8,192 tokens |
+| Training text | 1 sentence | over 15 trillion tokens |
+{: .enx-compare}
+
+Scaling 44 up to 8 billion is not the only difference. It's the loop that carries over.
+
 ## What ten rounds actually taught it
 
-Ninety-nine percent sure it's tea. Impressive.
+99.4 percent of its probability on tea. Impressive.
 
 Now go back to Lab 03 and look at the attention shares again. After ten rounds they read 33.4, 35.1 and 31.5 percent. Barely moved.
 
@@ -521,11 +541,11 @@ Don't take my word for it. Test it.
 <p class="enx-fallback">Interactive test: after 10 rounds of training, the model gives tea 99.4% for "I drink hot", but also 98.2% for "hot drink I" and 97.1% for "I I I". Needs JavaScript.</p>
 </div>
 
-After ten rounds, "I I I" gets tea at 97 percent. So does "hot drink I". Before training, every one of them got coffee. The model never read the sentence at all.
+After ten rounds, "I I I" gets tea at 97 percent. "hot drink I" gets 98. Before training, every one of them got coffee. The model did process those words. Its answer just barely depends on them. It learned to favor tea, not the link between drinking, heat, and tea, and a low training loss could never have told you the difference.
 
-This is why real training needs an absurd amount of text. [GPT-3](https://arxiv.org/abs/2005.14165) had 175 billion parameters and trained on about 300 billion tokens. Llama 3 trained on over 15 trillion. Big models still memorize some of what they see: [Carlini and colleagues](https://arxiv.org/abs/2202.07646) found memorization grows with model size and with how often a passage is duplicated in the training data. But no model can memorize its way through fifteen trillion tokens. The cheapest way to push the loss down across all of it is to learn patterns that generalize: grammar, facts, the shape of an argument.
+This is why real training needs an absurd amount of text. [GPT-3](https://arxiv.org/abs/2005.14165) had 175 billion parameters and trained on about 300 billion tokens. Llama 3 trained on over 15 trillion. Big models still memorize some of what they see: [Carlini and colleagues](https://arxiv.org/abs/2202.07646) found memorization grows with model size and with how often a passage is duplicated in the training data. But across fifteen trillion varied tokens, memorizing stops being the cheap way down. Learning patterns that generalize, grammar, facts, the shape of an argument, lowers the loss on far more text at once. Both happen in the same model, at the same time.
 
-> Same loop. Same three kinds of numbers. Just enough sentences that cheating stops working.
+> Same loop. Same three kinds of numbers. Enough sentences that memorizing stops being the cheap way out.
 
 Here's why I think this matters for anyone who writes documentation.
 
@@ -573,4 +593,4 @@ Before you go, make it guess right.
 
 *Press train.*
 
-<script defer src="/js/posts/llm-training-lab.js?v=3"></script>
+<script defer src="/js/posts/llm-training-lab.js?v=4"></script>

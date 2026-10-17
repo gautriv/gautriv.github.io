@@ -442,7 +442,7 @@
           ['Is the biggest slice guaranteed correct?', 'No. A probability is a prediction, not a proof. Early in training the right word is often a small slice.'],
           ['What happens with the probabilities?', 'In training we check how much chance went to the real next token. In generation, a decoder picks the top token or samples from an adjusted distribution.'],
           ['Does softmax have knobs?', 'No. It transforms scores; the scores depend on trained weights.']],
-        vis: () => bars(options, t.prob, 'prob', 0) + note(steps === 0 ? 'Untrained. It thinks coffee. Nothing is broken. Nobody has told it anything yet.' : `After ${steps} rounds of training. These bars recalculate every time the knobs move.`),
+        vis: () => bars(options, t.prob, 'prob', 0) + note(steps === 0 ? 'Untrained. Its top pick is coffee. Nothing is broken. Nobody has told it anything yet.' : `After ${steps} rounds of training. These bars recalculate every time the knobs move.`),
         work: () => options.map((o, i) => m(`e^score for ${o}`, `e ^ (${f(t.logits[i], 5)})`, f(Math.exp(t.logits[i]), 4))).join('') + m('Add them', t.logits.map((x) => f(Math.exp(x), 4)).join(' + '), f(sumE(t.logits), 5)) + options.map((o, i) => m(`Chance of ${o}`, `${f(Math.exp(t.logits[i]), 4)} ÷ ${f(sumE(t.logits), 5)}`, pct(t.prob[i]))).join(''),
         real: 'At generation time, systems apply temperature or sampling rules before picking a token, then feed that token back in and run everything again for the next one.' },
 
@@ -471,7 +471,7 @@
         work: () => m('Tea bonus gradient', `${f(t.prob[0], 6)} − 1`, f(t.grad['bo[0]'], 6)) + m('Coffee bonus gradient', `chance of coffee = ${f(t.prob[1], 6)}`, f(t.grad['bo[1]'], 6)) + m('Pizza bonus gradient', `chance of pizza = ${f(t.prob[2], 6)}`, f(t.grad['bo[2]'], 6)) + m('Tea knob 1 gradient', `(${f(t.prob[0], 6)} − 1) × final box 1 (${f(t.hidden[0], 6)})`, f(t.grad['Wo[0][0]'], 6)) + m('W2 row 1, knob 1', '(gradient at final box 1) × bent value 1', f(t.grad['W2[0][0]'], 6)) + m('Q knob Wq[0][0]', 'chain rule all the way back, checked in the next stage', f(t.grad['Wq[0][0]'], 7)),
         real: 'Automatic differentiation runs this backward pass efficiently through computation graphs with billions of operations. Real training aggregates gradients over large batches and often clips them.' },
       { lab: 'mistake', s: 'Prove it', t: 'Can we prove a Q gradient is real?', lede: 'Wiggle one stored Q knob, rerun the whole network, and measure the change ourselves.',
-        carry: `Backprop says Wq[0][0] has gradient ${n(t.grad['Wq[0][0]'], 'grad', 7)}.`, src: `Two trial runs: the knob + ${n(0.0001, 'probe', 4)} and − ${n(0.0001, 'probe', 4)}, each a full forward pass.`, out: `Measured slope ${n(finiteDiff('Wq[0][0]').slope, 'grad', 7)}. Backprop: ${n(t.grad['Wq[0][0]'], 'grad', 7)}.`,
+        carry: `Backprop says Wq[0][0] has gradient ${n(t.grad['Wq[0][0]'], 'grad', 7)}.`, src: `Two trial runs: the knob + ${n(0.0001, 'probe', 4)} and − ${n(0.0001, 'probe', 4)}, each a full forward pass.`, out: `Measured slope ${n(finiteDiff('Wq[0][0]').slope, 'grad', 14)}. Backprop: ${n(t.grad['Wq[0][0]'], 'grad', 14)}. Gap: ${Math.abs(finiteDiff('Wq[0][0]').slope - t.grad['Wq[0][0]']).toExponential(2)}.`,
         kid: 'Move one screw a hair to the right and look at the mistake meter. Then a hair to the left. Backprop gets the same answer without trying every screw one by one.',
         qa: [['Who chose 0.0001?', 'We did. It is a measuring distance, not a trained weight and not a learning rate.'],
           ['Where do the two trial losses come from?', 'We change only that one Q knob, rerun embeddings → Q/K/V → attention → judges → loss, record it, and put the knob back. Real network calculations.'],
@@ -479,7 +479,7 @@
           ['Why not do this for every knob?', 'With billions of weights, two extra full runs per weight would take forever. Backprop gets every gradient in one backward sweep.'],
           ['Why are they only almost equal?', 'The wiggle uses a finite step and rounding. Backprop computes the exact slope directly, within floating-point precision.']],
         vis: () => { const d = finiteDiff('Wq[0][0]'); return row(chip('knob − 0.0001', `${n(d.minus, 'loss', 7)} loss`), chip('Wq[0][0] now', n(params.Wq[0][0], 'Wq', 5)), chip('knob + 0.0001', `${n(d.plus, 'loss', 7)} loss`)) + note('That Q knob is nearly flat. Turning it barely moves the mistake. Now turn one yourself:') + knobLab(); },
-        work: () => { const d = finiteDiff('Wq[0][0]'); return m('Trial A: turn it right', `${f(params.Wq[0][0], 7)} + 0.0001 → rerun everything`, f(d.plus, 7) + ' loss') + m('Trial B: turn it left', `${f(params.Wq[0][0], 7)} − 0.0001 → rerun everything`, f(d.minus, 7) + ' loss') + m('Measured slope', `(${f(d.plus, 7)} − ${f(d.minus, 7)}) ÷ 0.0002`, f(d.slope, 7)) + m('Backprop slope', 'chain rule through the same operations', f(t.grad['Wq[0][0]'], 7)); },
+        work: () => { const d = finiteDiff('Wq[0][0]'); return m('Trial A: turn it right', `${f(params.Wq[0][0], 7)} + 0.0001 → rerun everything`, f(d.plus, 7) + ' loss') + m('Trial B: turn it left', `${f(params.Wq[0][0], 7)} − 0.0001 → rerun everything`, f(d.minus, 7) + ' loss') + m('Measured slope', `(${f(d.plus, 10)} − ${f(d.minus, 10)}) ÷ 0.0002`, f(d.slope, 14)) + m('Backprop slope', 'chain rule through the same operations', f(t.grad['Wq[0][0]'], 14)) + m('Gap between the two', '|measured − backprop|', Math.abs(d.slope - t.grad['Wq[0][0]']).toExponential(2)); },
         real: 'Finite differences are a standard way to check gradients on small models. Real training uses automatic differentiation because rerunning a giant network twice per parameter is impossible.' },
 
       /* ---- coach ---- */
@@ -643,7 +643,7 @@
       ? `Untrained, it says coffee to every one of these, at about the same confidence. It isn't reading the words yet. Train it in Lab 07, then come back and try again.`
       : probeAt === 0
         ? `This is the one sentence it practiced: ${options[top]} at ${pct(r.prob[top])}. Now press the other buttons.`
-        : `It never saw "${label}" during training, and it still says ${options[top]}, at ${pct(r.prob[top])}. A model that read the words would hesitate. This one learned what to say, not how to read.`;
+        : `It never saw "${label}" during training, and it still says ${options[top]}, at ${pct(r.prob[top])}. It did process those words. Its answer just barely depends on them: it learned to favor tea, not the link between drinking, heat, and tea.`;
     el._body.innerHTML = `
       <div class="enx-head"><span class="enx-tagline">Test · Did it learn, or memorize?</span>${live()}</div>
       <p class="enx-lede">Feed the model sentences it never trained on. Same 44 knobs, different words. Pick one:</p>

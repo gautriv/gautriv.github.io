@@ -602,6 +602,16 @@
   gap: 6px;
 }
 
+.ai-panel .ai-soon {
+  margin-left: auto;
+  padding: 2px 8px;
+  border: 1px solid var(--line-2);
+  border-radius: var(--radius-pill);
+  color: var(--text-3);
+  font-size: 10px;
+  letter-spacing: var(--track-caption);
+}
+
 .ai-panel .panel-h::before {
   content: "";
   width: 6px;
