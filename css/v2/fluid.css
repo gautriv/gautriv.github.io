@@ -290,12 +290,13 @@ html.fluid .nav-alert-dropdown[aria-hidden="false"] { transform: none; }
 @keyframes progress-grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 
 /* Header arrives in reading order. */
-.article-head .pre-tags, .article-head h1, .article-head .dek, .article-head .article-bar {
+.article-head .pre-tags, .article-head h1, .article-head .dek, .article-head .article-bar, .article-head .corrections {
   animation: rise var(--spring-slow) var(--ease-spring) both;
 }
 .article-head h1          { animation-delay: 50ms; }
 .article-head .dek        { animation-delay: 130ms; }
 .article-head .article-bar { animation-delay: 200ms; }
+.article-head .corrections { animation-delay: 260ms; }
 
 /* TOC: one marker slides between entries (toc.js); entries keep only their colour. */
 .toc li.active { background: none; border-left-color: var(--line); }
@@ -346,7 +347,7 @@ html.fluid .nav-alert-dropdown[aria-hidden="false"] { transform: none; }
 /* ------------------------------------------------------------------ */
 @media (prefers-reduced-motion: reduce) {
   .hero h1 .w, .hero-eyebrow, .hero p, .hero-stats,
-  .article-head .pre-tags, .article-head h1, .article-head .dek, .article-head .article-bar,
+  .article-head .pre-tags, .article-head h1, .article-head .dek, .article-head .article-bar, .article-head .corrections,
   .feed-main .row, .related .rel-card,
   .article-body blockquote, .article-body h2::before {
     animation: none !important;

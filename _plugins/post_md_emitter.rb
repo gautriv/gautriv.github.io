@@ -26,7 +26,13 @@ module Jekyll
         ''
       ].join("\n")
 
-      content = front + "\n# #{post.data['title']}\n\n" + body
+      # Mirror the dated correction notes (_includes/v2/corrections.html), newest first.
+      corrections = Array(post.data['corrections']).sort_by { |c| c['date'].to_s }.reverse.map do |c|
+        "> **Correction #{c['date'].to_s[0, 10]}:** #{c['note'].to_s.gsub(/\s*\n\s*/, ' ').strip}"
+      end
+      notes = corrections.empty? ? '' : corrections.join("\n>\n") + "\n\n"
+
+      content = front + "\n# #{post.data['title']}\n\n" + notes + body
 
       # /taking-yourself-out-of-the-equation/ -> /taking-yourself-out-of-the-equation.md
       rel_path = post.url.sub(%r{/\z}, '') + '.md'

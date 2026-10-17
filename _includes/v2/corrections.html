@@ -1,0 +1,19 @@
+{%- comment -%}
+  Dated correction notes, newest first. Front matter:
+    corrections:
+      - date: 2026-10-20
+        note: "Said X. It is Y. Fixed, with a link to the source."
+  `note` is markdown. Also bump `last_modified_at` so dateModified moves.
+{%- endcomment -%}
+{%- if page.corrections and page.corrections.size > 0 -%}
+{%- assign corrections = page.corrections | sort: "date" | reverse -%}
+<aside class="corrections" aria-label="Corrections">
+  {%- for c in corrections %}
+  <div class="correction">
+    <p class="correction-label">Correction <time datetime="{{ c.date | date_to_xmlschema }}">{{ c.date | date: "%Y-%m-%d" }}</time></p>
+    <div class="correction-note">{{ c.note | markdownify }}</div>
+  </div>
+  {%- endfor %}
+  <p class="correction-policy"><a href="{{ '/how-i-write/' | relative_url }}">How I handle mistakes</a></p>
+</aside>
+{%- endif -%}

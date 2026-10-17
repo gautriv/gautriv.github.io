@@ -108,6 +108,47 @@
   }
 }
 
+/* Dated correction notes (_includes/v2/corrections.html). */
+.corrections {
+  margin-top: 20px;
+  max-width: 72ch;
+  padding: 16px 20px;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--signal);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--signal) 5%, transparent);
+}
+
+.correction + .correction {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+
+.correction-label,
+.correction-policy {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.correction-label time { color: var(--text); margin-left: 8px; }
+
+.correction-note {
+  margin-top: 6px;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--text-2);
+}
+
+.correction-note p { margin: 0; }
+.correction-note a,
+.correction-policy a { color: var(--accent); }
+
+.correction-policy { margin-top: 12px; }
+
 /* 3-col layout */
 .layout {
   max-width: 1400px;

@@ -29,7 +29,7 @@ The argument is mine. The shape is mine. The polish, the rhythm, the structural 
 
 ### What stays mine
 
-The hook. Always. If the opening lines came from a model, the essay isn't mine.
+The hook. Always. I write the opening myself. AI can attack it. It doesn't get to write it.
 
 The thesis. The reason the essay exists at all. The thing I'm willing to take heat for in the comments.
 
@@ -53,17 +53,17 @@ Sometimes it's painfully right.
 
 A model can make a wrong sentence sound finished. So the technical claims go through a separate pass.
 
-**Primary sources, not summaries.** A claim about a paper traces to the paper. A claim about a tool traces to its repo, its docs, its changelog. If I can't find where something came from, it doesn't ship.
+**Primary sources, not summaries.** A claim about a paper traces to the paper. A claim about a tool traces to its repo, its docs, its changelog. If I can't trace something, I cut it or label it as my own read.
 
-**If it can run, I run it.** Commands, configs, API calls get executed before they get explained.
+**If it can run, I run it.** Commands, configs, API calls get executed before they get explained. When I can't run something, say against a service I don't have access to, the post says so.
 
-**The demos prove themselves.** The model in [how LLM training works](/how-llm-training-works/) is a real one, 44 knobs, small enough to trace. It checks one of its own gradients the slow way, nudging a single knob and rerunning the whole network, and the two answers agree to the twelfth decimal place. Then it hands you a test so you can catch it memorizing instead of learning. You don't have to trust me. Press the button.
+**The demos are built to be tested.** The model in [how LLM training works](/how-llm-training-works/) is a real one, 44 knobs, small enough to inspect. Backprop hands one of its Q knobs a gradient. Then the page measures that same gradient the slow way: nudge the knob up, rerun the whole network, nudge it down, rerun again, and take the slope. It shows you both numbers and the gap between them, live. At the starting settings, the gap is under a trillionth. That's one gradient out of 44, not proof the whole model is right. But it's a check you can watch, not a claim you have to take. The same post hands you a test that catches the model memorizing instead of learning. Press the button.
 
-**The draft gets attacked before you see it.** I ask Claude and Gemini to tear the argument apart, not polish it. On that same LLM post, the attack found five places where I'd claimed more than the evidence allowed. I had written that after the core training loop, *the rest is scale.* It isn't. I had implied that big models stop memorizing. They don't, and now the post cites the research that shows it. Each overclaim got narrowed, cited, or cut.
+**The draft gets attacked before you see it.** I ask Claude and Gemini to tear the argument apart, not polish it. Two models can share the same blind spot, so this pass finds the weak claims. The sources and the running code decide them. On that same LLM post, the attack found five places where I'd claimed more than the evidence allowed. I had written that after the core training loop, *the rest is scale.* It isn't. I had implied that big models stop memorizing. They don't, and now the post cites the research that shows it. Each overclaim got narrowed, cited, or cut.
 
-**When I'm wrong, I say so.** If you show me a mistake, I fix the post and note what changed. Quietly editing it away would be worse than the mistake.
+**When I'm wrong, I say so.** If you show me a mistake, I fix the post and add a dated note saying what changed. Quietly editing it away would be worse than the mistake.
 
-> Polish makes a claim sound true. Only checking makes it true.
+> Polish makes a claim sound true. Evidence decides whether it is.
 
 ### Why this disclosure exists
 
@@ -73,7 +73,7 @@ I've written essays on this site about [AI replacing technical writers](/modern-
 
 > The argument is mine. The polish isn't entirely. You are reading the loop, not its absence.
 
-If a specific essay used AI more heavily, less heavily, or not at all, the inline confession in that essay will say so. This page is the default.
+If a specific essay used AI more heavily, less heavily, or not at all, a note in that essay will say so. This page is the default.
 
 ### What I will not pretend
 
@@ -83,8 +83,8 @@ I will not pretend a model's confidence counts as evidence. It doesn't, for me o
 
 I will not pretend AI use is a moral failing that requires apology. The craft has always borrowed. Editors. Copy-editors. Beta readers. Writing groups. Claude is the latest member of that lineage. It happens to be available at 2 a.m.
 
-I will not pretend the loop produces lower quality. It raises the bar I'm willing to ship at.
+The loop doesn't guarantee better writing. It raises the bar I'm willing to ship at.
 
-I will not pretend any of this is settled. Two years from now this page may read as quaint. I'll rewrite it then.
+None of this is settled. Two years from now this page may read as quaint. I'll rewrite it then.
 
 It won't be the first thing on this site I rewrote eleven times.
