@@ -1,0 +1,375 @@
+/* fluid.css — the motion, material, and press layer over Studio.
+   Principles (Apple, Designing Fluid Interfaces): respond on press, move on springs,
+   start from what's on screen, enter and exit along the same path, and give every
+   effect a quieter equivalent for reduced motion / transparency / high contrast.
+   Gesture-driven motion lives in js/v2/spring.js; this file is the CSS half. */
+
+/* ------------------------------------------------------------------ */
+/* Typography craft: balanced headlines, no orphan words in prose      */
+/* ------------------------------------------------------------------ */
+.hero h1, .pinned h2, .row-body h3, .article-head h1,
+.article-body h2, .article-body h3, .newsletter-copy h2, .rel-card h5 {
+  text-wrap: balance;
+  font-optical-sizing: auto;
+}
+.article-body p, .article-head .dek, .hero p, .pinned .dek { text-wrap: pretty; }
+.article-head h1 { letter-spacing: var(--track-title); line-height: var(--lead-title); }
+.pinned h2 { letter-spacing: var(--track-title); }
+.row-body h3 { letter-spacing: var(--track-heading); }
+[data-count] { display: inline-block; font-variant-numeric: tabular-nums; }
+
+/* ------------------------------------------------------------------ */
+/* Material chrome: translucent, and it only separates when it must    */
+/* ------------------------------------------------------------------ */
+.site-top {
+  background: var(--material-chrome);
+  backdrop-filter: var(--material-blur);
+  -webkit-backdrop-filter: var(--material-blur);
+  border-bottom-color: transparent;
+  box-shadow: inset 0 -1px 0 transparent;
+  transition: box-shadow var(--spring-smooth) var(--ease-spring),
+              background-color var(--spring-smooth) var(--ease-spring);
+}
+/* Scroll edge effect: a hairline plus a soft falloff, instead of a permanent border. */
+.site-top::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; top: 100%;
+  height: 24px;
+  pointer-events: none;
+  background: linear-gradient(to bottom, color-mix(in srgb, var(--bg) 55%, transparent), transparent);
+  opacity: 0;
+  transition: opacity var(--spring-smooth) var(--ease-spring);
+}
+.site-top.is-scrolled { box-shadow: inset 0 -1px 0 var(--material-edge); }
+.site-top.is-scrolled::after { opacity: 1; }
+
+/* ------------------------------------------------------------------ */
+/* Press feedback: in on pointer-down, instantly; out on a spring      */
+/* ------------------------------------------------------------------ */
+.btn-primary, .search-trigger, .pinned-cta, .pagination a, .chip, .site-nav a,
+.focus-toggle, .focus-exit, .newsletter-submit, .btn-nav-alert, .btn-alert-primary,
+.nav-burger, .tag-list a, .share a, .share button, .rel-card, .row {
+  --press: var(--spring-snappy) var(--ease-spring);
+  transition: scale var(--press),
+              color var(--t-fast), background-color var(--t-fast), border-color var(--t-fast),
+              opacity var(--t-fast), box-shadow var(--t-fast);
+}
+/* These two nudge on hover with a transform; nothing else here owns transform. */
+.pinned-cta, .btn-alert-primary {
+  transition: scale var(--press), color var(--t-fast), background-color var(--t-fast),
+              box-shadow var(--t-fast), transform var(--spring-snappy) var(--ease-spring);
+}
+/* The lead card's transform belongs to the tilt spring, so only scale/shadow transition. */
+.pinned {
+  --press: var(--spring-snappy) var(--ease-spring);
+  transition: scale var(--press), box-shadow var(--spring-smooth) var(--ease-spring), border-color var(--t-fast);
+}
+.btn-primary:active, .search-trigger:active, .pinned-cta:active, .pagination a:active,
+.chip:active, .site-nav a:active, .focus-toggle:active, .focus-exit:active,
+.newsletter-submit:active, .btn-nav-alert:active, .btn-alert-primary:active,
+.nav-burger:active, .tag-list a:active, .share a:active, .share button:active {
+  --press: var(--t-press);
+  scale: 0.96;
+}
+/* Big surfaces barely move: a card that shrinks 4% reads as broken, 1% reads as pressed. */
+.rel-card:active, .row:active { --press: var(--t-press); scale: 0.992; }
+.pinned:active { --press: var(--t-press); scale: 0.996; }
+
+/* ------------------------------------------------------------------ */
+/* Mobile drawer: a frosted sheet driven by nav.js                     */
+/* ------------------------------------------------------------------ */
+.nav-burger[aria-expanded] span {
+  transition: transform var(--spring-snappy) var(--ease-spring), opacity 150ms;
+}
+@media (max-width: 900px) {
+  html.fluid .site-nav {
+    transition: none; /* the spring owns transform here */
+    will-change: transform;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: var(--material-blur-thick);
+    -webkit-backdrop-filter: var(--material-blur-thick);
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  html.fluid .site-nav a {
+    font-size: 30px;
+    letter-spacing: var(--track-title);
+    padding: 16px 4px;
+    will-change: transform, opacity;
+    transition: scale var(--press), color var(--t-fast); /* transform + opacity belong to nav.js */
+  }
+  /* A grabber says "this moves" before anyone tries. */
+  html.fluid .site-nav::after {
+    content: "";
+    position: absolute;
+    left: 50%; bottom: 18px;
+    width: 40px; height: 5px;
+    margin-left: -20px;
+    border-radius: 3px;
+    background: var(--line-2);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Search palette: materializes, scale anchored to its trigger         */
+/* ------------------------------------------------------------------ */
+html.fluid .search-overlay { opacity: 0; }
+html.fluid .search-panel { will-change: transform, opacity, filter; }
+.search-panel {
+  box-shadow: inset 0 1px 0 var(--material-edge),
+              0 40px 80px -24px rgba(0, 0, 0, 0.55),
+              0 0 0 1px color-mix(in srgb, var(--accent) 10%, transparent);
+}
+.search-results a { position: relative; }
+.search-results a:focus-visible {
+  outline: none;
+  background: color-mix(in srgb, var(--accent) 12%, var(--bg-3));
+  color: var(--text);
+}
+.search-results a:focus-visible::before {
+  content: "";
+  position: absolute;
+  left: 4px; top: 10px; bottom: 10px;
+  width: 2px;
+  border-radius: 2px;
+  background: var(--accent);
+}
+.search-results .no-results {
+  padding: 18px 14px;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text-3);
+}
+
+/* Briefing dropdown grows out of its button (top-right), not out of nowhere. */
+html.fluid .nav-alert-dropdown {
+  transform-origin: calc(100% - 40px) 0;
+  transform: translateY(-4px) scale(0.94);
+  transition: opacity 180ms ease, visibility 180ms,
+              transform var(--spring-snappy) var(--ease-spring);
+}
+html.fluid .nav-alert-dropdown[aria-hidden="false"] { transform: none; }
+
+/* ------------------------------------------------------------------ */
+/* Homepage                                                            */
+/* ------------------------------------------------------------------ */
+
+/* Headline: words rise and resolve out of a blur, one beat apart. */
+.hero h1 .w {
+  display: inline-block;
+  animation: word-rise var(--spring-slow) var(--ease-spring) both;
+  animation-delay: calc(var(--i) * 42ms + 60ms);
+}
+@keyframes word-rise {
+  from { opacity: 0; transform: translateY(0.38em); filter: blur(10px); }
+  to   { opacity: 1; transform: none; filter: blur(0); }
+}
+.hero-eyebrow, .hero p, .hero-stats {
+  animation: rise var(--spring-slow) var(--ease-spring) both;
+}
+.hero-eyebrow { animation-delay: 0ms; }
+.hero p       { animation-delay: 420ms; }
+.hero-stats   { animation-delay: 520ms; }
+@keyframes rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@media (max-width: 700px) {
+  .hero-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 16px; }
+}
+
+/* Cursor lens: brighter grid lines + glow, registered to the page grid by home-fluid.js. */
+.cursor-lens {
+  position: fixed;
+  top: 0; left: 0;
+  width: 520px; height: 520px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  background-image:
+    linear-gradient(to right, color-mix(in srgb, var(--accent) 34%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--accent) 34%, transparent) 1px, transparent 1px),
+    radial-gradient(circle at 50% 50%, var(--accent-glow), transparent 62%);
+  background-size: 48px 48px, 48px 48px, 100% 100%;
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, #000 0%, transparent 68%);
+          mask-image: radial-gradient(circle at 50% 50%, #000 0%, transparent 68%);
+  will-change: transform, opacity;
+  transition: visibility 0s;
+}
+.cursor-lens[data-hidden="true"] { visibility: hidden; }
+@media (hover: none), (pointer: coarse) { .cursor-lens { display: none; } }
+
+/* Lead card: depth layers for the tilt, and a glare that follows the light source. */
+.pinned { animation: none; transform-style: preserve-3d; will-change: transform; }
+.pinned:hover { box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.5), 0 0 0 1px var(--line-2); }
+.pinned-art > * { will-change: transform; }
+.pinned-art::before { content: none; } /* grid moves to its own layer so it can parallax */
+.pinned-art-grid {
+  position: absolute;
+  inset: -24px;
+  background-image:
+    linear-gradient(to right, rgba(91, 141, 239, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(91, 141, 239, 0.07) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+.pinned-art-title {
+  position: absolute;
+  left: 32px; right: 104px; top: 50%;
+  translate: 0 -50%;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(36px, 3.9vw, 58px);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  color: rgba(237, 237, 240, 0.9);
+  text-wrap: balance;
+  text-shadow: 0 2px 40px rgba(91, 141, 239, 0.35);
+}
+.pinned-art-text { color: rgba(237, 237, 240, 0.05); font-size: 220px; bottom: -40px; left: auto; right: 24px; }
+.pinned-art-glare {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(420px circle at var(--gx, 70%) var(--gy, 20%), rgba(255, 255, 255, 0.09), transparent 45%);
+  opacity: 0;
+  transition: opacity var(--spring-smooth) var(--ease-spring);
+}
+.pinned:hover .pinned-art-glare { opacity: 1; }
+@media (max-width: 700px) {
+  .pinned-art-title { left: 20px; right: 20px; font-size: 38px; }
+  .pinned-art-text { font-size: 140px; }
+}
+
+/* Rows: the whole row is the target, lit by a soft spotlight under the pointer. */
+.row { position: relative; cursor: pointer; animation: none; isolation: isolate; }
+.row::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: radial-gradient(360px circle at var(--mx, 50%) var(--my, 50%),
+              color-mix(in srgb, var(--accent) 9%, transparent), transparent 70%);
+  opacity: 0;
+  transition: opacity var(--spring-smooth) var(--ease-spring);
+}
+.row:hover::before { opacity: 1; }
+.row-arrow { transition: transform var(--spring-snappy) var(--ease-spring), color var(--t-fast); display: inline-block; }
+
+/* Scroll-driven reveal. No support = content simply present. */
+@supports (animation-timeline: view()) {
+  /* Not .pinned: an animated transform would override the tilt's inline transform. */
+  .feed-main .row, .related .rel-card {
+    animation: scroll-rise linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 55%;
+  }
+}
+@keyframes scroll-rise {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ------------------------------------------------------------------ */
+/* Post page                                                           */
+/* ------------------------------------------------------------------ */
+
+/* Progress: scaleX on the compositor. Scroll-driven where supported, JS elsewhere. */
+.reading-progress {
+  width: 100%;
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  transition: none;
+}
+@supports (animation-timeline: scroll()) {
+  .reading-progress { animation: progress-grow linear both; animation-timeline: scroll(root); }
+}
+@keyframes progress-grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+/* Header arrives in reading order. */
+.article-head .pre-tags, .article-head h1, .article-head .dek, .article-head .article-bar {
+  animation: rise var(--spring-slow) var(--ease-spring) both;
+}
+.article-head h1          { animation-delay: 50ms; }
+.article-head .dek        { animation-delay: 130ms; }
+.article-head .article-bar { animation-delay: 200ms; }
+
+/* TOC: one marker slides between entries (toc.js); entries keep only their colour. */
+.toc li.active { background: none; border-left-color: var(--line); }
+.toc li a { display: block; transition: color var(--t-fast), transform var(--spring-snappy) var(--ease-spring); }
+.toc li:hover a { transform: translateX(2px); }
+.toc-marker {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 1px;
+  transform-origin: 0 0;
+  pointer-events: none;
+  border-left: 2px solid var(--accent);
+  background: linear-gradient(to right, color-mix(in srgb, var(--accent) 10%, transparent), transparent 70%);
+  will-change: transform;
+}
+
+/* Blockquotes and section markers settle in as they enter. */
+@supports (animation-timeline: view()) {
+  .article-body blockquote {
+    animation: quote-in linear both;
+    animation-timeline: view();
+    animation-range: entry 5% cover 28%;
+  }
+  .article-body h2::before {
+    animation: marker-in linear both;
+    animation-timeline: view();
+    animation-range: entry 10% cover 25%;
+  }
+}
+@keyframes quote-in {
+  from { opacity: 0.2; transform: translateY(20px); border-left-color: var(--line); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes marker-in {
+  from { opacity: 0; transform: translateX(-10px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* Focus mode morph (focus.js starts the View Transition). */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: var(--spring-smooth);
+  animation-timing-function: var(--ease-spring);
+}
+
+/* ------------------------------------------------------------------ */
+/* Accessibility: quieter equivalents, not absences                    */
+/* ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  .hero h1 .w, .hero-eyebrow, .hero p, .hero-stats,
+  .article-head .pre-tags, .article-head h1, .article-head .dek, .article-head .article-bar,
+  .feed-main .row, .related .rel-card,
+  .article-body blockquote, .article-body h2::before {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+  .cursor-lens { display: none; }
+  * { scale: none !important; }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .site-top, html.fluid .site-nav, .search-overlay {
+    background: var(--bg);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+  .site-top::after { display: none; }
+}
+
+@media (prefers-contrast: more) {
+  .site-top { background: var(--bg); backdrop-filter: none; -webkit-backdrop-filter: none; }
+  .site-top, .site-top.is-scrolled { box-shadow: inset 0 -1px 0 var(--text-3); }
+  .search-panel, .pinned, .panel { border-color: var(--text-3); }
+  .row::before, .cursor-lens, .pinned-art-glare { display: none; }
+}

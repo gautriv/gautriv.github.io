@@ -33,6 +33,35 @@
   /* Motion */
   --t-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
   --t-med:  250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Springs, sampled from Apple's damping-ratio + response model
+     (shape is response-independent, so the
+     duration below IS the response choice: settle = 1.47 x response).
+     --ease-spring:        damping 1.0, no overshoot. The house default.
+     --ease-spring-bounce: damping 0.8. Only where momentum preceded it. */
+  --ease-spring: linear(0, 0.0241, 0.0804, 0.1558, 0.2394, 0.3236, 0.4063, 0.4837, 0.5537, 0.6174, 0.6739, 0.7228, 0.7659, 0.803, 0.8344, 0.8615, 0.8845, 0.9036, 0.92, 0.9337, 0.9451, 0.9546, 0.9625, 0.9692, 0.9746, 0.9791, 0.9829, 0.9859, 0.9885, 0.9906, 0.9923, 0.9937, 0.9948, 0.9958, 0.9966, 0.9972, 0.9977, 0.9981, 0.9985, 0.9988, 1);
+  --ease-spring-bounce: linear(0, 0.0207, 0.0731, 0.145, 0.2284, 0.3181, 0.4069, 0.4925, 0.5738, 0.6469, 0.7132, 0.7706, 0.8201, 0.8628, 0.8979, 0.9268, 0.9505, 0.9689, 0.9833, 0.9943, 1.0022, 1.0078, 1.0115, 1.0137, 1.0147, 1.0149, 1.0145, 1.0136, 1.0125, 1.0112, 1.0099, 1.0086, 1.0073, 1.0061, 1.005, 1.0041, 1.0032, 1.0025, 1.0019, 1.0014, 1);
+  --spring-snappy: 440ms;   /* response 0.3 */
+  --spring-smooth: 590ms;   /* response 0.4 */
+  --spring-slow:   880ms;   /* response 0.6 */
+  --t-press: 100ms ease-out; /* press-in is instant; release uses a spring */
+
+  /* Materials: translucent chrome. Heavier = structural, lighter = interactive. */
+  --material-chrome: color-mix(in srgb, var(--bg) 68%, transparent);
+  --material-thick:  color-mix(in srgb, var(--bg-2) 84%, transparent);
+  --material-blur:   blur(20px) saturate(180%);
+  --material-blur-thick: blur(32px) saturate(160%);
+  --material-edge:   color-mix(in srgb, var(--text) 9%, transparent);
+
+  /* Type: tracking and leading are size-specific, never one value. */
+  --track-display: -0.045em;  /* 64px+ */
+  --track-title:   -0.03em;   /* 28-64px */
+  --track-heading: -0.015em;  /* 18-28px */
+  --track-body:     0;
+  --track-caption:  0.06em;   /* mono labels, 10-12px */
+  --lead-display: 0.98;
+  --lead-title:   1.08;
+  --lead-body:    1.6;
 }
 
 /* Light mode — stub only in v1. Do not iterate. v2 work. */

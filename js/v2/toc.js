@@ -30,14 +30,40 @@
       items.push({ id: h.id, el: h, li });
     });
 
+    // One indicator that slides between entries on a spring, instead of borders
+    // blinking on and off. Fast scrolling just re-targets it mid-flight.
+    const rail = tocList.closest('.left-rail');
+    const marker = document.createElement('span');
+    marker.className = 'toc-marker';
+    marker.setAttribute('aria-hidden', 'true');
+    if (rail) rail.appendChild(marker);
+    let my = 0, mh = 0;
+    const paintMarker = () => { marker.style.transform = 'translate3d(0,' + my + 'px,0) scaleY(' + mh + ')'; };
+    const F = window.Fluid;
+    const sy = F && F.spring({ damping: 1, response: 0.35, onUpdate: (v) => { my = v; paintMarker(); } });
+    const sh = F && F.spring({ damping: 1, response: 0.35, onUpdate: (v) => { mh = v; paintMarker(); } });
+    function moveMarker (li, instant) {
+      if (!rail || !li.offsetHeight) return;
+      const y = li.offsetTop, h = li.offsetHeight; // .left-rail is the offsetParent (sticky)
+      if (!sy || instant) { my = y; mh = h; paintMarker(); if (sy) { sy.set(y); sh.set(h); } return; }
+      sy.to(y); sh.to(h);
+    }
+
     // Active-section highlight via IntersectionObserver.
     let activeId = items[0].id;
     function setActive (id) {
       if (id === activeId) return;
       activeId = id;
-      items.forEach(({ id: thisId, li }) => li.classList.toggle('active', thisId === id));
+      items.forEach(({ id: thisId, li }) => {
+        li.classList.toggle('active', thisId === id);
+        if (thisId === id) moveMarker(li);
+      });
     }
-    items.forEach(({ li, id }, i) => { if (i === 0) li.classList.add('active'); });
+    items.forEach(({ li }, i) => { if (i === 0) { li.classList.add('active'); moveMarker(li, true); } });
+    window.addEventListener('resize', () => {
+      const cur = items.find((it) => it.id === activeId);
+      if (cur) moveMarker(cur.li, true);
+    });
 
     const observer = new IntersectionObserver((entries) => {
       const visible = entries.filter((e) => e.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);

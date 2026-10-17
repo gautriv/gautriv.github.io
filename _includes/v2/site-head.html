@@ -61,6 +61,8 @@
 <link rel="stylesheet" href="{{ site.url }}/css/v2/base.css?v={{ v }}">
 <link rel="stylesheet" href="{{ site.url }}/css/v2/chrome.css?v={{ v }}">
 <link rel="stylesheet" href="{{ site.url }}/css/v2/utility.css?v={{ v }}">
+<!-- Spring engine first: nav.js, toc.js and home-fluid.js all build on window.Fluid. -->
+<script defer src="{{ site.url }}/js/v2/spring.js?v={{ v }}"></script>
 {% if page.hometype == "homepage" %}
   <link rel="stylesheet" href="{{ site.url }}/css/v2/feed.css?v={{ v }}">
 {% endif %}
@@ -76,3 +78,5 @@
 {% if page.body_class contains 'landing-page' or page.landing %}
   <link rel="stylesheet" href="{{ site.url }}/css/v2/landing.css?v={{ v }}">
 {% endif %}
+<!-- Motion + material layer. Last, so it refines every surface sheet above. -->
+<link rel="stylesheet" href="{{ site.url }}/css/v2/fluid.css?v={{ v }}">
