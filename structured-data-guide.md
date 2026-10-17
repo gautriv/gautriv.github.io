@@ -1,3 +1,9 @@
+---
+layout: page
+title: Structured Data Implementation Guide
+permalink: /structured-data-guide/
+---
+
 # Structured Data Implementation Guide
 
 This guide explains how to add structured data to blog posts for better SEO and rich snippets in search results.
