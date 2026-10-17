@@ -11,6 +11,9 @@ html {
   text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   overflow-x: hidden;
+  /* clip, not hidden: hidden on both html and body makes body a scroll container,
+     and every position: sticky (nav, TOC, rails) then scrolls away with it. */
+  overflow-x: clip;
   max-width: 100%;
   /* Tells the browser to theme native UI (autofill, scrollbars, focus rings, */
   /* date pickers) for either mode — pairs with the token-driven CSS. */
@@ -28,6 +31,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
+  overflow-x: clip;
   max-width: 100%;
   min-height: 100vh;
 }

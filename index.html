@@ -6,16 +6,25 @@ description: "Field notes on technical writing, AI, and the work that doesn't au
 body_class: homepage
 ---
 
+<div class="cursor-lens" aria-hidden="true"></div>
+
 <section class="hero">
   <div class="hero-eyebrow"><span>Issue {{ site.posts | size }} — {{ site.time | date: "%B %-d, %Y" }}</span></div>
-  <h1>Field notes on <span class="accent">writing</span>, AI, and the work that doesn't automate.</h1>
+  <h1 aria-label="Field notes on writing, AI, and the work that doesn't automate."><span class="w" aria-hidden="true" style="--i:0">Field</span> <span class="w" aria-hidden="true" style="--i:1">notes</span> <span class="w" aria-hidden="true" style="--i:2">on</span> <span class="w" aria-hidden="true" style="--i:3"><span class="accent">writing</span>,</span> <span class="w" aria-hidden="true" style="--i:4">AI,</span> <span class="w" aria-hidden="true" style="--i:5">and</span> <span class="w" aria-hidden="true" style="--i:6">the</span> <span class="w" aria-hidden="true" style="--i:7">work</span> <span class="w" aria-hidden="true" style="--i:8">that</span> <span class="w" aria-hidden="true" style="--i:9">doesn't</span> <span class="w" aria-hidden="true" style="--i:10">automate.</span></h1>
   <p>A working journal from inside a technical writing team adopting AI faster than the org chart can keep up. Longform essays, tooling teardowns, and uncomfortable observations.</p>
 
+  {% comment %} Every number here is computed at build time. No invented social proof. {% endcomment %}
+  {% assign total_words = 0 %}
+  {% for p in site.posts %}{% assign pw = p.content | strip_html | number_of_words %}{% assign total_words = total_words | plus: pw %}{% endfor %}
+  {% assign post_count = site.posts | size %}
+  {% assign avg_read = total_words | divided_by: post_count | divided_by: 180 | plus: 1 %}
+  {% assign kwords = total_words | divided_by: 1000 %}
+  {% assign topic_count = site.data.categories.categories | size %}
   <div class="hero-stats">
-    <div class="stat"><span class="v">{{ site.posts | size }}</span><span class="l">Essays</span></div>
-    <div class="stat"><span class="v">3.2K</span><span class="l">Subscribers</span></div>
-    <div class="stat"><span class="v">8.4yr</span><span class="l">Continuous run</span></div>
-    <div class="stat"><span class="v">~14m</span><span class="l">Median read</span></div>
+    <div class="stat"><span class="v" data-count="{{ post_count }}">{{ post_count }}</span><span class="l">Essays</span></div>
+    <div class="stat"><span class="v"><span data-count="{{ kwords }}">{{ kwords }}</span>K</span><span class="l">Words published</span></div>
+    <div class="stat"><span class="v">~<span data-count="{{ avg_read }}">{{ avg_read }}</span>m</span><span class="l">Average read</span></div>
+    <div class="stat"><span class="v" data-count="{{ topic_count }}">{{ topic_count }}</span><span class="l">Beats covered</span></div>
   </div>
 </section>
 
@@ -36,10 +45,13 @@ body_class: homepage
   <div class="feed-main">
     {% assign featured = paginator.posts | first %}
     {% if paginator.page == 1 and featured %}
-    <article class="pinned">
+    <article class="pinned" data-tilt>
       <div class="pinned-art" aria-hidden="true">
-        <div class="pinned-art-text">{{ paginator.posts | size }}</div>
-        <div class="pinned-art-glyph">LEAD</div>
+        <div class="pinned-art-grid" data-depth="-10"></div>
+        <div class="pinned-art-text" data-depth="18">{{ paginator.posts | size }}</div>
+        <div class="pinned-art-title" data-depth="10">{{ featured.title | strip_html }}</div>
+        <div class="pinned-art-glyph" data-depth="6">LEAD</div>
+        <div class="pinned-art-glare"></div>
       </div>
       <div class="pinned-body">
         <div class="pinned-meta">

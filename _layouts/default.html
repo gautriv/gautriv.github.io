@@ -38,6 +38,9 @@
   <script defer src="{{ site.url }}/js/v2/search.js?v={{ v }}"></script>
   <script defer src="{{ site.url }}/js/v2/newsletter.js?v={{ v }}"></script>
   <script defer src="{{ site.url }}/js/v2/optin.js?v={{ v }}"></script>
+  {% if page.hometype == "homepage" %}
+  <script defer src="{{ site.url }}/js/v2/home-fluid.js?v={{ v }}"></script>
+  {% endif %}
 
   <!-- The Survival Stack Slide-in Popup.
        Suppressed on landing pages — the page itself IS the conversion target. -->
