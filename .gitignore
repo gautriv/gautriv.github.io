@@ -40,3 +40,6 @@ convertkit-sequence.md
 
 
 redeploy.sh
+# Local agent skills (installed per machine, not site content)
+.agents/
+skills-lock.json
