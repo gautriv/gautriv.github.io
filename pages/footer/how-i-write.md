@@ -81,7 +81,7 @@ I will not pretend the sentences are wholly mine when they aren't.
 
 I will not pretend a model's confidence counts as evidence. It doesn't, for me or for it.
 
-I will not pretend AI use is a moral failing that requires apology. The craft has always borrowed. Editors. Copy-editors. Beta readers. Writing groups. Claude is the latest member of that lineage. It happens to be available at 2 a.m.
+I will not pretend AI use is a moral failing that requires apology. The craft has always borrowed. Editors. Copy-editors. Beta readers. Writing groups. Claude is the latest member of that lineage. It happens to be available at 2 a.m. It is also the only member that can invent a source and sound certain about it. That's what the checking is for.
 
 The loop doesn't guarantee better writing. It raises the bar I'm willing to ship at.
 

@@ -24,6 +24,9 @@ layout: default
         <div><span>updated</span> <time itemprop="dateModified" datetime="{{ page.last_modified_at | date_to_xmlschema }}"><strong>{{ page.last_modified_at | date: "%Y-%m-%d" }}</strong></time></div>
       {% endif %}
       <div><span>read</span> <strong>{% include readtime.html content=page.content %}</strong></div>
+      {% if page.ai_assisted != false %}
+        <div><span>method</span> <a class="ai-bar-link" href="{% if page.ai_note %}#ai-method-note{% else %}{{ site.baseurl }}/how-i-write/{% endif %}"><strong>{% if page.ai_note %}AI note &darr;{% else %}AI in the loop{% endif %}</strong></a></div>
+      {% endif %}
       <div class="article-bar-actions">
         <button type="button" class="focus-toggle" aria-label="Enter focus mode" data-action="enter-focus">⊙ Focus</button>
       </div>
@@ -48,7 +51,7 @@ layout: default
     <p class="author-disclaimer" style="text-align: center; font-size: 0.82em; color: #64748b; font-style: italic; max-width: 720px; margin: 14px auto 10px; padding: 0 20px; line-height: 1.5;">Personal essay. Views are my own and do not represent any current or former employer.</p>
 
     {% if page.ai_assisted != false %}
-    <p class="ai-method-note" style="text-align: center; font-size: 0.82em; color: #64748b; font-style: italic; max-width: 720px; margin: 0 auto 28px; padding: 0 20px; line-height: 1.5;">Written with AI in the loop. The argument is mine. The polish isn't entirely. <a href="{{ site.baseurl }}/how-i-write/" style="color: inherit; text-decoration: underline;">How I work &rarr;</a></p>
+    <p id="ai-method-note" class="ai-method-note" style="text-align: center; font-size: 0.82em; color: #64748b; font-style: italic; max-width: 720px; margin: 0 auto 28px; padding: 0 20px; line-height: 1.5;">{% if page.ai_note %}{{ page.ai_note | markdownify | remove: '<p>' | remove: '</p>' | strip }}{% else %}Written with AI in the loop. The argument is mine. The polish isn't entirely.{% endif %} <a href="{{ site.baseurl }}/how-i-write/" style="color: inherit; text-decoration: underline;">How I work &rarr;</a></p>
     {% endif %}
 
     {% include v2/previousnext.html %}

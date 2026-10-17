@@ -32,6 +32,13 @@ module Jekyll
       end
       notes = corrections.empty? ? '' : corrections.join("\n>\n") + "\n\n"
 
+      # Mirror the AI-method note (_layouts/posts.html): a per-post `ai_note` or the site default.
+      unless post.data['ai_assisted'] == false
+        method = post.data['ai_note'].to_s.gsub(/\s*\n\s*/, ' ').strip
+        method = "Written with AI in the loop. The argument is mine. The polish isn't entirely." if method.empty?
+        notes += "> **How this was written:** #{method} See #{File.join(site.config['url'].to_s, '/how-i-write/')}\n\n"
+      end
+
       content = front + "\n# #{post.data['title']}\n\n" + notes + body
 
       # /taking-yourself-out-of-the-equation/ -> /taking-yourself-out-of-the-equation.md

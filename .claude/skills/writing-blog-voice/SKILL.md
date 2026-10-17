@@ -142,7 +142,7 @@ This blog declares its AI involvement openly: a site-wide note ("Written with AI
 
 The manifesto already names what stays human. Honor it on every essay:
 
-- **The hook is yours. Always.** If the opening came from a model, the essay isn't honest. Write it yourself.
+- **The hook is yours. Always.** The manifesto promises it: AI can attack the opening, it doesn't get to write it. Write it yourself.
 - **The thesis is yours.** The reason the post exists, the thing you'd take heat for in the comments.
 - **The lived detail is yours, and it must carry weight.** At least one specific, first-person, lived thing no model could supply: a real moment, a real mistake, a real number from your own work, a real name. Not a token confession buried in the last third under 2,000 words of macro argument. Land it early and let it carry load. A post that is 95% macro philosophy with one thin personal beat will read as machine-written even when it isn't, because the human fraction is too small to feel.
 - **What AI is for (use it, don't pretend otherwise):** arguing with you, structural surgery, polish and rhythm, and catching the three things the manifesto names: *not going far enough*, *saying the same thing three times in different sentences*, *starting with conviction and ending with hedging.* If the loop didn't catch those, the loop didn't run.

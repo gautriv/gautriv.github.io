@@ -95,6 +95,17 @@
   font-weight: 500;
 }
 
+.article-bar .ai-bar-link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--line);
+  text-underline-offset: 4px;
+}
+
+.article-bar .ai-bar-link:hover {
+  text-decoration-color: currentColor;
+}
+
 .article-bar-actions {
   margin-left: auto;
   display: flex;
