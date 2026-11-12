@@ -14,7 +14,6 @@ og_image: "/assets/where-are-technical-writers-finding-work.jpg"
 twitter_card: "summary_large_image"
 radar_theme: ai_job_market_restructuring
 published: true
-ai_note: "I supplied the Reddit opening, the question, and the direction for the piece. Codex helped research the numbers and public accounts, draft and review the article, and generate the cover illustration."
 faqs:
   - question: "What is the job outlook for technical writers in the United States?"
     answer: "The U.S. Bureau of Labor Statistics projects 1 percent employment growth from 2025 to 2035 and about 3,200 openings per year on average. Most projected openings are replacements for people who change occupations or leave the workforce."
