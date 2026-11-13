@@ -13,7 +13,6 @@ og_image: "/assets/work-hub-dashboard.png"
 twitter_card: "summary_large_image"
 seo_keywords: "Work Hub Claude Code plugin, technical writing workflow, documentation task tracker, Jira documentation workflow, local task tracker"
 published: true
-ai_note: "I supplied the opening and structure. Codex edited the draft and checked the feature descriptions against the Work Hub repository. The dashboard screenshot uses sample data."
 faqs:
   - question: "What is Work Hub?"
     answer: "Work Hub is an open source Claude Code plugin with a local task tracker, a daily brief, and editable working memory. It brings connected work and personal commitments together and keeps a history of Jira recommendations, deferrals, and outcomes."
